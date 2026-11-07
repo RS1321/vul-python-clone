@@ -1,6 +1,6 @@
 # Local vulnerability repair replication
 
-This revision addresses implementation and execution concerns in the supplied reviewer comments. Changes are published to the user's review branch; upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
+This revision addresses implementation and execution concerns in the supplied reviewer comments. Changes are published on main; upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
 
 The latest [security-resolution report](continuation/results/security-resolution-v6/SECURITY_RESOLUTION.md) records separate hardened VAmPI/PyGoat clones, all 21 lesson suites, authenticated active scans and final static rescans. These explicit agent-authored repairs are separate from the earlier measured free-model cohort.
 
@@ -26,7 +26,7 @@ CodeQL CLI 2.27.4 and `codeql/python-queries@1.9.0` were downloaded from the off
 
 ```powershell
 .\.review-work\codeql-cli\codeql\codeql.exe pack download codeql/python-queries@1.9.0 --dir=.review-work/packs
-.\.venv\Scripts\python.exe review/runner.py scan --repo ..\vul-python-clone --out review_results/baseline-synthetic
+.\.venv\Scripts\python.exe review/runner.py scan --repo benchmarks/synthetic --out review_results/baseline-synthetic
 .\.venv\Scripts\python.exe review/runner.py scan --repo benchmarks/pygoat --out review_results/baseline-pygoat
 .\.venv\Scripts\python.exe review/runner.py scan --repo benchmarks/vampi --out review_results/baseline-vampi
 ```
@@ -47,7 +47,7 @@ The source commits used for measurements are in the generated dataset manifest. 
 Each run records the source commit, scanner-input hash, implementation hashes, prompt-library hash, generation settings, selected findings, full prompts, responses, token use, elapsed time, patch diffs, validation results, and application routes. Output directories must be new; reusing a source directory is rejected.
 
 ```powershell
-.\.venv\Scripts\python.exe review/runner.py run --repo ..\vul-python-clone --sarif review_results/baseline-synthetic/scan.sarif --out review_results/example-A-r1 --provider gemini --model gemma-4-26b-a4b-it --condition A --rescan
+.\.venv\Scripts\python.exe review/runner.py run --repo benchmarks/synthetic --sarif review_results/baseline-synthetic/scan.sarif --out review_results/example-A-r1 --provider gemini --model gemma-4-26b-a4b-it --condition A --rescan
 ```
 
 Use `--zap path/to/scan.json` to include ZAP evidence as a CWE-class hint. This correlation does not prove that a source finding corresponds to a particular HTTP exploit. Report the exact evidence file used. ZAP evidence is optional; its absence is explicit in the prompt and manifest. If a `tests` directory exists, the runner selects `tests -m "not network"`. Otherwise pass project-appropriate arguments with `--pytest-args`; an empty suite is not evidence of functional correctness.
@@ -86,7 +86,7 @@ Run `python review/finalise.py` to regenerate the comparison tables, reviewer re
 
 The inline gates check actual added plus deleted source lines, Python compilation, and structured Pylint output. Small functions allow at most five changed lines; larger functions allow 50 percent, capped at 50. Pylint requires a score of at least 2 and no new fatal/error diagnostics; pre-existing dependency errors are counted separately. Every failed candidate, including the final attempt, restores the pre-finding bytes. Earlier accepted fixes remain intact. No candidate is committed before the gates finish.
 
-AST targets are bound on the baseline and refreshed by qualified name. File paths must stay inside the clone. Async functions, nested methods, and multiline decorators are supported. Ambiguous unqualified names fail. Exact line replacement requires a current source snapshot. Approximate text matching is not an application route in this revision. Multi-function transactions and other programming languages remain unsupported; they must not be described as evaluated capabilities.
+AST targets are bound on the baseline and refreshed by qualified name. File paths must stay inside the clone. Async functions, nested methods, and multiline decorators are supported. Ambiguous unqualified names fail. Exact line replacement requires a current source snapshot. Approximate text matching is not an application route in this revision. The finding-by-finding runner replaces one Python function at a time. Coordinated Python/JavaScript transactions use the separate patch-set mode described below.
 
 An accepted patch is not a security fix until it has been checked by the batch oracle. A fresh CodeQL re-scan compares multisets of rule, source file, and qualified function, retaining duplicate counts and reporting new findings separately. Module-level findings are aggregated by rule and file; the report states this matching limitation. A missing post-scan yields no fix rate. DAST and functional tests remain separate measurements.
 
@@ -97,7 +97,7 @@ An accepted patch is not a security fix until it has been checked by the batch o
 Use a new output directory for each dynamic scan. The application starts from its source clone with a separate `target-state` working directory for its database and scanner side effects. Use a full Java 17+ installation on PATH; CodeQL's smaller Java runtime cannot load ZAP's scripting module.
 
 ```powershell
-.\.venv\Scripts\python.exe review/run_dast.py --repo ..\vul-python-clone --out review_results/dast-baseline-synthetic
+.\.venv\Scripts\python.exe review/run_dast.py --repo benchmarks/synthetic --out review_results/dast-baseline-synthetic
 .\.venv\Scripts\python.exe review/run_dast.py --repo review_results/example-A-r1/source --out review_results/dast-example-A-r1
 ```
 
