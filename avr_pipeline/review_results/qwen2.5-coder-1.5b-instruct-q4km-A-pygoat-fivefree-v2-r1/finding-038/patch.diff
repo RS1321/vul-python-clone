@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -27,7 +27,7 @@
+         try:
+             # Intentionally vulnerable command execution
+             process = subprocess.Popen(
+-                command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
++                command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+             )
+             stdout, stderr = process.communicate()
+             output = stdout.decode("utf-8") + stderr.decode("utf-8")

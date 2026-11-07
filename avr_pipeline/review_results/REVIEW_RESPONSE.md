@@ -1,8 +1,10 @@
 # Implementation review and measured results
 
+For the continued code-only response and latest free-model/external observations, see `continuation/results/CODE_REVIEW_RESPONSE.md`. The user deferred manuscript changes. The earlier factorial and DAST series below remain separate from that continuation.
+
 The local code changes and the experiments below address execution-related comments in Comments Received.docx. The work is incomplete until the pending comparisons and runtime evaluations are measured. No result here should be substituted for the original paper’s five-model measurements.
 
-Pipeline verification: 29 checks passed; 0 failed or errored. The unchanged synthetic app passed 68 selected functional tests before the repair attempts.
+Pipeline verification: 39 checks passed; 0 failed or errored. The unchanged synthetic app passed 68 selected functional tests before the repair attempts.
 
 ## Fresh security baselines
 
@@ -18,11 +20,29 @@ CodeQL CLI 2.27.4 with Python queries 1.9.0 and the security-extended suite prod
 
 | Run | Status | Processed | Accepted patches | Resolved by re-scan | New findings | Post tests |
 |---|---|---:|---:|---:|---:|---|
+| gemini-3.1-flash-lite-A-pygoat-fivefree-v2-r1 | interrupted_api_error | 59/62 | 45 | unavailable | unavailable | not_configured |
+| gemini-3.1-flash-lite-A-synthetic-fivefree-v2-r1 | complete | 29/29 | 5 | 5 | 0 | passed |
+| gemini-3.1-flash-lite-A-vampi-fivefree-v2-r1 | interrupted_api_error | 1/3 | 0 | unavailable | unavailable | not_configured |
+| gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1 | complete | 29/29 | 7 | 8 | 0 | failed (2 failures) |
+| gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1 | complete | 62/62 | 47 | 39 | 2 | not_configured |
+| gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1 | complete | 29/29 | 15 | 14 | 0 | failed (8 failures) |
+| gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1 | complete | 3/3 | 2 | 3 | 0 | not_configured |
+| gemini-3.5-flash-lite-B-synthetic-fivefree-v2-r1 | complete | 29/29 | 15 | 14 | 0 | failed (2 failures) |
+| gemini-3.6-flash-A-synthetic-fivefree-v2-r1 | interrupted_api_error | 10/29 | 5 | unavailable | unavailable | passed |
+| gemini-3.6-flash-B-synthetic-fivefree-v2-r1 | interrupted_api_error | 1/29 | 0 | unavailable | unavailable | passed |
+| gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1 | complete | 62/62 | 47 | 38 | 0 | not_configured |
+| gemma-4-26b-a4b-it-A-synthetic-fivefree-v2-r1 | complete | 29/29 | 12 | 11 | 0 | failed (3 failures) |
+| gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1 | complete | 3/3 | 3 | 3 | 0 | not_configured |
+| gemma-4-26b-a4b-it-B-synthetic-fivefree-v2-r1 | complete | 29/29 | 11 | 11 | 0 | passed |
 | gemma-4-26b-a4b-it-B-synthetic-matched-r1 | complete | 29/29 | 12 | 11 | 0 | failed (1 failures) |
 | gemma-4-26b-a4b-it-C-synthetic-matched-r1 | complete | 29/29 | 25 | 24 | 2 | failed (10 failures) |
 | gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1 | complete | 29/29 | 12 | 11 | 0 | passed |
 | gemma-4-26b-a4b-it-no_guidance-synthetic-matched-r1 | complete | 29/29 | 11 | 11 | 0 | passed |
 | gemma-4-26b-a4b-it-simple-synthetic-matched-r1 | complete | 29/29 | 26 | 23 | 0 | failed (8 failures) |
+| gemma-4-31b-it-A-pygoat-fivefree-v2-r1 | interrupted_api_error | 13/62 | 11 | unavailable | unavailable | not_configured |
+| gemma-4-31b-it-A-synthetic-fivefree-v2-r1 | interrupted_api_error | 22/29 | 13 | unavailable | unavailable | failed (2 failures) |
+| gemma-4-31b-it-A-vampi-fivefree-v2-r1 | complete | 3/3 | 3 | 2 | 0 | not_configured |
+| gemma-4-31b-it-B-synthetic-fivefree-v2-r1 | interrupted_api_error | 9/29 | 5 | unavailable | unavailable | passed |
 | gemma26-A-pygoat-cross-file-r1 | complete | 2/62 | 1 | unavailable | unavailable | not_configured |
 | gemma26-A-pygoat-r1 | interrupted_api_error | 16/62 | 11 | unavailable | unavailable | not_configured |
 | gemma26-A-synthetic-r1 | interrupted_api_error | 1/29 | 0 | unavailable | unavailable | passed |
@@ -33,6 +53,14 @@ CodeQL CLI 2.27.4 with Python queries 1.9.0 and the security-extended suite prod
 | gemma31-A-synthetic-v2-r1 | interrupted_api_error | 5/29 | 2 | unavailable | unavailable | passed |
 | gemma31-A-vampi-r1 | complete | 3/3 | 3 | 2 | 0 | not_configured |
 | gemma31-B-synthetic-v2-r1 | interrupted_api_error | 4/29 | 2 | unavailable | unavailable | passed |
+| qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v2-r1 | interrupted_api_error | 6/29 | 1 | unavailable | unavailable | passed |
+| qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1 | complete | 29/29 | 10 | 0 | 0 | passed |
+| qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v2-r1 | interrupted_api_error | 1/29 | 0 | unavailable | unavailable | passed |
+| qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v3-1024-r1 | complete | 29/29 | 14 | 0 | 0 | passed |
+| qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1 | complete | 62/62 | 21 | 20 | 0 | not_configured |
+| qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1 | complete | 29/29 | 8 | 5 | 0 | failed (4 failures) |
+| qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1 | complete | 3/3 | 2 | 0 | 0 | not_configured |
+| qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1 | complete | 29/29 | 5 | 3 | 0 | passed |
 
 On the original app, the same-model simpler run removed 23 CodeQL findings versus 13 for A. The simpler run changed 209 lines across accepted patches and had 8 failing assertions; A changed 68 lines and had 6 failing assertions. This comparison does not establish that either workflow is preferable across models or projects.
 
@@ -58,11 +86,29 @@ Acceptance means that the configured inline gates passed. Security resolution is
 
 | Run | Attempts to apply | Applied | Failed to apply | AST name | AST line fallback | Verified line |
 |---|---:|---:|---:|---:|---:|---:|
+| gemini-3.1-flash-lite-A-pygoat-fivefree-v2-r1 | 89 | 85 | 4 | 64 | 0 | 24 |
+| gemini-3.1-flash-lite-A-synthetic-fivefree-v2-r1 | 81 | 78 | 3 | 78 | 0 | 0 |
+| gemini-3.1-flash-lite-A-vampi-fivefree-v2-r1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1 | 76 | 71 | 5 | 74 | 0 | 0 |
+| gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1 | 104 | 79 | 25 | 60 | 0 | 25 |
+| gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1 | 61 | 48 | 13 | 50 | 0 | 0 |
+| gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1 | 7 | 7 | 0 | 7 | 0 | 0 |
+| gemini-3.5-flash-lite-B-synthetic-fivefree-v2-r1 | 63 | 55 | 8 | 58 | 0 | 0 |
+| gemini-3.6-flash-A-synthetic-fivefree-v2-r1 | 28 | 20 | 8 | 20 | 0 | 0 |
+| gemini-3.6-flash-B-synthetic-fivefree-v2-r1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1 | 103 | 89 | 14 | 73 | 0 | 25 |
+| gemma-4-26b-a4b-it-A-synthetic-fivefree-v2-r1 | 68 | 61 | 7 | 61 | 0 | 0 |
+| gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1 | 3 | 3 | 0 | 3 | 0 | 0 |
+| gemma-4-26b-a4b-it-B-synthetic-fivefree-v2-r1 | 68 | 56 | 12 | 56 | 0 | 0 |
 | gemma-4-26b-a4b-it-B-synthetic-matched-r1 | 65 | 57 | 8 | 56 | 0 | 2 |
 | gemma-4-26b-a4b-it-C-synthetic-matched-r1 | 28 | 25 | 3 | 25 | 0 | 0 |
 | gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1 | 64 | 59 | 5 | 59 | 0 | 0 |
 | gemma-4-26b-a4b-it-no_guidance-synthetic-matched-r1 | 65 | 58 | 7 | 58 | 0 | 2 |
 | gemma-4-26b-a4b-it-simple-synthetic-matched-r1 | 27 | 26 | 1 | 26 | 0 | 0 |
+| gemma-4-31b-it-A-pygoat-fivefree-v2-r1 | 16 | 15 | 1 | 12 | 0 | 3 |
+| gemma-4-31b-it-A-synthetic-fivefree-v2-r1 | 67 | 42 | 25 | 52 | 0 | 0 |
+| gemma-4-31b-it-A-vampi-fivefree-v2-r1 | 5 | 4 | 1 | 4 | 0 | 0 |
+| gemma-4-31b-it-B-synthetic-fivefree-v2-r1 | 17 | 15 | 2 | 15 | 0 | 0 |
 | gemma26-A-pygoat-cross-file-r1 | 5 | 5 | 0 | 5 | 0 | 0 |
 | gemma26-A-pygoat-r1 | 23 | 19 | 4 | 17 | 0 | 3 |
 | gemma26-A-synthetic-r1 | 1 | 1 | 0 | 1 | 0 | 0 |
@@ -73,9 +119,20 @@ Acceptance means that the configured inline gates passed. Security resolution is
 | gemma31-A-synthetic-v2-r1 | 7 | 6 | 1 | 4 | 0 | 2 |
 | gemma31-A-vampi-r1 | 5 | 4 | 1 | 4 | 0 | 0 |
 | gemma31-B-synthetic-v2-r1 | 7 | 6 | 1 | 6 | 0 | 0 |
+| qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v2-r1 | 17 | 14 | 3 | 17 | 0 | 0 |
+| qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1 | 54 | 41 | 13 | 54 | 0 | 0 |
+| qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v2-r1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v3-1024-r1 | 59 | 26 | 33 | 59 | 0 | 0 |
+| qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1 | 147 | 33 | 114 | 16 | 0 | 19 |
+| qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1 | 79 | 9 | 70 | 10 | 0 | 0 |
+| qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1 | 7 | 2 | 5 | 3 | 0 | 0 |
+| qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1 | 82 | 5 | 77 | 5 | 0 | 0 |
 
 The following partial re-scans describe checkpoint source states. They are excluded from full-run rates:
 
+- gemini-3.6-flash-A-synthetic-fivefree-v2-r1: 5 baseline alerts absent after 10/29 findings were processed.
+- gemma-4-31b-it-A-pygoat-fivefree-v2-r1: 11 baseline alerts absent after 13/62 findings were processed.
+- gemma-4-31b-it-B-synthetic-fivefree-v2-r1: 5 baseline alerts absent after 9/29 findings were processed.
 - gemma26-A-pygoat-cross-file-r1: 0 baseline alerts absent after 2/62 findings were processed.
 - gemma26-A-pygoat-r1: 11 baseline alerts absent after 16/62 findings were processed.
 - gemma31-A-synthetic-v2-r1: 2 baseline alerts absent after 5/29 findings were processed.

@@ -1,0 +1,347 @@
+[
+  {
+    "dataset": "urllib3",
+    "state": "baseline",
+    "returncode": 1,
+    "scope": "Upstream test_retry.py; unrelated server conftest disabled; no network fixtures",
+    "tests": 59,
+    "failed": 27,
+    "failures": [
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\urllib3-cve\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      }
+    ]
+  },
+  {
+    "dataset": "urllib3",
+    "state": "patched",
+    "returncode": 1,
+    "scope": "Upstream test_retry.py; unrelated server conftest disabled; no network fixtures",
+    "tests": 59,
+    "failed": 28,
+    "failures": [
+      {
+        "name": "test_retry_default_remove_headers_on_redirect",
+        "class": "test.test_retry.TestRetry",
+        "message": "AssertionError: assert ['cookie', 'authorization'] == ['authorization']\n  \n  At index 0 diff: 'cookie' != 'authorization'\n  Left contains one more item: 'authorization'\n  Use -v to get more diff"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[UTC-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-3600-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-3600-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-True-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-False-None]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Monday, 03-Jun-19 11:30:12 GMT-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      },
+      {
+        "name": "test_respect_retry_after_header_sleep[None-Mon Jun  3 11:30:12 2019-True-1812]",
+        "class": "test.test_retry.TestRetry",
+        "message": "failed on setup with \"file C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\test\\test_retry.py, line 323\n      @pytest.mark.freeze_time(\"2019-06-03 11:00:00\", tz_offset=0)\n      @pytest.mark.parametrize(\n          \"retry_after_header,respect_retry_after_header,sleep_duration\",\n          [\n              (\"3600\", True, 3600),\n              (\"3600\", False, None),\n              # Will sleep due to header is 1 hour in future\n[+30 more lines; full report in element text]"
+      }
+    ]
+  },
+  {
+    "dataset": "minimist",
+    "state": "baseline",
+    "returncode": 0,
+    "scope": "Upstream ordinary parser tests; proto.js excluded; no security fix-rate claim",
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "tests": 127,
+    "passed": 127,
+    "failed": 0
+  },
+  {
+    "dataset": "minimist",
+    "state": "patched",
+    "returncode": 1,
+    "scope": "Upstream ordinary parser tests; proto.js excluded; no security fix-rate claim",
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "tests": 53,
+    "passed": 4,
+    "failed": 49
+  }
+]

@@ -1,0 +1,200 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\source
+configfile: pytest.ini
+plugins: platformdirs-4.14.5, cov-7.1.0
+collected 69 items / 1 deselected / 68 selected
+
+tests\test_vulnerable_app.py ..................................FFF...... [ 63%]
+........FF....FFF..F..F..                                                [100%]
+
+================================== FAILURES ===================================
+________________________ test_download_with_file_param ________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_download_with_file_param(client):
+        """Download accepts file parameter."""
+        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.txt') as f:
+            f.write('test content')
+            temp_path = f.name
+    
+        try:
+            response = client.get(f'/download?file={temp_path}')
+>           assert response.status_code == 200
+E           assert 500 == 200
+E            +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:318: AssertionError
+_________________________ test_download_missing_file __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_download_missing_file(client):
+        """Download handles missing file."""
+        response = client.get('/download?file=nonexistent_xyz.txt')
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:326: AssertionError
+___________________________ test_download_with_path ___________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_download_with_path(client):
+        """Download handles path parameter."""
+        response = client.get('/download?file=test.txt')
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:332: AssertionError
+_________________________ test_fetch_url_invalid_url __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_fetch_url_invalid_url(client):
+        """Invalid URL handled."""
+        response = client.get('/fetch_url?url=not_a_valid_url')
+>       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <WrapperTestResponse streamed [400 BAD REQUEST]>.status_code
+
+tests\test_vulnerable_app.py:474: AssertionError
+__________________________ test_fetch_url_with_param __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_fetch_url_with_param(client):
+        """Fetch URL accepts parameter."""
+        response = client.get('/fetch_url?url=http://localhost:1')
+>       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <WrapperTestResponse streamed [400 BAD REQUEST]>.status_code
+
+tests\test_vulnerable_app.py:480: AssertionError
+_________________________ test_load_object_with_data __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_with_data(client):
+        """Valid pickle data works."""
+        data = pickle.dumps({"key": "value"})
+        response = client.post('/load_object', data=data)
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:519: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    root:vulnerable_app.py:439 Error during deserialization
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\source\vulnerable_app.py", line 435, in insecure_deserialization
+    obj = json.loads(data)
+          ^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 341, in loads
+    s = s.decode(detect_encoding(s), 'surrogatepass')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 0: invalid start byte
+_______________________ test_load_object_simple_string ________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_simple_string(client):
+        """String pickle works."""
+        data = pickle.dumps("hello world")
+        response = client.post('/load_object', data=data)
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:526: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    root:vulnerable_app.py:439 Error during deserialization
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\source\vulnerable_app.py", line 435, in insecure_deserialization
+    obj = json.loads(data)
+          ^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 341, in loads
+    s = s.decode(detect_encoding(s), 'surrogatepass')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 0: invalid start byte
+________________________ test_load_object_invalid_data ________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_invalid_data(client):
+        """Invalid data handled."""
+        response = client.post('/load_object', data=b"not_pickle")
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:532: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    root:vulnerable_app.py:439 Error during deserialization
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\source\vulnerable_app.py", line 435, in insecure_deserialization
+    obj = json.loads(data)
+          ^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+________________________ test_ping_with_special_chars _________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_ping_with_special_chars(client):
+        """Ping handles special characters."""
+        response = client.get('/ping?host=test;echo')
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:554: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    root:vulnerable_app.py:463 Error executing ping command
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\source\vulnerable_app.py", line 459, in command_injection
+    result = subprocess.check_output(command, shell=False, stderr=subprocess.STDOUT, timeout=5)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['ping', '-n', '2', 'test;echo']' returned non-zero exit status 1.
+__________________________ test_parse_xml_malformed ___________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_parse_xml_malformed(client):
+        """Malformed XML handled."""
+        response = client.post('/parse_xml', data='<unclosed')
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:578: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    vulnerable_app:vulnerable_app.py:483 Error parsing XML: unclosed token: line 1, column 0
+- generated xml file: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-C-synthetic-matched-r1\post-tests\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_vulnerable_app.py::test_download_with_file_param - assert 5...
+FAILED tests/test_vulnerable_app.py::test_download_missing_file - assert 500 ...
+FAILED tests/test_vulnerable_app.py::test_download_with_path - assert 500 == 200
+FAILED tests/test_vulnerable_app.py::test_fetch_url_invalid_url - assert 400 ...
+FAILED tests/test_vulnerable_app.py::test_fetch_url_with_param - assert 400 =...
+FAILED tests/test_vulnerable_app.py::test_load_object_with_data - assert 500 ...
+FAILED tests/test_vulnerable_app.py::test_load_object_simple_string - assert ...
+FAILED tests/test_vulnerable_app.py::test_load_object_invalid_data - assert 5...
+FAILED tests/test_vulnerable_app.py::test_ping_with_special_chars - assert 50...
+FAILED tests/test_vulnerable_app.py::test_parse_xml_malformed - assert 500 ==...
+================= 10 failed, 58 passed, 1 deselected in 3.08s =================

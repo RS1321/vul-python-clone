@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -46,6 +46,8 @@
+ @app.route("/login", methods=["POST"])
+ def login():
+     import re
++    import base64
++    from datetime import datetime
+     username = request.form.get("username")
+     password = request.form.get("password")
+     remember_me = request.form.get("remember_me")
+@@ -59,6 +61,7 @@
+         safe_username = re.sub(r'[^a-zA-Z0-9]', '', username)
+ 
+         # Vulnerable: Insecure session management
++        # Base64 encoding the entire string prevents injection of cookie delimiters
+         session_token = base64.b64encode(
+             f"{safe_username}:{datetime.now()}".encode()
+         ).decode()

@@ -1,0 +1,80 @@
+{
+  "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+  "source_url": "https://github.com/erev0s/VAmPI.git",
+  "provider": "gemini",
+  "model": "gemma-4-31b-it",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": "minimal",
+  "implementation_sha256": {
+    "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5",
+    "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-vampi\\scan.sarif",
+  "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": false,
+  "transport_policy": {
+    "AVR_INPUT_BUDGET_PER_MINUTE": "12000",
+    "AVR_REQUEST_TIMEOUT": "60",
+    "AVR_TRANSPORT_RETRIES": "2"
+  },
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 3,
+  "selected_findings": 3,
+  "utc": "2026-11-07T11:10:42.491235+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 331.45300000000134,
+  "accepted_patches": 3,
+  "processed_findings": 3,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 3,
+    "remaining_baseline_findings": 1,
+    "resolved_findings": 2,
+    "new_findings": 0,
+    "resolution_rate": 0.6666666666666666,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/polynomial-redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
+}

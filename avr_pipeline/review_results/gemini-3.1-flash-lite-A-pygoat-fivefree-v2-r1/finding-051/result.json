@@ -1,0 +1,68 @@
+{
+  "finding_id": "py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 1.3440000000009604,
+      "response": {
+        "content": "SCOPE: function lab1\nEXPLANATION: Replaced the insecure `pickle.loads` deserialization with `json.loads` to prevent arbitrary code execution, while maintaining the logic of checking the admin status.\n\n```python\ndef lab1():\n    \"\"\"Lab 1: Insecure Deserialization\"\"\"\n    import base64, json\n    response = render_template(\"lab1.html\", message=\"Only Admins can see this page\")\n    token = request.cookies.get(\"token\")\n\n    if token is None:\n        token = encoded_user\n        response = make_response(\n            render_template(\"lab1.html\", message=\"Only Admins can see this page\")\n        )\n        response.set_cookie(key=\"token\", value=token.decode(\"utf-8\"))\n    else:\n        try:\n            token = base64.b64decode(token)\n            data = json.loads(token)\n            if data.get(\"admin\") == 1:\n                response = render_template(\n                    \"lab1.html\", message=\"Welcome Admin, SECRETKEY:ADMIN123\"\n                )\n        except Exception as e:\n            response = render_template(\"lab1.html\", error=str(e))\n\n    return response\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1234,
+          "completion_tokens": 285,
+          "total_tokens": 1519
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/software_integrity_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 052\",\n  \"finding_id\": \"py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/unsafe-deserialization\",\n    \"cwe\": \"CWE-502\",\n    \"all_cwes\": [\n      \"CWE-502\"\n    ],\n    \"description\": \"Unsafe deserialization depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/software_integrity_lab/app.py\",\n      \"start_line\": 45,\n      \"end_line\": 45,\n      \"function\": \"lab1\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for token\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 43,\n              \"node\": \"ControlFlowNode for token\"\n            },\n            {\n              \"file\": \"dockerized_labs/software_integrity_lab/app.py\",\n              \"line\": 45,\n              \"node\": \"ControlFlowNode for token\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"72e1532c8f349c06:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  }\n}\n\nCWE repair guidance\nDo not deserialize attacker-controlled Python objects. Use a data-only format with schema and size validation. Preserve the documented input contract or explicitly report an API change.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ndata = pickle.loads(request.data)\nAfter:\ndata = json.loads(request.data)\n\nCurrent source snapshot\n```python\n@app.route(\"/lab1\")\ndef lab1():\n    \"\"\"Lab 1: Insecure Deserialization\"\"\"\n    response = render_template(\"lab1.html\", message=\"Only Admins can see this page\")\n    token = request.cookies.get(\"token\")\n\n    if token is None:\n        token = encoded_user\n        response = make_response(\n            render_template(\"lab1.html\", message=\"Only Admins can see this page\")\n        )\n        response.set_cookie(key=\"token\", value=token.decode(\"utf-8\"))\n    else:\n        try:\n            token = base64.b64decode(token)\n            admin = pickle.loads(\n                token\n            )  # Intentionally vulnerable to pickle deserialization\n            if admin.admin == 1:\n                response = render_template(\n                    \"lab1.html\", message=\"Welcome Admin, SECRETKEY:ADMIN123\"\n                )\n        except Exception as e:\n            response = render_template(\"lab1.html\", error=str(e))\n\n    return response\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "dockerized_labs/software_integrity_lab/app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "lab1"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "7 added plus deleted lines; allowed 12.0",
+          "lines_added": 3,
+          "lines_removed": 4,
+          "total_churn": 7,
+          "original_length": 24,
+          "limit": 12.0
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 6.595744680851064,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "not_configured",
+          "passed": null,
+          "failures": null
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 3,
+  "lines_removed": 4
+}

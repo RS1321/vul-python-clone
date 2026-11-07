@@ -1,0 +1,2 @@
+Perform a coordinated format migration in this synthetic two-module fixture. encode(value) must return {"version":2,"payload":value}; decode must round-trip it and raise ValueError for other version values. Preserve function names. Each file must contain only its existing function. Return JSON {"files":[{"path":"encoder.py","after":"complete source"}, {"path":"decoder.py","after":"complete source"}]}. No tests, commands or explanation.
+{"encoder.py": "def encode(value):\n    return {\"legacy\": value}\n", "decoder.py": "def decode(value):\n    return value[\"legacy\"]\n"}

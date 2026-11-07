@@ -1,0 +1,6 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "error": "Local API error: ConnectionError",
+  "infrastructure_error": true
+}

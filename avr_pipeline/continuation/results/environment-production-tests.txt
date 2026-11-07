@@ -1,0 +1,13 @@
+# Python 3.12.14; Windows
+colorama==0.4.6
+freezegun==1.5.5
+iniconfig==2.3.1
+mock==5.2.0
+packaging==26.3
+pluggy==1.7.0
+Pygments==2.21.0
+pytest-freezegun==0.4.2
+pytest==9.2.0
+python-dateutil==4.0.0
+setuptools==84.2.1
+tzdata==2026.6

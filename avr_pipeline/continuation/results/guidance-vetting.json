@@ -1,0 +1,472 @@
+[
+  {
+    "version": "review-1",
+    "entries": [
+      {
+        "cwe": "CWE-078",
+        "checks": [
+          {
+            "name": "argument list; shell disabled",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      {
+        "cwe": "CWE-089",
+        "checks": [
+          {
+            "name": "parameter binding preserves literal name",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      {
+        "cwe": "CWE-079",
+        "checks": [
+          {
+            "name": "literal data rendered",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/79.html"
+      },
+      {
+        "cwe": "CWE-074",
+        "checks": [
+          {
+            "name": "literal data rendered",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/74.html"
+      },
+      {
+        "cwe": "CWE-022",
+        "checks": [
+          {
+            "name": "resolved local file retained",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/22.html"
+      },
+      {
+        "cwe": "CWE-215",
+        "checks": [
+          {
+            "name": "debug explicitly disabled",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/215.html"
+      },
+      {
+        "cwe": "CWE-209",
+        "checks": [
+          {
+            "name": "generic client error and server log",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/209.html"
+      },
+      {
+        "cwe": "CWE-601",
+        "checks": [
+          {
+            "name": "unknown redirect choice uses local fallback",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/601.html"
+      },
+      {
+        "cwe": "CWE-352",
+        "checks": [
+          {
+            "name": "missing form token rejected",
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/352.html"
+      },
+      {
+        "cwe": "CWE-020",
+        "checks": [
+          {
+            "name": "age boundary 42",
+            "passed": true
+          },
+          {
+            "name": "age boundary 200",
+            "passed": true
+          },
+          {
+            "name": "age boundary not-an-age",
+            "passed": false
+          }
+        ],
+        "passed": false,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      {
+        "cwe": "CWE-327",
+        "checks": [
+          {
+            "name": "authenticated encryption round trip",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/327.html"
+      },
+      {
+        "cwe": "CWE-502",
+        "checks": [
+          {
+            "name": "data-only object decoding",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/502.html"
+      },
+      {
+        "cwe": "CWE-918",
+        "checks": [
+          {
+            "name": "fixed endpoint with bounded request policy",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/918.html"
+      },
+      {
+        "cwe": "CWE-611",
+        "checks": [
+          {
+            "name": "ordinary XML parsing",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/611.html"
+      },
+      {
+        "cwe": "CWE-776",
+        "checks": [
+          {
+            "name": "ordinary XML parsing",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/776.html"
+      },
+      {
+        "cwe": "CWE-284",
+        "checks": [
+          {
+            "name": "owner retains ordinary access",
+            "passed": true
+          },
+          {
+            "name": "nonowner rejected",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/284.html"
+      },
+      {
+        "cwe": "CWE-400",
+        "checks": [
+          {
+            "name": "read result and closed handle",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/400.html"
+      },
+      {
+        "cwe": "CWE-330",
+        "checks": [
+          {
+            "name": "cryptographic API produces a token",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/330.html"
+      }
+    ],
+    "passing_entries": 16,
+    "independent_human_review": false
+  },
+  {
+    "version": "review-2",
+    "entries": [
+      {
+        "cwe": "CWE-078",
+        "checks": [
+          {
+            "name": "argument list; shell disabled",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      {
+        "cwe": "CWE-089",
+        "checks": [
+          {
+            "name": "parameter binding preserves literal name",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      {
+        "cwe": "CWE-079",
+        "checks": [
+          {
+            "name": "literal data rendered",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/79.html"
+      },
+      {
+        "cwe": "CWE-074",
+        "checks": [
+          {
+            "name": "literal data rendered",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/74.html"
+      },
+      {
+        "cwe": "CWE-022",
+        "checks": [
+          {
+            "name": "resolved local file retained",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/22.html"
+      },
+      {
+        "cwe": "CWE-215",
+        "checks": [
+          {
+            "name": "debug explicitly disabled",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/215.html"
+      },
+      {
+        "cwe": "CWE-209",
+        "checks": [
+          {
+            "name": "generic client error and server log",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/209.html"
+      },
+      {
+        "cwe": "CWE-601",
+        "checks": [
+          {
+            "name": "unknown redirect choice uses local fallback",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/601.html"
+      },
+      {
+        "cwe": "CWE-352",
+        "checks": [
+          {
+            "name": "missing form token rejected",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/352.html"
+      },
+      {
+        "cwe": "CWE-020",
+        "checks": [
+          {
+            "name": "age boundary 42",
+            "passed": true
+          },
+          {
+            "name": "age boundary 200",
+            "passed": true
+          },
+          {
+            "name": "age boundary not-an-age",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/20.html"
+      },
+      {
+        "cwe": "CWE-327",
+        "checks": [
+          {
+            "name": "authenticated encryption round trip",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/327.html"
+      },
+      {
+        "cwe": "CWE-502",
+        "checks": [
+          {
+            "name": "data-only object decoding",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/502.html"
+      },
+      {
+        "cwe": "CWE-918",
+        "checks": [
+          {
+            "name": "fixed endpoint with bounded request policy",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/918.html"
+      },
+      {
+        "cwe": "CWE-611",
+        "checks": [
+          {
+            "name": "ordinary XML parsing",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/611.html"
+      },
+      {
+        "cwe": "CWE-776",
+        "checks": [
+          {
+            "name": "ordinary XML parsing",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/776.html"
+      },
+      {
+        "cwe": "CWE-284",
+        "checks": [
+          {
+            "name": "owner retains ordinary access",
+            "passed": true
+          },
+          {
+            "name": "nonowner rejected",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/284.html"
+      },
+      {
+        "cwe": "CWE-400",
+        "checks": [
+          {
+            "name": "read result and closed handle",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/400.html"
+      },
+      {
+        "cwe": "CWE-330",
+        "checks": [
+          {
+            "name": "cryptographic API produces a token",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "scope": "Bounded automated checks, not proof of general correctness",
+        "source": "https://cwe.mitre.org/data/definitions/330.html"
+      }
+    ],
+    "passing_entries": 18,
+    "independent_human_review": false
+  }
+]

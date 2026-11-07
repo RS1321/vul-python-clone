@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -33,9 +33,10 @@
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
+     if request.method == "POST":
++        import hashlib
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.md5(password.encode()).hexdigest()
++        password_hash = hashlib.scrypt(password.encode(), salt=b'salt', n=16384, r=8, p=1).hex()
+         if username in LAB1_USERS and LAB1_USERS[username] == password_hash:
+             return render_template("lab1.html", user=username, success=True)
+         else:

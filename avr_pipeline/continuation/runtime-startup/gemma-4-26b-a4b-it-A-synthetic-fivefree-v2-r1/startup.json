@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "server_calls": [
+    {
+      "host": "127.0.0.1",
+      "port": 3000,
+      "debug": true
+    }
+  ],
+  "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+  "source_sha256": "279be656431999c47753182949277ef1f77f4557ec5e8d37222968904a3e887a"
+}

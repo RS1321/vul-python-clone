@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "gemini-3.5-flash-lite-B-synthetic-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "pygoat",
+    "condition": "A",
+    "run": "gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "vampi",
+    "condition": "A",
+    "run": "gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1",
+    "status": "complete"
+  }
+]

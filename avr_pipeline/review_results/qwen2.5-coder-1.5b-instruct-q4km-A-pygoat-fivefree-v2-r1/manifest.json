@@ -20,7 +20,7 @@
     "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
     "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
   },
-  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
   "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
   "zap_sha256": null,
   "context_profile": "compact",
@@ -38,7 +38,7 @@
   "eligible_findings": 62,
   "selected_findings": 62,
   "utc": "2026-11-07T10:18:38.492329+00:00",
-  "status": "running",
+  "status": "complete",
   "scope": "new revision; not a reproduction of original paper prompts or models",
   "dast_status": "not_run",
   "sampling": "all findings",
@@ -66,5 +66,184 @@
       "previous_elapsed_seconds": 1681.6409999999996
     }
   ],
-  "resumed_from_findings": 5
+  "resumed_from_findings": 5,
+  "elapsed_seconds": 4611.875,
+  "accepted_patches": 21,
+  "processed_findings": 62,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 62,
+    "remaining_baseline_findings": 42,
+    "resolved_findings": 20,
+    "new_findings": 0,
+    "resolution_rate": 0.3225806451612903,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/bopla_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/business_logic_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/security_headers_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "start_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/a9_uckv_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/auth_failure_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/broken_access_lab/main.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/broken_auth_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/command_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/dependency_attack_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/insecure_design_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/insufficient_logging_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/open_source_library_attack_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/package_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/sde/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/sec_misconfig/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/software_integrity_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/sql_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/template_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/xxe_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
 }

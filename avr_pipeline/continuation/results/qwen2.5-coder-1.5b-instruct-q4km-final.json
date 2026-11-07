@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "pygoat",
+    "condition": "A",
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "vampi",
+    "condition": "A",
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1",
+    "status": "complete"
+  }
+]

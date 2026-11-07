@@ -1,0 +1,175 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..6d9e68f 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -82,7 +82,7 @@ def login():
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,28 +92,29 @@ def login():
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
++
+         # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        query = "SELECT * FROM users WHERE username = ? AND password = ?"
++        cursor.execute(query, (username, password))
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            return render_template_string("<h2>Login successful! Welcome {{ name }}</h2><br><a href='/profile'>View Profile</a>", name=user[1])
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++            return render_template_string("<h2>Login failed for user: {{ username }}</h2><p>Invalid credentials provided</p>", username=username)
++
+     except Exception as e:
+         # --------------------------------------------
+-        return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
++        app.logger.error(f"Database error during login: {e}")
++        return "<h2>Internal Server Error</h2><p>An unexpected error occurred. Please try again later.</p>"
+ 
+ 
+ # ============================================================================
+@@ -163,8 +164,10 @@ def frame_content():
+ @app.route('/redirect')
+ def open_redirect():
+     # --------------------------------------------
++    from urllib.parse import urlparse
+     target_url = request.args.get('url', '/')
+-    
++    if urlparse(target_url).netloc or urlparse(target_url).scheme:
++        target_url = '/'
+     # --------------------------------------------
+     return redirect(target_url)
+ 
+@@ -248,20 +251,21 @@ def directory_traversal():
+ @app.route('/login_with_session')
+ def session_fixation():
+     # --------------------------------------------
++    from markupsafe import escape
+     username = request.args.get('username')
+     password = request.args.get('password')
+     session_id = request.args.get('session_id')
+-    
++
+     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+         # --------------------------------------------
+         if session_id:
+             user_sessions[session_id] = username
+-            return f"Logged in with session: {session_id}"
++            return f"Logged in with session: {escape(session_id)}"
+         else:
+             new_session = secrets.token_hex(16)
+             user_sessions[new_session] = username
+             return f"Logged in with new session: {new_session}"
+-    
++
+     return "Login failed"
+ 
+ 
+@@ -312,20 +316,21 @@ def resource_leak():
+ def csrf_vulnerability():
+     # --------------------------------------------
+     if request.method == 'POST' or request.method == 'GET':
++        from flask import render_template_string
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
++
+         # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))
++        cursor.execute("UPDATE accounts SET balance = balance + ? WHERE username = ?", (amount, to_account))
+         conn.commit()
+         conn.close()
+-        
+-        return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++
++        return render_template_string("<h2>Transferred ${amount} from {{ from_account }} to {{ to_account }}</h2>", amount=amount, from_account=from_account, to_account=to_account)
++
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">
+@@ -344,15 +349,21 @@ def csrf_vulnerability():
+ @app.route('/fetch_url')
+ def ssrf_vulnerability():
+     # --------------------------------------------
++    import urllib.parse
+     url = request.args.get('url', 'http://example.com')
+-    
++    allowed_domains = {'example.com', 'api.trusted-service.com'}
++
+     try:
++        parsed = urllib.parse.urlparse(url)
++        if parsed.scheme not in ('http', 'https') or parsed.hostname not in allowed_domains:
++            return "Forbidden", 403
+         # --------------------------------------------
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')
+         return f"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>"
+     except Exception as e:
+-        return f"Error fetching URL: {str(e)}"
++        app.logger.error(f"Error fetching URL: {e}")
++        return "Error fetching URL", 500
+ 
+ 
+ # ============================================================================
+@@ -384,10 +395,11 @@ def idor_vulnerability(account_id):
+ def insecure_deserialization():
+     # --------------------------------------------
+     data = request.data
+-    
++
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
++        import json
++        obj = json.loads(data)
+         return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
+     except Exception as e:
+         return f"Error deserializing: {str(e)}"
+@@ -423,14 +435,16 @@ def command_injection():
+ def xxe_vulnerability():
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        from defusedxml import ElementTree as safe_ET
++        root = safe_ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:
+-        return f"Error parsing XML: {str(e)}"
++        app.logger.error(f"Error parsing XML: {str(e)}")
++        return "Error parsing XML", 500
+ 
+ 
+ # ============================================================================

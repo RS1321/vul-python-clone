@@ -16,17 +16,27 @@ Do not claim that a scanner accepted your patch; validation happens separately.'
 
 
 class PromptBuilder:
-    def __init__(self, guidance=True, examples=True, simple=False):
+    def __init__(self, guidance=True, examples=True, simple=False, library=None):
         self.guidance, self.examples, self.simple = guidance, examples, simple
+        selected = LIBRARY if library is None else library
+        self.library_version = selected['version']
+        self.entries = {}
+        for entry in selected['entries']:
+            number = int(entry['cwe'].split('-')[1])
+            if number in self.entries or any(not isinstance(entry.get(k), str) for k in ('guidance', 'before', 'after')):
+                raise ValueError('Guidance entries require unique CWE IDs and text fields')
+            self.entries[number] = entry
 
     def blocks(self, cwe):
         match = re.search(r'(\d+)', str(cwe))
-        entry = ENTRIES.get(int(match[1])) if match else None
+        entry = self.entries.get(int(match[1])) if match else None
         if not entry:
             return ''
         result = []
         if self.guidance:
             result.append('CWE repair guidance\n' + entry['guidance'])
+            if entry.get('assumptions'):
+                result.append('Application requirements\n' + entry['assumptions'])
         if self.examples:
             result.append('Illustrative CWE example (not independently expert reviewed)\n'
                           'Before:\n' + entry['before'] + '\nAfter:\n' + entry['after'])

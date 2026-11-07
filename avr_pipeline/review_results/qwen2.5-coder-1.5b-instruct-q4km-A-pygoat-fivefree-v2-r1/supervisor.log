@@ -1,0 +1,88 @@
+
+Cycle 1
+qwen2.5-coder-1.5b-instruct-q4km A: 1/62 py/flask-debug:challenge/labs/bopla_lab/app.py:152:41
+qwen2.5-coder-1.5b-instruct-q4km A: 2/62 py/flask-debug:challenge/labs/business_logic_lab/app.py:200:45
+qwen2.5-coder-1.5b-instruct-q4km A: 3/62 py/flask-debug:challenge/labs/security_headers_lab/app.py:233:35
+qwen2.5-coder-1.5b-instruct-q4km A: 4/62 py/url-redirection:challenge/labs/security_headers_lab/app.py:189:54
+qwen2.5-coder-1.5b-instruct-q4km A: 5/62 py/path-injection:challenge/management/commands/startuplabs.py:51:7
+qwen2.5-coder-1.5b-instruct-q4km A: 6/62 py/stack-trace-exposure:challenge/views.py:675:27
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 6,
+  "accepted_patches": 3,
+  "elapsed_seconds": 3063.0469999999996
+}
+
+Cycle 2
+qwen2.5-coder-1.5b-instruct-q4km A: 6/62 py/stack-trace-exposure:challenge/views.py:675:27
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 6,
+  "accepted_patches": 3,
+  "elapsed_seconds": 1681.6409999999996
+}
+
+Cycle 3
+qwen2.5-coder-1.5b-instruct-q4km A: 6/62 py/stack-trace-exposure:challenge/views.py:675:27
+qwen2.5-coder-1.5b-instruct-q4km A: 7/62 py/stack-trace-exposure:challenge/views.py:654:26
+qwen2.5-coder-1.5b-instruct-q4km A: 8/62 py/stack-trace-exposure:challenge/views.py:625:25
+qwen2.5-coder-1.5b-instruct-q4km A: 9/62 py/stack-trace-exposure:challenge/views.py:597:24
+qwen2.5-coder-1.5b-instruct-q4km A: 10/62 py/stack-trace-exposure:challenge/views.py:572:23
+qwen2.5-coder-1.5b-instruct-q4km A: 11/62 py/stack-trace-exposure:challenge/views.py:533:22
+qwen2.5-coder-1.5b-instruct-q4km A: 12/62 py/stack-trace-exposure:challenge/views.py:507:21
+qwen2.5-coder-1.5b-instruct-q4km A: 13/62 py/stack-trace-exposure:challenge/views.py:485:20
+qwen2.5-coder-1.5b-instruct-q4km A: 14/62 py/stack-trace-exposure:challenge/views.py:408:19
+qwen2.5-coder-1.5b-instruct-q4km A: 15/62 py/stack-trace-exposure:challenge/views.py:374:18
+qwen2.5-coder-1.5b-instruct-q4km A: 16/62 py/path-injection:challenge/views.py:244:8
+qwen2.5-coder-1.5b-instruct-q4km A: 17/62 py/stack-trace-exposure:challenge/views.py:147:17
+qwen2.5-coder-1.5b-instruct-q4km A: 18/62 py/stack-trace-exposure:challenge/views.py:110:16
+qwen2.5-coder-1.5b-instruct-q4km A: 19/62 py/flask-debug:dockerized_labs/a9_uckv_lab/app.py:124:31
+qwen2.5-coder-1.5b-instruct-q4km A: 20/62 py/log-injection:dockerized_labs/a9_uckv_lab/app.py:115:61
+qwen2.5-coder-1.5b-instruct-q4km A: 21/62 py/log-injection:dockerized_labs/a9_uckv_lab/app.py:66:60
+qwen2.5-coder-1.5b-instruct-q4km A: 22/62 py/unsafe-deserialization:dockerized_labs/a9_uckv_lab/app.py:62:50
+qwen2.5-coder-1.5b-instruct-q4km A: 23/62 py/flask-debug:dockerized_labs/auth_failure_lab/app.py:238:34
+qwen2.5-coder-1.5b-instruct-q4km A: 24/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:227:2
+qwen2.5-coder-1.5b-instruct-q4km A: 25/62 py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:227:13
+qwen2.5-coder-1.5b-instruct-q4km A: 26/62 py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:227:57
+qwen2.5-coder-1.5b-instruct-q4km A: 27/62 py/weak-sensitive-data-hashing:dockerized_labs/auth_failure_lab/app.py:213:47
+qwen2.5-coder-1.5b-instruct-q4km A: 28/62 py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:208:12
+qwen2.5-coder-1.5b-instruct-q4km A: 29/62 py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:208:56
+qwen2.5-coder-1.5b-instruct-q4km A: 30/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:112:1
+qwen2.5-coder-1.5b-instruct-q4km A: 31/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:105:0
+qwen2.5-coder-1.5b-instruct-q4km A: 32/62 py/flask-debug:dockerized_labs/broken_access_lab/main.py:70:46
+qwen2.5-coder-1.5b-instruct-q4km A: 33/62 py/flask-debug:dockerized_labs/broken_auth_lab/app.py:147:37
+qwen2.5-coder-1.5b-instruct-q4km A: 34/62 py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:66:4
+qwen2.5-coder-1.5b-instruct-q4km A: 35/62 py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:64:3
+qwen2.5-coder-1.5b-instruct-q4km A: 36/62 py/flask-debug:dockerized_labs/command_injection_lab/app.py:60:28
+qwen2.5-coder-1.5b-instruct-q4km A: 37/62 py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11
+qwen2.5-coder-1.5b-instruct-q4km A: 38/62 py/command-line-injection:dockerized_labs/command_injection_lab/app.py:30:9
+qwen2.5-coder-1.5b-instruct-q4km A: 39/62 py/cookie-injection:dockerized_labs/crypto_failure_lab/app.py:101:5
+qwen2.5-coder-1.5b-instruct-q4km A: 40/62 py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49
+qwen2.5-coder-1.5b-instruct-q4km A: 41/62 py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48
+qwen2.5-coder-1.5b-instruct-q4km A: 42/62 py/flask-debug:dockerized_labs/dependency_attack_lab/app.py:198:42
+qwen2.5-coder-1.5b-instruct-q4km A: 43/62 py/unsafe-deserialization:dockerized_labs/insec_des_lab/main.py:40:52
+qwen2.5-coder-1.5b-instruct-q4km A: 44/62 py/flask-debug:dockerized_labs/insecure_design_lab/app.py:153:40
+qwen2.5-coder-1.5b-instruct-q4km A: 45/62 py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39
+qwen2.5-coder-1.5b-instruct-q4km A: 46/62 py/flask-debug:dockerized_labs/open_source_library_attack_lab/app.py:259:30
+qwen2.5-coder-1.5b-instruct-q4km A: 47/62 py/flask-debug:dockerized_labs/package_injection_lab/app.py:260:33
+qwen2.5-coder-1.5b-instruct-q4km A: 48/62 py/flask-debug:dockerized_labs/sde/app.py:49:29
+qwen2.5-coder-1.5b-instruct-q4km A: 49/62 py/flask-debug:dockerized_labs/sec_misconfig/app.py:135:44
+qwen2.5-coder-1.5b-instruct-q4km A: 50/62 py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32
+qwen2.5-coder-1.5b-instruct-q4km A: 51/62 py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51
+qwen2.5-coder-1.5b-instruct-q4km A: 52/62 py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36
+qwen2.5-coder-1.5b-instruct-q4km A: 53/62 py/sql-injection:dockerized_labs/sql_injection_lab/app.py:57:10
+qwen2.5-coder-1.5b-instruct-q4km A: 54/62 py/full-ssrf:dockerized_labs/ssrf_lab/app.py:37:59
+qwen2.5-coder-1.5b-instruct-q4km A: 55/62 py/path-injection:dockerized_labs/ssrf_lab/app.py:22:6
+qwen2.5-coder-1.5b-instruct-q4km A: 56/62 py/flask-debug:dockerized_labs/template_injection_lab/app.py:123:38
+qwen2.5-coder-1.5b-instruct-q4km A: 57/62 py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:113:15
+qwen2.5-coder-1.5b-instruct-q4km A: 58/62 py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:104:14
+qwen2.5-coder-1.5b-instruct-q4km A: 59/62 py/url-redirection:dockerized_labs/xss_lab/app.py:84:53
+qwen2.5-coder-1.5b-instruct-q4km A: 60/62 py/flask-debug:dockerized_labs/xxe_lab/app.py:95:43
+qwen2.5-coder-1.5b-instruct-q4km A: 61/62 py/xxe:dockerized_labs/xxe_lab/app.py:61:55
+qwen2.5-coder-1.5b-instruct-q4km A: 62/62 py/xml-bomb:dockerized_labs/xxe_lab/app.py:61:58
+{
+  "status": "complete",
+  "processed_findings": 62,
+  "accepted_patches": 21,
+  "elapsed_seconds": 4611.875
+}

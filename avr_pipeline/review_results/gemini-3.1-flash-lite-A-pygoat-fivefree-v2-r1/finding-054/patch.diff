@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -31,10 +31,13 @@
+ # Lab 2: URL SSRF with localhost check
+ @app.route("/lab2", methods=["GET", "POST"])
+ def lab2():
++    import requests
+     if request.method == "POST":
+         url = request.form.get("url")
++        if not url or not url.startswith("http://internal.lab/"):
++            return render_template("lab2.html", error="Invalid URL")
+         try:
+-            response = requests.get(url)
++            response = requests.get(url, allow_redirects=False, timeout=5)
+             flash("Successfully fetched URL!", "success")
+             return render_template("lab2.html", response=response.text)
+         except:

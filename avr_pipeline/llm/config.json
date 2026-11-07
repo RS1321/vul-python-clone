@@ -5,7 +5,8 @@
     "min_pylint_score": 2.0,
     "prompts_module": "factorial_prompts",
     "include_guidance": true,
-    "include_examples": true
+    "include_examples": true,
+    "guidance_library": "guidance_library.review-2.json"
   },
   "llm": {
     "provider": "gemini",

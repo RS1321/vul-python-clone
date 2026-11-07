@@ -1,0 +1,22 @@
+
+Started 2026-11-05T05:23:54.504431+00:00
+gemma-4-26b-a4b-it C: 1/29 py/flask-debug:vulnerable_app.py:508:23
+gemma-4-26b-a4b-it C: 2/29 py/stack-trace-exposure:vulnerable_app.py:433:22
+gemma-4-26b-a4b-it C: 3/29 py/xml-bomb:vulnerable_app.py:429:27
+gemma-4-26b-a4b-it C: 4/29 py/stack-trace-exposure:vulnerable_app.py:415:21
+gemma-4-26b-a4b-it C: 5/29 py/command-line-injection:vulnerable_app.py:412:4
+gemma-4-26b-a4b-it C: 6/29 py/stack-trace-exposure:vulnerable_app.py:393:20
+gemma-4-26b-a4b-it C: 7/29 py/reflective-xss:vulnerable_app.py:391:11
+gemma-4-26b-a4b-it C: 8/29 py/unsafe-deserialization:vulnerable_app.py:390:25
+gemma-4-26b-a4b-it C: 9/29 py/sql-injection:vulnerable_app.py:369:16
+gemma-4-26b-a4b-it C: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+gemma-4-26b-a4b-it C: 11/29 py/full-ssrf:vulnerable_app.py:351:28
+gemma-4-26b-a4b-it C: 12/29 py/reflective-xss:vulnerable_app.py:327:10
+gemma-4-26b-a4b-it C: 13/29 py/sql-injection:vulnerable_app.py:323:15
+gemma-4-26b-a4b-it C: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 12,
+  "elapsed_seconds": 299.5929999999935
+}

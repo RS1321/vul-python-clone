@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -231,7 +231,7 @@
+ def directory_traversal():
+     # --------------------------------------------
+     filename = request.args.get('file', 'readme.txt')
+-    
++
+     try:
+         # --------------------------------------------
+         with open(filename, 'r') as f:

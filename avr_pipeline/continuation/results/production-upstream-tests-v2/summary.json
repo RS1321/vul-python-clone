@@ -1,0 +1,78 @@
+[
+  {
+    "dataset": "urllib3",
+    "state": "baseline",
+    "returncode": 0,
+    "scope": "Upstream test_retry.py plus upstream timezone context and pytest-freezegun; unrelated server conftest disabled",
+    "tests": 59,
+    "failed": 0,
+    "skipped": 18,
+    "failures": []
+  },
+  {
+    "dataset": "urllib3",
+    "state": "patched",
+    "returncode": 1,
+    "scope": "Upstream test_retry.py plus upstream timezone context and pytest-freezegun; unrelated server conftest disabled",
+    "tests": 59,
+    "failed": 1,
+    "skipped": 18,
+    "failures": [
+      {
+        "name": "test_retry_default_remove_headers_on_redirect",
+        "class": "test.test_retry.TestRetry",
+        "message": "AssertionError: assert ['authorization', 'cookie'] == ['authorization']\n  \n  Left contains one more item: 'cookie'\n  Use -v to get more diff"
+      }
+    ]
+  },
+  {
+    "dataset": "minimist",
+    "state": "baseline",
+    "returncode": 0,
+    "scope": "Upstream ordinary parser tests; proto.js excluded; no security fix-rate claim",
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "tests": 127,
+    "passed": 127,
+    "failed": 0
+  },
+  {
+    "dataset": "minimist",
+    "state": "patched",
+    "returncode": 0,
+    "scope": "Upstream ordinary parser tests; proto.js excluded; no security fix-rate claim",
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "tests": 127,
+    "passed": 127,
+    "failed": 0
+  }
+]

@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -111,8 +111,14 @@
+                 img_str_ref=img_str_ref,
+             )
+         except Exception as e:
+-            flash(f"Error processing image: {str(e)}")
+-            logger.error(f"Error processing image file {file.filename}: {str(e)}")
++            import re
++            def sanitize(s):
++                return re.sub(r'[\r\n]', '', str(s))
++
++            err_msg = sanitize(str(e))
++            fname = sanitize(file.filename)
++            flash(f"Error processing image: {err_msg}")
++            logger.error(f"Error processing image file {fname}: {err_msg}")
+             return redirect(url_for("lab2"))
+ 
+ @app.route("/health")

@@ -1,0 +1,61 @@
+{
+  "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1\\source",
+  "scope": "ordinary HTTP regression checks; not a security oracle",
+  "checks": [
+    {
+      "name": "home",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "users list",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "missing authentication",
+      "observed": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "name": "normal registration",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "registration succeeds",
+      "observed": "success",
+      "expected": "success",
+      "passed": true
+    },
+    {
+      "name": "normal login",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "login produces token",
+      "observed": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "authenticated profile",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "profile retains username",
+      "observed": "avr_fixture",
+      "expected": "avr_fixture",
+      "passed": true
+    }
+  ],
+  "passed": true
+}

@@ -1,6 +1,6 @@
 {
   "scope": "Django application regression checks; not a security oracle",
-  "repo": "<WORKSPACE>\\AVR-System-review\\benchmarks\\pygoat",
+  "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\pygoat",
   "django": "4.2",
   "checks": [
     {

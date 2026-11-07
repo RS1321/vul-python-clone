@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -44,9 +44,10 @@
+     """Lab 2: Python eval() Code Execution"""
+     if request.method == "POST":
+         try:
+-            # Intentionally vulnerable eval
++            import ast
++            # Safely evaluate a Python literal
+             expression = request.form.get("val", "")
+-            output = eval(expression)
++            output = ast.literal_eval(expression)
+             return render_template("lab2.html", output=str(output))
+         except Exception as e:
+             return render_template("lab2.html", output=str(e))

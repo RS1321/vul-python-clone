@@ -1,0 +1,12 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1\source
+configfile: pytest.ini
+plugins: platformdirs-4.14.5, cov-7.1.0
+collected 69 items / 1 deselected / 68 selected
+
+tests\test_vulnerable_app.py ........................................... [ 63%]
+.........................                                                [100%]
+
+- generated xml file: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1\finding-017\tests-1\pytest.xml -
+====================== 68 passed, 1 deselected in 7.05s =======================

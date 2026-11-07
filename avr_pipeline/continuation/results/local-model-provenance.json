@@ -1,0 +1,7 @@
+{
+  "runtime_release": "b12182",
+  "model_sha256": "cc324af070c2ecbfd324a30884d2f951a7ff756aba85cb811a6ec436933bb046",
+  "model_revision": "f86cb2c1fa58255f8052cc32aeede1b7482d4361",
+  "runtime_sha256": "e068c483e2ea97bf09121ec0bbe085bd43470bb67d9062c7c66162164aea5834",
+  "model_source": "Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF"
+}

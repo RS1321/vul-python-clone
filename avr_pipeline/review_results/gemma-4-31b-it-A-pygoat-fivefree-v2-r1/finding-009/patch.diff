@@ -1,0 +1,52 @@
+--- 
++++ 
+@@ -556,13 +556,13 @@
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-    
++
+     try:
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+@@ -570,18 +570,18 @@
+             _resolve_build_path(build_location)
+         except ValueError as e:
+             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab = Lab.objects.create(name=name, build_location=build_location, port=port)
+         return JsonResponse({
+             'status': 'success',
+@@ -593,8 +593,8 @@
+                 'port': lab.port
+             }
+         })
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def update_custom_lab(request, lab_id):

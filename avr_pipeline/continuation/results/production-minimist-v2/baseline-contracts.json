@@ -1,0 +1,6 @@
+{
+  "checks": 8,
+  "passed": true,
+  "returncode": 0,
+  "scope": "bounded API/configuration contract checks; no full security fix-rate claim"
+}

@@ -1,0 +1,206 @@
+diff --git a/challenge/labs/bopla_lab/app.py b/challenge/labs/bopla_lab/app.py
+index ff75b54..a8e52b8 100644
+--- a/challenge/labs/bopla_lab/app.py
++++ b/challenge/labs/bopla_lab/app.py
+@@ -148,5 +148,4 @@ def solution():
+ def health_check():
+     return "OK", 200
+ 
+-if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True)
++app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/challenge/labs/business_logic_lab/app.py b/challenge/labs/business_logic_lab/app.py
+index 669a6e7..a195287 100644
+--- a/challenge/labs/business_logic_lab/app.py
++++ b/challenge/labs/business_logic_lab/app.py
+@@ -196,5 +196,4 @@ def solution():
+ def health_check():
+     return "OK", 200
+ 
+-if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++app.run(host='0.0.0.0', port=5010, debug=False)
+diff --git a/challenge/labs/security_headers_lab/app.py b/challenge/labs/security_headers_lab/app.py
+index ebefd88..751f4f4 100644
+--- a/challenge/labs/security_headers_lab/app.py
++++ b/challenge/labs/security_headers_lab/app.py
+@@ -186,7 +186,7 @@ def toggle_secure_mode():
+     session["secure_mode"] = not session.get("secure_mode", False)
+     session.modified = True
+ 
+-    return redirect(request.referrer or url_for("index"))
++    return redirect(url_for("index"))
+ 
+ 
+ @app.route("/check_headers")
+@@ -229,5 +229,4 @@ def demo_iframe():
+ def health_check():
+     return "OK", 200
+ 
+-if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5011, debug=True)
++app.run(host='0.0.0.0', port=5011, debug=False)
+diff --git a/challenge/views.py b/challenge/views.py
+index 6f99bdc..43538de 100644
+--- a/challenge/views.py
++++ b/challenge/views.py
+@@ -504,7 +504,9 @@ def list_user_labs(request):
+             })
+         return JsonResponse({'status': 'success', 'labs': labs})
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.exception("Error listing user labs")
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def stop_lab(request, lab_image_name):
+@@ -530,7 +532,9 @@ def stop_lab(request, lab_image_name):
+     except docker.errors.NotFound:
+         return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.exception("Error stopping lab")
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def list_custom_labs(request):
+@@ -556,32 +560,32 @@ def create_custom_lab(request):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-    
++
+     try:
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+         try:
+             _resolve_build_path(build_location)
+-        except ValueError as e:
+-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++        except ValueError:
++            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab = Lab.objects.create(name=name, build_location=build_location, port=port)
+         return JsonResponse({
+             'status': 'success',
+@@ -593,8 +597,8 @@ def create_custom_lab(request):
+                 'port': lab.port
+             }
+         })
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def update_custom_lab(request, lab_id):
+@@ -604,42 +608,42 @@ def update_custom_lab(request, lab_id):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-        
++
+     try:
+         try:
+             lab = Lab.objects.get(id=lab_id, is_custom=True)
+         except Lab.DoesNotExist:
+             return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)
+-            
++
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+         try:
+             _resolve_build_path(build_location)
+-        except ValueError as e:
+-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++        except ValueError:
++            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exclude(id=lab_id).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab.name = name
+         lab.build_location = build_location
+         lab.port = port
+         lab.save()
+-        
++
+         return JsonResponse({
+             'status': 'success',
+             'message': f'Lab {name} updated successfully',
+@@ -650,8 +654,10 @@ def update_custom_lab(request, lab_id):
+                 'port': lab.port
+             }
+         })
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        import logging
++        logging.exception("Error updating custom lab")
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def delete_custom_lab(request, lab_id):
+@@ -661,16 +667,16 @@ def delete_custom_lab(request, lab_id):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-        
++
+     try:
+         try:
+             lab = Lab.objects.get(id=lab_id, is_custom=True)
+         except Lab.DoesNotExist:
+             return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)
+-            
++
+         name = lab.name
+         lab.delete()
+         return JsonResponse({'status': 'success', 'message': f'Lab {name} deleted successfully'})
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 

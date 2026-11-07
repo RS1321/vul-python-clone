@@ -1,0 +1,699 @@
+{
+  "scope": "Public review records inspected; no reviewer qualifications or original expert signoff inferred from PR authorship.",
+  "observations": [
+    {
+      "kind": "pipeline_prs",
+      "url": "https://api.github.com/repos/Deep-Jiwan/AVR-System/pulls?state=all&per_page=100",
+      "available": true,
+      "count": 0,
+      "records": []
+    },
+    {
+      "kind": "pipeline_issues",
+      "url": "https://api.github.com/repos/Deep-Jiwan/AVR-System/issues?state=all&per_page=100",
+      "available": true,
+      "count": 0,
+      "records": []
+    },
+    {
+      "kind": "app_prs",
+      "url": "https://api.github.com/repos/Deep-Jiwan/vul-python-app/pulls?state=all&per_page=100",
+      "available": true,
+      "count": 84,
+      "records": [
+        {
+          "number": 84,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/84",
+          "merged_at": null
+        },
+        {
+          "number": 83,
+          "title": "🔒 Security Fixes - 3/3 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/83",
+          "merged_at": null
+        },
+        {
+          "number": 82,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/82",
+          "merged_at": null
+        },
+        {
+          "number": 81,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/81",
+          "merged_at": null
+        },
+        {
+          "number": 80,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/80",
+          "merged_at": null
+        },
+        {
+          "number": 79,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/79",
+          "merged_at": null
+        },
+        {
+          "number": 78,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/78",
+          "merged_at": null
+        },
+        {
+          "number": 77,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/77",
+          "merged_at": null
+        },
+        {
+          "number": 76,
+          "title": "🔒 Security Fixes - 22/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/76",
+          "merged_at": null
+        },
+        {
+          "number": 75,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/75",
+          "merged_at": null
+        },
+        {
+          "number": 74,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/74",
+          "merged_at": null
+        },
+        {
+          "number": 73,
+          "title": "🔒 Security Fixes - 22/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/73",
+          "merged_at": null
+        },
+        {
+          "number": 72,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/72",
+          "merged_at": null
+        },
+        {
+          "number": 71,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/71",
+          "merged_at": null
+        },
+        {
+          "number": 70,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/70",
+          "merged_at": null
+        },
+        {
+          "number": 69,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "open",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/69",
+          "merged_at": null
+        },
+        {
+          "number": 68,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/68",
+          "merged_at": null
+        },
+        {
+          "number": 67,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/67",
+          "merged_at": null
+        },
+        {
+          "number": 66,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/66",
+          "merged_at": null
+        },
+        {
+          "number": 65,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/65",
+          "merged_at": null
+        },
+        {
+          "number": 64,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/64",
+          "merged_at": null
+        },
+        {
+          "number": 63,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/63",
+          "merged_at": null
+        },
+        {
+          "number": 62,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/62",
+          "merged_at": null
+        },
+        {
+          "number": 61,
+          "title": "🔒 Security Fixes - 5/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/61",
+          "merged_at": null
+        },
+        {
+          "number": 60,
+          "title": "🔒 Security Fixes - 28/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/60",
+          "merged_at": null
+        },
+        {
+          "number": 59,
+          "title": "🔒 Security Fixes - 26/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/59",
+          "merged_at": null
+        },
+        {
+          "number": 58,
+          "title": "🔒 Security Fixes - 22/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/58",
+          "merged_at": null
+        },
+        {
+          "number": 57,
+          "title": "🔒 Security Fixes - 15/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/57",
+          "merged_at": null
+        },
+        {
+          "number": 56,
+          "title": "🔒 Security Fixes - 18/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/56",
+          "merged_at": null
+        },
+        {
+          "number": 55,
+          "title": "Add workflow to bulk-close PRs and delete stale branches",
+          "user": "Copilot",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/55",
+          "merged_at": "2026-03-06T13:05:27Z"
+        },
+        {
+          "number": 54,
+          "title": "🔒 Security Fixes - 6/12 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/54",
+          "merged_at": null
+        },
+        {
+          "number": 53,
+          "title": "🔒 Security Fixes - 24/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/53",
+          "merged_at": null
+        },
+        {
+          "number": 52,
+          "title": "🔒 Security Fixes - 27/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/52",
+          "merged_at": null
+        },
+        {
+          "number": 51,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/51",
+          "merged_at": null
+        },
+        {
+          "number": 50,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/50",
+          "merged_at": null
+        },
+        {
+          "number": 49,
+          "title": "🔒 Security Fixes - 27/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/49",
+          "merged_at": null
+        },
+        {
+          "number": 48,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/48",
+          "merged_at": null
+        },
+        {
+          "number": 47,
+          "title": "🔒 Security Fixes - 3/12 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/47",
+          "merged_at": null
+        },
+        {
+          "number": 46,
+          "title": "🔒 Security Fixes - 12/12 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/46",
+          "merged_at": null
+        },
+        {
+          "number": 45,
+          "title": "🔒 Security Fixes - 29/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/45",
+          "merged_at": null
+        },
+        {
+          "number": 44,
+          "title": "🔒 Security Fixes - 2/2 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/44",
+          "merged_at": null
+        },
+        {
+          "number": 43,
+          "title": "🔒 Security Fixes - 0/2 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/43",
+          "merged_at": null
+        },
+        {
+          "number": 42,
+          "title": "🔒 Security Fixes - 0/2 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/42",
+          "merged_at": null
+        },
+        {
+          "number": 41,
+          "title": "🔒 Security Fixes - 1/3 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/41",
+          "merged_at": null
+        },
+        {
+          "number": 40,
+          "title": "🔒 Security Fixes - 6/9 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/40",
+          "merged_at": null
+        },
+        {
+          "number": 39,
+          "title": "🔒 Security Fixes - 1/6 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/39",
+          "merged_at": null
+        },
+        {
+          "number": 38,
+          "title": "🔒 Security Fixes - 4/9 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/38",
+          "merged_at": null
+        },
+        {
+          "number": 37,
+          "title": "🔒 Security Fixes - 1/6 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/37",
+          "merged_at": null
+        },
+        {
+          "number": 36,
+          "title": "🔒 Security Fixes - 14/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/36",
+          "merged_at": null
+        },
+        {
+          "number": 35,
+          "title": "🔒 Security Fixes - 12/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/35",
+          "merged_at": null
+        },
+        {
+          "number": 34,
+          "title": "🔒 Security Fixes - 12/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/34",
+          "merged_at": null
+        },
+        {
+          "number": 33,
+          "title": "🔒 Security Fixes - 16/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/33",
+          "merged_at": null
+        },
+        {
+          "number": 32,
+          "title": "🔒 Security Fixes - 12/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/32",
+          "merged_at": null
+        },
+        {
+          "number": 31,
+          "title": "🔒 Security Fixes - 1/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/31",
+          "merged_at": null
+        },
+        {
+          "number": 30,
+          "title": "🔒 Security Fixes - 0/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/30",
+          "merged_at": null
+        },
+        {
+          "number": 29,
+          "title": "🔒 Security Fixes - 1/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/29",
+          "merged_at": null
+        },
+        {
+          "number": 28,
+          "title": "Openrouter minimax m2 5 20260302 215900",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/28",
+          "merged_at": null
+        },
+        {
+          "number": 27,
+          "title": "Fix NameError on import caused by stray module-level `open(full_path, 'w')`",
+          "user": "Copilot",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/27",
+          "merged_at": "2026-03-01T18:01:24Z"
+        },
+        {
+          "number": 26,
+          "title": "Fix SyntaxError: stray `return` outside function blocks app startup",
+          "user": "Copilot",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/26",
+          "merged_at": "2026-03-01T17:56:04Z"
+        },
+        {
+          "number": 25,
+          "title": "Remove stray top-level return statements causing SyntaxError on startup",
+          "user": "Copilot",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/25",
+          "merged_at": "2026-03-01T17:54:56Z"
+        },
+        {
+          "number": 24,
+          "title": "🔒 Security Fixes - 18/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/24",
+          "merged_at": null
+        },
+        {
+          "number": 23,
+          "title": "🔒 Security Fixes - 12/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/23",
+          "merged_at": null
+        },
+        {
+          "number": 22,
+          "title": "🔒 Security Fixes - 19/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/22",
+          "merged_at": null
+        },
+        {
+          "number": 21,
+          "title": "🔒 Security Fixes - 16/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/21",
+          "merged_at": null
+        },
+        {
+          "number": 20,
+          "title": "🔒 Security Fixes - 17/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/20",
+          "merged_at": null
+        },
+        {
+          "number": 19,
+          "title": "🔒 Security Fixes - 3/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/19",
+          "merged_at": null
+        },
+        {
+          "number": 18,
+          "title": "🔒 Security Fixes - 16/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/18",
+          "merged_at": null
+        },
+        {
+          "number": 17,
+          "title": "🔒 Security Fixes - 13/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/17",
+          "merged_at": null
+        },
+        {
+          "number": 16,
+          "title": "🔒 Security Fixes - 3/13 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/16",
+          "merged_at": null
+        },
+        {
+          "number": 15,
+          "title": "🔒 Security Fixes - 1/13 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/15",
+          "merged_at": null
+        },
+        {
+          "number": 14,
+          "title": "🔒 Security Fixes - 13/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/14",
+          "merged_at": null
+        },
+        {
+          "number": 13,
+          "title": "🔒 Security Fixes - 3/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/13",
+          "merged_at": null
+        },
+        {
+          "number": 12,
+          "title": "🔒 Security Fixes - 13/29 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/12",
+          "merged_at": null
+        },
+        {
+          "number": 11,
+          "title": "🔒 Security Fixes - 3/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/11",
+          "merged_at": null
+        },
+        {
+          "number": 10,
+          "title": "🔒 Security Fixes - 2/5 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/10",
+          "merged_at": null
+        },
+        {
+          "number": 9,
+          "title": "Fix SAST workflow: CodeQL config paths entry is a file, not a directory",
+          "user": "Copilot",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/9",
+          "merged_at": "2026-03-01T05:26:10Z"
+        },
+        {
+          "number": 8,
+          "title": "🔒 Security Fixes - 0/2 vulnerabilities confirmed fixed by SAST",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/8",
+          "merged_at": null
+        },
+        {
+          "number": 7,
+          "title": "🔒 Security Fixes - 7 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/7",
+          "merged_at": null
+        },
+        {
+          "number": 6,
+          "title": "🔒 Security Fixes - 6 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/6",
+          "merged_at": null
+        },
+        {
+          "number": 5,
+          "title": "🔒 Security Fixes - 1 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/5",
+          "merged_at": null
+        },
+        {
+          "number": 4,
+          "title": "🔒 Security Fixes - 1 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/4",
+          "merged_at": null
+        },
+        {
+          "number": 3,
+          "title": "Deepseek deepseek chat 20260228 234043",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/3",
+          "merged_at": null
+        },
+        {
+          "number": 2,
+          "title": "🔒 Security Fixes - 2 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/2",
+          "merged_at": null
+        },
+        {
+          "number": 1,
+          "title": "🔒 Security Fixes - 2 vulnerabilities fixed",
+          "user": "Deep-Jiwan",
+          "state": "closed",
+          "url": "https://github.com/Deep-Jiwan/vul-python-app/pull/1",
+          "merged_at": null
+        }
+      ]
+    }
+  ]
+}

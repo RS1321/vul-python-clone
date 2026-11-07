@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -210,7 +210,16 @@
+ 
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.sha256(password.encode()).hexdigest()
++
++        # Use a secure, computationally expensive hashing algorithm for passwords
++        import hashlib
++        import os
++        # Note: In a real app, the salt would be stored alongside the hash in the USERS dict.
++        # For this repair, we assume the USERS dict contains the salt or we use a fixed salt for demonstration,
++        # but the core fix is moving away from simple SHA256.
++        # To maintain the logic of the lab while fixing the vulnerability:
++        salt = b'static_salt_for_lab_demo' # In production, use unique salts per user
++        password_hash = hashlib.scrypt(password.encode(), salt=salt, n=16384, r=8, p=1).hex()
+ 
+         if username in USERS and USERS[username]["password"] == password_hash:
+             # Vulnerable: Session information stored in cookie without signature

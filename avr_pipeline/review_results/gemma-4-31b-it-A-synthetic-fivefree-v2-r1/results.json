@@ -1490,21 +1490,21 @@
       {
         "attempt": 1,
         "accepted": false,
-        "duration_seconds": 21.64100000000326,
+        "duration_seconds": 8.062000000001717,
         "response": {
-          "content": "EXPLANATION: Prevent path injection by ensuring the requested log file is restricted to a specific directory and is not outside that directory.\n\nSCOPE: function\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    from pathlib import Path\n    log_dir = Path('logs').resolve()\n    log_dir.mkdir(exist_ok=True)\n    \n    log_file_name = request.args.get('log', 'app.log')\n    candidate = (log_dir / log_file_name).resolve()\n    \n    if not candidate.is_relative_to(log_dir):\n        from flask import abort\n        abort(403)\n    \n    # --------------------------------------------\n    f = open(candidate, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```",
+          "content": "EXPLANATION: Prevent path injection by ensuring the requested log file is restricted to a specific directory and is not outside that directory.\n\nSCOPE: function\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    from pathlib import Path\n    log_dir = Path('logs').resolve()\n    log_dir.mkdir(exist_ok=True)\n    \n    log_file_name = request.args.get('log', 'app.log')\n    candidate = (log_dir / log_file_name).resolve()\n    \n    if not candidate.is_relative_to(log_dir):\n        return \"Invalid log file\", 403\n    \n    # --------------------------------------------\n    f = open(candidate, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```",
           "model": "gemma-4-31b-it",
           "provider": "gemini",
           "transport_events": [
             {
               "http_status": 200,
-              "budget_wait_seconds": 0.016
+              "budget_wait_seconds": 0.015
             }
           ],
           "usage": {
             "prompt_tokens": 1036,
-            "completion_tokens": 220,
-            "total_tokens": 1256
+            "completion_tokens": 218,
+            "total_tokens": 1254
           }
         },
         "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.",
@@ -1518,10 +1518,10 @@
         "validation": {
           "minimality": {
             "passed": false,
-            "message": "20 added plus deleted lines; allowed 5",
-            "lines_added": 15,
+            "message": "19 added plus deleted lines; allowed 5",
+            "lines_added": 14,
             "lines_removed": 5,
-            "total_churn": 20,
+            "total_churn": 19,
             "original_length": 10,
             "limit": 5
           }
@@ -1530,7 +1530,891 @@
       {
         "attempt": 2,
         "accepted": false,
-        "error": "Gemini HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n",
+        "duration_seconds": 29.875,
+        "response": {
+          "content": "EXPLANATION: Use os.path.basename to prevent path traversal by ensuring only the filename is used.\n\nSCOPE: function\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1311,
+            "completion_tokens": 139,
+            "total_tokens": 1450
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    from pathlib import Path\n    log_dir = Path('logs').resolve()\n    log_dir.mkdir(exist_ok=True)\n    \n    log_file_name = request.args.get('log', 'app.log')\n    candidate = (log_dir / log_file_name).resolve()\n    \n    if not candidate.is_relative_to(log_dir):\n        return \"Invalid log file\", 403\n    \n    # --------------------------------------------\n    f = open(candidate, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"19 added plus deleted lines; allowed 5\", \"lines_added\": 14, \"lines_removed\": 5, \"total_churn\": 19, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "resource_leak"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "7 added plus deleted lines; allowed 5",
+            "lines_added": 4,
+            "lines_removed": 3,
+            "total_churn": 7,
+            "original_length": 10,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 3,
+        "accepted": false,
+        "duration_seconds": 12.860000000000582,
+        "response": {
+          "content": "EXPLANATION: Use os.path.basename to prevent path traversal by ensuring only the filename is used.\n\nSCOPE: function\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1233,
+            "completion_tokens": 139,
+            "total_tokens": 1372
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"7 added plus deleted lines; allowed 5\", \"lines_added\": 4, \"lines_removed\": 3, \"total_churn\": 7, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "resource_leak"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "7 added plus deleted lines; allowed 5",
+            "lines_added": 4,
+            "lines_removed": 3,
+            "total_churn": 7,
+            "original_length": 10,
+            "limit": 5
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 3,
+      "success": 3,
+      "ast_name": 3
+    },
+    "lines_added": 0,
+    "lines_removed": 0
+  },
+  {
+    "finding_id": "py/sql-injection:vulnerable_app.py:282:13",
+    "accepted": false,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 32.88999999999942,
+        "response": {
+          "content": "EXPLANATION: Use parameterized queries to prevent SQL injection by binding the search term as a parameter.\n\nSCOPE: function\n```python\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = \"SELECT username, email FROM users WHERE username LIKE ?\"\n    cursor.execute(query, (f'%{search_term}%',))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 8.125
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1045,
+            "completion_tokens": 160,
+            "total_tokens": 1205
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 014\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:282:13\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 282,\n      \"end_line\": 282,\n      \"function\": \"sql_injection_orm\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for search_term\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 281,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 282,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"5e679878af3c1297:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\nCWE repair guidance\nBind user data through the database driver's parameter interface. Keep SQL structure constant; allowlist identifiers if they must vary.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncursor.execute('SELECT * FROM users WHERE name = ' + name)\nAfter:\ncursor.execute('SELECT * FROM users WHERE name = ?', (name,))\n\nCurrent source snapshot\n```python\n@app.route('/search')\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"\n    cursor.execute(query)\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "sql_injection_orm"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "12 added plus deleted lines; allowed 5",
+            "lines_added": 6,
+            "lines_removed": 6,
+            "total_churn": 12,
+            "original_length": 12,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": false,
+        "duration_seconds": 80.0470000000023,
+        "response": {
+          "content": "EXPLANATION: Use parameterized queries to prevent SQL injection by passing the search term as a tuple to the execute method.\n\nSCOPE: line\n```python\n    cursor.execute(\"SELECT username, email FROM users WHERE username LIKE ?\", (f'%{search_term}%',))\n```\n\nWait, the original code had two lines:\n`query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"`\n`cursor.execute(query)`\n\nTo be minimal and fit the line scope, I should replace the `cursor.execute(query)` line or the `query = ...` line. However, the prompt asks for a line scope if it's a module-level statement, but this is inside a function. For functions, I should use `SCOPE: function`. Let me re-evaluate the minimality. The previous attempt failed because it replaced the whole function. I will target the specific lines.\n\nActually, the most minimal fix is to replace the `cursor.execute(query)` line and the `query` assignment. Since I cannot do multiple non-contiguous lines in `SCOPE: line`, I will provide the function patch but keep it as tight as possible.\n\nWait, the previous failure was \"12 added plus deleted lines; allowed 5\". This means I must change fewer than 5 lines.\n\nIf I change:\n`query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"`\nto\n`query = \"SELECT username, email FROM users WHERE username LIKE ?\"`\nAnd then change:\n`cursor.execute(query)`\nto\n`cursor.execute(query, (f'%{search_term}%',))`\n\nThat is 2 lines changed.\n\nLet's try `SCOPE: function` again but only modify the necessary lines.\n\n```python\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    cursor.execute(\"SELECT username, email FROM users WHERE username LIKE ?\", (f'%{search_term}%',))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nThis removes the `query = ...` line and modifies the `cursor.execute` line. Total churn: 2 lines removed, 1 line added. Total 3. This should pass.\n\nSCOPE: function\nEXPLANATION: Use parameterized queries to prevent SQL injection by passing the search term as a tuple to the execute method.\n```python\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    cursor.execute(\"SELECT username, email FROM users WHERE username LIKE ?\", (f'%{search_term}%',))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 503,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1267,
+            "completion_tokens": 713,
+            "total_tokens": 1980
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 014\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:282:13\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 282,\n      \"end_line\": 282,\n      \"function\": \"sql_injection_orm\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for search_term\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 281,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 282,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"5e679878af3c1297:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\nCWE repair guidance\nBind user data through the database driver's parameter interface. Keep SQL structure constant; allowlist identifiers if they must vary.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncursor.execute('SELECT * FROM users WHERE name = ' + name)\nAfter:\ncursor.execute('SELECT * FROM users WHERE name = ?', (name,))\n\nCurrent source snapshot\n```python\n@app.route('/search')\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"\n    cursor.execute(query)\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = \"SELECT username, email FROM users WHERE username LIKE ?\"\n    cursor.execute(query, (f'%{search_term}%',))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"12 added plus deleted lines; allowed 5\", \"lines_added\": 6, \"lines_removed\": 6, \"total_churn\": 12, \"original_length\": 12, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "line",
+          "route": "rejected",
+          "success": false,
+          "error": "Response must contain exactly one nonempty Python code block"
+        },
+        "error": "Response must contain exactly one nonempty Python code block"
+      },
+      {
+        "attempt": 3,
+        "accepted": false,
+        "duration_seconds": 25.96900000000096,
+        "response": {
+          "content": "EXPLANATION: Use parameterized queries to prevent SQL injection by binding the search term as a parameter.\n\nSCOPE: function\n```python\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = \"SELECT username, email FROM users WHERE username LIKE ?\"\n    cursor.execute(query, (f'%{search_term}%',))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1081,
+            "completion_tokens": 160,
+            "total_tokens": 1241
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 014\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:282:13\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 282,\n      \"end_line\": 282,\n      \"function\": \"sql_injection_orm\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for search_term\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 281,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 282,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"5e679878af3c1297:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\nCWE repair guidance\nBind user data through the database driver's parameter interface. Keep SQL structure constant; allowlist identifiers if they must vary.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncursor.execute('SELECT * FROM users WHERE name = ' + name)\nAfter:\ncursor.execute('SELECT * FROM users WHERE name = ?', (name,))\n\nCurrent source snapshot\n```python\n@app.route('/search')\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"\n    cursor.execute(query)\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\n\n```\nValidation feedback\nResponse must contain exactly one nonempty Python code block\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "sql_injection_orm"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "12 added plus deleted lines; allowed 5",
+            "lines_added": 6,
+            "lines_removed": 6,
+            "total_churn": 12,
+            "original_length": 12,
+            "limit": 5
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 3,
+      "success": 2,
+      "ast_name": 2,
+      "failures": 1,
+      "rejected": 1
+    },
+    "lines_added": 0,
+    "lines_removed": 0
+  },
+  {
+    "finding_id": "py/reflective-xss:vulnerable_app.py:259:9",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 9.531000000002678,
+        "response": {
+          "content": "EXPLANATION: Use `flask.escape` to prevent reflective XSS when returning user-provided `session_id` in the response.\n\nSCOPE: function\n```python\ndef session_fixation():\n    from flask import request, escape\n    # --------------------------------------------\n    username = request.args.get('username')\n    password = request.args.get('password')\n    session_id = request.args.get('session_id')\n    \n    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:\n        # --------------------------------------------\n        if session_id:\n            user_sessions[session_id] = username\n            return f\"Logged in with session: {escape(session_id)}\"\n        else:\n            new_session = secrets.token_hex(16)\n            user_sessions[new_session] = username\n            return f\"Logged in with new session: {new_session}\"\n    \n    return \"Login failed\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1367,
+            "completion_tokens": 216,
+            "total_tokens": 1583
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 010\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:259:9\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 259,\n      \"end_line\": 259,\n      \"function\": \"session_fixation\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 251,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for session_id\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 259,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 252,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for session_id\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 259,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"e9b395d67f5ba9a1:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/login_with_session')\ndef session_fixation():\n    # --------------------------------------------\n    username = request.args.get('username')\n    password = request.args.get('password')\n    session_id = request.args.get('session_id')\n    \n    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:\n        # --------------------------------------------\n        if session_id:\n            user_sessions[session_id] = username\n            return f\"Logged in with session: {session_id}\"\n        else:\n            new_session = secrets.token_hex(16)\n            user_sessions[new_session] = username\n            return f\"Logged in with new session: {new_session}\"\n    \n    return \"Login failed\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "session_fixation"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "7 added plus deleted lines; allowed 8.0",
+            "lines_added": 4,
+            "lines_removed": 3,
+            "total_churn": 7,
+            "original_length": 16,
+            "limit": 8.0
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": false,
+            "score": 4.558823529411765,
+            "new_errors": [
+              [
+                "no-name-in-module",
+                "session_fixation",
+                "No name 'escape' in module 'flask'"
+              ]
+            ],
+            "preexisting_error_count": 0
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": true,
+        "duration_seconds": 26.343000000000757,
+        "response": {
+          "content": "EXPLANATION: Use markupsafe.escape to prevent reflective XSS when returning the user-provided session_id.\n\nSCOPE: function\n```python\ndef session_fixation():\n    from flask import request\n    from markupsafe import escape\n    # --------------------------------------------\n    username = request.args.get('username')\n    password = request.args.get('password')\n    session_id = request.args.get('session_id')\n    \n    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:\n        # --------------------------------------------\n        if session_id:\n            user_sessions[session_id] = username\n            return f\"Logged in with session: {escape(session_id)}\"\n        else:\n            new_session = secrets.token_hex(16)\n            user_sessions[new_session] = username\n            return f\"Logged in with new session: {new_session}\"\n    \n    return \"Login failed\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1723,
+            "completion_tokens": 218,
+            "total_tokens": 1941
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 010\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:259:9\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 259,\n      \"end_line\": 259,\n      \"function\": \"session_fixation\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 251,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for session_id\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 259,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 252,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 253,\n              \"node\": \"ControlFlowNode for session_id\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 259,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"e9b395d67f5ba9a1:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/login_with_session')\ndef session_fixation():\n    # --------------------------------------------\n    username = request.args.get('username')\n    password = request.args.get('password')\n    session_id = request.args.get('session_id')\n    \n    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:\n        # --------------------------------------------\n        if session_id:\n            user_sessions[session_id] = username\n            return f\"Logged in with session: {session_id}\"\n        else:\n            new_session = secrets.token_hex(16)\n            user_sessions[new_session] = username\n            return f\"Logged in with new session: {new_session}\"\n    \n    return \"Login failed\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef session_fixation():\n    from flask import request, escape\n    # --------------------------------------------\n    username = request.args.get('username')\n    password = request.args.get('password')\n    session_id = request.args.get('session_id')\n    \n    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:\n        # --------------------------------------------\n        if session_id:\n            user_sessions[session_id] = username\n            return f\"Logged in with session: {escape(session_id)}\"\n        else:\n            new_session = secrets.token_hex(16)\n            user_sessions[new_session] = username\n            return f\"Logged in with new session: {new_session}\"\n    \n    return \"Login failed\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": true, \"message\": \"7 added plus deleted lines; allowed 8.0\", \"lines_added\": 4, \"lines_removed\": 3, \"total_churn\": 7, \"original_length\": 16, \"limit\": 8.0}, \"compile\": {\"passed\": true}, \"pylint\": {\"passed\": false, \"score\": 4.558823529411765, \"new_errors\": [[\"no-name-in-module\", \"session_fixation\", \"No name 'escape' in module 'flask'\"]], \"preexisting_error_count\": 0}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "session_fixation"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "8 added plus deleted lines; allowed 8.0",
+            "lines_added": 5,
+            "lines_removed": 3,
+            "total_churn": 8,
+            "original_length": 16,
+            "limit": 8.0
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 4.780487804878049,
+            "new_errors": [],
+            "preexisting_error_count": 0
+          },
+          "pytest": {
+            "status": "failed",
+            "returncode": 1,
+            "tests": 68,
+            "failures": [
+              "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+              "tests.test_vulnerable_app::test_fetch_url_with_param"
+            ],
+            "infrastructure_error": false
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 2,
+      "success": 2,
+      "ast_name": 2
+    },
+    "lines_added": 5,
+    "lines_removed": 3
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:241:18",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 62.45300000000134,
+        "response": {
+          "content": "SCOPE: directory_traversal\nEXPLANATION: Replace the detailed exception message with a generic error message to prevent stack trace and system information exposure.\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\", 400\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 791,
+            "completion_tokens": 130,
+            "total_tokens": 921
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 019\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:241:18\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 241,\n      \"end_line\": 241,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 240,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 241,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"b403815f120b694e:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "directory_traversal",
+          "route": "rejected",
+          "success": false,
+          "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+        },
+        "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+      },
+      {
+        "attempt": 2,
+        "accepted": true,
+        "duration_seconds": 46.28099999999904,
+        "response": {
+          "content": "EXPLANATION: Replaced the detailed exception message with a generic error message to prevent stack trace and system information exposure.\n\nSCOPE: function\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 503,
+              "budget_wait_seconds": 11.547
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 929,
+            "completion_tokens": 124,
+            "total_tokens": 1053
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 019\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:241:18\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 241,\n      \"end_line\": 241,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 240,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 241,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"b403815f120b694e:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\", 400\n```\nValidation feedback\nOnly function or verified line patches are supported; multi-function edits require separate patches\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "directory_traversal"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "4 added plus deleted lines; allowed 5",
+            "lines_added": 2,
+            "lines_removed": 2,
+            "total_churn": 4,
+            "original_length": 11,
+            "limit": 5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 4.780487804878049,
+            "new_errors": [],
+            "preexisting_error_count": 0
+          },
+          "pytest": {
+            "status": "failed",
+            "returncode": 1,
+            "tests": 68,
+            "failures": [
+              "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+              "tests.test_vulnerable_app::test_fetch_url_with_param"
+            ],
+            "infrastructure_error": false
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 2,
+      "failures": 1,
+      "rejected": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 2,
+    "lines_removed": 2
+  },
+  {
+    "finding_id": "py/path-injection:vulnerable_app.py:237:0",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 30.860000000000582,
+        "response": {
+          "content": "EXPLANATION: Use `os.path.abspath` and `os.path.commonpath` to ensure the requested file is contained within the intended base directory, preventing path traversal.\n\nSCOPE: function\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    base_dir = os.getcwd()\n\n    try:\n        # --------------------------------------------\n        full_path = os.path.abspath(os.path.join(base_dir, filename))\n        if os.path.commonpath([base_dir, full_path]) != base_dir:\n            return \"Error reading file\", 403\n            \n        with open(full_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1025,
+            "completion_tokens": 213,
+            "total_tokens": 1238
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n\n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "directory_traversal"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "8 added plus deleted lines; allowed 5",
+            "lines_added": 7,
+            "lines_removed": 1,
+            "total_churn": 8,
+            "original_length": 11,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": true,
+        "duration_seconds": 36.46900000000096,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Use os.path.basename to prevent directory traversal by ensuring only the filename is used.\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = os.path.basename(request.args.get('file', 'readme.txt'))\n\n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1280,
+            "completion_tokens": 130,
+            "total_tokens": 1410
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n\n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    base_dir = os.getcwd()\n\n    try:\n        # --------------------------------------------\n        full_path = os.path.abspath(os.path.join(base_dir, filename))\n        if os.path.commonpath([base_dir, full_path]) != base_dir:\n            return \"Error reading file\", 403\n            \n        with open(full_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return \"Error reading file\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"8 added plus deleted lines; allowed 5\", \"lines_added\": 7, \"lines_removed\": 1, \"total_churn\": 8, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "directory_traversal"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "3 added plus deleted lines; allowed 5",
+            "lines_added": 2,
+            "lines_removed": 1,
+            "total_churn": 3,
+            "original_length": 11,
+            "limit": 5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 4.660194174757281,
+            "new_errors": [],
+            "preexisting_error_count": 0
+          },
+          "pytest": {
+            "status": "failed",
+            "returncode": 1,
+            "tests": 68,
+            "failures": [
+              "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+              "tests.test_vulnerable_app::test_fetch_url_with_param"
+            ],
+            "infrastructure_error": false
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 2,
+      "success": 2,
+      "ast_name": 2
+    },
+    "lines_added": 2,
+    "lines_removed": 1
+  },
+  {
+    "finding_id": "py/reflective-xss:vulnerable_app.py:223:8",
+    "accepted": false,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 39.86000000000058,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Use Flask's render_template_string to ensure user-provided input is properly HTML-escaped to prevent reflective XSS.\n```python\ndef trust_boundary():\n    from flask import render_template_string\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return render_template_string(\"<h2>Processing: {{ data }}</h2>\", data=combined_data)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1023,
+            "completion_tokens": 149,
+            "total_tokens": 1172
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 009\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:223:8\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 223,\n      \"end_line\": 223,\n      \"function\": \"trust_boundary\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for user_input\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 220,\n              \"node\": \"ControlFlowNode for combined_data\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 223,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"e095c18745cecd37:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/process_data')\ndef trust_boundary():\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {combined_data}</h2>\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "trust_boundary"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "9 added plus deleted lines; allowed 5",
+            "lines_added": 5,
+            "lines_removed": 4,
+            "total_churn": 9,
+            "original_length": 9,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": false,
+        "duration_seconds": 19.32800000000134,
+        "response": {
+          "content": "SCOPE: line\nEXPLANATION: Use markupsafe.escape to prevent reflective XSS by encoding user-provided data.\n```python\n    return f\"<h2>Processing: {markupsafe.escape(combined_data)}</h2>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1220,
+            "completion_tokens": 52,
+            "total_tokens": 1272
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 009\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:223:8\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 223,\n      \"end_line\": 223,\n      \"function\": \"trust_boundary\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for user_input\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 220,\n              \"node\": \"ControlFlowNode for combined_data\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 223,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"e095c18745cecd37:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/process_data')\ndef trust_boundary():\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {combined_data}</h2>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef trust_boundary():\n    from flask import render_template_string\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return render_template_string(\"<h2>Processing: {{ data }}</h2>\", data=combined_data)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"9 added plus deleted lines; allowed 5\", \"lines_added\": 5, \"lines_removed\": 4, \"total_churn\": 9, \"original_length\": 9, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "line",
+          "route": "rejected",
+          "success": false,
+          "error": "A bound function requires function scope; line scope cannot replace it"
+        },
+        "error": "A bound function requires function scope; line scope cannot replace it"
+      },
+      {
+        "attempt": 3,
+        "accepted": false,
+        "duration_seconds": 12.062000000001717,
+        "response": {
+          "content": "EXPLANATION: Use markupsafe.escape to prevent reflective XSS by encoding user-provided input before rendering it in HTML.\n\nSCOPE: function\n```python\ndef trust_boundary():\n    from markupsafe import escape\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {escape(combined_data)}</h2>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1082,
+            "completion_tokens": 137,
+            "total_tokens": 1219
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 009\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:223:8\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 223,\n      \"end_line\": 223,\n      \"function\": \"trust_boundary\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 216,\n              \"node\": \"ControlFlowNode for user_input\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 220,\n              \"node\": \"ControlFlowNode for combined_data\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 223,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"e095c18745cecd37:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/process_data')\ndef trust_boundary():\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {combined_data}</h2>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\nreturn f\"<h2>Processing: {markupsafe.escape(combined_data)}</h2>\"\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "trust_boundary"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "9 added plus deleted lines; allowed 5",
+            "lines_added": 5,
+            "lines_removed": 4,
+            "total_churn": 9,
+            "original_length": 9,
+            "limit": 5
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 3,
+      "success": 2,
+      "ast_name": 2,
+      "failures": 1,
+      "rejected": 1
+    },
+    "lines_added": 0,
+    "lines_removed": 0
+  },
+  {
+    "finding_id": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+    "accepted": false,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 33.38999999999942,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Replaced the weak DES-ECB encryption with AES-GCM for authenticated encryption.\n```python\ndef encrypt_data():\n    from Crypto.Cipher import AES\n    from Crypto.Random import get_random_bytes\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = get_random_bytes(16)\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{cipher.nonce.hex()}:{ciphertext.hex()}:{tag.hex()}</p>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 763,
+            "completion_tokens": 181,
+            "total_tokens": 944
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "encrypt_data"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "21 added plus deleted lines; allowed 5",
+            "lines_added": 11,
+            "lines_removed": 10,
+            "total_churn": 21,
+            "original_length": 11,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": false,
+        "duration_seconds": 51.85900000000038,
+        "response": {
+          "content": "SCOPE: line\nEXPLANATION: Replace the weak DES-ECB cipher with AES-GCM for secure authenticated encryption.\n```python\n    cipher = AES.new(b'16bytekey_secret', AES.MODE_GCM)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1006,
+            "completion_tokens": 55,
+            "total_tokens": 1061
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef encrypt_data():\n    from Crypto.Cipher import AES\n    from Crypto.Random import get_random_bytes\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = get_random_bytes(16)\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{cipher.nonce.hex()}:{ciphertext.hex()}:{tag.hex()}</p>\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"21 added plus deleted lines; allowed 5\", \"lines_added\": 11, \"lines_removed\": 10, \"total_churn\": 21, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "line",
+          "route": "rejected",
+          "success": false,
+          "error": "A bound function requires function scope; line scope cannot replace it"
+        },
+        "error": "A bound function requires function scope; line scope cannot replace it"
+      },
+      {
+        "attempt": 3,
+        "accepted": false,
+        "duration_seconds": 25.28099999999904,
+        "response": {
+          "content": "EXPLANATION: Replaced the weak DES-ECB encryption with AES-GCM for authenticated encryption.\nSCOPE: encrypt_data\n```python\ndef encrypt_data():\n    from Crypto.Cipher import AES\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'16bytekey_secret'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{cipher.nonce.hex()}{ciphertext.hex()}{tag.hex()}</p>\"\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 825,
+            "completion_tokens": 171,
+            "total_tokens": 996
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ncipher = AES.new(b'16bytekey_secret', AES.MODE_GCM)\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "encrypt_data",
+          "route": "rejected",
+          "success": false,
+          "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+        },
+        "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+      }
+    ],
+    "application_counts": {
+      "attempts": 3,
+      "success": 1,
+      "ast_name": 1,
+      "failures": 2,
+      "rejected": 2
+    },
+    "lines_added": 0,
+    "lines_removed": 0
+  },
+  {
+    "finding_id": "py/url-redirection:vulnerable_app.py:169:26",
+    "accepted": false,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "duration_seconds": 41.68800000000192,
+        "response": {
+          "content": "EXPLANATION: Prevent open redirection by validating that the target URL is a relative path, ensuring it does not redirect to an external untrusted domain.\n\nSCOPE: function open_redirect\n```python\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    from urllib.parse import urlparse\n    if not target_url.startswith('/') or urlparse(target_url).netloc:\n        target_url = '/'\n    \n    return redirect(target_url)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 1.812
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 931,
+            "completion_tokens": 127,
+            "total_tokens": 1058
+          }
+        },
+        "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 027\",\n  \"finding_id\": \"py/url-redirection:vulnerable_app.py:169:26\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/url-redirection\",\n    \"cwe\": \"CWE-601\",\n    \"all_cwes\": [\n      \"CWE-601\"\n    ],\n    \"description\": \"Untrusted URL redirection depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 169,\n      \"end_line\": 169,\n      \"function\": \"open_redirect\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for target_url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 169,\n              \"node\": \"ControlFlowNode for target_url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9cf2e3b53171c63f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"16\"\n  }\n}\n\nCWE repair guidance\nMap redirect choices to trusted destinations. Reject unknown choices and avoid passing arbitrary input to redirect.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn redirect(request.args.get('next'))\nAfter:\ndestinations = {'home': '/', 'profile': '/profile'}\nreturn redirect(destinations.get(request.args.get('next'), '/'))\n\nCurrent source snapshot\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    return redirect(target_url)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "vulnerable_app.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "open_redirect"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "8 added plus deleted lines; allowed 5",
+            "lines_added": 6,
+            "lines_removed": 2,
+            "total_churn": 8,
+            "original_length": 6,
+            "limit": 5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": false,
+        "error": "Gemini HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
         "infrastructure_error": true
       }
     ],

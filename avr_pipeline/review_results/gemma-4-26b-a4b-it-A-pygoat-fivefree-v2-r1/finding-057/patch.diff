@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -110,7 +110,7 @@
+     try:
+         return render_template(f"blogs/{filename}")
+     except Exception as e:
+-        return f"Blog post not found: {str(e)}", 404
++        return "Blog post not found", 404
+ 
+ 
+ 

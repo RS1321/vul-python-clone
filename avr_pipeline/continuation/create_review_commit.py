@@ -39,7 +39,19 @@ def main():
         env.update(GIT_AUTHOR_NAME='Codex', GIT_AUTHOR_EMAIL='codex@localhost',
                    GIT_COMMITTER_NAME='Codex', GIT_COMMITTER_EMAIL='codex@localhost')
     git('read-tree', parent, env=env)
-    git('add', '--', 'avr_pipeline', 'AVR_REVIEW_CHANGES.md', '.github/workflows/avr-pipeline-checks.yml', env=env)
+    paths = ['AVR_REVIEW_CHANGES.md', '.github/workflows/avr-pipeline-checks.yml', 'avr_pipeline/EXPORT_MANIFEST.json']
+    for item in marker['files']:
+        file = REPO / 'avr_pipeline' / item['path']
+        if not file.resolve().is_relative_to((REPO / 'avr_pipeline').resolve()):
+            raise ValueError('Marker path escapes the owned export')
+        import hashlib
+        if hashlib.sha256(file.read_bytes()).hexdigest() != item['export_sha256']:
+            raise ValueError('Export changed after verification: ' + item['path'])
+        paths.append('avr_pipeline/' + item['path'])
+    pathspec = ROOT / '.review-work' / f'review-paths-{time.time_ns()}.nul'
+    pathspec.write_bytes(b'\0'.join(p.encode('utf-8') for p in paths) + b'\0')
+    # Stage only generated, verified files; preserve unrelated user additions.
+    git('--literal-pathspecs', 'add', '--force', '--pathspec-from-file=' + str(pathspec), '--pathspec-file-nul', env=env)
     tree = git('write-tree', env=env).stdout.strip()
     if tree == git('rev-parse', parent + '^{tree}').stdout.strip():
         print('No new export changes'); return

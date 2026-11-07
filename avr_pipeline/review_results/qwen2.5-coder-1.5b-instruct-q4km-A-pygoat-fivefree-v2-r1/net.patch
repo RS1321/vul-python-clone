@@ -1,0 +1,234 @@
+diff --git a/challenge/labs/bopla_lab/app.py b/challenge/labs/bopla_lab/app.py
+index ff75b54..4f6cfa7 100644
+--- a/challenge/labs/bopla_lab/app.py
++++ b/challenge/labs/bopla_lab/app.py
+@@ -149,4 +149,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True)
++    app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/challenge/labs/business_logic_lab/app.py b/challenge/labs/business_logic_lab/app.py
+index 669a6e7..476508c 100644
+--- a/challenge/labs/business_logic_lab/app.py
++++ b/challenge/labs/business_logic_lab/app.py
+@@ -197,4 +197,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)
+diff --git a/challenge/labs/security_headers_lab/app.py b/challenge/labs/security_headers_lab/app.py
+index ebefd88..9de75ed 100644
+--- a/challenge/labs/security_headers_lab/app.py
++++ b/challenge/labs/security_headers_lab/app.py
+@@ -230,4 +230,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5011, debug=True)
++    app.run(host='0.0.0.0', port=5011, debug=False)
+diff --git a/challenge/views.py b/challenge/views.py
+index 6f99bdc..069833c 100644
+--- a/challenge/views.py
++++ b/challenge/views.py
+@@ -349,10 +349,10 @@ def wait_for_health(container, timeout=60, remove_on_failure=True):
+ def start_lab(request, lab_image_name):
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+-    
++
+     if not check_traefik_reachable():
+         return JsonResponse({'status': 'error', 'message': 'Traefik reverse proxy is not reachable'}, status=503)
+-    
++
+     client = get_docker_client()
+     if client is None:
+         return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)
+@@ -364,7 +364,7 @@ def start_lab(request, lab_image_name):
+     lab_url = f"http://{container_name}.{domain}"
+ 
+     per_user_limit = getattr(settings, 'LABS_PER_USER_LIMIT', 3)
+-    
++
+ 
+     try:
+         lab_config = _get_lab_config(safe_image)
+@@ -405,7 +405,7 @@ def start_lab(request, lab_image_name):
+         return JsonResponse({'status': 'created' if created else 'ready', 'url': lab_url})
+ 
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def _create_lab_container(client, image, container_name, domain, lab_port):
+diff --git a/dockerized_labs/a9_uckv_lab/app.py b/dockerized_labs/a9_uckv_lab/app.py
+index 21204cc..af57e57 100644
+--- a/dockerized_labs/a9_uckv_lab/app.py
++++ b/dockerized_labs/a9_uckv_lab/app.py
+@@ -121,4 +121,4 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     # Ensure we're binding to all interfaces
+-    app.run(host="0.0.0.0", port=9000, debug=True, use_reloader=True, threaded=True)
++    app.run(host="0.0.0.0", port=9000, debug=False, use_reloader=True, threaded=True)
+diff --git a/dockerized_labs/auth_failure_lab/app.py b/dockerized_labs/auth_failure_lab/app.py
+index 7c73cca..a0ddee1 100644
+--- a/dockerized_labs/auth_failure_lab/app.py
++++ b/dockerized_labs/auth_failure_lab/app.py
+@@ -235,4 +235,4 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     init_db()
+-    app.run(host="0.0.0.0", port=5007, debug=True)
++    app.run(host="0.0.0.0", port=5007, debug=False)
+diff --git a/dockerized_labs/broken_access_lab/main.py b/dockerized_labs/broken_access_lab/main.py
+index 3fe3c63..6503f50 100644
+--- a/dockerized_labs/broken_access_lab/main.py
++++ b/dockerized_labs/broken_access_lab/main.py
+@@ -67,4 +67,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True) 
++    app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/dockerized_labs/broken_auth_lab/app.py b/dockerized_labs/broken_auth_lab/app.py
+index 1ef23dc..a5eb4b7 100644
+--- a/dockerized_labs/broken_auth_lab/app.py
++++ b/dockerized_labs/broken_auth_lab/app.py
+@@ -144,4 +144,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5000, debug=True)  # Vulnerable: Debug mode enabled in production 
++    app.run(host='0.0.0.0', port=5000, debug=False)  # Vulnerable: Debug mode enabled in production
+diff --git a/dockerized_labs/command_injection_lab/app.py b/dockerized_labs/command_injection_lab/app.py
+index ce3accb..b9d6437 100644
+--- a/dockerized_labs/command_injection_lab/app.py
++++ b/dockerized_labs/command_injection_lab/app.py
+@@ -27,7 +27,7 @@ def lab1():
+         try:
+             # Intentionally vulnerable command execution
+             process = subprocess.Popen(
+-                command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
++                command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+             )
+             stdout, stderr = process.communicate()
+             output = stdout.decode("utf-8") + stderr.decode("utf-8")
+@@ -57,4 +57,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5013, debug=True)
++    app.run(host='0.0.0.0', port=5013, debug=False)
+diff --git a/dockerized_labs/dependency_attack_lab/app.py b/dockerized_labs/dependency_attack_lab/app.py
+index c82ad11..4456e10 100644
+--- a/dockerized_labs/dependency_attack_lab/app.py
++++ b/dockerized_labs/dependency_attack_lab/app.py
+@@ -195,4 +195,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5020, debug=True)
++    app.run(host="0.0.0.0", port=5020, debug=False)
+diff --git a/dockerized_labs/insecure_design_lab/app.py b/dockerized_labs/insecure_design_lab/app.py
+index aae9060..42ed2a6 100644
+--- a/dockerized_labs/insecure_design_lab/app.py
++++ b/dockerized_labs/insecure_design_lab/app.py
+@@ -150,4 +150,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5008, debug=True)
++    app.run(host='0.0.0.0', port=5008, debug=False)
+diff --git a/dockerized_labs/insufficient_logging_lab/app.py b/dockerized_labs/insufficient_logging_lab/app.py
+index 5cafa77..30ebf9c 100644
+--- a/dockerized_labs/insufficient_logging_lab/app.py
++++ b/dockerized_labs/insufficient_logging_lab/app.py
+@@ -93,4 +93,4 @@ if __name__ == '__main__':
+     if not os.path.exists("app.log"):
+         open("app.log", "a").close()
+ 
+-    app.run(host="0.0.0.0", port=5014, debug=True)
++    app.run(host="0.0.0.0", port=5014, debug=False)
+diff --git a/dockerized_labs/open_source_library_attack_lab/app.py b/dockerized_labs/open_source_library_attack_lab/app.py
+index 1307e0b..533514f 100644
+--- a/dockerized_labs/open_source_library_attack_lab/app.py
++++ b/dockerized_labs/open_source_library_attack_lab/app.py
+@@ -256,4 +256,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5022, debug=True)
++    app.run(host="0.0.0.0", port=5022, debug=False)
+diff --git a/dockerized_labs/package_injection_lab/app.py b/dockerized_labs/package_injection_lab/app.py
+index 64d58b9..1dd0980 100644
+--- a/dockerized_labs/package_injection_lab/app.py
++++ b/dockerized_labs/package_injection_lab/app.py
+@@ -257,4 +257,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5021, debug=True)
++    app.run(host="0.0.0.0", port=5021, debug=False)
+diff --git a/dockerized_labs/sde/app.py b/dockerized_labs/sde/app.py
+index 4d40f89..67f7dbd 100644
+--- a/dockerized_labs/sde/app.py
++++ b/dockerized_labs/sde/app.py
+@@ -46,4 +46,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5100, debug=True)
++    app.run(host="0.0.0.0", port=5100, debug=False)
+diff --git a/dockerized_labs/sec_misconfig/app.py b/dockerized_labs/sec_misconfig/app.py
+index c7af5d6..d5d8510 100644
+--- a/dockerized_labs/sec_misconfig/app.py
++++ b/dockerized_labs/sec_misconfig/app.py
+@@ -132,4 +132,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(debug=True, host='0.0.0.0', port=5009)
++    app.run(debug=False, host='0.0.0.0', port=5009)
+diff --git a/dockerized_labs/software_integrity_lab/app.py b/dockerized_labs/software_integrity_lab/app.py
+index b8ee05e..8261f1f 100644
+--- a/dockerized_labs/software_integrity_lab/app.py
++++ b/dockerized_labs/software_integrity_lab/app.py
+@@ -87,4 +87,4 @@ if __name__ == '__main__':
+     with open(static_dir / "fake.txt", "w") as f:
+         f.write("This is a fake file that could contain malicious code.")
+ 
+-    app.run(host="0.0.0.0", port=5011, debug=True)
++    app.run(host="0.0.0.0", port=5011, debug=False)
+diff --git a/dockerized_labs/sql_injection_lab/app.py b/dockerized_labs/sql_injection_lab/app.py
+index 62dc9f2..eb0b0cf 100644
+--- a/dockerized_labs/sql_injection_lab/app.py
++++ b/dockerized_labs/sql_injection_lab/app.py
+@@ -75,4 +75,4 @@ if __name__ == "__main__":
+     # Initialize database
+     init_db()
+ 
+-    app.run(host="0.0.0.0", port=5012, debug=True)
++    app.run(host="0.0.0.0", port=5012, debug=False)
+diff --git a/dockerized_labs/template_injection_lab/app.py b/dockerized_labs/template_injection_lab/app.py
+index c3e843b..65104d6 100644
+--- a/dockerized_labs/template_injection_lab/app.py
++++ b/dockerized_labs/template_injection_lab/app.py
+@@ -120,4 +120,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5015, debug=True)
++    app.run(host='0.0.0.0', port=5015, debug=False)
+diff --git a/dockerized_labs/xxe_lab/app.py b/dockerized_labs/xxe_lab/app.py
+index 7b4c8af..3e1d2b3 100644
+--- a/dockerized_labs/xxe_lab/app.py
++++ b/dockerized_labs/xxe_lab/app.py
+@@ -92,4 +92,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)

@@ -1,0 +1,68 @@
+{
+  "finding_id": "py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 5.109000000000378,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the dangerous `eval()` function with `ast.literal_eval()` to safely parse Python literals without allowing arbitrary code execution.\n\n```python\n@app.route(\"/lab2\", methods=[\"GET\", \"POST\"])\ndef lab2():\n    \"\"\"Lab 2: Python eval() Code Execution\"\"\"\n    if request.method == \"POST\":\n        try:\n            import ast\n            # Safely evaluate a Python literal\n            expression = request.form.get(\"val\", \"\")\n            output = ast.literal_eval(expression)\n            return render_template(\"lab2.html\", output=str(output))\n        except Exception as e:\n            return render_template(\"lab2.html\", output=str(e))\n    return render_template(\"lab2.html\")\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1360,
+          "completion_tokens": 180,
+          "total_tokens": 1540
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/command_injection_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 012\",\n  \"finding_id\": \"py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/code-injection\",\n    \"cwe\": \"CWE-094\",\n    \"all_cwes\": [\n      \"CWE-094\",\n      \"CWE-095\",\n      \"CWE-116\"\n    ],\n    \"description\": \"This code execution depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/command_injection_lab/app.py\",\n      \"start_line\": 49,\n      \"end_line\": 49,\n      \"function\": \"lab2\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 45,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for expression\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 49,\n              \"node\": \"ControlFlowNode for expression\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 48,\n              \"node\": \"ControlFlowNode for expression\"\n            },\n            {\n              \"file\": \"dockerized_labs/command_injection_lab/app.py\",\n              \"line\": 49,\n              \"node\": \"ControlFlowNode for expression\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"645fd304e9564718:1\",\n    \"primaryLocationStartColumnFingerprint\": \"14\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route(\"/lab2\", methods=[\"GET\", \"POST\"])\ndef lab2():\n    \"\"\"Lab 2: Python eval() Code Execution\"\"\"\n    if request.method == \"POST\":\n        try:\n            # Intentionally vulnerable eval\n            expression = request.form.get(\"val\", \"\")\n            output = eval(expression)\n            return render_template(\"lab2.html\", output=str(output))\n        except Exception as e:\n            return render_template(\"lab2.html\", output=str(e))\n    return render_template(\"lab2.html\")\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "dockerized_labs/command_injection_lab/app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "lab2"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "5 added plus deleted lines; allowed 5",
+          "lines_added": 3,
+          "lines_removed": 2,
+          "total_churn": 5,
+          "original_length": 12,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 7.5,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "not_configured",
+          "passed": null,
+          "failures": null
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 3,
+  "lines_removed": 2
+}

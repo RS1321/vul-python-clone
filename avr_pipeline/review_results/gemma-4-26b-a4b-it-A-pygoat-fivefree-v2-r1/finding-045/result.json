@@ -1,0 +1,138 @@
+{
+  "finding_id": "py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 2.3440000000009604,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode to prevent arbitrary code execution via the interactive debugger.\n\n```python\n    app.run(host=\"0.0.0.0\", port=5014, debug=False)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 739,
+          "completion_tokens": 54,
+          "total_tokens": 793
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/insufficient_logging_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 040\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/insufficient_logging_lab/app.py\",\n      \"start_line\": 91,\n      \"end_line\": 96,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"354a875268a163b7:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Create log file if it doesn't exist\\n    if not os.path.exists(\\\"app.log\\\"):\\n        open(\\\"app.log\\\", \\\"a\\\").close()\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5014, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Create log file if it doesn't exist\n    if not os.path.exists(\"app.log\"):\n        open(\"app.log\", \"a\").close()\n\n    app.run(host=\"0.0.0.0\", port=5014, debug=True)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "dockerized_labs/insufficient_logging_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "7 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 6,
+          "total_churn": 7,
+          "original_length": 5,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 2.311999999998079,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode to prevent arbitrary code execution via the interactive debugger.\n\n```python\n    app.run(host=\"0.0.0.0\", port=5014, debug=False)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 853,
+          "completion_tokens": 54,
+          "total_tokens": 907
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/insufficient_logging_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 040\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/insufficient_logging_lab/app.py\",\n      \"start_line\": 91,\n      \"end_line\": 96,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"354a875268a163b7:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Create log file if it doesn't exist\\n    if not os.path.exists(\\\"app.log\\\"):\\n        open(\\\"app.log\\\", \\\"a\\\").close()\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5014, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Create log file if it doesn't exist\n    if not os.path.exists(\"app.log\"):\n        open(\"app.log\", \"a\").close()\n\n    app.run(host=\"0.0.0.0\", port=5014, debug=True)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\napp.run(host=\"0.0.0.0\", port=5014, debug=False)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"7 added plus deleted lines; allowed 5\", \"lines_added\": 1, \"lines_removed\": 6, \"total_churn\": 7, \"original_length\": 5, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "dockerized_labs/insufficient_logging_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "7 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 6,
+          "total_churn": 7,
+          "original_length": 5,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 14.75,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode to prevent arbitrary code execution via the interactive debugger.\n\n```python\n    app.run(host=\"0.0.0.0\", port=5014, debug=False)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 500,
+            "budget_wait_seconds": 9.312
+          },
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 853,
+          "completion_tokens": 54,
+          "total_tokens": 907
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/insufficient_logging_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 040\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/insufficient_logging_lab/app.py\",\n      \"start_line\": 91,\n      \"end_line\": 96,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"354a875268a163b7:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Create log file if it doesn't exist\\n    if not os.path.exists(\\\"app.log\\\"):\\n        open(\\\"app.log\\\", \\\"a\\\").close()\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5014, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Create log file if it doesn't exist\n    if not os.path.exists(\"app.log\"):\n        open(\"app.log\", \"a\").close()\n\n    app.run(host=\"0.0.0.0\", port=5014, debug=True)\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\napp.run(host=\"0.0.0.0\", port=5014, debug=False)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"7 added plus deleted lines; allowed 5\", \"lines_added\": 1, \"lines_removed\": 6, \"total_churn\": 7, \"original_length\": 5, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "dockerized_labs/insufficient_logging_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "7 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 6,
+          "total_churn": 7,
+          "original_length": 5,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "verified_line": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

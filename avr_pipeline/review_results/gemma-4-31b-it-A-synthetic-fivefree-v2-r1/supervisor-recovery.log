@@ -1,0 +1,193 @@
+
+Additional recovery cycle 1
+gemma-4-31b-it A: 9/29 py/sql-injection:vulnerable_app.py:369:16
+gemma-4-31b-it A: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+gemma-4-31b-it A: 11/29 py/full-ssrf:vulnerable_app.py:351:28
+gemma-4-31b-it A: 12/29 py/reflective-xss:vulnerable_app.py:327:10
+gemma-4-31b-it A: 13/29 py/sql-injection:vulnerable_app.py:323:15
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 558.9380000000001
+}
+
+Additional recovery cycle 2
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 13.60899999999856
+}
+
+Additional recovery cycle 3
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 226.43799999999828
+}
+
+Additional recovery cycle 4
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 41.53099999999904
+}
+
+Additional recovery cycle 5
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 63.04699999999866
+}
+
+Additional recovery cycle 6
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 68.06299999999828
+}
+
+Additional recovery cycle 7
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 84.21800000000076
+}
+
+Additional recovery cycle 8
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 72.5
+}
+
+Additional recovery cycle 9
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 87.125
+}
+
+Additional recovery cycle 10
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 14,
+  "accepted_patches": 9,
+  "elapsed_seconds": 189.26499999999942
+}
+
+Additional recovery cycle 11
+gemma-4-31b-it A: 14/29 py/sql-injection:vulnerable_app.py:322:14
+gemma-4-31b-it A: 15/29 py/path-injection:vulnerable_app.py:299:1
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 15,
+  "accepted_patches": 10,
+  "elapsed_seconds": 143.25
+}
+
+Additional recovery cycle 12
+gemma-4-31b-it A: 15/29 py/path-injection:vulnerable_app.py:299:1
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 15,
+  "accepted_patches": 10,
+  "elapsed_seconds": 78.125
+}
+
+Additional recovery cycle 13
+gemma-4-31b-it A: 15/29 py/path-injection:vulnerable_app.py:299:1
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 15,
+  "accepted_patches": 10,
+  "elapsed_seconds": 63.21900000000096
+}
+
+Additional recovery cycle 14
+gemma-4-31b-it A: 15/29 py/path-injection:vulnerable_app.py:299:1
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 15,
+  "accepted_patches": 10,
+  "elapsed_seconds": 22.1720000000023
+}
+
+Additional recovery cycle 15
+gemma-4-31b-it A: 15/29 py/path-injection:vulnerable_app.py:299:1
+gemma-4-31b-it A: 16/29 py/sql-injection:vulnerable_app.py:282:13
+gemma-4-31b-it A: 17/29 py/reflective-xss:vulnerable_app.py:259:9
+gemma-4-31b-it A: 18/29 py/stack-trace-exposure:vulnerable_app.py:241:18
+gemma-4-31b-it A: 19/29 py/path-injection:vulnerable_app.py:237:0
+gemma-4-31b-it A: 20/29 py/reflective-xss:vulnerable_app.py:223:8
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 20,
+  "accepted_patches": 13,
+  "elapsed_seconds": 573.1719999999987
+}
+
+Additional recovery cycle 16
+gemma-4-31b-it A: 20/29 py/reflective-xss:vulnerable_app.py:223:8
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 20,
+  "accepted_patches": 13,
+  "elapsed_seconds": 140.13999999999942
+}
+
+Additional recovery cycle 17
+gemma-4-31b-it A: 20/29 py/reflective-xss:vulnerable_app.py:223:8
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 20,
+  "accepted_patches": 13,
+  "elapsed_seconds": 5.077999999997701
+}
+
+Additional recovery cycle 18
+gemma-4-31b-it A: 20/29 py/reflective-xss:vulnerable_app.py:223:8
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 20,
+  "accepted_patches": 13,
+  "elapsed_seconds": 9.610000000000582
+}
+
+Additional recovery cycle 19
+gemma-4-31b-it A: 20/29 py/reflective-xss:vulnerable_app.py:223:8
+gemma-4-31b-it A: 21/29 py/weak-cryptographic-algorithm:vulnerable_app.py:187:24
+gemma-4-31b-it A: 22/29 py/url-redirection:vulnerable_app.py:169:26
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 22,
+  "accepted_patches": 13,
+  "elapsed_seconds": 202.43699999999808
+}
+
+Additional recovery cycle 20
+gemma-4-31b-it A: 22/29 py/url-redirection:vulnerable_app.py:169:26
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 22,
+  "accepted_patches": 13,
+  "elapsed_seconds": 81.98500000000058
+}

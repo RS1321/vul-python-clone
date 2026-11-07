@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -55,7 +55,7 @@
+         try:
+             # Create a vulnerable XML parser that allows external entities
+             parser = make_parser()
+-            parser.setFeature(feature_external_ges, True)
++            parser.setFeature(feature_external_ges, False)
+ 
+             # Parse the XML data
+             doc = parseString(request.data.decode("utf-8"), parser=parser)

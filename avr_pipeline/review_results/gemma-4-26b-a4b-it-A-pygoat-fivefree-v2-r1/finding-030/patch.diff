@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -95,6 +95,9 @@
+     if request.method == "POST":
+         email = request.form.get("email")
+         if email:
++            # Validate email to prevent cookie injection
++            if any(c in email for c in ";= \t\n\r"):
++                return "Invalid input", 400
+             # Vulnerable: Short OTP, no rate limiting
+             otp = str(random.randint(100, 999))
+             if email == "admin@pygoat.com":

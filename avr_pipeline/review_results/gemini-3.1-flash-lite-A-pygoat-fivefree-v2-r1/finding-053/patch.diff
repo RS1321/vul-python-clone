@@ -1,0 +1,26 @@
+--- 
++++ 
+@@ -42,19 +42,18 @@
+ @app.route('/lab', methods=['GET', 'POST'])
+ def lab():
+     """Lab page with the vulnerable login form"""
++    import sqlite3
++    from flask import request, render_template
+     if request.method == "POST":
+         username = request.form.get("username", "")
+         password = request.form.get("password", "")
+ 
+-        # Vulnerable SQL query construction (intentional)
+-        sql_query = (
+-            f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+-        )
++        sql_query = "SELECT * FROM users WHERE username=? AND password=?"
+ 
+         try:
+             conn = sqlite3.connect("database.db")
+             c = conn.cursor()
+-            result = c.execute(sql_query).fetchone()
++            result = c.execute(sql_query, (username, password)).fetchone()
+             conn.close()
+ 
+             if result:

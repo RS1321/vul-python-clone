@@ -1,0 +1,27 @@
+{
+  "attempt": 2,
+  "accepted": false,
+  "duration_seconds": 7.515999999999622,
+  "response": {
+    "content": "SCOPE: line\n\n```python\n@app.route(\"/lab1\", methods=[\"GET\", \"POST\"])\ndef lab1():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n        password_hash = hashlib.sha256(password.encode()).hexdigest()\n        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:\n            return render_template(\"lab1.html\", user=username, success=True)\n        else:\n            return render_template(\"lab1.html\", success=False, failure=True)\n    return render_template(\"lab1.html\")\n```",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "usage": {
+      "completion_tokens": 127,
+      "prompt_tokens": 994,
+      "total_tokens": 1121,
+      "prompt_tokens_details": {
+        "cached_tokens": 834
+      }
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/crypto_failure_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 050\",\n  \"finding_id\": \"py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-sensitive-data-hashing\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\",\n      \"CWE-328\",\n      \"CWE-916\"\n    ],\n    \"description\": \"[Sensitive data (password)](1) is used in a hashing algorithm (MD5) that is insecure for password hashing, since it is not a computationally expensive hash function.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/crypto_failure_lab/app.py\",\n      \"start_line\": 38,\n      \"end_line\": 38,\n      \"function\": \"lab1\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 38,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"659f3522f8da232a:1\",\n    \"primaryLocationStartColumnFingerprint\": \"28\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route(\"/lab1\", methods=[\"GET\", \"POST\"])\ndef lab1():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n        password_hash = hashlib.md5(password.encode()).hexdigest()\n        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:\n            return render_template(\"lab1.html\", user=username, success=True)\n        else:\n            return render_template(\"lab1.html\", success=False, failure=True)\n    return render_template(\"lab1.html\")\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route(\"/lab1\", methods=[\"GET\", \"POST\"])\ndef lab1():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n        password_hash = hashlib.sha256(password.encode()).hexdigest()\n        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:\n            return render_template(\"lab1.html\", user=username, success=True)\n        else:\n            return render_template(\"lab1.html\", success=False, failure=True)\n    return render_template(\"lab1.html\")\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "scope": "line",
+    "route": "rejected",
+    "success": false,
+    "error": "A bound function requires function scope; line scope cannot replace it"
+  },
+  "error": "A bound function requires function scope; line scope cannot replace it"
+}

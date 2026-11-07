@@ -1,0 +1,13 @@
+{
+  "accepted": false,
+  "files": [],
+  "changed_lines": 0,
+  "validation": null,
+  "rolled_back": false,
+  "error": "Fragment is absent or ambiguous",
+  "dataset": "minimist",
+  "model": "gemini-3.5-flash-lite",
+  "seconds": 1.969,
+  "security_resolution": "not established; configuration/API checks only",
+  "attempts": 1
+}

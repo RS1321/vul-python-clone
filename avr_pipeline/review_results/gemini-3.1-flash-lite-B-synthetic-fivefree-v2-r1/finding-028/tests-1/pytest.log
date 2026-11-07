@@ -1,0 +1,40 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1\source
+configfile: pytest.ini
+plugins: platformdirs-4.14.5, cov-7.1.0
+collected 69 items / 1 deselected / 68 selected
+
+tests\test_vulnerable_app.py ........................................... [ 63%]
+........FF...............                                                [100%]
+
+================================== FAILURES ===================================
+_________________________ test_fetch_url_invalid_url __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_fetch_url_invalid_url(client):
+        """Invalid URL handled."""
+        response = client.get('/fetch_url?url=not_a_valid_url')
+>       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <WrapperTestResponse streamed [400 BAD REQUEST]>.status_code
+
+tests\test_vulnerable_app.py:474: AssertionError
+__________________________ test_fetch_url_with_param __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_fetch_url_with_param(client):
+        """Fetch URL accepts parameter."""
+        response = client.get('/fetch_url?url=http://localhost:1')
+>       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <WrapperTestResponse streamed [400 BAD REQUEST]>.status_code
+
+tests\test_vulnerable_app.py:480: AssertionError
+- generated xml file: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1\finding-028\tests-1\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_vulnerable_app.py::test_fetch_url_invalid_url - assert 400 ...
+FAILED tests/test_vulnerable_app.py::test_fetch_url_with_param - assert 400 =...
+================= 2 failed, 66 passed, 1 deselected in 5.75s ==================

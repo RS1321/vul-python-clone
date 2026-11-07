@@ -1,0 +1,19 @@
+.....................F..........ssssssssssssssssss.........              [100%]
+================================== FAILURES ===================================
+___________ TestRetry.test_retry_default_remove_headers_on_redirect ___________
+test\test_retry.py:296: in test_retry_default_remove_headers_on_redirect
+    assert list(retry.remove_headers_on_redirect) == ["authorization"]
+E   AssertionError: assert ['authorization', 'cookie'] == ['authorization']
+E     
+E     Left contains one more item: 'cookie'
+E     Use -v to get more diff
+============================== warnings summary ===============================
+..\..\..\..\.review-work\production-env\Lib\site-packages\pytest_freezegun.py:17: 118 warnings
+test/test_retry.py: 54 warnings
+  C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\production-env\Lib\site-packages\pytest_freezegun.py:17: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pytest.__version__) < LooseVersion('3.6.0'):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED test/test_retry.py::TestRetry::test_retry_default_remove_headers_on_redirect
+1 failed, 40 passed, 18 skipped, 172 warnings in 1.17s

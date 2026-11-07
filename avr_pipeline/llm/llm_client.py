@@ -16,6 +16,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+class GenerationLimitError(ValueError):
+    """A completed API response exhausted its output budget, not an outage."""
+    def __init__(self, response):
+        super().__init__('Generation output-token limit exhausted before a complete reply')
+        self.response = response
+
+
 class LLMClient:
     """Unified LLM client for multiple providers"""
     
@@ -241,6 +248,13 @@ class LLMClient:
         candidate = (data.get("candidates") or [{}])[0]
         content = "".join(part.get("text", "") for part in candidate.get("content", {}).get("parts", [])
                           if not part.get("thought"))
+        if candidate.get('finishReason') == 'MAX_TOKENS':
+            usage = data.get('usageMetadata', {})
+            raise GenerationLimitError({'content': content, 'model': reported_model, 'provider': 'gemini',
+                'transport_events': transport_events, 'usage': {
+                    'prompt_tokens': usage.get('promptTokenCount', 0),
+                    'completion_tokens': usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0),
+                    'total_tokens': usage.get('totalTokenCount', 0)}})
         if not content or candidate.get("finishReason") not in (None, "STOP"):
             raise RuntimeError(f"Gemini returned incomplete/blocked output: {candidate.get('finishReason')}")
         usage = data.get("usageMetadata", {})
@@ -271,6 +285,9 @@ class LLMClient:
         if data.get('model') != self.model:
             raise RuntimeError('Local API error: model identity mismatch')
         choice=data['choices'][0]
+        if choice.get('finish_reason')=='length':
+            raise GenerationLimitError({'content':choice['message'].get('content',''),
+                'model':self.model,'provider':'local','usage':data.get('usage',{})})
         if choice.get('finish_reason')!='stop':
             raise RuntimeError('Local API error: incomplete output')
         return {'content':choice['message']['content'],'model':self.model,

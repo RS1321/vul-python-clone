@@ -1,0 +1,69 @@
+{
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "source_url": "https://github.com/RS1321/vul-python-clone.git",
+  "provider": "local",
+  "model": "qwen2.5-coder-0.5b-instruct-q4km",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 1024,
+  "thinking_level": null,
+  "implementation_sha256": {
+    "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5",
+    "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
+  "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": false,
+  "transport_policy": {
+    "AVR_INPUT_BUDGET_PER_MINUTE": "12000",
+    "AVR_REQUEST_TIMEOUT": "60",
+    "AVR_TRANSPORT_RETRIES": "2"
+  },
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [
+    "tests",
+    "-m",
+    "not network"
+  ],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 29,
+  "selected_findings": 29,
+  "utc": "2026-11-07T11:08:27.218358+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 1355.5470000000023,
+  "accepted_patches": 10,
+  "processed_findings": 29,
+  "post_tests": {
+    "status": "passed",
+    "returncode": 0,
+    "tests": 68,
+    "failures": [],
+    "infrastructure_error": false
+  },
+  "sast": {
+    "baseline_findings": 29,
+    "remaining_baseline_findings": 29,
+    "resolved_findings": 0,
+    "new_findings": 0,
+    "resolution_rate": 0.0,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [],
+    "new_groups": []
+  }
+}

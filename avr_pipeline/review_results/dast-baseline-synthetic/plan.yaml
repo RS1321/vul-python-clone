@@ -28,6 +28,6 @@ jobs:
 - type: report
   parameters:
     template: traditional-json
-    reportDir: <WORKSPACE>\AVR-System-review\review_results\dast-baseline-synthetic
+    reportDir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic
     reportFile: scan.json
     reportTitle: Local Flask ZAP scan

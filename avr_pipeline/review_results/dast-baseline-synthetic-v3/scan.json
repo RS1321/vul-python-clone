@@ -1014,7 +1014,7 @@
 							"param": "",
 							"attack": "",
 							"evidence": "username",
-							"otherinfo": "The following pattern was used: \\bUSERNAME\\b and was detected in likely comment: \"<!--\n\nTraceback (most recent call last):\n  File \"<WORKSPACE>\\AVR-System-review\\.venv\\Lib\\site\", see evidence field for the suspicious comment/snippet."
+							"otherinfo": "The following pattern was used: \\bUSERNAME\\b and was detected in likely comment: \"<!--\n\nTraceback (most recent call last):\n  File \"C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.venv\\Lib\\site\", see evidence field for the suspicious comment/snippet."
 						},
 						{
 							"id": "119",
@@ -1024,7 +1024,7 @@
 							"param": "",
 							"attack": "",
 							"evidence": "username",
-							"otherinfo": "The following pattern was used: \\bUSERNAME\\b and was detected in likely comment: \"<!--\n\nTraceback (most recent call last):\n  File \"<WORKSPACE>\\AVR-System-review\\.venv\\Lib\\site\", see evidence field for the suspicious comment/snippet."
+							"otherinfo": "The following pattern was used: \\bUSERNAME\\b and was detected in likely comment: \"<!--\n\nTraceback (most recent call last):\n  File \"C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.venv\\Lib\\site\", see evidence field for the suspicious comment/snippet."
 						}
 					],
 					"count": "3",

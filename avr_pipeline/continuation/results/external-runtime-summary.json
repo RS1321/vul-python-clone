@@ -1,0 +1,460 @@
+[
+  {
+    "run": "gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1",
+    "dataset": "pygoat",
+    "runtime": {
+      "scope": "Django application regression checks; not a security oracle",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1\\source",
+      "django": "4.2",
+      "checks": [
+        {
+          "name": "anonymous GET /",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /accounts/login/",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /register",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /auth/verify/",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /robots.txt",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated homepage",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "normal lesson page",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "logout restores login redirect",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1",
+    "dataset": "pygoat",
+    "runtime": {
+      "scope": "Django application regression checks; not a security oracle",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1\\source",
+      "django": "4.2",
+      "checks": [
+        {
+          "name": "anonymous GET /",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /accounts/login/",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /register",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /auth/verify/",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /robots.txt",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated homepage",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "normal lesson page",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "logout restores login redirect",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1",
+    "dataset": "pygoat",
+    "runtime": {
+      "scope": "Django application regression checks; not a security oracle",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1\\source",
+      "django": "4.2",
+      "checks": [
+        {
+          "name": "anonymous GET /",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /accounts/login/",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /register",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /auth/verify/",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "anonymous GET /robots.txt",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated homepage",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "normal lesson page",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "logout restores login redirect",
+          "observed": 302,
+          "expected": 302,
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1",
+    "dataset": "vampi",
+    "runtime": {
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1\\source",
+      "scope": "ordinary HTTP regression checks; not a security oracle",
+      "checks": [
+        {
+          "name": "home",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "users list",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "missing authentication",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "normal registration",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "registration succeeds",
+          "observed": "success",
+          "expected": "success",
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "login produces token",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated profile",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "profile retains username",
+          "observed": "avr_fixture",
+          "expected": "avr_fixture",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1",
+    "dataset": "vampi",
+    "runtime": {
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1\\source",
+      "scope": "ordinary HTTP regression checks; not a security oracle",
+      "checks": [
+        {
+          "name": "home",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "users list",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "missing authentication",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "normal registration",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "registration succeeds",
+          "observed": "success",
+          "expected": "success",
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "login produces token",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated profile",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "profile retains username",
+          "observed": "avr_fixture",
+          "expected": "avr_fixture",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "gemma-4-31b-it-A-vampi-fivefree-v2-r1",
+    "dataset": "vampi",
+    "runtime": {
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemma-4-31b-it-A-vampi-fivefree-v2-r1\\source",
+      "scope": "ordinary HTTP regression checks; not a security oracle",
+      "checks": [
+        {
+          "name": "home",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "users list",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "missing authentication",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "normal registration",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "registration succeeds",
+          "observed": "success",
+          "expected": "success",
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "login produces token",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated profile",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "profile retains username",
+          "observed": "avr_fixture",
+          "expected": "avr_fixture",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1",
+    "dataset": "vampi",
+    "runtime": {
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1\\source",
+      "scope": "ordinary HTTP regression checks; not a security oracle",
+      "checks": [
+        {
+          "name": "home",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "users list",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "missing authentication",
+          "observed": 401,
+          "expected": 401,
+          "passed": true
+        },
+        {
+          "name": "normal registration",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "registration succeeds",
+          "observed": "success",
+          "expected": "success",
+          "passed": true
+        },
+        {
+          "name": "normal login",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "login produces token",
+          "observed": true,
+          "expected": true,
+          "passed": true
+        },
+        {
+          "name": "authenticated profile",
+          "observed": 200,
+          "expected": 200,
+          "passed": true
+        },
+        {
+          "name": "profile retains username",
+          "observed": "avr_fixture",
+          "expected": "avr_fixture",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  }
+]

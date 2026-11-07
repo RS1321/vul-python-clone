@@ -1,0 +1,10 @@
+======================================================================
+STARTING WEB APPLICATION
+======================================================================
+Flask web server starting...
+======================================================================
+
+[+] Database initialized with sample data
+[+] Starting Flask server on http://127.0.0.1:3000
+[+] Press Ctrl+C to stop
+

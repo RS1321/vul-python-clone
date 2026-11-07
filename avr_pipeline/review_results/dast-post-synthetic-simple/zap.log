@@ -1,0 +1,35 @@
+Defaulting ZAP install dir to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\zap\ZAP_2.17.0
+469 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\zap-home\config.xml
+562 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\zap-home\session
+563 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\zap-home\dirbuster
+563 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\zap-home\fuzzers
+564 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\zap-home\plugin
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/zap/ZAP_2.17.0/plugin/network-beta-0.25.0.zap)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Job spider set context = local-benchmark
+Job spider set maxDuration = 1
+Job passiveScan-wait set maxDuration = 1
+Job activeScan set context = local-benchmark
+Job activeScan set maxScanDurationInMins = 5
+Job activeScan set maxRuleDurationInMins = 1
+Job passiveScan-wait set maxDuration = 1
+Job report set template = traditional-json
+Job report set reportDir = C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple
+Job report set reportFile = scan.json
+Job report set reportTitle = Local Flask ZAP scan
+Job spider started
+Job spider requesting URL http://127.0.0.1:3000
+Job spider found 36 URLs
+Job spider finished, time taken: 00:00:01
+Job passiveScan-wait started
+Job passiveScan-wait finished, time taken: 00:00:01
+Job activeScan started
+Job activeScan finished, time taken: 00:00:56
+Job passiveScan-wait started
+Job passiveScan-wait finished, time taken: 00:00:00
+Job report started
+Job report generated report C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-post-synthetic-simple\scan.json
+Job report finished, time taken: 00:00:00
+Automation plan succeeded!

@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -530,7 +530,9 @@
+     except docker.errors.NotFound:
+         return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.exception("Error stopping lab")
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def list_custom_labs(request):

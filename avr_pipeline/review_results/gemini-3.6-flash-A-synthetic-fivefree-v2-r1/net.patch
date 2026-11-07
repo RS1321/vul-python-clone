@@ -1,0 +1,44 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..edcce96 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -383,14 +383,16 @@ def idor_vulnerability(account_id):
+ @app.route('/load_object', methods=['POST'])
+ def insecure_deserialization():
+     # --------------------------------------------
++    import html
++    import json
+     data = request.data
+-    
++
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        obj = json.loads(data)
++        return f"<h2>Deserialized Object:</h2><pre>{html.escape(str(obj))}</pre>"
+     except Exception as e:
+-        return f"Error deserializing: {str(e)}"
++        return "Error deserializing"
+ 
+ 
+ # ============================================================================
+@@ -423,14 +425,15 @@ def command_injection():
+ def xxe_vulnerability():
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        import defusedxml.ElementTree as defused_ET
++        root = defused_ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:
+-        return f"Error parsing XML: {str(e)}"
++        return "Error parsing XML"
+ 
+ 
+ # ============================================================================

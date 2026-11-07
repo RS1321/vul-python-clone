@@ -1,0 +1,88 @@
+[
+  {
+    "requested_model": "gemma-4-26b-a4b-it",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "transport_events": [
+        {
+          "http_status": 200
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6,
+        "completion_tokens": 1,
+        "total_tokens": 7
+      }
+    },
+    "seconds": 1.31
+  },
+  {
+    "requested_model": "gemma-4-31b-it",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "transport_events": [
+        {
+          "http_status": 200
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6,
+        "completion_tokens": 1,
+        "total_tokens": 7
+      }
+    },
+    "seconds": 10.36
+  },
+  {
+    "requested_model": "gemini-3.1-flash-lite",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemini-3.1-flash-lite",
+      "provider": "gemini",
+      "transport_events": [
+        {
+          "http_status": 200
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6,
+        "completion_tokens": 1,
+        "total_tokens": 7
+      }
+    },
+    "seconds": 21.64
+  },
+  {
+    "requested_model": "gemini-3.5-flash-lite",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "transport_events": [
+        {
+          "http_status": 200
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 6,
+        "completion_tokens": 1,
+        "total_tokens": 7
+      }
+    },
+    "seconds": 1.89
+  },
+  {
+    "requested_model": "gemini-3.8-flash",
+    "status": "error",
+    "error": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)",
+    "seconds": 120.2
+  }
+]

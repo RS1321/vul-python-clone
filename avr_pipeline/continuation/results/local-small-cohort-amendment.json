@@ -1,0 +1,6 @@
+{
+  "model": "qwen2.5-coder-0.5b-instruct-q4km",
+  "reason": "Repeated hosted-service interruptions and the 3.6 Flash daily free limit; local availability verified before patch outcomes.",
+  "scope": "Supplemental A/B candidate; all original candidates remain reported.",
+  "protocol": "Same prompts, compact context, gates and generation limit. Fixed separate loopback endpoint; no external service."
+}

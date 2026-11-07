@@ -1,0 +1,6 @@
+Defaulting ZAP install dir to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\zap\ZAP_2.17.0
+893 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic\zap-home\config.xml
+1097 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic\zap-home\session
+1099 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic\zap-home\dirbuster
+1100 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic\zap-home\fuzzers
+1102 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\dast-baseline-synthetic\zap-home\plugin

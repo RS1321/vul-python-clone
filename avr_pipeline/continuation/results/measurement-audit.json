@@ -1,0 +1,30 @@
+{
+  "completed_pairs": 5,
+  "joint_effect_range_pp": [
+    -10.3448,
+    6.8966
+  ],
+  "inputs_verified": [
+    {
+      "dataset": "synthetic",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809"
+    },
+    {
+      "dataset": "pygoat",
+      "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+      "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4"
+    },
+    {
+      "dataset": "vampi",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652"
+    }
+  ],
+  "historical_output_limit_interruptions": [],
+  "external_runtime_runs": 7,
+  "external_runtime_passed": 7,
+  "startup_runs": 17,
+  "startup_passed": 17,
+  "scope": "Within-model comparisons; the smaller local model uses a separately declared output cap. No original expert-review provenance or broad security guarantee is inferred."
+}

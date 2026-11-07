@@ -15,12 +15,12 @@
   "max_tokens": 8192,
   "thinking_level": "minimal",
   "implementation_sha256": {
-    "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
-    "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+    "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913",
+    "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
     "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
-    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+    "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81"
   },
-  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
   "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
   "zap_sha256": null,
   "context_profile": "compact",
@@ -31,15 +31,359 @@
     "AVR_TRANSPORT_RETRIES": "2"
   },
   "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "library_version": "review-1",
   "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
   "pytest_args": [],
   "seed": null,
   "repetition": 1,
   "eligible_findings": 62,
   "selected_findings": 62,
-  "utc": "2026-11-07T10:39:43.333208+00:00",
-  "status": "running",
+  "utc": "2026-11-07T11:26:02.729482+00:00",
+  "status": "complete",
   "scope": "new revision; not a reproduction of original paper prompts or models",
   "dast_status": "not_run",
-  "sampling": "all findings"
+  "sampling": "all findings",
+  "resume_history": [
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T11:15:28.952051+00:00",
+      "previous_elapsed_seconds": 1995.780999999999
+    },
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T11:25:18.061750+00:00",
+      "previous_elapsed_seconds": 557.25
+    },
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T11:26:02.729482+00:00",
+      "previous_elapsed_seconds": 12.59400000000096
+    }
+  ],
+  "resumed_from_findings": 60,
+  "elapsed_seconds": 69.9220000000023,
+  "accepted_patches": 47,
+  "processed_findings": 62,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 62,
+    "remaining_baseline_findings": 24,
+    "resolved_findings": 38,
+    "new_findings": 0,
+    "resolution_rate": 0.6129032258064516,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/bopla_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/business_logic_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/security_headers_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "update_custom_lab"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "create_custom_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "stop_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "list_user_labs"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "stop_user_labs"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "start_lab"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/a9_uckv_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/log-injection",
+          "dockerized_labs/a9_uckv_lab/app.py",
+          "upload_yaml"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/unsafe-deserialization",
+          "dockerized_labs/a9_uckv_lab/app.py",
+          "upload_yaml"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/auth_failure_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/client-exposed-cookie",
+          "dockerized_labs/auth_failure_lab/app.py",
+          "lab3"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/insecure-cookie",
+          "dockerized_labs/auth_failure_lab/app.py",
+          "lab3"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/weak-sensitive-data-hashing",
+          "dockerized_labs/auth_failure_lab/app.py",
+          "lab3"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/broken_access_lab/main.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/broken_auth_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/command_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/code-injection",
+          "dockerized_labs/command_injection_lab/app.py",
+          "lab2"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/weak-sensitive-data-hashing",
+          "dockerized_labs/crypto_failure_lab/app.py",
+          "lab1"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/weak-sensitive-data-hashing",
+          "dockerized_labs/crypto_failure_lab/app.py",
+          "custom_hash"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/dependency_attack_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/unsafe-deserialization",
+          "dockerized_labs/insec_des_lab/main.py",
+          "deserialize_data"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/insecure_design_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/open_source_library_attack_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/package_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/sde/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/sec_misconfig/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/unsafe-deserialization",
+          "dockerized_labs/software_integrity_lab/app.py",
+          "lab1"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/sql-injection",
+          "dockerized_labs/sql_injection_lab/app.py",
+          "lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/template_injection_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "dockerized_labs/template_injection_lab/app.py",
+          "view_blog"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "dockerized_labs/template_injection_lab/app.py",
+          "create_blog"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "dockerized_labs/xxe_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/xxe",
+          "dockerized_labs/xxe_lab/app.py",
+          "xxe_parse"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
 }

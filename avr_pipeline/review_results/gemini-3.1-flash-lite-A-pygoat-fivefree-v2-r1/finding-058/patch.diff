@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -92,6 +92,7 @@
+ @app.route("/create_blog", methods=["POST"])
+ def create_blog():
+     """Handle blog post creation."""
++    import logging
+     title = request.form.get("title", "Untitled")
+     content = request.form.get("content", "")
+ 
+@@ -101,7 +102,8 @@
+         filename = create_blog_post(title, content)
+         return redirect(url_for("view_blog", filename=filename))
+     except Exception as e:
+-        return f"Error: {str(e)}", 400
++        logging.exception("Error creating blog post")
++        return "An error occurred while creating the blog post.", 400
+ 
+ 
+ @app.route("/blog/<filename>")

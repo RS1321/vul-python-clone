@@ -20,7 +20,7 @@
     "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
     "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
   },
-  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
   "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
   "zap_sha256": null,
   "context_profile": "compact",
@@ -37,8 +37,8 @@
   "repetition": 1,
   "eligible_findings": 62,
   "selected_findings": 62,
-  "utc": "2026-11-07T10:51:46.040121+00:00",
-  "status": "running",
+  "utc": "2026-11-07T10:59:51.171054+00:00",
+  "status": "interrupted_api_error",
   "scope": "new revision; not a reproduction of original paper prompts or models",
   "dast_status": "not_run",
   "sampling": "all findings",
@@ -86,7 +86,109 @@
       },
       "utc": "2026-11-07T10:51:46.040121+00:00",
       "previous_elapsed_seconds": 314.7970000000023
+    },
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T10:59:51.171054+00:00",
+      "previous_elapsed_seconds": 334.6090000000004
     }
   ],
-  "resumed_from_findings": 4
+  "resumed_from_findings": 5,
+  "elapsed_seconds": 534.8909999999996,
+  "accepted_patches": 11,
+  "processed_findings": 13,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 62,
+    "remaining_baseline_findings": 51,
+    "resolved_findings": 11,
+    "new_findings": 0,
+    "resolution_rate": 0.1774193548387097,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/bopla_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/business_logic_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/security_headers_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/url-redirection",
+          "challenge/labs/security_headers_lab/app.py",
+          "toggle_secure_mode"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "delete_custom_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "update_custom_lab"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "create_custom_lab"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "stop_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "list_user_labs"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
 }

@@ -1,0 +1,4 @@
+{
+  "status": "error",
+  "error": "Gemini transport failure: ReadTimeout"
+}

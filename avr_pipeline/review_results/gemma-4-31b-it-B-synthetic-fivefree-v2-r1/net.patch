@@ -1,0 +1,45 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..b719eb0 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -383,14 +383,16 @@ def idor_vulnerability(account_id):
+ @app.route('/load_object', methods=['POST'])
+ def insecure_deserialization():
+     # --------------------------------------------
++    from markupsafe import escape
++    import json
+     data = request.data
+-    
++
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        obj = json.loads(data)
++        return f"<h2>Deserialized Object:</h2><pre>{escape(obj)}</pre>"
+     except Exception as e:
+-        return f"Error deserializing: {str(e)}"
++        return "Error deserializing: An internal error occurred."
+ 
+ 
+ # ============================================================================
+@@ -422,15 +424,16 @@ def command_injection():
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
+     # --------------------------------------------
++    from defusedxml import ElementTree as DET
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        root = DET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:
+-        return f"Error parsing XML: {str(e)}"
++        return "Error parsing XML: An unexpected error occurred."
+ 
+ 
+ # ============================================================================

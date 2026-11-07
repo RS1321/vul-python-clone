@@ -1,0 +1,65 @@
+{
+  "finding_id": "py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 8.546999999998661,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\n```python\nif __name__ == \"__main__\":\n    # Initialize database\n    init_db()\n\n    app.run(host=\"0.0.0.0\", port=5012, debug=False)\n```",
+        "model": "qwen2.5-coder-1.5b-instruct-q4km",
+        "provider": "local",
+        "usage": {
+          "completion_tokens": 68,
+          "prompt_tokens": 601,
+          "total_tokens": 669,
+          "prompt_tokens_details": {
+            "cached_tokens": 136
+          }
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/sql_injection_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 037\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/sql_injection_lab/app.py\",\n      \"start_line\": 74,\n      \"end_line\": 78,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bd60ffc972e303d5:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == \\\"__main__\\\":\\n    # Initialize database\\n    init_db()\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5012, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == \"__main__\":\n    # Initialize database\n    init_db()\n\n    app.run(host=\"0.0.0.0\", port=5012, debug=True)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "dockerized_labs/sql_injection_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "2 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 1,
+          "total_churn": 2,
+          "original_length": 4,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 7.894736842105264,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "not_configured",
+          "passed": null,
+          "failures": null
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "verified_line": 1
+  },
+  "lines_added": 1,
+  "lines_removed": 1
+}

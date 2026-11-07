@@ -1,0 +1,44 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 41.68800000000192,
+  "response": {
+    "content": "EXPLANATION: Prevent open redirection by validating that the target URL is a relative path, ensuring it does not redirect to an external untrusted domain.\n\nSCOPE: function open_redirect\n```python\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    from urllib.parse import urlparse\n    if not target_url.startswith('/') or urlparse(target_url).netloc:\n        target_url = '/'\n    \n    return redirect(target_url)\n```",
+    "model": "gemma-4-31b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 500,
+        "budget_wait_seconds": 0.0
+      },
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 1.812
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 931,
+      "completion_tokens": 127,
+      "total_tokens": 1058
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 027\",\n  \"finding_id\": \"py/url-redirection:vulnerable_app.py:169:26\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/url-redirection\",\n    \"cwe\": \"CWE-601\",\n    \"all_cwes\": [\n      \"CWE-601\"\n    ],\n    \"description\": \"Untrusted URL redirection depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 169,\n      \"end_line\": 169,\n      \"function\": \"open_redirect\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for target_url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 169,\n              \"node\": \"ControlFlowNode for target_url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9cf2e3b53171c63f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"16\"\n  }\n}\n\nCWE repair guidance\nMap redirect choices to trusted destinations. Reject unknown choices and avoid passing arbitrary input to redirect.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn redirect(request.args.get('next'))\nAfter:\ndestinations = {'home': '/', 'profile': '/profile'}\nreturn redirect(destinations.get(request.args.get('next'), '/'))\n\nCurrent source snapshot\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    return redirect(target_url)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "open_redirect"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "8 added plus deleted lines; allowed 5",
+      "lines_added": 6,
+      "lines_removed": 2,
+      "total_churn": 8,
+      "original_length": 6,
+      "limit": 5
+    }
+  }
+}

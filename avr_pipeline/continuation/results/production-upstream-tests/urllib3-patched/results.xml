@@ -1,0 +1,1006 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="27" failures="1" skipped="0" tests="59" time="1.285" timestamp="2026-11-07T16:45:41.860870+05:30" hostname="Rahuls_OMEN"><testcase classname="test.test_retry.TestRetry" name="test_string" time="0.003" /><testcase classname="test.test_retry.TestRetry" name="test_retry_both_specified" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_higher_total_loses" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_higher_total_loses_vs_read" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_total_none" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_default" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_other" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_read_zero" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_status_counter" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_backoff" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_zero_backoff" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_backoff_reset_after_redirect" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_sleep" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_status_forcelist" time="0.000" /><testcase classname="test.test_retry.TestRetry" name="test_allowed_methods_with_status_forcelist" time="0.000" /><testcase classname="test.test_retry.TestRetry" name="test_exhausted" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_disabled[-1]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_disabled[0]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_error_message" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_history" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_method_not_in_whitelist" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_retry_default_remove_headers_on_redirect" time="0.001"><failure message="AssertionError: assert ['cookie', 'authorization'] == ['authorization']&#10;  &#10;  At index 0 diff: 'cookie' != 'authorization'&#10;  Left contains one more item: 'authorization'&#10;  Use -v to get more diff">test\test_retry.py:296: in test_retry_default_remove_headers_on_redirect
+    assert list(retry.remove_headers_on_redirect) == ["authorization"]
+E   AssertionError: assert ['cookie', 'authorization'] == ['authorization']
+E     
+E     At index 0 diff: 'cookie' != 'authorization'
+E     Left contains one more item: 'authorization'
+E     Use -v to get more diff</failure></testcase><testcase classname="test.test_retry.TestRetry" name="test_retry_set_remove_headers_on_redirect" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after_invalid[-1]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after_invalid[+1]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after_invalid[1.0]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after_invalid[\xb2]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after[0-0]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after[1000-1000]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_parse_retry_after[\t42 -42]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_propagated[True]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_propagated[False]" time="0.001" /><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-3600-True-3600]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-3600-False-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 12:00:00 UTC-False-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-True-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon, 3 Jun 2019 11:00:00 UTC-False-None]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Monday, 03-Jun-19 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[UTC-Mon Jun  3 11:30:12 2019-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-True-3600]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-3600-False-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 12:00:00 UTC-False-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-True-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 3 Jun 2019 11:00:00 UTC-False-None]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Monday, 03-Jun-19 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[Asia/Jerusalem-Mon Jun  3 11:30:12 2019-True-1812]" time="0.000"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-3600-True-3600]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-3600-False-None]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-True-3600]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 12:00:00 UTC-False-None]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-True-None]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon, 3 Jun 2019 11:00:00 UTC-False-None]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon, 03 Jun 2019 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Monday, 03-Jun-19 11:30:12 GMT-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase><testcase classname="test.test_retry.TestRetry" name="test_respect_retry_after_header_sleep[None-Mon Jun  3 11:30:12 2019-True-1812]" time="0.001"><error message="failed on setup with &quot;file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323&#10;      @pytest.mark.freeze_time(&quot;2019-06-03 11:00:00&quot;, tz_offset=0)&#10;      @pytest.mark.parametrize(&#10;          &quot;retry_after_header,respect_retry_after_header,sleep_duration&quot;,&#10;          [&#10;              (&quot;3600&quot;, True, 3600),&#10;              (&quot;3600&quot;, False, None),&#10;              # Will sleep due to header is 1 hour in future&#10;[+30 more lines; full report in element text]">file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py, line 323
+      @pytest.mark.freeze_time("2019-06-03 11:00:00", tz_offset=0)
+      @pytest.mark.parametrize(
+          "retry_after_header,respect_retry_after_header,sleep_duration",
+          [
+              ("3600", True, 3600),
+              ("3600", False, None),
+              # Will sleep due to header is 1 hour in future
+              ("Mon, 3 Jun 2019 12:00:00 UTC", True, 3600),
+              # Won't sleep due to not respecting header
+              ("Mon, 3 Jun 2019 12:00:00 UTC", False, None),
+              # Won't sleep due to current time reached
+              ("Mon, 3 Jun 2019 11:00:00 UTC", True, None),
+              # Won't sleep due to current time reached + not respecting header
+              ("Mon, 3 Jun 2019 11:00:00 UTC", False, None),
+              # Handle all the formats in RFC 7231 Section 7.1.1.1
+              ("Mon, 03 Jun 2019 11:30:12 GMT", True, 1812),
+              ("Monday, 03-Jun-19 11:30:12 GMT", True, 1812),
+              # Assume that datetimes without a timezone are in UTC per RFC 7231
+              ("Mon Jun  3 11:30:12 2019", True, 1812),
+          ],
+      )
+      @pytest.mark.parametrize(
+          "stub_timezone",
+          [
+              "UTC",
+              "Asia/Jerusalem",
+              None,
+          ],
+          indirect=True,
+      )
+      @pytest.mark.usefixtures("stub_timezone")
+      def test_respect_retry_after_header_sleep(
+E       fixture 'stub_timezone' not found
+&gt;       available fixtures: capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, doctest_namespace, monkeypatch, no_retry_deprecations, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, subtests, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+&gt;       use 'pytest --fixtures [testpath]' for help on them.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\production-urllib3\source\test\test_retry.py:323</error></testcase></testsuite></testsuites>

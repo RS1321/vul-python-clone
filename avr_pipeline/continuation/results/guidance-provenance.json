@@ -1,0 +1,94 @@
+{
+  "source_url": "https://github.com/Deep-Jiwan/AVR-System.git",
+  "source_commit": "f411f88440be3439c1a95e06e2abc493dbe7ab22",
+  "records": [
+    {
+      "path": "llm/__pycache__/ablation_prompts.cpython-311.pyc",
+      "sha256": "2e7c4b775a5f6737bc35711dd2173716c73c8187e44eeecff6488994aa6670e1",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/__pycache__/new_prompts.cpython-311.pyc",
+      "sha256": "1ecdaf2be23b0885b30b68401b1811d9aad2468d5041f3b1f8888474c825dc9f",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/__pycache__/new_prompts.cpython-313.pyc",
+      "sha256": "6ddef2c924c5485d439179ab1eca2914922a20e4278868b5399652df98d4f705",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/__pycache__/prompts.cpython-311.pyc",
+      "sha256": "776622fc0065f5c4ade8e1582a40fa28770db9093dfc5e15ff2113207b05d2dc",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/__pycache__/prompts.cpython-313.pyc",
+      "sha256": "82497f37c67d1c68e799e01c615e0cc494073425264d706260638c5ce69a4e72",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/ablation_prompts.py",
+      "sha256": "2de2555fb20438b1576ea59eec92edac56bd2791f4eb1e4514788f446e1424f6",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/new_prompts.py",
+      "sha256": "0e7594302ff90fe78511c228f9e1769d229dce3c13397a3a689aba09c237082c",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/prompts.py",
+      "sha256": "996c1db8c2368afd39648aa42a4159ececc159f121fd299884b9cd65dd08d6da",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/prompts_backup.py",
+      "sha256": "0be29acf6db4ac7d706b54b9b352418b206d07afcb4f6cff444a2a2d304f6b8a",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    },
+    {
+      "path": "llm/verify_prompts_compatibility.py",
+      "sha256": "fd118df78ff4986f77b11a3e1060ce2aa29fd488d8b49c9676da70e78cc70a36",
+      "history": "f411f88440be3439c1a95e06e2abc493dbe7ab22 Deep Mukesh Jiwan 2026-03-15T23:33:11+05:30 code",
+      "blame_authors": [
+        "Deep Mukesh Jiwan"
+      ]
+    }
+  ],
+  "evidence_examined": [
+    "available local Git history across fetched refs",
+    "tracked prompt/guidance sources"
+  ],
+  "original_expert_review_provenance": "not established by the available records",
+  "interpretation": "Commit authorship identifies source authorship, not expert validation. Absence of signoffs in this checkout does not prove that no review took place.",
+  "revision_library": "One before/after pair per CWE, supplied per CWE rather than per finding; 18 entries chosen for the original scope and retained for comparison. New entries are authored during this revision.",
+  "independent_human_review": "No reviewer names, qualifications, signoffs or review records supplied."
+}

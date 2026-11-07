@@ -1,0 +1,12 @@
+{
+  "repo": "urllib3-cve",
+  "url": "https://github.com/urllib3/urllib3",
+  "commit": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "file": "src/urllib3/util/retry.py",
+  "advisory": "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+  "description": "The maintainer advisory states that the default redirect header policy must also remove Cookie on cross-origin redirects. Preserve custom policies and other retry behavior.",
+  "source_sha256": "e256968741e9c068a32e2066741218b5b8587a4427373ce1c765bdbb2b344470",
+  "fragment_sha256": "15ac36f6e78723d739b5276731b4bf4e658e21a04f6c0d29039707836cd5839a",
+  "credential_guard": "passed",
+  "model": "gemini-3.5-flash-lite"
+}

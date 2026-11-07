@@ -1,0 +1,14 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "gemini-3.6-flash-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "gemini-3.6-flash-B-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  }
+]

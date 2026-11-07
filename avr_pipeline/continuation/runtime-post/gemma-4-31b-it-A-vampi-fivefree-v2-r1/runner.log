@@ -1,0 +1,3 @@
+{"passed": true, "checks": 9, "out": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\runtime-post\\gemma-4-31b-it-A-vampi-fivefree-v2-r1"}
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\runtime-post\gemma-4-31b-it-A-vampi-fivefree-v2-r1\source\api_views\users.py:164: SyntaxWarning: invalid escape sequence '\.'
+  regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'

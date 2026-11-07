@@ -241,3 +241,32 @@ def test_compact_context_prioritises_cross_file_trace():
     assert compact['omitted_paths']==1
     assert [s['file'] for s in compact['paths'][0]['steps']]==['a.py','b.py']
     assert len(item['sast']['data_flow'][0]['threadFlows'])==3
+
+
+def test_output_limit_is_a_failed_generation_not_an_ast_attempt(tmp_path):
+    from llm_client import GenerationLimitError
+    path, _ = make(tmp_path, 'def f():\n    return 1\n')
+    class Limited:
+        def chat_completion(self, *args, **kwargs):
+            raise GenerationLimitError({'content':'```python\ndef f():\n    return 2\n```',
+                                        'usage':{'total_tokens':1024}, 'model':'fixture'})
+    result = runner.repair_one(tmp_path, finding(), runner.CONDITIONS['A'], Limited(), [], {}, tmp_path/'audit')
+    assert not result['accepted'] and path.read_text() == 'def f():\n    return 1\n'
+    assert len(result['attempts']) == 3 and result['application_counts'] == {}
+    assert all(a.get('generation_failure') == 'output_token_limit' and not a.get('infrastructure_error') for a in result['attempts'])
+    assert all(a['response']['usage']['total_tokens'] == 1024 for a in result['attempts'])
+
+
+def test_selected_library_stays_isolated_in_initial_and_retry_prompts():
+    revised = json.loads((Path(__file__).resolve().parents[1] / 'llm/guidance_library.review-2.json').read_text())
+    entry = next(e for e in revised['entries'] if e['cwe'] == 'CWE-020')
+    for rules, examples in ((True, True), (False, False), (True, False), (False, True)):
+        builder = PromptBuilder(rules, examples, library=revised)
+        initial = builder.build_initial_fix_prompt({'sast':{'cwe':'CWE-020'}}, {}, 'def f(): pass', 'app.py')
+        retry = builder.build_refinement_prompt(initial, '', 'generic feedback', {'sast':{'cwe':'CWE-020'}})
+        assert builder.library_version == 'review-2'
+        for prompt in (initial, retry):
+            assert (entry['after'] in prompt) is examples
+            assert (entry['guidance'] in prompt) is rules
+            assert (entry['assumptions'] in prompt) is rules
+            assert ENTRIES[20]['after'] not in prompt

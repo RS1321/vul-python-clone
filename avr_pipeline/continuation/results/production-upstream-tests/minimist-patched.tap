@@ -1,0 +1,209 @@
+TAP version 13
+# flag boolean true (default all --args to boolean)
+ok 1 should be equivalent
+ok 2 should be equivalent
+# flag boolean true only affects double hyphen arguments without equals signs
+ok 3 should be equivalent
+ok 4 should be equivalent
+not ok 5 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 6 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 7 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 8 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 9 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 10 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 11 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 12 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 13 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 14 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 15 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 16 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 17 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 18 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 19 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 20 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 21 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 22 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 23 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 24 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 25 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 26 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 27 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 28 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 29 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 30 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 31 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 32 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 33 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 34 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 35 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 36 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 37 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 38 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 39 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 40 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 41 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 42 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 43 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 44 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 45 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 46 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 47 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 48 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 49 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 50 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 51 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 52 test exited without ending
+  ---
+    operator: fail
+  ...
+not ok 53 test exited without ending
+  ---
+    operator: fail
+  ...
+
+1..53
+# tests 53
+# pass  4
+# fail  49
+

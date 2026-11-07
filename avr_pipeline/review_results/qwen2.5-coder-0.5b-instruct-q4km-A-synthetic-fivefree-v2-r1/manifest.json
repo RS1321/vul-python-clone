@@ -15,12 +15,12 @@
   "max_tokens": 8192,
   "thinking_level": null,
   "implementation_sha256": {
-    "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
-    "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+    "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5",
+    "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
     "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
     "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
   },
-  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
   "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
   "zap_sha256": null,
   "context_profile": "compact",
@@ -41,8 +41,8 @@
   "repetition": 1,
   "eligible_findings": 29,
   "selected_findings": 29,
-  "utc": "2026-11-07T10:52:28.794303+00:00",
-  "status": "running",
+  "utc": "2026-11-07T11:03:55.546253+00:00",
+  "status": "interrupted_api_error",
   "scope": "new revision; not a reproduction of original paper prompts or models",
   "dast_status": "not_run",
   "sampling": "all findings",
@@ -79,7 +79,39 @@
       },
       "utc": "2026-11-07T10:52:28.794303+00:00",
       "previous_elapsed_seconds": 236.48500000000058
+    },
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T10:58:18.819328+00:00",
+      "previous_elapsed_seconds": 182.84399999999732
+    },
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T11:03:55.546253+00:00",
+      "previous_elapsed_seconds": 192.625
     }
   ],
-  "resumed_from_findings": 5
+  "resumed_from_findings": 5,
+  "elapsed_seconds": 2.1090000000003783,
+  "accepted_patches": 1,
+  "processed_findings": 6,
+  "post_tests": {
+    "status": "passed",
+    "returncode": 0,
+    "tests": 68,
+    "failures": [],
+    "infrastructure_error": false
+  }
 }

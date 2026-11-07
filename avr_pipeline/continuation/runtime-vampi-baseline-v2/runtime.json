@@ -1,5 +1,5 @@
 {
-  "repo": "<WORKSPACE>\\AVR-System-review\\benchmarks\\vampi",
+  "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\benchmarks\\vampi",
   "scope": "ordinary HTTP regression checks; not a security oracle",
   "checks": [
     {

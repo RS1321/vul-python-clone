@@ -1,0 +1,12 @@
+{
+  "repo": "minimist-cve",
+  "url": "https://github.com/minimistjs/minimist",
+  "commit": "aeb3e27dae0412de5c0494e9563a5f10c82cc7a9",
+  "file": "index.js",
+  "advisory": "https://github.com/advisories/GHSA-xvch-5gv4-984h",
+  "description": "The public advisory identifies insufficient prototype modification controls in setKey. Strengthen those controls while retaining ordinary flags, dotted object properties, aliases and defaults. Do not include a proof-of-concept payload.",
+  "source_sha256": "0feebc85297a35829a4a3a6c5346ddcca582052e5ebf0d33bd024abe8cd5245b",
+  "fragment_sha256": "923973ddccaa805c4116dffd1b7147b0bcc4934b700775e72067cb18d71a2fd6",
+  "credential_guard": "passed",
+  "model": "gemini-3.5-flash-lite"
+}

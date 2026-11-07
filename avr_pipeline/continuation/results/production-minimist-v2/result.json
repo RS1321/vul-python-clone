@@ -1,0 +1,23 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "index.js",
+      "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+      "after_sha256": "f100950c550a654552a87a2350b6801230a5c59049ef4c8a56b52aa036f279c1"
+    }
+  ],
+  "changed_lines": 4,
+  "validation": {
+    "checks": 8,
+    "passed": true,
+    "returncode": 0,
+    "scope": "bounded API/configuration contract checks; no full security fix-rate claim"
+  },
+  "rolled_back": false,
+  "dataset": "minimist",
+  "model": "gemini-3.5-flash-lite",
+  "seconds": 2.203,
+  "security_resolution": "not established; configuration/API checks only",
+  "attempts": 1
+}

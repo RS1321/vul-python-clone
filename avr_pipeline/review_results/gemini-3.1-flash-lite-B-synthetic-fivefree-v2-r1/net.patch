@@ -1,0 +1,131 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..7dcd959 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -74,6 +74,8 @@ def init_database():
+ 
+ @app.route('/login', methods=['GET', 'POST'])
+ def login():
++    import sqlite3
++    from markupsafe import escape
+     # --------------------------------------------
+     if request.method == 'GET':
+         # --------------------------------------------
+@@ -82,7 +84,7 @@ def login():
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,28 +94,28 @@ def login():
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
++
+         # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        query = "SELECT * FROM users WHERE username = ? AND password = ?"
++        cursor.execute(query, (username, password))
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            return f"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>"
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++            return f"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>"
++
+     except Exception as e:
+         # --------------------------------------------
+-        return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
++        return f"<h2>Database Error</h2><pre>{escape(str(e))}</pre>"
+ 
+ 
+ # ============================================================================
+@@ -145,13 +147,14 @@ def profile():
+ 
+ @app.route('/frame_content')
+ def frame_content():
++    from markupsafe import escape
+     # --------------------------------------------
+     frame_url = request.args.get('url', 'https://example.com')
+-    
++
+     # --------------------------------------------
+     html_content = f'''
+         <h2>External Content</h2>
+-        <iframe src="{frame_url}" width="800" height="600"></iframe>
++        <iframe src="{escape(frame_url)}" width="800" height="600"></iframe>
+     '''
+     return render_template_string(html_content)
+ 
+@@ -162,10 +165,9 @@ def frame_content():
+ 
+ @app.route('/redirect')
+ def open_redirect():
+-    # --------------------------------------------
+     target_url = request.args.get('url', '/')
+-    
+-    # --------------------------------------------
++    if not target_url.startswith('/'):
++        target_url = '/'
+     return redirect(target_url)
+ 
+ 
+@@ -310,22 +312,19 @@ def resource_leak():
+ 
+ @app.route('/transfer_funds', methods=['GET', 'POST'])
+ def csrf_vulnerability():
+-    # --------------------------------------------
++    import html
++    import sqlite3
+     if request.method == 'POST' or request.method == 'GET':
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
+-        # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))
++        cursor.execute("UPDATE accounts SET balance = balance + ? WHERE username = ?", (amount, to_account))
+         conn.commit()
+         conn.close()
+-        
+-        return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++        return f"<h2>Transferred ${html.escape(amount or '')} from {html.escape(from_account or '')} to {html.escape(to_account or '')}</h2>"
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">
+@@ -343,11 +342,9 @@ def csrf_vulnerability():
+ 
+ @app.route('/fetch_url')
+ def ssrf_vulnerability():
+-    # --------------------------------------------
+     url = request.args.get('url', 'http://example.com')
+-    
++    if not url.startswith('https://trusted.com/'): return "Invalid URL", 400
+     try:
+-        # --------------------------------------------
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')
+         return f"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>"

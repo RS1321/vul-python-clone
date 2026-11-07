@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -54,7 +54,7 @@
+         try:
+             conn = sqlite3.connect("database.db")
+             c = conn.cursor()
+-            result = c.execute(sql_query).fetchone()
++            result = c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password)).fetchone()
+             conn.close()
+ 
+             if result:

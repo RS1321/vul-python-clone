@@ -1,0 +1,63 @@
+
+Cycle 1
+gemini-3.6-flash A: 1/29 py/flask-debug:vulnerable_app.py:508:23
+gemini-3.6-flash A: 2/29 py/stack-trace-exposure:vulnerable_app.py:433:22
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 2,
+  "accepted_patches": 0,
+  "elapsed_seconds": 196.0
+}
+
+Cycle 2
+gemini-3.6-flash A: 2/29 py/stack-trace-exposure:vulnerable_app.py:433:22
+gemini-3.6-flash A: 3/29 py/xml-bomb:vulnerable_app.py:429:27
+gemini-3.6-flash A: 4/29 py/stack-trace-exposure:vulnerable_app.py:415:21
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 4,
+  "accepted_patches": 2,
+  "elapsed_seconds": 4604.811999999999
+}
+
+Cycle 3
+gemini-3.6-flash A: 4/29 py/stack-trace-exposure:vulnerable_app.py:415:21
+gemini-3.6-flash A: 5/29 py/command-line-injection:vulnerable_app.py:412:4
+gemini-3.6-flash A: 6/29 py/stack-trace-exposure:vulnerable_app.py:393:20
+gemini-3.6-flash A: 7/29 py/reflective-xss:vulnerable_app.py:391:11
+gemini-3.6-flash A: 8/29 py/unsafe-deserialization:vulnerable_app.py:390:25
+gemini-3.6-flash A: 9/29 py/sql-injection:vulnerable_app.py:369:16
+gemini-3.6-flash A: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 10,
+  "accepted_patches": 5,
+  "elapsed_seconds": 407.3899999999994
+}
+
+Cycle 4
+gemini-3.6-flash A: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 10,
+  "accepted_patches": 5,
+  "elapsed_seconds": 0.5319999999992433
+}
+
+Cycle 5
+gemini-3.6-flash A: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 10,
+  "accepted_patches": 5,
+  "elapsed_seconds": 20.5
+}
+
+Cycle 6
+gemini-3.6-flash A: 10/29 py/stack-trace-exposure:vulnerable_app.py:355:19
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 10,
+  "accepted_patches": 5,
+  "elapsed_seconds": 0.5310000000026776
+}

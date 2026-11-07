@@ -1,0 +1,26 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "encoder.py",
+      "before_sha256": "9cefbfceb0de3535cb5f57577fb32c88efeffd23c1c999b06e36679b57fda1a5",
+      "after_sha256": "3008f3ff5728417f39bf2a913fd55caf631b57ddf4fa96e4f29640340005d970"
+    },
+    {
+      "path": "decoder.py",
+      "before_sha256": "33d82e654afd21a08fd160eb669b96599a9374b78ee59361429d492874145d52",
+      "after_sha256": "3a6f025f3fea9add4137a6878cf8b1f2ff8d4cdc6b6bd5d853146c222df9b9f4"
+    }
+  ],
+  "changed_lines": 6,
+  "validation": {
+    "passed": true,
+    "returncode": 0,
+    "output": "4 round trips, 4 format contracts, 1 invalid-version contract passed\n",
+    "error": ""
+  },
+  "rolled_back": false,
+  "model": "gemini-3.5-flash-lite",
+  "attempts": 1,
+  "scope": "Synthetic generated two-file contract migration; not a vulnerability fix rate or production benchmark"
+}

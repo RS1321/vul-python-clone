@@ -1,0 +1,27 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-B-synthetic-matched-r1\source
+configfile: pytest.ini
+plugins: platformdirs-4.14.5, cov-7.1.0
+collected 69 items / 1 deselected / 68 selected
+
+tests\test_vulnerable_app.py ........................................... [ 63%]
+........F................                                                [100%]
+
+================================== FAILURES ===================================
+_________________________ test_fetch_url_invalid_url __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_fetch_url_invalid_url(client):
+        """Invalid URL handled."""
+        response = client.get('/fetch_url?url=not_a_valid_url')
+>       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <WrapperTestResponse streamed [400 BAD REQUEST]>.status_code
+
+tests\test_vulnerable_app.py:474: AssertionError
+- generated xml file: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-B-synthetic-matched-r1\finding-028\tests-1\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_vulnerable_app.py::test_fetch_url_invalid_url - assert 400 ...
+================= 1 failed, 67 passed, 1 deselected in 7.31s ==================

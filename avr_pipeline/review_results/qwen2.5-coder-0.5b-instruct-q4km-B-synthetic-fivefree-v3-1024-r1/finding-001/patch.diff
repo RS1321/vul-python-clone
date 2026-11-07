@@ -1,0 +1,18 @@
+--- 
++++ 
+@@ -497,13 +497,13 @@
+     print("=" * 70)
+     print("Flask web server starting...")
+     print("=" * 70)
+-    
++
+     # --------------------------------------------
+     init_database()
+     print("\n[+] Database initialized with sample data")
+     print("[+] Starting Flask server on http://127.0.0.1:3000")
+     print("[+] Press Ctrl+C to stop\n")
+-    
++
+     # --------------------------------------------
+     app.run(debug=True, host='127.0.0.1', port=3000)
+ 

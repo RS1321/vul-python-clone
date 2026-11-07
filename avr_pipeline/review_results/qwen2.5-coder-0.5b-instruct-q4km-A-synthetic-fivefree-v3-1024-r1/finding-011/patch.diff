@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -342,10 +342,13 @@
+ # ============================================================================
+ 
+ @app.route('/fetch_url')
++# SCOPE: function
++# SCOPE: line
++# EXPLANATION: The vulnerability is fixed by mapping input to a trusted endpoint allowlist and disabling redirects. The resolved destination addresses where arbitrary hosts are required are validated. URL parsing or reconstruction alone does not sanitize a destination.
+ def ssrf_vulnerability():
+     # --------------------------------------------
+     url = request.args.get('url', 'http://example.com')
+-    
++
+     try:
+         # --------------------------------------------
+         response = urllib.request.urlopen(url, timeout=5)

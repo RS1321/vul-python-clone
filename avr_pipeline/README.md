@@ -64,11 +64,15 @@ These are explicit definitions for this revision. A deliberately retains the pap
 
 The normal legacy entry point now defaults to `test_policy: block`, with explicit project test arguments in `llm/config.json`. Changing this adoption setting does not change the explicitly selected A/B research conditions. Publishing remains disabled by default.
 
+For normal project use, choose `--condition A_strict --guidance-library llm/guidance_library.review-2.json`. The exact library input is saved with its version and SHA256. The controlled continuation study retains review-1; the newly revised library's security performance has not been measured in that study.
+
 The supplied application tests include assumptions about intentionally vulnerable behaviour. Newly failing assertions need review before they can be labelled functional regressions or changed. `A_strict` conservatively blocks any newly failing test. The manifest's `elapsed_seconds` measures the repair loop; it excludes baseline setup and the final batch re-scan.
 
 Run each condition for every selected model and dataset, using three repetitions for the planned full study. `python review/runner.py matrix` writes the original five-model plan with every unexecuted cell marked `not_run`. A plan is not an experimental result. Do not replace the original five-model guidance contribution with a free-cohort result without changing the paper's description.
 
 For an interrupted run, repeat the same command with `--resume`. Completed findings stay in place; the interrupted finding is retried after restoring its pre-finding bytes. Generation settings, source commit and input hashes must match. Earlier interrupted attempts and implementation hashes are retained in the run history. Do not edit a run's `source` folder manually before resuming it. Short provider-specified rate-limit delays are honoured; longer quota exhaustion remains an unavailable measurement.
+
+An output-token limit is a completed but unsuccessful generation attempt. Its partial reply and usage are saved and never passed to the patcher. Service errors remain infrastructure interruptions. Batch scanning normally waits until all findings have been processed; `--checkpoint-rescan` explicitly requests a partial checkpoint scan. This prevents repeated full scans during provider outages.
 
 For large scanner reports, `--context-profile compact` keeps up to two representative taint paths, prioritises paths spanning multiple files, and records omitted paths and steps. Full scanner context stays in `raw-contexts.json`. Use the same profile in every compared condition. `--cross-file-only` selects an explicit pilot subset; its result is not an overall repair rate.
 
@@ -116,6 +120,8 @@ python -m review.patchset_cli --repo CLONE --edits proposed-edits.json --out aud
 The JSON input is a list of objects with `path`, `sha256`, `before`, and `after` fields. Use source bytes decoded as UTF-8 when constructing fragments so Windows line endings remain exact. Never run a proposed validation command supplied by the model; the project owner defines it.
 
 Production-source pilots use pinned urllib3 and minimist clones, recorded advisory descriptions, exact prompts/responses, digest-bound patches, and eight ordinary API/configuration checks each. Their results are narrow integration evidence. They do not establish security fix rates, production readiness, or performance across a language. The coordinated two-module check is an explicitly synthetic contract test.
+
+`continuation/production_units.py` also compares upstream ordinary unit tests before and after the pilot patches. The original harness trial is preserved. Its corrected version supplies the upstream Python timezone fixture without server fixtures and loads the selected JavaScript tests synchronously to avoid the old Tape loader's early-exit race. Windows timezone skips and the Python test that expects the obsolete redirect policy are reported explicitly.
 
 Coverage is reported for each dataset. Unsupported CWE classes receive no library rule or example; a class with no entry cannot be used to estimate that entry's effect. Additions need a recorded provenance, security review, and tests for the intended application behavior.
 

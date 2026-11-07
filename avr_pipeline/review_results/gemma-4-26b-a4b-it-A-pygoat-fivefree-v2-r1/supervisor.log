@@ -1,0 +1,97 @@
+
+Cycle 1
+gemma-4-26b-a4b-it A: 1/62 py/flask-debug:challenge/labs/bopla_lab/app.py:152:41
+gemma-4-26b-a4b-it A: 2/62 py/flask-debug:challenge/labs/business_logic_lab/app.py:200:45
+gemma-4-26b-a4b-it A: 3/62 py/flask-debug:challenge/labs/security_headers_lab/app.py:233:35
+gemma-4-26b-a4b-it A: 4/62 py/url-redirection:challenge/labs/security_headers_lab/app.py:189:54
+gemma-4-26b-a4b-it A: 5/62 py/path-injection:challenge/management/commands/startuplabs.py:51:7
+gemma-4-26b-a4b-it A: 6/62 py/stack-trace-exposure:challenge/views.py:675:27
+gemma-4-26b-a4b-it A: 7/62 py/stack-trace-exposure:challenge/views.py:654:26
+gemma-4-26b-a4b-it A: 8/62 py/stack-trace-exposure:challenge/views.py:625:25
+gemma-4-26b-a4b-it A: 9/62 py/stack-trace-exposure:challenge/views.py:597:24
+gemma-4-26b-a4b-it A: 10/62 py/stack-trace-exposure:challenge/views.py:572:23
+gemma-4-26b-a4b-it A: 11/62 py/stack-trace-exposure:challenge/views.py:533:22
+gemma-4-26b-a4b-it A: 12/62 py/stack-trace-exposure:challenge/views.py:507:21
+gemma-4-26b-a4b-it A: 13/62 py/stack-trace-exposure:challenge/views.py:485:20
+gemma-4-26b-a4b-it A: 14/62 py/stack-trace-exposure:challenge/views.py:408:19
+gemma-4-26b-a4b-it A: 15/62 py/stack-trace-exposure:challenge/views.py:374:18
+gemma-4-26b-a4b-it A: 16/62 py/path-injection:challenge/views.py:244:8
+gemma-4-26b-a4b-it A: 17/62 py/stack-trace-exposure:challenge/views.py:147:17
+gemma-4-26b-a4b-it A: 18/62 py/stack-trace-exposure:challenge/views.py:110:16
+gemma-4-26b-a4b-it A: 19/62 py/flask-debug:dockerized_labs/a9_uckv_lab/app.py:124:31
+gemma-4-26b-a4b-it A: 20/62 py/log-injection:dockerized_labs/a9_uckv_lab/app.py:115:61
+gemma-4-26b-a4b-it A: 21/62 py/log-injection:dockerized_labs/a9_uckv_lab/app.py:66:60
+gemma-4-26b-a4b-it A: 22/62 py/unsafe-deserialization:dockerized_labs/a9_uckv_lab/app.py:62:50
+gemma-4-26b-a4b-it A: 23/62 py/flask-debug:dockerized_labs/auth_failure_lab/app.py:238:34
+gemma-4-26b-a4b-it A: 24/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:227:2
+gemma-4-26b-a4b-it A: 25/62 py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:227:13
+gemma-4-26b-a4b-it A: 26/62 py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:227:57
+gemma-4-26b-a4b-it A: 27/62 py/weak-sensitive-data-hashing:dockerized_labs/auth_failure_lab/app.py:213:47
+gemma-4-26b-a4b-it A: 28/62 py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:208:12
+gemma-4-26b-a4b-it A: 29/62 py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:208:56
+gemma-4-26b-a4b-it A: 30/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:112:1
+gemma-4-26b-a4b-it A: 31/62 py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:105:0
+gemma-4-26b-a4b-it A: 32/62 py/flask-debug:dockerized_labs/broken_access_lab/main.py:70:46
+gemma-4-26b-a4b-it A: 33/62 py/flask-debug:dockerized_labs/broken_auth_lab/app.py:147:37
+gemma-4-26b-a4b-it A: 34/62 py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:66:4
+gemma-4-26b-a4b-it A: 35/62 py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:64:3
+gemma-4-26b-a4b-it A: 36/62 py/flask-debug:dockerized_labs/command_injection_lab/app.py:60:28
+gemma-4-26b-a4b-it A: 37/62 py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11
+gemma-4-26b-a4b-it A: 38/62 py/command-line-injection:dockerized_labs/command_injection_lab/app.py:30:9
+gemma-4-26b-a4b-it A: 39/62 py/cookie-injection:dockerized_labs/crypto_failure_lab/app.py:101:5
+gemma-4-26b-a4b-it A: 40/62 py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49
+gemma-4-26b-a4b-it A: 41/62 py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48
+gemma-4-26b-a4b-it A: 42/62 py/flask-debug:dockerized_labs/dependency_attack_lab/app.py:198:42
+gemma-4-26b-a4b-it A: 43/62 py/unsafe-deserialization:dockerized_labs/insec_des_lab/main.py:40:52
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 43,
+  "accepted_patches": 33,
+  "elapsed_seconds": 1995.780999999999
+}
+
+Cycle 2
+gemma-4-26b-a4b-it A: 43/62 py/unsafe-deserialization:dockerized_labs/insec_des_lab/main.py:40:52
+gemma-4-26b-a4b-it A: 44/62 py/flask-debug:dockerized_labs/insecure_design_lab/app.py:153:40
+gemma-4-26b-a4b-it A: 45/62 py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39
+gemma-4-26b-a4b-it A: 46/62 py/flask-debug:dockerized_labs/open_source_library_attack_lab/app.py:259:30
+gemma-4-26b-a4b-it A: 47/62 py/flask-debug:dockerized_labs/package_injection_lab/app.py:260:33
+gemma-4-26b-a4b-it A: 48/62 py/flask-debug:dockerized_labs/sde/app.py:49:29
+gemma-4-26b-a4b-it A: 49/62 py/flask-debug:dockerized_labs/sec_misconfig/app.py:135:44
+gemma-4-26b-a4b-it A: 50/62 py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32
+gemma-4-26b-a4b-it A: 51/62 py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51
+gemma-4-26b-a4b-it A: 52/62 py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36
+gemma-4-26b-a4b-it A: 53/62 py/sql-injection:dockerized_labs/sql_injection_lab/app.py:57:10
+gemma-4-26b-a4b-it A: 54/62 py/full-ssrf:dockerized_labs/ssrf_lab/app.py:37:59
+gemma-4-26b-a4b-it A: 55/62 py/path-injection:dockerized_labs/ssrf_lab/app.py:22:6
+gemma-4-26b-a4b-it A: 56/62 py/flask-debug:dockerized_labs/template_injection_lab/app.py:123:38
+gemma-4-26b-a4b-it A: 57/62 py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:113:15
+gemma-4-26b-a4b-it A: 58/62 py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:104:14
+gemma-4-26b-a4b-it A: 59/62 py/url-redirection:dockerized_labs/xss_lab/app.py:84:53
+gemma-4-26b-a4b-it A: 60/62 py/flask-debug:dockerized_labs/xxe_lab/app.py:95:43
+gemma-4-26b-a4b-it A: 61/62 py/xxe:dockerized_labs/xxe_lab/app.py:61:55
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 61,
+  "accepted_patches": 46,
+  "elapsed_seconds": 557.25
+}
+
+Cycle 3
+gemma-4-26b-a4b-it A: 61/62 py/xxe:dockerized_labs/xxe_lab/app.py:61:55
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 61,
+  "accepted_patches": 46,
+  "elapsed_seconds": 12.59400000000096
+}
+
+Cycle 4
+gemma-4-26b-a4b-it A: 61/62 py/xxe:dockerized_labs/xxe_lab/app.py:61:55
+gemma-4-26b-a4b-it A: 62/62 py/xml-bomb:dockerized_labs/xxe_lab/app.py:61:58
+{
+  "status": "complete",
+  "processed_findings": 62,
+  "accepted_patches": 47,
+  "elapsed_seconds": 69.9220000000023
+}

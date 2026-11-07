@@ -1,0 +1,27 @@
+
+Cycle 1
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+gemma-4-26b-a4b-it A: 1/3 py/polynomial-redos:api_views/users.py:163:1
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:33: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:164: SyntaxWarning: invalid escape sequence '\.'
+api_views/users.py:164: SyntaxWarning: invalid escape sequence '\.'
+gemma-4-26b-a4b-it A: 2/3 py/polynomial-redos:api_views/users.py:146:0
+<unknown>:164: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:164: SyntaxWarning: invalid escape sequence '\.'
+gemma-4-26b-a4b-it A: 3/3 py/redos:api_views/users.py:145:2
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+<unknown>:162: SyntaxWarning: invalid escape sequence '\.'
+{
+  "status": "complete",
+  "processed_findings": 3,
+  "accepted_patches": 3,
+  "elapsed_seconds": 110.7029999999977
+}

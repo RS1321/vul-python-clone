@@ -1,0 +1,16 @@
+{
+  "content": "{\"files\":[{\"path\":\"encoder.py\",\"after\":\"def encode(value):\\n    return {\\\"version\\\": 2, \\\"payload\\\": value}\\n\"},{\"path\":\"decoder.py\",\"after\":\"def decode(value):\\n    if not isinstance(value, dict) or value.get(\\\"version\\\") != 2:\\n        raise ValueError(\\\"Invalid version\\\")\\n    return value[\\\"payload\\\"]\\n\"}]}",
+  "model": "gemini-3.5-flash-lite",
+  "provider": "gemini",
+  "transport_events": [
+    {
+      "http_status": 200,
+      "budget_wait_seconds": 4.235
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 137,
+    "completion_tokens": 89,
+    "total_tokens": 226
+  }
+}

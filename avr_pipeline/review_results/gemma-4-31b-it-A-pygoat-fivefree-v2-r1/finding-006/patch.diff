@@ -1,0 +1,23 @@
+--- 
++++ 
+@@ -661,16 +661,16 @@
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-        
++
+     try:
+         try:
+             lab = Lab.objects.get(id=lab_id, is_custom=True)
+         except Lab.DoesNotExist:
+             return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)
+-            
++
+         name = lab.name
+         lab.delete()
+         return JsonResponse({'status': 'success', 'message': f'Lab {name} deleted successfully'})
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+-
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
++

@@ -17,13 +17,13 @@ OUTPUT=ROOT/'continuation/results'
 OUTPUT.mkdir(parents=True,exist_ok=True)
 
 
-def worker(model, tasks=None):
+def worker(model, tasks=None, tag='fivefree-v2', max_tokens=8192):
     records=[]
     # Same compact protocol and library for every model and comparison.
     tasks=tasks or [('synthetic','A'),('synthetic','B'),('pygoat','A'),('vampi','A')]
     for dataset,condition in tasks:
         repo=synthetic_repo() if dataset=='synthetic' else ROOT/'benchmarks'/dataset
-        out=ROOT/'review_results'/f'{model}-{condition}-{dataset}-fivefree-v2-r1'
+        out=ROOT/'review_results'/f'{model}-{condition}-{dataset}-{tag}-r1'
         out.mkdir(parents=True,exist_ok=True)
         manifest=out/'manifest.json'
         for cycle in range(6):
@@ -34,6 +34,7 @@ def worker(model, tasks=None):
             args=[sys.executable,str(ROOT/'review/runner.py'),'run','--repo',str(repo),
                   '--sarif',str(ROOT/'review_results'/f'baseline-{dataset}'/'scan.sarif'),
                   '--out',str(out),'--model',model,'--condition',condition,
+                  '--max-tokens',str(max_tokens),
                   '--context-profile','compact','--rescan','--provider','local' if model.startswith('qwen') else 'gemini']
             if prior and (out/'results.json').exists(): args.append('--resume')
             with (out/'supervisor.log').open('a',encoding='utf-8') as log:

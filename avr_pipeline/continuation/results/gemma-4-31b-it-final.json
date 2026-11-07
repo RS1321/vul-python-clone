@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "gemma-4-31b-it-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "gemma-4-31b-it-B-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "pygoat",
+    "condition": "A",
+    "run": "gemma-4-31b-it-A-pygoat-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "vampi",
+    "condition": "A",
+    "run": "gemma-4-31b-it-A-vampi-fivefree-v2-r1",
+    "status": "complete"
+  }
+]

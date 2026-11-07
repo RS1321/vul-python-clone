@@ -95,6 +95,8 @@ verification = out/'verification.xml'
 test_cases = list(ET.parse(verification).iter('testcase')) if verification.exists() else []
 test_errors = sum(c.find('failure') is not None or c.find('error') is not None for c in test_cases)
 lines = ['# Implementation review and measured results', '',
+    'For the continued code-only response and latest free-model/external observations, see `continuation/results/CODE_REVIEW_RESPONSE.md`. '
+    'The user deferred manuscript changes. The earlier factorial and DAST series below remain separate from that continuation.', '',
     'The local code changes and the experiments below address execution-related comments in Comments Received.docx. '
     'The work is incomplete until the pending comparisons and runtime evaluations are measured. '
     'No result here should be substituted for the original paper’s five-model measurements.', '',

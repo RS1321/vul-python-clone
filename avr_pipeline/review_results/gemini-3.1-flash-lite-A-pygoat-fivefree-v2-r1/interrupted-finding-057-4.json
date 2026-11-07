@@ -1,0 +1,16 @@
+{
+  "finding_id": "py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:113:15",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "error": "Gemini transport failure: ReadTimeout",
+      "infrastructure_error": true
+    }
+  ],
+  "application_counts": {},
+  "lines_added": 0,
+  "lines_removed": 0
+}

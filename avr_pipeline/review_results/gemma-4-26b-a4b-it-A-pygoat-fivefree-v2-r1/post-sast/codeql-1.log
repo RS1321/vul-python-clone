@@ -1,0 +1,221 @@
+CodeQL scanned 116 out of 116 Python files and 3 out of 3 GitHub Actions files in this invocation. Typically CodeQL is configured to analyze a single CodeQL language per invocation, so check other invocations to determine overall coverage information.
+Running queries.
+Resolving data extensions.
+Finished resolving data extensions.
+Merging data extensions.
+Finished merging data extensions.
+WARNING: Not caching stages during query-loading, since max heap size is only 1252 MB.
+[1/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Expressions\UseofInput.qlx.
+[2/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CVE-2018-1281\BindToAllInterfaces.qlx.
+[3/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\IncompleteHostnameRegExp.qlx.
+[4/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\CookieInjection.qlx.
+[5/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\IncompleteUrlSubstringSanitization.qlx.
+[6/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\OverlyLargeRange.qlx.
+[7/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-022\PathInjection.qlx.
+[8/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-074\TemplateInjection.qlx.
+[9/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-078\CommandInjection.qlx.
+[10/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-079\ReflectedXss.qlx.
+[11/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-089\SqlInjection.qlx.
+[12/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-090\LdapInjection.qlx.
+[13/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-094\CodeInjection.qlx.
+[14/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-1004\NonHttpOnlyCookie.qlx.
+[15/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-116\BadTagFilter.qlx.
+[16/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-113\HeaderInjection.qlx.
+[17/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-1275\SameSiteNoneCookie.qlx.
+[18/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-215\FlaskDebug.qlx.
+[19/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-209\StackTraceExposure.qlx.
+[20/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-295\MissingHostKeyValidation.qlx.
+[21/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-285\PamAuthorization.qlx.
+[22/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-312\CleartextLogging.qlx.
+[23/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-326\WeakCryptoKey.qlx.
+[24/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-312\CleartextStorage.qlx.
+[25/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\BrokenCryptoAlgorithm.qlx.
+[26/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\InsecureDefaultProtocol.qlx.
+[27/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\InsecureProtocol.qlx.
+[28/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-352\CSRFProtectionDisabled.qlx.
+[29/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\WeakSensitiveDataHashing.qlx.
+[30/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-377\InsecureTemporaryFile.qlx.
+[31/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-502\UnsafeDeserialization.qlx.
+[32/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-601\UrlRedirect.qlx.
+[33/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-614\InsecureCookie.qlx.
+[34/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-611\Xxe.qlx.
+[35/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-643\XpathInjection.qlx.
+[36/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\PolynomialReDoS.qlx.
+[37/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\ReDoS.qlx.
+[38/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\RegexInjection.qlx.
+[39/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-776\XmlBomb.qlx.
+[40/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-918\FullServerSideRequestForgery.qlx.
+[41/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-943\NoSqlInjection.qlx.
+[42/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-022\TarSlip.qlx.
+[43/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-079\Jinja2WithoutEscaping.qlx.
+[44/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-078\UnsafeShellCommandConstruction.qlx.
+[45/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-295\RequestWithoutValidation.qlx.
+[46/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-732\WeakFilePermissions.qlx.
+[47/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-117\LogInjection.qlx.
+[48/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Diagnostics\ExtractedFiles.qlx.
+[49/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Diagnostics\ExtractionWarnings.qlx.
+[50/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Summary\LinesOfCode.qlx.
+[51/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Summary\LinesOfUserCode.qlx.
+[52/52] Loaded C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-918\PartialServerSideRequestForgery.qlx.
+Starting evaluation of codeql\python-queries\Diagnostics\ExtractionWarnings.ql.
+Starting evaluation of codeql\python-queries\Diagnostics\ExtractedFiles.ql.
+Starting evaluation of codeql\python-queries\Expressions\UseofInput.ql.
+[1/52 eval 1.7s] Evaluation done; writing results to codeql\python-queries\Diagnostics\ExtractedFiles.bqrs.
+[2/52 eval 1.9s] Evaluation done; writing results to codeql\python-queries\Diagnostics\ExtractionWarnings.bqrs.
+Starting evaluation of codeql\python-queries\Security\CVE-2018-1281\BindToAllInterfaces.ql.
+[3/52 eval 6s] Evaluation done; writing results to codeql\python-queries\Expressions\UseofInput.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-020\CookieInjection.ql.
+[4/52 eval 2.3s] Evaluation done; writing results to codeql\python-queries\Security\CVE-2018-1281\BindToAllInterfaces.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-020\IncompleteHostnameRegExp.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-020\IncompleteUrlSubstringSanitization.ql.
+[5/52 eval 141ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-020\IncompleteHostnameRegExp.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-020\OverlyLargeRange.ql.
+[6/52 eval 187ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-020\IncompleteUrlSubstringSanitization.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-022\PathInjection.ql.
+[7/52 eval 163ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-020\OverlyLargeRange.bqrs.
+[8/52 eval 2.4s] Evaluation done; writing results to codeql\python-queries\Security\CWE-020\CookieInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-022\TarSlip.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-074\TemplateInjection.ql.
+[9/52 eval 204ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-022\TarSlip.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-078\CommandInjection.ql.
+[10/52 eval 98ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-074\TemplateInjection.bqrs.
+[11/52 eval 2.4s] Evaluation done; writing results to codeql\python-queries\Security\CWE-022\PathInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-078\UnsafeShellCommandConstruction.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-079\Jinja2WithoutEscaping.ql.
+[12/52 eval 247ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-078\UnsafeShellCommandConstruction.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-079\ReflectedXss.ql.
+[13/52 eval 28ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-079\Jinja2WithoutEscaping.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-089\SqlInjection.ql.
+[14/52 eval 488ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-079\ReflectedXss.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-090\LdapInjection.ql.
+[15/52 eval 349ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-089\SqlInjection.bqrs.
+[16/52 eval 1.5s] Evaluation done; writing results to codeql\python-queries\Security\CWE-078\CommandInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-094\CodeInjection.ql.
+[17/52 eval 200ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-090\LdapInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-1004\NonHttpOnlyCookie.ql.
+[18/52 eval 198ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-094\CodeInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-113\HeaderInjection.ql.
+[19/52 eval 284ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-113\HeaderInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-116\BadTagFilter.ql.
+[20/52 eval 543ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-1004\NonHttpOnlyCookie.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-117\LogInjection.ql.
+[21/52 eval 347ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-116\BadTagFilter.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-1275\SameSiteNoneCookie.ql.
+[22/52 eval 119ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-1275\SameSiteNoneCookie.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-209\StackTraceExposure.ql.
+[23/52 eval 1.1s] Evaluation done; writing results to codeql\python-queries\Security\CWE-117\LogInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-215\FlaskDebug.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-285\PamAuthorization.ql.
+[24/52 eval 37ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-215\FlaskDebug.bqrs.
+[25/52 eval 43ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-285\PamAuthorization.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-295\MissingHostKeyValidation.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-295\RequestWithoutValidation.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-312\CleartextLogging.ql.
+[26/52 eval 16ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-295\MissingHostKeyValidation.bqrs.
+[27/52 eval 734ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-209\StackTraceExposure.bqrs.
+[28/52 eval 44ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-295\RequestWithoutValidation.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-312\CleartextStorage.ql.
+[29/52 eval 237ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-312\CleartextLogging.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-326\WeakCryptoKey.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-327\BrokenCryptoAlgorithm.ql.
+[30/52 eval 12ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-326\WeakCryptoKey.bqrs.
+[31/52 eval 264ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-312\CleartextStorage.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-327\InsecureDefaultProtocol.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-327\InsecureProtocol.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-327\WeakSensitiveDataHashing.ql.
+[32/52 eval 18ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-327\InsecureDefaultProtocol.bqrs.
+[33/52 eval 183ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-327\BrokenCryptoAlgorithm.bqrs.
+[34/52 eval 168ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-327\InsecureProtocol.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-352\CSRFProtectionDisabled.ql.
+[35/52 eval 368ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-327\WeakSensitiveDataHashing.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-377\InsecureTemporaryFile.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-502\UnsafeDeserialization.ql.
+[36/52 eval 19ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-377\InsecureTemporaryFile.bqrs.
+[37/52 eval 105ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-352\CSRFProtectionDisabled.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-601\UrlRedirect.ql.
+[38/52 eval 159ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-502\UnsafeDeserialization.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-611\Xxe.ql.
+Starting evaluation of codeql\python-queries\Security\CWE-614\InsecureCookie.ql.
+[39/52 eval 162ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-611\Xxe.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-643\XpathInjection.ql.
+[40/52 eval 15ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-614\InsecureCookie.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-730\PolynomialReDoS.ql.
+[41/52 eval 44ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-643\XpathInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-730\ReDoS.ql.
+[42/52 eval 694ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-601\UrlRedirect.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-730\RegexInjection.ql.
+[43/52 eval 42ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-730\ReDoS.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-732\WeakFilePermissions.ql.
+[44/52 eval 244ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-730\RegexInjection.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-776\XmlBomb.ql.
+[45/52 eval 10ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-732\WeakFilePermissions.bqrs.
+[46/52 eval 914ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-730\PolynomialReDoS.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-918\FullServerSideRequestForgery.ql.
+[47/52 eval 614ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-776\XmlBomb.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-918\PartialServerSideRequestForgery.ql.
+[48/52 eval 732ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-918\FullServerSideRequestForgery.bqrs.
+Starting evaluation of codeql\python-queries\Security\CWE-943\NoSqlInjection.ql.
+[49/52 eval 215ms] Evaluation done; writing results to codeql\python-queries\Security\CWE-943\NoSqlInjection.bqrs.
+Starting evaluation of codeql\python-queries\Summary\LinesOfCode.ql.
+Starting evaluation of codeql\python-queries\Summary\LinesOfUserCode.ql.
+[50/52 eval 21ms] Evaluation done; writing results to codeql\python-queries\Summary\LinesOfCode.bqrs.
+[51/52 eval 64ms] Evaluation done; writing results to codeql\python-queries\Summary\LinesOfUserCode.bqrs.
+[52/52 eval 4.3s] Evaluation done; writing results to codeql\python-queries\Security\CWE-918\PartialServerSideRequestForgery.bqrs.
+Shutting down query evaluator.
+Interpreting results.
+Resolving extensions
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Expressions\UseofInput.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CVE-2018-1281\BindToAllInterfaces.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\CookieInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\IncompleteHostnameRegExp.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\IncompleteUrlSubstringSanitization.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-020\OverlyLargeRange.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-022\PathInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-074\TemplateInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-078\CommandInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-079\ReflectedXss.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-089\SqlInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-090\LdapInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-094\CodeInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-1004\NonHttpOnlyCookie.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-113\HeaderInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-116\BadTagFilter.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-1275\SameSiteNoneCookie.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-209\StackTraceExposure.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-215\FlaskDebug.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-285\PamAuthorization.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-295\MissingHostKeyValidation.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-312\CleartextLogging.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-312\CleartextStorage.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-326\WeakCryptoKey.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\BrokenCryptoAlgorithm.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\InsecureDefaultProtocol.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\InsecureProtocol.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-327\WeakSensitiveDataHashing.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-352\CSRFProtectionDisabled.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-377\InsecureTemporaryFile.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-502\UnsafeDeserialization.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-601\UrlRedirect.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-611\Xxe.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-614\InsecureCookie.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-643\XpathInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\PolynomialReDoS.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\ReDoS.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-730\RegexInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-776\XmlBomb.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-918\FullServerSideRequestForgery.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-943\NoSqlInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-022\TarSlip.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-078\UnsafeShellCommandConstruction.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-079\Jinja2WithoutEscaping.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-117\LogInjection.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-295\RequestWithoutValidation.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-732\WeakFilePermissions.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Security\CWE-918\PartialServerSideRequestForgery.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Diagnostics\ExtractedFiles.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Diagnostics\ExtractionWarnings.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Summary\LinesOfCode.ql...
+Interpreting C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\packs\codeql\python-queries\1.9.0\Summary\LinesOfUserCode.ql...
+Reading source archive C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1\post-sast\codeql-db\src.zip
+Exporting results to SARIF...
+Exported results to SARIF (1s).

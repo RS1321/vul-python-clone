@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -87,7 +87,9 @@
+         # In a real app, you'd validate credentials here
+         if username == "User" and password == "P@$$w0rd":
+             expire = datetime.datetime.now() + datetime.timedelta(minutes=60)
+-            cookie_data = f"{username}|{expire}"
++            # Sanitize username to prevent injection of the delimiter '|'
++            safe_username = username.replace("|", "")
++            cookie_data = f"{safe_username}|{expire}"
+             encoded_cookie = base64.b64encode(cookie_data.encode()).decode()
+             response = make_response(
+                 render_template(

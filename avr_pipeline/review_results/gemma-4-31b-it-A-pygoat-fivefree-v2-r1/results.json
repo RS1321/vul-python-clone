@@ -287,7 +287,633 @@
       {
         "attempt": 1,
         "accepted": false,
-        "error": "Gemini HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+        "duration_seconds": 117.48400000000038,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Prevent path injection by resolving the build path and verifying it is contained within the base directory.\n```python\n\tdef handle(self, *args, **options):\n\t\timport os\n\t\timport docker\n\t\tfrom django.conf import settings\n\t\tfrom challenge.models import Lab\n\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to be built.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t    pass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tbuild_path = os.path.abspath(os.path.join(settings.BASE_DIR, build_location))\n\t\t\tbase_dir = os.path.abspath(settings.BASE_DIR)\n\t\t\tif not build_path.startswith(base_dir + os.sep):\n\t\t\t    if build_path != base_dir:\n\t\t\t        self.stderr.write(self.style.ERROR(f\"Build path is outside base directory for '{image}': {build_path}\"))\n\t\t\t        continue\n\n\t\t\tif not os.path.exists(build_path):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=build_path, tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}'\"))\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 10.64
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 2772,
+            "completion_tokens": 641,
+            "total_tokens": 3413
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/management/commands/startuplabs.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 008\",\n  \"finding_id\": \"py/path-injection:challenge/management/commands/startuplabs.py:51:7\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\\nThis path depends on a [user-provided value](2).\",\n    \"location\": {\n      \"file_path\": \"challenge/management/commands/startuplabs.py\",\n      \"start_line\": 51,\n      \"end_line\": 51,\n      \"function\": \"Command.handle\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 552,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 561,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 585,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 600,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 614,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"[post] ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 640,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 641,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"763e6942d3f8e292:1\",\n    \"primaryLocationStartColumnFingerprint\": \"22\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n\tdef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tbuild_path = os.path.join(settings.BASE_DIR, build_location)\n\t\t\tif not os.path.exists(build_path):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=build_path, tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/management/commands/startuplabs.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "Command.handle"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "87 added plus deleted lines; allowed 19.5",
+            "lines_added": 49,
+            "lines_removed": 38,
+            "total_churn": 87,
+            "original_length": 39,
+            "limit": 19.5
+          }
+        }
+      },
+      {
+        "attempt": 2,
+        "accepted": false,
+        "duration_seconds": 45.53099999999904,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Prevent path injection by resolving the build path and verifying it is contained within the base directory.\n```python\n\tdef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tfrom pathlib import Path\n\t\t\tbase_dir = Path(settings.BASE_DIR).resolve()\n\t\t\tbuild_path = (base_dir / build_location).resolve()\n\t\t\tif not build_path.is_relative_to(base_dir):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path is outside base directory for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tif not build_path.exists():\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=str(build_path), tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 6.5
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 3480,
+            "completion_tokens": 596,
+            "total_tokens": 4076
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/management/commands/startuplabs.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 008\",\n  \"finding_id\": \"py/path-injection:challenge/management/commands/startuplabs.py:51:7\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\\nThis path depends on a [user-provided value](2).\",\n    \"location\": {\n      \"file_path\": \"challenge/management/commands/startuplabs.py\",\n      \"start_line\": 51,\n      \"end_line\": 51,\n      \"function\": \"Command.handle\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 552,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 561,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 585,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 600,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 614,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"[post] ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 640,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 641,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"763e6942d3f8e292:1\",\n    \"primaryLocationStartColumnFingerprint\": \"22\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n\tdef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tbuild_path = os.path.join(settings.BASE_DIR, build_location)\n\t\t\tif not os.path.exists(build_path):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=build_path, tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef handle(self, *args, **options):\n\t\timport os\n\t\timport docker\n\t\tfrom django.conf import settings\n\t\tfrom challenge.models import Lab\n\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to be built.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t    pass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tbuild_path = os.path.abspath(os.path.join(settings.BASE_DIR, build_location))\n\t\t\tbase_dir = os.path.abspath(settings.BASE_DIR)\n\t\t\tif not build_path.startswith(base_dir + os.sep):\n\t\t\t    if build_path != base_dir:\n\t\t\t        self.stderr.write(self.style.ERROR(f\"Build path is outside base directory for '{image}': {build_path}\"))\n\t\t\t        continue\n\n\t\t\tif not os.path.exists(build_path):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=build_path, tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}'\"))\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"87 added plus deleted lines; allowed 19.5\", \"lines_added\": 49, \"lines_removed\": 38, \"total_churn\": 87, \"original_length\": 39, \"limit\": 19.5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "challenge/management/commands/startuplabs.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "Command.handle"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "84 added plus deleted lines; allowed 19.5",
+            "lines_added": 45,
+            "lines_removed": 39,
+            "total_churn": 84,
+            "original_length": 39,
+            "limit": 19.5
+          }
+        }
+      },
+      {
+        "attempt": 3,
+        "accepted": false,
+        "duration_seconds": 98.88999999999942,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Use pathlib.Path.resolve() and is_relative_to() to prevent path traversal via build_location.\n```python\n\tdef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tfrom pathlib import Path\n\t\t\tbase_dir = Path(settings.BASE_DIR).resolve()\n\t\t\tbuild_path = (base_dir / build_location).resolve()\n\t\t\tif not build_path.is_relative_to(base_dir):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path is outside base directory for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tif not build_path.exists():\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=str(build_path), tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 65.953
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 3435,
+            "completion_tokens": 601,
+            "total_tokens": 4036
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/management/commands/startuplabs.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 008\",\n  \"finding_id\": \"py/path-injection:challenge/management/commands/startuplabs.py:51:7\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\\nThis path depends on a [user-provided value](2).\",\n    \"location\": {\n      \"file_path\": \"challenge/management/commands/startuplabs.py\",\n      \"start_line\": 51,\n      \"end_line\": 51,\n      \"function\": \"Command.handle\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 552,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 561,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 563,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 585,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 600,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 614,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 616,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 639,\n              \"node\": \"[post] ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 640,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 641,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/models.py\",\n              \"line\": 68,\n              \"node\": \"[orm-model] Class Lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for Attribute() [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 28,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for labs [List element, Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 33,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for lab [Attribute build_location]\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for build_location\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for build_path\"\n            },\n            {\n              \"file\": \"challenge/management/commands/startuplabs.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for build_path\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"763e6942d3f8e292:1\",\n    \"primaryLocationStartColumnFingerprint\": \"22\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n\tdef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tbuild_path = os.path.join(settings.BASE_DIR, build_location)\n\t\t\tif not os.path.exists(build_path):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=build_path, tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ndef handle(self, *args, **options):\n\t\tprebuild_enabled = os.getenv(\"PREBUILD_LABS_ON_STARTUP\", \"false\").lower() == \"true\"\n\t\tif not prebuild_enabled:\n\t\t\tself.stdout.write(\"PREBUILD_LABS_ON_STARTUP is disabled. Skipping prebuild.\")\n\t\t\treturn\n\n\t\ttry:\n\t\t\tclient = docker.from_env()\n\t\texcept Exception as exc:\n\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to connect to Docker daemon: {exc}\"))\n\t\t\treturn\n\n\t\tlabs = Lab.objects.all()\n\t\tif not labs.exists():\n\t\t\tself.stdout.write(\"No labs found in database. Nothing to build.\")\n\t\t\treturn\n\n\t\tfor lab in labs:\n\t\t\timage = lab.name\n\t\t\tbuild_location = lab.build_location\n\t\t\tif not image or not build_location:\n\t\t\t\tself.stderr.write(self.style.WARNING(\"Skipping invalid lab entry without name/build_location.\"))\n\t\t\t\tcontinue\n\n\t\t\ttry:\n\t\t\t\tclient.images.get(image)\n\t\t\t\tself.stdout.write(f\"Image '{image}' already exists. Skipping build.\")\n\t\t\t\tcontinue\n\t\t\texcept docker.errors.ImageNotFound:\n\t\t\t\tpass\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to check image '{image}': {exc}\"))\n\t\t\t\tcontinue\n\n\t\t\tfrom pathlib import Path\n\t\t\tbase_dir = Path(settings.BASE_DIR).resolve()\n\t\t\tbuild_path = (base_dir / build_location).resolve()\n\t\t\tif not build_path.is_relative_to(base_dir):\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path is outside base directory for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tif not build_path.exists():\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Build path not found for '{image}': {build_path}\"))\n\t\t\t\tcontinue\n\n\t\t\tself.stdout.write(f\"Building image '{image}' from {build_path}...\")\n\t\t\ttry:\n\t\t\t\tclient.images.build(path=str(build_path), tag=image)\n\t\t\t\tself.stdout.write(self.style.SUCCESS(f\"Built image '{image}' successfully.\"))\n\t\t\texcept Exception as exc:\n\t\t\t\tself.stderr.write(self.style.ERROR(f\"Failed to build image '{image}': {exc}\"))\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"84 added plus deleted lines; allowed 19.5\", \"lines_added\": 45, \"lines_removed\": 39, \"total_churn\": 84, \"original_length\": 39, \"limit\": 19.5}}\nReturn a corrected minimal patch.",
+        "application": {
+          "file": "challenge/management/commands/startuplabs.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "Command.handle"
+        },
+        "validation": {
+          "minimality": {
+            "passed": false,
+            "message": "84 added plus deleted lines; allowed 19.5",
+            "lines_added": 45,
+            "lines_removed": 39,
+            "total_churn": 84,
+            "original_length": 39,
+            "limit": 19.5
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 3,
+      "success": 3,
+      "ast_name": 3
+    },
+    "lines_added": 0,
+    "lines_removed": 0
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:675:27",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 28.57800000000134,
+        "response": {
+          "content": "EXPLANATION: Replaced the exposure of the raw exception string with a generic error message to prevent stack trace and internal detail leakage.\n\nSCOPE: function\n```python\ndef delete_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n        \n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n            \n        name = lab.name\n        lab.delete()\n        return JsonResponse({'status': 'success', 'message': f'Lab {name} deleted successfully'})\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 979,
+            "completion_tokens": 298,
+            "total_tokens": 1277
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 028\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:675:27\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 675,\n      \"end_line\": 675,\n      \"function\": \"delete_custom_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 674,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 675,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 675,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"8e5226da4843b4ff:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef delete_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n        \n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n            \n        name = lab.name\n        lab.delete()\n        return JsonResponse({'status': 'success', 'message': f'Lab {name} deleted successfully'})\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "delete_custom_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "8 added plus deleted lines; allowed 8.5",
+            "lines_added": 4,
+            "lines_removed": 4,
+            "total_churn": 8,
+            "original_length": 17,
+            "limit": 8.5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 6.943127962085308,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 4,
+    "lines_removed": 4
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:654:26",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 34.01499999999942,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Replace the exposure of the raw exception string with a generic error message to prevent stack trace and internal detail leakage.\n```python\ndef update_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n        \n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n            \n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n        \n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n            \n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n            \n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n            \n        if Lab.objects.filter(name=name).exclude(id=lab_id).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n            \n        lab.name = name\n        lab.build_location = build_location\n        lab.port = port\n        lab.save()\n        \n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} updated successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        import logging\n        logging.exception(\"Error updating custom lab\")\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1360,
+            "completion_tokens": 689,
+            "total_tokens": 2049
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 027\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:654:26\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 654,\n      \"end_line\": 654,\n      \"function\": \"update_custom_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 653,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 654,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 654,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"867b257386e60e72:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef update_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n        \n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n            \n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n        \n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n            \n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n            \n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n            \n        if Lab.objects.filter(name=name).exclude(id=lab_id).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n            \n        lab.name = name\n        lab.build_location = build_location\n        lab.port = port\n        lab.save()\n        \n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} updated successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "update_custom_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "22 added plus deleted lines; allowed 23.0",
+            "lines_added": 12,
+            "lines_removed": 10,
+            "total_churn": 22,
+            "original_length": 46,
+            "limit": 23.0
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.099056603773585,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 12,
+    "lines_removed": 10
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:625:25",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 42.14099999999962,
+        "response": {
+          "content": "EXPLANATION: Replaced the exposure of the exception message with a generic error message to prevent stack trace or internal detail leakage.\n\nSCOPE: function update_custom_lab\n```python\ndef update_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n\n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n\n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)\n\n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n\n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n\n        if Lab.objects.filter(name=name).exclude(id=lab_id).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n\n        lab.name = name\n        lab.build_location = build_location\n        lab.port = port\n        lab.save()\n\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} updated successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        import logging\n        logging.exception(\"Error updating custom lab\")\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 500,
+              "budget_wait_seconds": 0.016
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1358,
+            "completion_tokens": 677,
+            "total_tokens": 2035
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 026\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:625:25\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 625,\n      \"end_line\": 625,\n      \"function\": \"update_custom_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 624,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 625,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 625,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"a7af86456ba9d40d:2\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef update_custom_lab(request, lab_id):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n\n    try:\n        try:\n            lab = Lab.objects.get(id=lab_id, is_custom=True)\n        except Lab.DoesNotExist:\n            return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)\n\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n\n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n\n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n\n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n\n        if Lab.objects.filter(name=name).exclude(id=lab_id).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n\n        lab.name = name\n        lab.build_location = build_location\n        lab.port = port\n        lab.save()\n\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} updated successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        import logging\n        logging.exception(\"Error updating custom lab\")\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "update_custom_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "4 added plus deleted lines; allowed 24.0",
+            "lines_added": 2,
+            "lines_removed": 2,
+            "total_churn": 4,
+            "original_length": 48,
+            "limit": 24.0
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.0754716981132075,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 2,
+    "lines_removed": 2
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:597:24",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 55.39099999999962,
+        "response": {
+          "content": "SCOPE: function create_custom_lab\nEXPLANATION: Replace the exposure of the raw exception string with a generic error message to prevent stack trace and internal detail leakage.\n```python\ndef create_custom_lab(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n    \n    try:\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n        \n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n            \n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n            \n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n            \n        if Lab.objects.filter(name=name).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n            \n        lab = Lab.objects.create(name=name, build_location=build_location, port=port)\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} created successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 4.407
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1281,
+            "completion_tokens": 600,
+            "total_tokens": 1881
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:597:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 597,\n      \"end_line\": 597,\n      \"function\": \"create_custom_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 596,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 597,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 597,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"f928794123d11046:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef create_custom_lab(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n    \n    try:\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n        \n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n            \n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n            \n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n            \n        if Lab.objects.filter(name=name).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n            \n        lab = Lab.objects.create(name=name, build_location=build_location, port=port)\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} created successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "create_custom_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "16 added plus deleted lines; allowed 19.5",
+            "lines_added": 8,
+            "lines_removed": 8,
+            "total_churn": 16,
+            "original_length": 39,
+            "limit": 19.5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.193396226415095,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 8,
+    "lines_removed": 8
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:572:23",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 81.68799999999828,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: The provided source code already contains a generic error message in the final exception handler, but the scanner is flagging a potential issue; however, looking at the provided snapshot, the `str(e)` at line 572 (within the `_resolve_build_path` catch block) is the likely target. I will ensure that specific exception messages from `_resolve_build_path` are handled safely or replaced with generic messages if they could leak system paths.\n\n```python\ndef create_custom_lab(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n\n    try:\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n\n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)\n\n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n\n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n\n        if Lab.objects.filter(name=name).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n\n        lab = Lab.objects.create(name=name, build_location=build_location, port=port)\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} created successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 503,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1268,
+            "completion_tokens": 655,
+            "total_tokens": 1923
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 024\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:572:23\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 572,\n      \"end_line\": 572,\n      \"function\": \"create_custom_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 571,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 572,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 572,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"a7af86456ba9d40d:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef create_custom_lab(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    if not request.user.is_staff:\n        return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)\n    if request.method != \"POST\":\n        return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)\n\n    try:\n        data = json.loads(request.body)\n        name = data.get('name')\n        build_location = data.get('build_location')\n        port = data.get('port')\n\n        if not name or not build_location or not port:\n            return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)\n\n        try:\n            _resolve_build_path(build_location)\n        except ValueError as e:\n            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)\n\n        if not re.match(r'^[-a-zA-Z0-9_]+$', name):\n            return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)\n\n        try:\n            port = int(port)\n        except ValueError:\n            return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)\n\n        if Lab.objects.filter(name=name).exists():\n            return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)\n\n        lab = Lab.objects.create(name=name, build_location=build_location, port=port)\n        return JsonResponse({\n            'status': 'success',\n            'message': f'Lab {name} created successfully',\n            'lab': {\n                'id': lab.id,\n                'name': lab.name,\n                'build_location': lab.build_location,\n                'port': lab.port\n            }\n        })\n    except Exception:\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "create_custom_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "4 added plus deleted lines; allowed 19.5",
+            "lines_added": 2,
+            "lines_removed": 2,
+            "total_churn": 4,
+            "original_length": 39,
+            "limit": 19.5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.169811320754717,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 2,
+    "lines_removed": 2
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:533:22",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 26.73400000000038,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Replace the exposure of the exception string with a generic error message to prevent stack trace and internal detail leakage.\n```python\ndef stop_lab(request, lab_image_name):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    container_name = _get_container_name(username, lab_image_name)\n\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        container = next((c for c in user_containers if c.name == container_name), None)\n        if container is None:\n            return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n        if container.status == 'running':\n            container.stop()\n        container.remove()\n        return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})\n    except docker.errors.NotFound:\n        return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n    except Exception as e:\n        import logging\n        logging.exception(\"Error stopping lab\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.016
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1030,
+            "completion_tokens": 362,
+            "total_tokens": 1392
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 023\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:533:22\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 533,\n      \"end_line\": 533,\n      \"function\": \"stop_lab\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 532,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 533,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 533,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"8a40eb9806ce567:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef stop_lab(request, lab_image_name):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    container_name = _get_container_name(username, lab_image_name)\n\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        container = next((c for c in user_containers if c.name == container_name), None)\n        if container is None:\n            return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n        if container.status == 'running':\n            container.stop()\n        container.remove()\n        return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})\n    except docker.errors.NotFound:\n        return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "stop_lab"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "4 added plus deleted lines; allowed 10.5",
+            "lines_added": 3,
+            "lines_removed": 1,
+            "total_churn": 4,
+            "original_length": 21,
+            "limit": 10.5
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.136150234741784,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 3,
+    "lines_removed": 1
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:507:21",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 108.60900000000038,
+        "response": {
+          "content": "EXPLANATION: Replaced the exposure of the raw exception string with a generic error message to prevent stack trace/internal detail leakage.\nSCOPE: function list_user_labs\n```python\ndef list_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        labs = []\n        for c in user_containers:\n            labs.append({\n                'name': c.name,\n                'status': c.status,\n            })\n        return JsonResponse({'status': 'success', 'labs': labs})\n    except Exception as e:\n        import logging\n        logging.exception(\"Error listing user labs\")\n        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)\n```",
+          "model": "gemma-4-31b-it",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 503,
+              "budget_wait_seconds": 0.0
+            },
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0.016
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 927,
+            "completion_tokens": 265,
+            "total_tokens": 1192
+          }
+        },
+        "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 022\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:507:21\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 507,\n      \"end_line\": 507,\n      \"function\": \"list_user_labs\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 506,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 507,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 507,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"7c5d88c1d455fd08:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef list_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        labs = []\n        for c in user_containers:\n            labs.append({\n                'name': c.name,\n                'status': c.status,\n            })\n        return JsonResponse({'status': 'success', 'labs': labs})\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "challenge/views.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "list_user_labs"
+        },
+        "validation": {
+          "minimality": {
+            "passed": true,
+            "message": "4 added plus deleted lines; allowed 9.0",
+            "lines_added": 3,
+            "lines_removed": 1,
+            "total_churn": 4,
+            "original_length": 18,
+            "limit": 9.0
+          },
+          "compile": {
+            "passed": true
+          },
+          "pylint": {
+            "passed": true,
+            "score": 7.079439252336448,
+            "new_errors": [],
+            "preexisting_error_count": 5
+          },
+          "pytest": {
+            "status": "not_configured",
+            "passed": null,
+            "failures": null
+          }
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 3,
+    "lines_removed": 1
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:485:20",
+    "accepted": false,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": false,
+        "error": "Gemini HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n",
         "infrastructure_error": true
       }
     ],

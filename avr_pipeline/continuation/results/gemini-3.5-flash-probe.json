@@ -1,0 +1,4 @@
+{
+  "status": "error",
+  "error": "Gemini model mismatch: requested gemini-3.5-flash, reported gemini-3.6-flash"
+}

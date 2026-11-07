@@ -1,0 +1,14 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v3-1024-r1",
+    "status": "complete"
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+  "source_url": "https://github.com/erev0s/VAmPI.git",
+  "provider": "local",
+  "model": "qwen2.5-coder-1.5b-instruct-q4km",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": null,
+  "implementation_sha256": {
+    "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913",
+    "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81"
+  },
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-vampi\\scan.sarif",
+  "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": false,
+  "transport_policy": {
+    "AVR_INPUT_BUDGET_PER_MINUTE": "12000",
+    "AVR_REQUEST_TIMEOUT": "60",
+    "AVR_TRANSPORT_RETRIES": "2"
+  },
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "library_version": "review-1",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 3,
+  "selected_findings": 3,
+  "utc": "2026-11-07T11:37:09.210184+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 244.4529999999977,
+  "accepted_patches": 2,
+  "processed_findings": 3,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 3,
+    "remaining_baseline_findings": 3,
+    "resolved_findings": 0,
+    "new_findings": 0,
+    "resolution_rate": 0.0,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [],
+    "new_groups": []
+  }
+}

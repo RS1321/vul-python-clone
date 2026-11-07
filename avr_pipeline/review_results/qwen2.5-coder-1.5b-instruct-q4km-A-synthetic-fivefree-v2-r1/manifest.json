@@ -20,7 +20,7 @@
     "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
     "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
   },
-  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
   "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
   "zap_sha256": null,
   "context_profile": "compact",
@@ -42,7 +42,7 @@
   "eligible_findings": 29,
   "selected_findings": 29,
   "utc": "2026-11-07T10:19:49.416500+00:00",
-  "status": "running",
+  "status": "complete",
   "scope": "new revision; not a reproduction of original paper prompts or models",
   "dast_status": "not_run",
   "sampling": "all findings",
@@ -136,5 +136,71 @@
       "previous_elapsed_seconds": 1688.4850000000006
     }
   ],
-  "resumed_from_findings": 8
+  "resumed_from_findings": 8,
+  "elapsed_seconds": 2832.5469999999987,
+  "accepted_patches": 8,
+  "processed_findings": 29,
+  "post_tests": {
+    "status": "failed",
+    "returncode": 1,
+    "tests": 68,
+    "failures": [
+      "tests.test_vulnerable_app::test_download_missing_file",
+      "tests.test_vulnerable_app::test_download_with_path",
+      "tests.test_vulnerable_app::test_load_object_invalid_data",
+      "tests.test_vulnerable_app::test_parse_xml_malformed"
+    ],
+    "infrastructure_error": false
+  },
+  "sast": {
+    "baseline_findings": 29,
+    "remaining_baseline_findings": 24,
+    "resolved_findings": 5,
+    "new_findings": 0,
+    "resolution_rate": 0.1724137931034483,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "vulnerable_app.py",
+          "xxe_vulnerability"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "vulnerable_app.py",
+          "insecure_deserialization"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "insecure_deserialization"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "csrf_vulnerability"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "vulnerable_app.py",
+          "directory_traversal"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
 }

@@ -1,0 +1,70 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma26-A-synthetic-v3-r1\source
+configfile: pytest.ini
+plugins: platformdirs-4.14.5, cov-7.1.0
+collected 69 items / 1 deselected / 68 selected
+
+tests\test_vulnerable_app.py ........................................... [ 63%]
+..............FFF.....F..                                                [100%]
+
+================================== FAILURES ===================================
+_________________________ test_load_object_with_data __________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_with_data(client):
+        """Valid pickle data works."""
+        data = pickle.dumps({"key": "value"})
+        response = client.post('/load_object', data=data)
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:519: AssertionError
+_______________________ test_load_object_simple_string ________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_simple_string(client):
+        """String pickle works."""
+        data = pickle.dumps("hello world")
+        response = client.post('/load_object', data=data)
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:526: AssertionError
+________________________ test_load_object_invalid_data ________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_load_object_invalid_data(client):
+        """Invalid data handled."""
+        response = client.post('/load_object', data=b"not_pickle")
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:532: AssertionError
+__________________________ test_parse_xml_malformed ___________________________
+
+client = <FlaskClient <Flask 'vulnerable_app'>>
+
+    def test_parse_xml_malformed(client):
+        """Malformed XML handled."""
+        response = client.post('/parse_xml', data='<unclosed')
+>       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = <WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]>.status_code
+
+tests\test_vulnerable_app.py:578: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    vulnerable_app:vulnerable_app.py:437 Error parsing XML: unclosed token: line 1, column 0
+- generated xml file: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemma26-A-synthetic-v3-r1\finding-012\tests-3\pytest.xml -
+=========================== short test summary info ===========================
+FAILED tests/test_vulnerable_app.py::test_load_object_with_data - assert 500 ...
+FAILED tests/test_vulnerable_app.py::test_load_object_simple_string - assert ...
+FAILED tests/test_vulnerable_app.py::test_load_object_invalid_data - assert 5...
+FAILED tests/test_vulnerable_app.py::test_parse_xml_malformed - assert 500 ==...
+================= 4 failed, 64 passed, 1 deselected in 7.44s ==================

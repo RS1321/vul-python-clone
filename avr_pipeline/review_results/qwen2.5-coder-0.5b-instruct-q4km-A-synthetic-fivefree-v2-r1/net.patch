@@ -1,0 +1,13 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..1be828e 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -423,7 +423,7 @@ def command_injection():
+ def xxe_vulnerability():
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+         root = ET.fromstring(xml_data)

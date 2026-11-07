@@ -1,0 +1,223 @@
+[
+  {
+    "run": "baseline",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "2f41ea9ce88d913a225389f47f899a35a5ccda054326e308d7e5ff38f1931c89"
+  },
+  {
+    "run": "gemini-3.1-flash-lite-A-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "177e30002914800443fafd97a82f0bd95bf1fa73e9967bc603b95a25ac8eb5c6"
+  },
+  {
+    "run": "gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "83e973457564b7c0df16fe4f7edf165638b5e48ae95a7b6510f5c8f2b7e8de4e"
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "54617ce7c63a69c80bda9068628305d01caa5dffd9eb00017d07166171005d7a"
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "30feb52c0182336e559e4d3a40fb786cb066a5472353be7b60613de2ad172f2f"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "279be656431999c47753182949277ef1f77f4557ec5e8d37222968904a3e887a"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-B-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "854efbc9b23a8e2861d76c5b99b4ba1d97e7b9a83a367bce7f14d50ee3aed00e"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-B-synthetic-matched-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "26970a241f3806262497cd7110ce8a223b59d9d12cd92457524b30d009f8f778"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-C-synthetic-matched-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": false
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "632087c705af472e79772c69e7466b1ea772512db436435550a5669d9b34a24d"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "c29768f7cc4edf7c74bff1a9af87985ec6263c463684a01db6dd1760233e0b73"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_guidance-synthetic-matched-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "d7476880c5caa5c31f22e9cc58a55c9f6abe93880d77b23842598e8c1c5dbc4d"
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-simple-synthetic-matched-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": false
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "81a66bcd27b58138bc24c8937cd20d338900e3e7380fc3fcdd50e543951b3b33"
+  },
+  {
+    "run": "gemma26-A-synthetic-v3-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "aba69cbecf932e83ede385d429b10246ede80452f336842318d3da680ff7b44a"
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "c48cf0223ff6ed5f65196ab7d82b8144a829e6da520489c7c6a62b286940086f"
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v3-1024-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "1d72e2c42ae3f6dbbc8273cb56d88b47079ec586938b01cb9c526e8a973b7257"
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "4d3b82b11b15cc5f57f138e8611d6ed9001afc50f421f6ced27241e2226eb643"
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1",
+    "passed": true,
+    "server_calls": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "debug": true
+      }
+    ],
+    "scope": "Startup control-flow check with mocked server; not a network or security oracle",
+    "source_sha256": "0fb9ab5f5ae6286ac464e9e67ea692e4232d8ab6466a4f30fc8bf6182f6773d5"
+  }
+]

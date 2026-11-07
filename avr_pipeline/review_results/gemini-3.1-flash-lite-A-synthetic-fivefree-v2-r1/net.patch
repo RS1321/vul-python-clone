@@ -1,0 +1,98 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..d8f029d 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -74,15 +74,14 @@ def init_database():
+ 
+ @app.route('/login', methods=['GET', 'POST'])
+ def login():
+-    # --------------------------------------------
++    import sqlite3
+     if request.method == 'GET':
+-        # --------------------------------------------
+         username = request.args.get('username', '')
+         password = request.args.get('password', '')
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,27 +91,22 @@ def login():
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
+-        # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+             return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
+         else:
+-            # --------------------------------------------
+             return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++
+     except Exception as e:
+-        # --------------------------------------------
+         return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
+ 
+ 
+@@ -310,22 +304,22 @@ def resource_leak():
+ 
+ @app.route('/transfer_funds', methods=['GET', 'POST'])
+ def csrf_vulnerability():
+-    # --------------------------------------------
++    from markupsafe import escape
++    import sqlite3
+     if request.method == 'POST' or request.method == 'GET':
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
+-        # --------------------------------------------
++
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))
++        cursor.execute("UPDATE accounts SET balance = balance + ? WHERE username = ?", (amount, to_account))
+         conn.commit()
+         conn.close()
+-        
+-        return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++
++        return f"<h2>Transferred {escape(amount)} from {escape(from_account)} to {escape(to_account)}</h2>"
++
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">
+@@ -421,11 +415,9 @@ def command_injection():
+ 
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
+-    # --------------------------------------------
++    from defusedxml import ElementTree as ET
+     xml_data = request.data.decode()
+-    
+     try:
+-        # --------------------------------------------
+         root = ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"

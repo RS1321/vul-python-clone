@@ -1,0 +1,26 @@
+[
+  {
+    "dataset": "synthetic",
+    "condition": "A",
+    "run": "gemini-3.1-flash-lite-A-synthetic-fivefree-v2-r1",
+    "status": "complete"
+  },
+  {
+    "dataset": "synthetic",
+    "condition": "B",
+    "run": "gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1",
+    "status": "patching_complete"
+  },
+  {
+    "dataset": "pygoat",
+    "condition": "A",
+    "run": "gemini-3.1-flash-lite-A-pygoat-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  },
+  {
+    "dataset": "vampi",
+    "condition": "A",
+    "run": "gemini-3.1-flash-lite-A-vampi-fivefree-v2-r1",
+    "status": "interrupted_api_error"
+  }
+]

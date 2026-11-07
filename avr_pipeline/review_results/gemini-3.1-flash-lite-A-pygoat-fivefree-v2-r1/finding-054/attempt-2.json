@@ -1,0 +1,54 @@
+{
+  "attempt": 2,
+  "accepted": true,
+  "duration_seconds": 3.4530000000013388,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Restrict the request to a specific internal domain and disable redirects to prevent SSRF.\n\n```python\ndef lab2():\n    import requests\n    if request.method == \"POST\":\n        url = request.form.get(\"url\")\n        if not url or not url.startswith(\"http://internal.lab/\"):\n            return render_template(\"lab2.html\", error=\"Invalid URL\")\n        try:\n            response = requests.get(url, allow_redirects=False, timeout=5)\n            flash(\"Successfully fetched URL!\", \"success\")\n            return render_template(\"lab2.html\", response=response.text)\n        except:\n            return render_template(\"lab2.html\", error=\"Invalid URL\")\n    return render_template(\"lab2.html\")\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1704,
+      "completion_tokens": 183,
+      "total_tokens": 1887
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/ssrf_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 060\",\n  \"finding_id\": \"py/full-ssrf:dockerized_labs/ssrf_lab/app.py:37:59\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/full-ssrf\",\n    \"cwe\": \"CWE-918\",\n    \"all_cwes\": [\n      \"CWE-918\"\n    ],\n    \"description\": \"The full URL of this request depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/ssrf_lab/app.py\",\n      \"start_line\": 37,\n      \"end_line\": 37,\n      \"function\": \"lab2\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 34,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for url\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 35,\n              \"node\": \"ControlFlowNode for url\"\n            },\n            {\n              \"file\": \"dockerized_labs/ssrf_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9396014ac18bfa16:1\",\n    \"primaryLocationStartColumnFingerprint\": \"11\"\n  }\n}\n\nCWE repair guidance\nMap input to a trusted endpoint allowlist and disable redirects. Validate resolved destination addresses where arbitrary hosts are required. URL parsing or reconstruction alone does not sanitize a destination.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nresponse = requests.get(request.args['url'])\nAfter:\nendpoints = {'status': 'https://api.example.com/status'}\nurl = endpoints.get(request.args.get('service'))\nif url is None:\n    abort(400)\nresponse = requests.get(url, allow_redirects=False, timeout=5)\n\nCurrent source snapshot\n```python\n@app.route(\"/lab2\", methods=[\"GET\", \"POST\"])\ndef lab2():\n    if request.method == \"POST\":\n        url = request.form.get(\"url\")\n        try:\n            response = requests.get(url)\n            flash(\"Successfully fetched URL!\", \"success\")\n            return render_template(\"lab2.html\", response=response.text)\n        except:\n            return render_template(\"lab2.html\", error=\"Invalid URL\")\n    return render_template(\"lab2.html\")\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef lab2():\n    import requests\n    from urllib.parse import urlparse\n    if request.method == \"POST\":\n        url = request.form.get(\"url\")\n        try:\n            if not url or not urlparse(url).netloc.endswith(\"internal.lab\"):\n                return render_template(\"lab2.html\", error=\"Invalid URL\")\n            response = requests.get(url, allow_redirects=False, timeout=5)\n            flash(\"Successfully fetched URL!\", \"success\")\n            return render_template(\"lab2.html\", response=response.text)\n        except:\n            return render_template(\"lab2.html\", error=\"Invalid URL\")\n    return render_template(\"lab2.html\")\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"6 added plus deleted lines; allowed 5\", \"lines_added\": 5, \"lines_removed\": 1, \"total_churn\": 6, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "dockerized_labs/ssrf_lab/app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "lab2"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "5 added plus deleted lines; allowed 5",
+      "lines_added": 4,
+      "lines_removed": 1,
+      "total_churn": 5,
+      "original_length": 11,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 6.222222222222222,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

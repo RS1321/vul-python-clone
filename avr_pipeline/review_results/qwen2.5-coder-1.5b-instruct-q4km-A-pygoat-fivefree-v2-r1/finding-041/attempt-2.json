@@ -1,0 +1,27 @@
+{
+  "attempt": 2,
+  "accepted": false,
+  "duration_seconds": 9.985000000000582,
+  "response": {
+    "content": "SCOPE: line\nEXPLANATION: The `custom_hash` function uses the SHA-1 hashing algorithm, which is considered insecure for password hashing. The recommended approach is to use authenticated encryption with a securely generated key and a unique nonce. The corrected source code should use AES with GCM mode, which provides both confidentiality and integrity.\n\n```python\nimport hashlib\nfrom Crypto.Cipher import AES\nfrom Crypto.Util.Padding import pad, unpad\n\ndef custom_hash(password):\n    key = os.urandom(32)  # Securely generate a 256-bit key\n    iv = os.urandom(16)   # Securely generate a 128-bit IV\n    cipher = AES.new(key, AES.MODE_GCM, iv)\n    padded_password = pad(password.encode(), AES.block_size)\n    ciphertext, tag = cipher.encrypt_and_digest(padded_password)\n    return iv + ciphertext + tag\n```",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "usage": {
+      "completion_tokens": 191,
+      "prompt_tokens": 1007,
+      "total_tokens": 1198,
+      "prompt_tokens_details": {
+        "cached_tokens": 944
+      }
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/crypto_failure_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 049\",\n  \"finding_id\": \"py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-sensitive-data-hashing\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\",\n      \"CWE-328\",\n      \"CWE-916\"\n    ],\n    \"description\": \"[Sensitive data (password)](1) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.\\n[Sensitive data (password)](2) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/crypto_failure_lab/app.py\",\n      \"start_line\": 25,\n      \"end_line\": 25,\n      \"function\": \"custom_hash\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 24,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 25,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 24,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 25,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4c79c8076e8e7cb7:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\ndef custom_hash(password):\n    return hashlib.sha1(password.encode()).hexdigest()\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\nimport hashlib\n\ndef custom_hash(password):\n    return hashlib.sha256(password.encode()).hexdigest()\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "scope": "line",
+    "route": "rejected",
+    "success": false,
+    "error": "A bound function requires function scope; line scope cannot replace it"
+  },
+  "error": "A bound function requires function scope; line scope cannot replace it"
+}

@@ -1,0 +1,82 @@
+[2026-11-07 16:04:54] [build-stdout] Python 3.14.2
+[2026-11-07 16:04:55] [build-stderr] Unknown option: -2
+[2026-11-07 16:04:55] [build-stderr] usage: C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\python.exe [option] ... [-c cmd | -m mod | file | -] [arg] ...
+[2026-11-07 16:04:55] [build-stderr] Try `python -h' for more information.
+[2026-11-07 16:04:56] [build-stdout] Source root appears to be the real root.
+[2026-11-07 16:04:56] [build-stdout] Will try to guess Python version, as it was not specified in `lgtm.yml`
+[2026-11-07 16:04:56] [build-stdout] Trying to guess Python version based on Trove classifiers in setup.py
+[2026-11-07 16:04:56] [build-stdout] Did not find setup.py (expected it to be at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\setup.py)
+[2026-11-07 16:04:56] [build-stdout] Trying to guess Python version based on travis file
+[2026-11-07 16:04:56] [build-stdout] Did not find any travis files (expected them at either ['C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\\source\\.travis.yml', 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\review_results\\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\\source\\travis.yml'])
+[2026-11-07 16:04:56] [build-stdout] Trying to guess Python version based on installed versions
+[2026-11-07 16:04:56] [build-stdout] Wanted to run Python 2, but it is not available. Using Python 3 instead
+[2026-11-07 16:04:56] [build-stdout] This script is running Python 3, but Python 2 is also available (as 'py -3')
+[2026-11-07 16:04:56] [build-stdout] Could not guess Python version, will use default: Python 3
+[2026-11-07 16:04:56] [build-stdout] Calling py -3 -S C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\python\tools\python_tracer.py --verbosity 3 -z all -c C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db\working\trap_cache -R C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source
+[2026-11-07 16:04:59] [build-stdout] Python 3.14.2
+[2026-11-07 16:04:59] [build-stdout] INFO: The Python extractor has recently stopped extracting the standard library by default. If you encounter problems, please let us know by submitting an issue to https://github.com/github/codeql. It is possible to re-enable extraction of the standard library by setting the environment variable CODEQL_EXTRACTOR_PYTHON_EXTRACT_STDLIB.
+[2026-11-07 16:04:59] [build-stdout] [INFO] Extraction will use the Python 3 standard library.
+[2026-11-07 16:04:59] [build-stdout] [INFO] sys_path is: ['C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.review-work\\codeql-cli\\codeql\\python\\tools', 'C:\\Users\\rahul\\AppData\\Local\\Python\\pythoncore-3.14-64\\python314.zip', 'C:\\Users\\rahul\\AppData\\Local\\Python\\pythoncore-3.14-64\\DLLs', 'C:\\Users\\rahul\\AppData\\Local\\Python\\pythoncore-3.14-64\\Lib', 'C:\\Users\\rahul\\AppData\\Local\\Python\\pythoncore-3.14-64']
+[2026-11-07 16:04:59] [build-stdout] [INFO] Python version 3.14.2
+[2026-11-07 16:04:59] [build-stdout] [INFO] Python extractor version 7.2.1
+[2026-11-07 16:05:01] [build-stdout] [INFO] [4] Extracted folder C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tests in 7ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [2] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tests\conftest.py in 192ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [12] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\hashlib.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [6] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\os.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [12] Extracted module sys in 3ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [3] Extracted folder C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tools in 66ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [6] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\json\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [3] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\argparse.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [10] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [7] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\typing.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [12] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\json in 16ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [2] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tools\plot_coverage.py in 409ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [8] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tools\sast_stats.py in 350ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [13] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib in 30ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [4] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tools\dast_stats.py in 610ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [1] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\tests\test_vulnerable_app.py in 935ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [6] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\pickle.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [14] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\tempfile.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [15] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\sqlite3\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [3] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\sqlite3 in 6ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [12] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [8] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib\request.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [13] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\secrets.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [4] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\html\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [1] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [14] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\xml\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [16] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\xml\etree\__init__.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [9] Skipped built-in file C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\xml\etree\ElementTree.py
+[2026-11-07 16:05:02] [build-stdout] [INFO] [11] Extracted file C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source\vulnerable_app.py in 724ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [2] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\xml in 7ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [7] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\xml\etree in 11ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [6] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib in 8ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [5] Extracted folder C:\Users\rahul\AppData\Local\Python\pythoncore-3.14-64\Lib\html in 6ms
+[2026-11-07 16:05:02] [build-stdout] [INFO] [10] Extracted module time in 24ms
+[2026-11-07 16:05:03] [build-stdout] [INFO] Processed 34 modules in 3.74s
+[2026-11-07 16:05:07] [build-stderr] Scanning for files in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source...
+[2026-11-07 16:05:07] [build-stderr] C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db: Indexing files in in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source...
+[2026-11-07 16:05:08] [build-stderr] Running command in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source: [C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\yaml\tools\index-files.cmd, C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db\working\files-to-index15021010921743334188.list]
+[2026-11-07 16:05:11] [build-stdout] [2026-11-07 16:05:11] [build-stderr] WARNING: A restricted method in java.lang.System has been called
+[2026-11-07 16:05:11] [build-stdout] [2026-11-07 16:05:11] [build-stderr] WARNING: java.lang.System::load has been called by com.semmle.util.files.SubstResolver in an unnamed module (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/codeql-cli/codeql/yaml/tools/yaml-extractor.jar)
+[2026-11-07 16:05:11] [build-stdout] [2026-11-07 16:05:11] [build-stderr] WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+[2026-11-07 16:05:11] [build-stdout] [2026-11-07 16:05:11] [build-stderr] WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+Initializing database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.semmle.util.files.SubstResolver in an unnamed module (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/codeql-cli/codeql/tools/codeql.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running build command: []
+Running command in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source: [C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\python\tools\autobuild.cmd]
+Finalizing database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db.
+Running pre-finalize script C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\python\tools\pre-finalize.cmd in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source.
+Running command in C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\source: [C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\python\tools\pre-finalize.cmd]
+Pre-finalize script C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\codeql-cli\codeql\python\tools\pre-finalize.cmd completed in 8959 ms.
+Running TRAP import for CodeQL database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db...
+Importing TRAP files
+Merging relations
+Finished writing database (relations: 204.52 KiB; string pool: 2.13 MiB).
+TRAP import complete (5.4s).
+Finished zipping source archive (25.79 KiB).
+Successfully created database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review_results\gemini-3.6-flash-A-synthetic-fivefree-v2-r1\post-sast\codeql-db.

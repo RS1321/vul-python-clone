@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -32,9 +32,12 @@
+ @app.route("/lab2", methods=["GET", "POST"])
+ def lab2():
+     if request.method == "POST":
++        from urllib.parse import urlparse
+         url = request.form.get("url")
+         try:
+-            response = requests.get(url)
++            if urlparse(url).netloc != "example.com":
++                return render_template("lab2.html", error="Forbidden URL")
++            response = requests.get(url, allow_redirects=False, timeout=5)
+             flash("Successfully fetched URL!", "success")
+             return render_template("lab2.html", response=response.text)
+         except:

@@ -1,0 +1,2305 @@
+[
+  {
+    "finding_number": "FINDING 024",
+    "finding_id": "py/flask-debug:vulnerable_app.py:508:23",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 508,
+        "end_line": 508,
+        "function": "main"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "7522b9782e8e0042:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 023",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:433:22",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 433,
+        "end_line": 433,
+        "function": "xxe_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 432,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 433,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1880aab084a2681a:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 028",
+    "finding_id": "py/xml-bomb:vulnerable_app.py:429:27",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/xml-bomb",
+      "cwe": "CWE-776",
+      "all_cwes": [
+        "CWE-776",
+        "CWE-400"
+      ],
+      "description": "XML parsing depends on a [user-provided value](1) without guarding against uncontrolled entity expansion.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 429,
+        "end_line": 429,
+        "function": "xxe_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 425,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 425,
+                "node": "ControlFlowNode for xml_data"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 429,
+                "node": "ControlFlowNode for xml_data"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2f7ad1609737e92b:1",
+      "primaryLocationStartColumnFingerprint": "21"
+    }
+  },
+  {
+    "finding_number": "FINDING 022",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:415:21",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 415,
+        "end_line": 415,
+        "function": "command_injection"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 414,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 415,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "8b6ce4b9bb8376a6:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 005",
+    "finding_id": "py/command-line-injection:vulnerable_app.py:412:4",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/command-line-injection",
+      "cwe": "CWE-078",
+      "all_cwes": [
+        "CWE-078",
+        "CWE-088"
+      ],
+      "description": "This command line depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 412,
+        "end_line": 412,
+        "function": "command_injection"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for host"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 407,
+                "node": "ControlFlowNode for command"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 412,
+                "node": "ControlFlowNode for command"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 403,
+                "node": "ControlFlowNode for host"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 409,
+                "node": "ControlFlowNode for command"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 412,
+                "node": "ControlFlowNode for command"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "7e29d3d0b1ef3a4d:1",
+      "primaryLocationStartColumnFingerprint": "33"
+    }
+  },
+  {
+    "finding_number": "FINDING 021",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:393:20",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 393,
+        "end_line": 393,
+        "function": "insecure_deserialization"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 392,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 393,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "ba78d8f6caf23930:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 012",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:391:11",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 391,
+        "end_line": 391,
+        "function": "insecure_deserialization"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 386,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 386,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 390,
+                "node": "ControlFlowNode for obj"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 391,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "5b246b7714eebdda:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 026",
+    "finding_id": "py/unsafe-deserialization:vulnerable_app.py:390:25",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/unsafe-deserialization",
+      "cwe": "CWE-502",
+      "all_cwes": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 390,
+        "end_line": 390,
+        "function": "insecure_deserialization"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 386,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 386,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 390,
+                "node": "ControlFlowNode for data"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "d1bed404fd565727:1",
+      "primaryLocationStartColumnFingerprint": "19"
+    }
+  },
+  {
+    "finding_number": "FINDING 017",
+    "finding_id": "py/sql-injection:vulnerable_app.py:369:16",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 369,
+        "end_line": 369,
+        "function": "idor_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 363,
+                "node": "ControlFlowNode for account_id"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 369,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "74788e6293fa34ed:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  },
+  {
+    "finding_number": "FINDING 020",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:355:19",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 355,
+        "end_line": 355,
+        "function": "ssrf_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 354,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 355,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "fdf6e113dce5538b:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 029",
+    "finding_id": "py/full-ssrf:vulnerable_app.py:351:28",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/full-ssrf",
+      "cwe": "CWE-918",
+      "all_cwes": [
+        "CWE-918"
+      ],
+      "description": "The full URL of this request depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 351,
+        "end_line": 351,
+        "function": "ssrf_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 347,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 347,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 347,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 347,
+                "node": "ControlFlowNode for url"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 351,
+                "node": "ControlFlowNode for url"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "5239561325fd01a6:1",
+      "primaryLocationStartColumnFingerprint": "11"
+    }
+  },
+  {
+    "finding_number": "FINDING 011",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:327:10",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 327,
+        "end_line": 327,
+        "function": "csrf_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for from_account"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 327,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for to_account"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 327,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "3378bf56cc4b87d3:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 016",
+    "finding_id": "py/sql-injection:vulnerable_app.py:323:15",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 323,
+        "end_line": 323,
+        "function": "csrf_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 316,
+                "node": "ControlFlowNode for to_account"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 323,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for amount"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 323,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1633361d45a0af41:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  },
+  {
+    "finding_number": "FINDING 015",
+    "finding_id": "py/sql-injection:vulnerable_app.py:322:14",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 322,
+        "end_line": 322,
+        "function": "csrf_vulnerability"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 315,
+                "node": "ControlFlowNode for from_account"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 322,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 314,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 317,
+                "node": "ControlFlowNode for amount"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 322,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "e8e163fb30be36d8:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  },
+  {
+    "finding_number": "FINDING 002",
+    "finding_id": "py/path-injection:vulnerable_app.py:299:1",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 299,
+        "end_line": 299,
+        "function": "resource_leak"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 296,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 296,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 296,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 296,
+                "node": "ControlFlowNode for log_file"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 299,
+                "node": "ControlFlowNode for log_file"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4e33904f62ae23ed:1",
+      "primaryLocationStartColumnFingerprint": "9"
+    }
+  },
+  {
+    "finding_number": "FINDING 014",
+    "finding_id": "py/sql-injection:vulnerable_app.py:282:13",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 282,
+        "end_line": 282,
+        "function": "sql_injection_orm"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 275,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 275,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 275,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 275,
+                "node": "ControlFlowNode for search_term"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 281,
+                "node": "ControlFlowNode for query"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 282,
+                "node": "ControlFlowNode for query"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "5e679878af3c1297:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  },
+  {
+    "finding_number": "FINDING 010",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:259:9",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 259,
+        "end_line": 259,
+        "function": "session_fixation"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 251,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for session_id"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 259,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 252,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 253,
+                "node": "ControlFlowNode for session_id"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 259,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 1
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "e9b395d67f5ba9a1:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 019",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:241:18",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 241,
+        "end_line": 241,
+        "function": "directory_traversal"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 240,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 241,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "b403815f120b694e:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 001",
+    "finding_id": "py/path-injection:vulnerable_app.py:237:0",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 237,
+        "end_line": 237,
+        "function": "directory_traversal"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 233,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 233,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 233,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 233,
+                "node": "ControlFlowNode for filename"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 237,
+                "node": "ControlFlowNode for filename"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2d8d785079c2e8e6:1",
+      "primaryLocationStartColumnFingerprint": "10"
+    }
+  },
+  {
+    "finding_number": "FINDING 009",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:223:8",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 223,
+        "end_line": 223,
+        "function": "trust_boundary"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 216,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 216,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 216,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 216,
+                "node": "ControlFlowNode for user_input"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 220,
+                "node": "ControlFlowNode for combined_data"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 223,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "e095c18745cecd37:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 025",
+    "finding_id": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/weak-cryptographic-algorithm",
+      "cwe": "CWE-327",
+      "all_cwes": [
+        "CWE-327"
+      ],
+      "description": "[The block mode ECB](1) is broken or weak, and should not be used.\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 187,
+        "end_line": 187,
+        "function": "encrypt_data"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "51c0f571304d0a6f:1",
+      "primaryLocationStartColumnFingerprint": "12"
+    }
+  },
+  {
+    "finding_number": "FINDING 027",
+    "finding_id": "py/url-redirection:vulnerable_app.py:169:26",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/url-redirection",
+      "cwe": "CWE-601",
+      "all_cwes": [
+        "CWE-601"
+      ],
+      "description": "Untrusted URL redirection depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 169,
+        "end_line": 169,
+        "function": "open_redirect"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 166,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 166,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 166,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 166,
+                "node": "ControlFlowNode for target_url"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 169,
+                "node": "ControlFlowNode for target_url"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "9cf2e3b53171c63f:1",
+      "primaryLocationStartColumnFingerprint": "16"
+    }
+  },
+  {
+    "finding_number": "FINDING 004",
+    "finding_id": "py/template-injection:vulnerable_app.py:156:3",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/template-injection",
+      "cwe": "CWE-074",
+      "all_cwes": [
+        "CWE-074"
+      ],
+      "description": "This template construction depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 156,
+        "end_line": 156,
+        "function": "frame_content"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for frame_url"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 152,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 156,
+                "node": "ControlFlowNode for html_content"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bdc2fbf659528aec:2",
+      "primaryLocationStartColumnFingerprint": "30"
+    }
+  },
+  {
+    "finding_number": "FINDING 008",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:156:7",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 156,
+        "end_line": 156,
+        "function": "frame_content"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 149,
+                "node": "ControlFlowNode for frame_url"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 152,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 156,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 156,
+                "node": "ControlFlowNode for render_template_string()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bdc2fbf659528aec:2",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 003",
+    "finding_id": "py/template-injection:vulnerable_app.py:139:2",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/template-injection",
+      "cwe": "CWE-074",
+      "all_cwes": [
+        "CWE-074"
+      ],
+      "description": "This template construction depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 139,
+        "end_line": 139,
+        "function": "profile"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 126,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 129,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for html_content"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 129,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for html_content"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 1
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bdc2fbf659528aec:1",
+      "primaryLocationStartColumnFingerprint": "30"
+    }
+  },
+  {
+    "finding_number": "FINDING 007",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:139:6",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 139,
+        "end_line": 139,
+        "function": "profile"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 126,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 129,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for render_template_string()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 132,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 129,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for html_content"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 139,
+                "node": "ControlFlowNode for render_template_string()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 1
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bdc2fbf659528aec:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 018",
+    "finding_id": "py/stack-trace-exposure:vulnerable_app.py:116:17",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 116,
+        "end_line": 116,
+        "function": "login"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 114,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 116,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4d94edf673e43b6f:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 006",
+    "finding_id": "py/reflective-xss:vulnerable_app.py:112:5",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/reflective-xss",
+      "cwe": "CWE-079",
+      "all_cwes": [
+        "CWE-079",
+        "CWE-116"
+      ],
+      "description": "Cross-site scripting vulnerability due to a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 112,
+        "end_line": 112,
+        "function": "login"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 78,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 112,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 83,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 83,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 83,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 83,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 112,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4313565452af0d59:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 013",
+    "finding_id": "py/sql-injection:vulnerable_app.py:102:12",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "vulnerable_app.py",
+        "start_line": 102,
+        "end_line": 102,
+        "function": "login"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 78,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 101,
+                "node": "ControlFlowNode for query"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 102,
+                "node": "ControlFlowNode for query"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 80,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 81,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 81,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 81,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 101,
+                "node": "ControlFlowNode for query"
+              },
+              {
+                "file": "vulnerable_app.py",
+                "line": 102,
+                "node": "ControlFlowNode for query"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1d9ff5b54b53f7fc:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  }
+]

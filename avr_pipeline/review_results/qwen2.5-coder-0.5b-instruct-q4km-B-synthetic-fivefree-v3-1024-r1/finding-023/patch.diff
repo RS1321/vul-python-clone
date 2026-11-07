@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -147,7 +147,7 @@
+ def frame_content():
+     # --------------------------------------------
+     frame_url = request.args.get('url', 'https://example.com')
+-    
++
+     # --------------------------------------------
+     html_content = f'''
+         <h2>External Content</h2>

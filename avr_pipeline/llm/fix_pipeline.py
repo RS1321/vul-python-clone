@@ -581,12 +581,14 @@ class FixPipeline:
         if not isinstance(pytest_args, list) or any(not isinstance(arg, str) for arg in pytest_args):
             raise ValueError('pytest_args must be a list of project test arguments')
         baseline = test_run(self.repo_path, pytest_args, out / 'baseline-tests')
+        library_path = Path(__file__).resolve().parent / self.config['pipeline'].get('guidance_library', 'guidance_library.review-2.json')
+        prompt_library = json.loads(library_path.read_text(encoding='utf-8'))
         metrics = self.metrics_collector.start_finding(
             finding_number, finding.get('finding_id', ''),
             finding['sast'].get('rule_id', ''),
             finding.get('baseline_severity', 'unknown'), finding['sast'].get('cwe', ''))
         result = repair_one(self.repo_path, finding, condition, self.llm_client,
-                            pytest_args, baseline, out)
+                            pytest_args, baseline, out, prompt_library=prompt_library)
         for attempt in result['attempts']:
             metrics.start_fix_attempt()
             response = attempt.get('response') or {}

@@ -1,0 +1,100 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..37ad689 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -82,7 +82,7 @@ def login():
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,17 +92,17 @@ def login():
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
++
+         # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        query = f"SELECT * FROM users WHERE username = ? AND password = ?"
++        cursor.execute(query, (username, password))
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+@@ -110,7 +110,7 @@ def login():
+         else:
+             # --------------------------------------------
+             return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++
+     except Exception as e:
+         # --------------------------------------------
+         return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
+@@ -294,13 +294,13 @@ def sql_injection_orm():
+ def resource_leak():
+     # --------------------------------------------
+     log_file = request.args.get('log', 'app.log')
+-    
++
+     # --------------------------------------------
+     f = open(log_file, 'w')
+     f.write('Log entry: ' + str(time.time()))
+     # --------------------------------------------
+     open_files.append(f)
+-    
++
+     return "Log written successfully"
+ 
+ 
+@@ -315,17 +315,17 @@ def csrf_vulnerability():
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
++
+         # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))
++        cursor.execute("UPDATE accounts SET balance = balance + ? WHERE username = ?", (amount, to_account))
+         conn.commit()
+         conn.close()
+-        
++
+         return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">
+@@ -401,13 +401,13 @@ def insecure_deserialization():
+ def command_injection():
+     # --------------------------------------------
+     host = request.args.get('host', 'localhost')
+-    
++
+     # --------------------------------------------
+     if os.name == 'nt':  # Windows
+         command = f'ping -n 2 {host}'
+     else:  # Linux/Mac
+         command = f'ping -c 2 {host}'
+-    
++
+     try:
+         result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT, timeout=5)
+         return f"<h2>Ping Results:</h2><pre>{result.decode()}</pre>"

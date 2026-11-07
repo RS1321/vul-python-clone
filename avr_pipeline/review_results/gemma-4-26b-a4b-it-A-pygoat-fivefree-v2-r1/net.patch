@@ -1,0 +1,686 @@
+diff --git a/challenge/labs/bopla_lab/app.py b/challenge/labs/bopla_lab/app.py
+index ff75b54..4f6cfa7 100644
+--- a/challenge/labs/bopla_lab/app.py
++++ b/challenge/labs/bopla_lab/app.py
+@@ -149,4 +149,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True)
++    app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/challenge/labs/business_logic_lab/app.py b/challenge/labs/business_logic_lab/app.py
+index 669a6e7..476508c 100644
+--- a/challenge/labs/business_logic_lab/app.py
++++ b/challenge/labs/business_logic_lab/app.py
+@@ -197,4 +197,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)
+diff --git a/challenge/labs/security_headers_lab/app.py b/challenge/labs/security_headers_lab/app.py
+index ebefd88..9de75ed 100644
+--- a/challenge/labs/security_headers_lab/app.py
++++ b/challenge/labs/security_headers_lab/app.py
+@@ -230,4 +230,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5011, debug=True)
++    app.run(host='0.0.0.0', port=5011, debug=False)
+diff --git a/challenge/views.py b/challenge/views.py
+index 6f99bdc..a39ba99 100644
+--- a/challenge/views.py
++++ b/challenge/views.py
+@@ -234,10 +234,11 @@ def _resolve_build_path(build_location: str) -> str:
+     is outside LAB_BUILD_ROOTS (e.g. an absolute path or one using "..") or
+     has no Dockerfile.
+     """
++    import os
+     base = os.path.realpath(settings.BASE_DIR)
+     build_path = os.path.realpath(os.path.join(base, build_location or ""))
+-    roots = [os.path.join(base, root) for root in LAB_BUILD_ROOTS]
+-    if not any(build_path.startswith(root + os.sep) for root in roots):
++    roots = [os.path.realpath(os.path.join(base, root)) for root in LAB_BUILD_ROOTS]
++    if not any(os.path.commonpath([root, build_path]) == root for root in roots):
+         raise ValueError(
+             "Build location must be a directory under " + " or ".join(LAB_BUILD_ROOTS)
+         )
+@@ -347,12 +348,15 @@ def wait_for_health(container, timeout=60, remove_on_failure=True):
+         time.sleep(1)
+ 
+ def start_lab(request, lab_image_name):
++    import logging
++    logger = logging.getLogger(__name__)
++
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+-    
++
+     if not check_traefik_reachable():
+         return JsonResponse({'status': 'error', 'message': 'Traefik reverse proxy is not reachable'}, status=503)
+-    
++
+     client = get_docker_client()
+     if client is None:
+         return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)
+@@ -364,14 +368,15 @@ def start_lab(request, lab_image_name):
+     lab_url = f"http://{container_name}.{domain}"
+ 
+     per_user_limit = getattr(settings, 'LABS_PER_USER_LIMIT', 3)
+-    
++
+ 
+     try:
+         lab_config = _get_lab_config(safe_image)
+         build_location = lab_config['build_location']
+         lab_port = str(lab_config['port'])
+     except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+-        return JsonResponse({'status': 'error', 'message': f'Error loading lab configuration: {str(e)}'}, status=500)
++        logger.error(f"Error loading lab configuration: {e}")
++        return JsonResponse({'status': 'error', 'message': 'Error loading lab configuration'}, status=500)
+ 
+     try:
+         container = _get_container_or_none(client, container_name)
+@@ -404,8 +409,9 @@ def start_lab(request, lab_image_name):
+         wait_for_health(container, remove_on_failure=created)
+         return JsonResponse({'status': 'created' if created else 'ready', 'url': lab_url})
+ 
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        logger.exception("Failed to start lab")
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred while starting the lab'}, status=500)
+ 
+ 
+ def _create_lab_container(client, image, container_name, domain, lab_port):
+@@ -456,7 +462,7 @@ def _create_lab_container(client, image, container_name, domain, lab_port):
+ def stop_user_labs(request):
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+-    
++
+     username = request.user.username
+     client = get_docker_client()
+     if client is None:
+@@ -464,7 +470,7 @@ def stop_user_labs(request):
+ 
+     try:
+         user_containers = _get_user_containers(client, username)
+-        
++
+         stopped_count = 0
+         for container in user_containers:
+             try:
+@@ -474,18 +480,22 @@ def stop_user_labs(request):
+                 stopped_count += 1
+             except Exception as e:
+                 print(f"Error stopping container {container.name}: {e}")
+-        
++
+         return JsonResponse({
+             'status': 'success', 
+             'message': f'Stopped and removed {stopped_count} lab container(s)',
+             'count': stopped_count
+         })
+-        
++
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.exception("Error in stop_user_labs")
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 
+ 
+ def list_user_labs(request):
++    import logging
++    logger = logging.getLogger(__name__)
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+ 
+@@ -504,7 +514,8 @@ def list_user_labs(request):
+             })
+         return JsonResponse({'status': 'success', 'labs': labs})
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        logger.exception("Error listing user labs")
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 
+ 
+ def stop_lab(request, lab_image_name):
+@@ -529,8 +540,8 @@ def stop_lab(request, lab_image_name):
+         return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})
+     except docker.errors.NotFound:
+         return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 
+ 
+ def list_custom_labs(request):
+@@ -556,13 +567,13 @@ def create_custom_lab(request):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-    
++
+     try:
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+@@ -570,18 +581,18 @@ def create_custom_lab(request):
+             _resolve_build_path(build_location)
+         except ValueError as e:
+             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab = Lab.objects.create(name=name, build_location=build_location, port=port)
+         return JsonResponse({
+             'status': 'success',
+@@ -594,52 +605,56 @@ def create_custom_lab(request):
+             }
+         })
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.getLogger(__name__).exception("Error creating custom lab")
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def update_custom_lab(request, lab_id):
++    import logging
++    logger = logging.getLogger(__name__)
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+     if not request.user.is_staff:
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-        
++
+     try:
+         try:
+             lab = Lab.objects.get(id=lab_id, is_custom=True)
+         except Lab.DoesNotExist:
+             return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)
+-            
++
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+         try:
+             _resolve_build_path(build_location)
+-        except ValueError as e:
+-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++        except ValueError:
++            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exclude(id=lab_id).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab.name = name
+         lab.build_location = build_location
+         lab.port = port
+         lab.save()
+-        
++
+         return JsonResponse({
+             'status': 'success',
+             'message': f'Lab {name} updated successfully',
+@@ -651,7 +666,8 @@ def update_custom_lab(request, lab_id):
+             }
+         })
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        logger.exception("Error updating custom lab")
++        return JsonResponse({'status': 'error', 'message': 'An internal server error occurred'}, status=500)
+ 
+ 
+ def delete_custom_lab(request, lab_id):
+diff --git a/dockerized_labs/a9_uckv_lab/app.py b/dockerized_labs/a9_uckv_lab/app.py
+index 21204cc..1709e0f 100644
+--- a/dockerized_labs/a9_uckv_lab/app.py
++++ b/dockerized_labs/a9_uckv_lab/app.py
+@@ -58,12 +58,14 @@ def upload_yaml():
+ 
+     if file and allowed_file(file.filename):
+         try:
+-            # Intentionally vulnerable YAML loading
+-            data = yaml.load(file.stream, Loader=yaml.Loader)
++            import yaml
++            # Use safe_load to prevent arbitrary code execution
++            data = yaml.safe_load(file.stream)
+             return render_template("result.html", content=data, filename=file.filename)
+         except Exception as e:
+             flash(f"Error processing file: {str(e)}")
+-            logger.error(f"Error processing YAML file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace('\n', '').replace('\r', '')
++            logger.error(f"Error processing YAML file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab1"))
+ 
+     flash("Invalid file type")
+@@ -111,8 +113,14 @@ def process_image():
+                 img_str_ref=img_str_ref,
+             )
+         except Exception as e:
+-            flash(f"Error processing image: {str(e)}")
+-            logger.error(f"Error processing image file {file.filename}: {str(e)}")
++            import re
++            def sanitize(s):
++                return re.sub(r'[\r\n]', '', str(s))
++
++            err_msg = sanitize(str(e))
++            fname = sanitize(file.filename)
++            flash(f"Error processing image: {err_msg}")
++            logger.error(f"Error processing image file {fname}: {err_msg}")
+             return redirect(url_for("lab2"))
+ 
+ @app.route("/health")
+@@ -121,4 +129,4 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     # Ensure we're binding to all interfaces
+-    app.run(host="0.0.0.0", port=9000, debug=True, use_reloader=True, threaded=True)
++    app.run(host="0.0.0.0", port=9000, debug=False, use_reloader=True, threaded=True)
+diff --git a/dockerized_labs/auth_failure_lab/app.py b/dockerized_labs/auth_failure_lab/app.py
+index 7c73cca..1608183 100644
+--- a/dockerized_labs/auth_failure_lab/app.py
++++ b/dockerized_labs/auth_failure_lab/app.py
+@@ -95,6 +95,9 @@ def lab1():
+     if request.method == "POST":
+         email = request.form.get("email")
+         if email:
++            # Validate email to prevent cookie injection
++            if any(c in email for c in ";=\t\n\r\"'"):
++                return "Invalid input", 400
+             # Vulnerable: Short OTP, no rate limiting
+             otp = str(random.randint(100, 999))
+             if email == "admin@pygoat.com":
+@@ -210,7 +213,16 @@ def lab3():
+ 
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.sha256(password.encode()).hexdigest()
++
++        # Use a secure, computationally expensive hashing algorithm for passwords
++        import hashlib
++        import os
++        # Note: In a real app, the salt would be stored alongside the hash in the USERS dict.
++        # For this repair, we assume the USERS dict contains the salt or we use a fixed salt for demonstration,
++        # but the core fix is moving away from simple SHA256.
++        # To maintain the logic of the lab while fixing the vulnerability:
++        salt = b'static_salt_for_lab_demo' # In production, use unique salts per user
++        password_hash = hashlib.scrypt(password.encode(), salt=salt, n=16384, r=8, p=1).hex()
+ 
+         if username in USERS and USERS[username]["password"] == password_hash:
+             # Vulnerable: Session information stored in cookie without signature
+@@ -224,7 +236,7 @@ def lab3():
+             response = make_response(
+                 render_template("lab3.html", success=True, username=username)
+             )
+-            response.set_cookie("session_id", session_id)
++            response.set_cookie("session_id", session_id, httponly=True, secure=True)
+             return response
+ 
+         return render_template("lab3.html", failure=True)
+@@ -235,4 +247,4 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     init_db()
+-    app.run(host="0.0.0.0", port=5007, debug=True)
++    app.run(host="0.0.0.0", port=5007, debug=False)
+diff --git a/dockerized_labs/broken_access_lab/main.py b/dockerized_labs/broken_access_lab/main.py
+index 3fe3c63..6503f50 100644
+--- a/dockerized_labs/broken_access_lab/main.py
++++ b/dockerized_labs/broken_access_lab/main.py
+@@ -67,4 +67,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True) 
++    app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/dockerized_labs/broken_auth_lab/app.py b/dockerized_labs/broken_auth_lab/app.py
+index 1ef23dc..b9a6408 100644
+--- a/dockerized_labs/broken_auth_lab/app.py
++++ b/dockerized_labs/broken_auth_lab/app.py
+@@ -45,6 +45,9 @@ def lab():
+ 
+ @app.route("/login", methods=["POST"])
+ def login():
++    import re
++    import base64
++    from datetime import datetime
+     username = request.form.get("username")
+     password = request.form.get("password")
+     remember_me = request.form.get("remember_me")
+@@ -54,9 +57,13 @@ def login():
+     ):  # Vulnerable: Plain text password comparison
+         response = make_response(redirect(url_for("dashboard")))
+ 
++        # Sanitize username to prevent cookie injection
++        safe_username = re.sub(r'[^a-zA-Z0-9]', '', username)
++
+         # Vulnerable: Insecure session management
++        # Base64 encoding the entire string prevents injection of cookie delimiters
+         session_token = base64.b64encode(
+-            f"{username}:{datetime.now()}".encode()
++            f"{safe_username}:{datetime.now()}".encode()
+         ).decode()
+ 
+         if remember_me:
+@@ -144,4 +151,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5000, debug=True)  # Vulnerable: Debug mode enabled in production 
++    app.run(host='0.0.0.0', port=5000, debug=False)  # Vulnerable: Debug mode enabled in production
+diff --git a/dockerized_labs/command_injection_lab/app.py b/dockerized_labs/command_injection_lab/app.py
+index ce3accb..ba3b4b7 100644
+--- a/dockerized_labs/command_injection_lab/app.py
++++ b/dockerized_labs/command_injection_lab/app.py
+@@ -16,18 +16,19 @@ def index():
+ def lab1():
+     """Lab 1: Name Server Lookup with Command Injection"""
+     if request.method == "POST":
++        import subprocess
+         domain = request.form.get("domain", "")
+         os_type = request.form.get("os", "")
+ 
+         if os_type == "win":
+-            command = f"nslookup {domain}"
++            command = ["nslookup", domain]
+         else:
+-            command = f"dig {domain}"
++            command = ["dig", domain]
+ 
+         try:
+-            # Intentionally vulnerable command execution
++            # Use argument list and shell=False to prevent command injection
+             process = subprocess.Popen(
+-                command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
++                command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+             )
+             stdout, stderr = process.communicate()
+             output = stdout.decode("utf-8") + stderr.decode("utf-8")
+@@ -44,9 +45,10 @@ def lab2():
+     """Lab 2: Python eval() Code Execution"""
+     if request.method == "POST":
+         try:
+-            # Intentionally vulnerable eval
++            import ast
++            # Safely evaluate a Python literal
+             expression = request.form.get("val", "")
+-            output = eval(expression)
++            output = ast.literal_eval(expression)
+             return render_template("lab2.html", output=str(output))
+         except Exception as e:
+             return render_template("lab2.html", output=str(e))
+@@ -57,4 +59,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5013, debug=True)
++    app.run(host='0.0.0.0', port=5013, debug=False)
+diff --git a/dockerized_labs/crypto_failure_lab/app.py b/dockerized_labs/crypto_failure_lab/app.py
+index 9750f32..af839db 100644
+--- a/dockerized_labs/crypto_failure_lab/app.py
++++ b/dockerized_labs/crypto_failure_lab/app.py
+@@ -22,7 +22,8 @@ LAB2_USERS = {
+ 
+ 
+ def custom_hash(password):
+-    return hashlib.sha1(password.encode()).hexdigest()
++    import hashlib
++    return hashlib.scrypt(password.encode(), salt=b'\x00'*16, n=16384, r=8, p=1).hex()
+ 
+ 
+ @app.route("/")
+@@ -33,9 +34,10 @@ def index():
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
+     if request.method == "POST":
++        import hashlib
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.md5(password.encode()).hexdigest()
++        password_hash = hashlib.scrypt(password.encode(), salt=b'salt', n=16384, r=8, p=1).hex()
+         if username in LAB1_USERS and LAB1_USERS[username] == password_hash:
+             return render_template("lab1.html", user=username, success=True)
+         else:
+@@ -87,7 +89,9 @@ def lab3():
+         # In a real app, you'd validate credentials here
+         if username == "User" and password == "P@$$w0rd":
+             expire = datetime.datetime.now() + datetime.timedelta(minutes=60)
+-            cookie_data = f"{username}|{expire}"
++            # Sanitize username to prevent injection of the delimiter '|'
++            safe_username = username.replace("|", "")
++            cookie_data = f"{safe_username}|{expire}"
+             encoded_cookie = base64.b64encode(cookie_data.encode()).decode()
+             response = make_response(
+                 render_template(
+diff --git a/dockerized_labs/dependency_attack_lab/app.py b/dockerized_labs/dependency_attack_lab/app.py
+index c82ad11..4456e10 100644
+--- a/dockerized_labs/dependency_attack_lab/app.py
++++ b/dockerized_labs/dependency_attack_lab/app.py
+@@ -195,4 +195,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5020, debug=True)
++    app.run(host="0.0.0.0", port=5020, debug=False)
+diff --git a/dockerized_labs/insec_des_lab/main.py b/dockerized_labs/insec_des_lab/main.py
+index 76c7987..67c874e 100644
+--- a/dockerized_labs/insec_des_lab/main.py
++++ b/dockerized_labs/insec_des_lab/main.py
+@@ -34,10 +34,13 @@ def serialize_data():
+ @app.route("/deserialize", methods=["POST"])
+ def deserialize_data():
+     try:
++        import json
++        import base64
+         serialized_data = request.form.get("serialized_data", "")
+         decoded_data = base64.b64decode(serialized_data)
+-        # Intentionally vulnerable deserialization, matching PyGoat
+-        user = pickle.loads(decoded_data)
++        # Use JSON for safe deserialization of data-only formats
++        data = json.loads(decoded_data)
++        user = User(username=data["username"], is_admin=data["is_admin"])
+ 
+         if isinstance(user, User):
+             if user.is_admin:
+diff --git a/dockerized_labs/insecure_design_lab/app.py b/dockerized_labs/insecure_design_lab/app.py
+index aae9060..42ed2a6 100644
+--- a/dockerized_labs/insecure_design_lab/app.py
++++ b/dockerized_labs/insecure_design_lab/app.py
+@@ -150,4 +150,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5008, debug=True)
++    app.run(host='0.0.0.0', port=5008, debug=False)
+diff --git a/dockerized_labs/open_source_library_attack_lab/app.py b/dockerized_labs/open_source_library_attack_lab/app.py
+index 1307e0b..533514f 100644
+--- a/dockerized_labs/open_source_library_attack_lab/app.py
++++ b/dockerized_labs/open_source_library_attack_lab/app.py
+@@ -256,4 +256,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5022, debug=True)
++    app.run(host="0.0.0.0", port=5022, debug=False)
+diff --git a/dockerized_labs/package_injection_lab/app.py b/dockerized_labs/package_injection_lab/app.py
+index 64d58b9..1dd0980 100644
+--- a/dockerized_labs/package_injection_lab/app.py
++++ b/dockerized_labs/package_injection_lab/app.py
+@@ -257,4 +257,4 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5021, debug=True)
++    app.run(host="0.0.0.0", port=5021, debug=False)
+diff --git a/dockerized_labs/sde/app.py b/dockerized_labs/sde/app.py
+index 4d40f89..67f7dbd 100644
+--- a/dockerized_labs/sde/app.py
++++ b/dockerized_labs/sde/app.py
+@@ -46,4 +46,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5100, debug=True)
++    app.run(host="0.0.0.0", port=5100, debug=False)
+diff --git a/dockerized_labs/sec_misconfig/app.py b/dockerized_labs/sec_misconfig/app.py
+index c7af5d6..d5d8510 100644
+--- a/dockerized_labs/sec_misconfig/app.py
++++ b/dockerized_labs/sec_misconfig/app.py
+@@ -132,4 +132,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(debug=True, host='0.0.0.0', port=5009)
++    app.run(debug=False, host='0.0.0.0', port=5009)
+diff --git a/dockerized_labs/software_integrity_lab/app.py b/dockerized_labs/software_integrity_lab/app.py
+index b8ee05e..2cea4cc 100644
+--- a/dockerized_labs/software_integrity_lab/app.py
++++ b/dockerized_labs/software_integrity_lab/app.py
+@@ -29,6 +29,8 @@ def index():
+ @app.route("/lab1")
+ def lab1():
+     """Lab 1: Insecure Deserialization"""
++    import json
++    import base64
+     response = render_template("lab1.html", message="Only Admins can see this page")
+     token = request.cookies.get("token")
+ 
+@@ -41,10 +43,10 @@ def lab1():
+     else:
+         try:
+             token = base64.b64decode(token)
+-            admin = pickle.loads(
+-                token
+-            )  # Intentionally vulnerable to pickle deserialization
+-            if admin.admin == 1:
++            admin = json.loads(
++                token.decode("utf-8")
++            )
++            if admin.get("admin") == 1:
+                 response = render_template(
+                     "lab1.html", message="Welcome Admin, SECRETKEY:ADMIN123"
+                 )
+diff --git a/dockerized_labs/sql_injection_lab/app.py b/dockerized_labs/sql_injection_lab/app.py
+index 62dc9f2..a62a1f2 100644
+--- a/dockerized_labs/sql_injection_lab/app.py
++++ b/dockerized_labs/sql_injection_lab/app.py
+@@ -54,7 +54,7 @@ def lab():
+         try:
+             conn = sqlite3.connect("database.db")
+             c = conn.cursor()
+-            result = c.execute(sql_query).fetchone()
++            result = c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password)).fetchone()
+             conn.close()
+ 
+             if result:
+diff --git a/dockerized_labs/ssrf_lab/app.py b/dockerized_labs/ssrf_lab/app.py
+index 45fac06..1713222 100644
+--- a/dockerized_labs/ssrf_lab/app.py
++++ b/dockerized_labs/ssrf_lab/app.py
+@@ -32,9 +32,12 @@ def lab1():
+ @app.route("/lab2", methods=["GET", "POST"])
+ def lab2():
+     if request.method == "POST":
++        from urllib.parse import urlparse
+         url = request.form.get("url")
+         try:
+-            response = requests.get(url)
++            if urlparse(url).netloc != "example.com":
++                return render_template("lab2.html", error="Forbidden URL")
++            response = requests.get(url, allow_redirects=False, timeout=5)
+             flash("Successfully fetched URL!", "success")
+             return render_template("lab2.html", response=response.text)
+         except:
+diff --git a/dockerized_labs/template_injection_lab/app.py b/dockerized_labs/template_injection_lab/app.py
+index c3e843b..75e14de 100644
+--- a/dockerized_labs/template_injection_lab/app.py
++++ b/dockerized_labs/template_injection_lab/app.py
+@@ -101,7 +101,8 @@ def create_blog():
+         filename = create_blog_post(title, content)
+         return redirect(url_for("view_blog", filename=filename))
+     except Exception as e:
+-        return f"Error: {str(e)}", 400
++        app.logger.error(f"Error creating blog post: {e}")
++        return "An error occurred while creating the blog post.", 400
+ 
+ 
+ @app.route("/blog/<filename>")
+@@ -110,7 +111,7 @@ def view_blog(filename):
+     try:
+         return render_template(f"blogs/{filename}")
+     except Exception as e:
+-        return f"Blog post not found: {str(e)}", 404
++        return "Blog post not found", 404
+ 
+ 
+ 
+@@ -120,4 +121,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5015, debug=True)
++    app.run(host='0.0.0.0', port=5015, debug=False)
+diff --git a/dockerized_labs/xxe_lab/app.py b/dockerized_labs/xxe_lab/app.py
+index 7b4c8af..4a600a1 100644
+--- a/dockerized_labs/xxe_lab/app.py
++++ b/dockerized_labs/xxe_lab/app.py
+@@ -55,7 +55,7 @@ def xxe_parse():
+         try:
+             # Create a vulnerable XML parser that allows external entities
+             parser = make_parser()
+-            parser.setFeature(feature_external_ges, True)
++            parser.setFeature(feature_external_ges, False)
+ 
+             # Parse the XML data
+             doc = parseString(request.data.decode("utf-8"), parser=parser)
+@@ -92,4 +92,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)

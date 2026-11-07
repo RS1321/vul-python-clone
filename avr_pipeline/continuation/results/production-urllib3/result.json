@@ -1,0 +1,33 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "src\\urllib3\\util\\retry.py",
+      "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+      "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+    }
+  ],
+  "changed_lines": 2,
+  "validation": {
+    "checks": {
+      "clone_imported": true,
+      "cookie_default_policy": true,
+      "authorization_default_policy": true,
+      "custom_empty_policy_preserved": true,
+      "custom_header_case_normalized": true,
+      "retry_copy_retains_policy": true,
+      "safe_method_contract": true,
+      "ordinary_nonretry_status": true
+    },
+    "passed": true,
+    "import_path": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\continuation\\results\\production-urllib3\\source\\src\\urllib3\\__init__.py",
+    "returncode": 0,
+    "scope": "bounded API/configuration contract checks; no full security fix-rate claim"
+  },
+  "rolled_back": false,
+  "dataset": "urllib3",
+  "model": "gemini-3.5-flash-lite",
+  "seconds": 1.938,
+  "security_resolution": "not established; configuration/API checks only",
+  "attempts": 1
+}

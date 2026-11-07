@@ -1,0 +1,8 @@
+{
+  "model_source": "Qwen/Qwen2.5-Coder-0.5B-Instruct-GGUF",
+  "revision": "ebb2015119c907b064c512bf053e945850b5875f",
+  "file": "qwen2.5-coder-0.5b-instruct-q4_k_m.gguf",
+  "sha256": "1d9614638d18024d0fbb36575a15f1302a3adf044df10345688ec4f6e1c4ff32",
+  "bytes": 491400064,
+  "reason": "Supplemental local candidate after repeated hosted-service interruptions; selected before observing patch outcomes."
+}

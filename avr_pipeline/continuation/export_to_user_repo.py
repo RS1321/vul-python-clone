@@ -19,7 +19,7 @@ EXCLUDED = {'.git', '.venv', '.review-work', 'benchmarks', '__pycache__', '.pyte
 TOP = {'llm', 'context_builder', 'review', 'review_tests', 'review_results', 'continuation'}
 FILES = {'README.md', 'requirements-review.txt', '.gitignore', '.env.example'}
 EXTENSIONS = {'.py', '.json', '.md', '.txt', '.log', '.xml', '.diff', '.patch', '.yaml', '.yml',
-              '.sarif', '.toml', '.ini', '.ps1', '.csv', '.example'}
+              '.sarif', '.toml', '.ini', '.ps1', '.csv', '.example', '.tap'}
 KEY_PATTERN = r'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|AKIA[0-9A-Z]{16}'
 
 
@@ -35,6 +35,13 @@ def main():
         raise ValueError('Existing destination has no exporter marker; refusing to overwrite')
     if DEST.is_symlink() or not DEST.resolve().is_relative_to(TARGET.resolve()):
         raise ValueError('Destination escapes the user repository')
+    previous = json.loads(MARKER.read_text()) if MARKER.exists() else {}
+    for item in previous.get('files', []):
+        existing = DEST / item['path']
+        if not existing.resolve().is_relative_to(DEST.resolve()):
+            raise ValueError('Previous export marker escapes its directory')
+        if existing.exists() and digest(existing.read_bytes()) != item['export_sha256']:
+            raise ValueError('Exported file was edited separately; preserving it: ' + item['path'])
     DEST.mkdir(exist_ok=True)
     MARKER.write_text(json.dumps({'state': 'export_in_progress', 'created_by': 'continuation/export_to_user_repo.py'}), encoding='utf-8')
     credentials = [v.encode() for k, v in os.environ.items() if len(v) >= 12 and
@@ -51,6 +58,8 @@ def main():
                 continue
             if source.suffix not in EXTENSIONS and name not in FILES:
                 continue
+            if not source.resolve().is_relative_to(ROOT.resolve()):
+                raise ValueError('Source link escapes the project')
             data = source.read_bytes()
             original_sha = digest(data)
             redactions = 0
@@ -60,10 +69,6 @@ def main():
                     redactions += 1
             data, count = re.subn(KEY_PATTERN.encode('ascii'), b'REDACTED_BENCHMARK_CREDENTIAL', data)
             path_redactions = 0
-            for prefix in (str(ROOT.parent).replace('\\', '\\\\'), str(ROOT.parent), ROOT.parent.as_posix()):
-                needle = prefix.encode('utf-8')
-                path_redactions += data.count(needle)
-                data = data.replace(needle, b'<WORKSPACE>')
             target = DEST / relative
             if target.is_symlink() or not target.resolve().is_relative_to(DEST.resolve()):
                 raise ValueError('Export path escapes owned directory')
@@ -72,6 +77,13 @@ def main():
             records.append({'path': relative.as_posix(), 'source_sha256': original_sha,
                             'export_sha256': digest(data), 'redactions': redactions + count,
                             'workspace_path_redactions': path_redactions})
+    # Raw scanner-input and implementation digests must survive Git checkout
+    # on Windows, including when the user's global autocrlf setting is enabled.
+    attributes = b'* -text\n'
+    (DEST / '.gitattributes').write_bytes(attributes)
+    records.append({'path': '.gitattributes', 'source_sha256': digest(attributes),
+                    'export_sha256': digest(attributes), 'redactions': 0,
+                    'workspace_path_redactions': 0, 'generated_by': 'export_to_user_repo.py'})
     marker = {'source_url': 'https://github.com/Deep-Jiwan/AVR-System',
               'upstream_commit': 'f411f88440be3439c1a95e06e2abc493dbe7ab22',
               'application_baseline_commit': '1a23c1dbc0dd843c294036c077ea2a7538a45790',

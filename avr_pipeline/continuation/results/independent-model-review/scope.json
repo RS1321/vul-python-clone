@@ -1,0 +1,6 @@
+{
+  "reviewer_type": "separate automated model",
+  "model": "gemini-3.5-flash-lite",
+  "independent_human_review": false,
+  "original_provenance_established": false
+}

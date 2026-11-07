@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -107,10 +107,12 @@
+ @app.route("/blog/<filename>")
+ def view_blog(filename):
+     """View a specific blog post."""
++    import logging
+     try:
+         return render_template(f"blogs/{filename}")
+     except Exception as e:
+-        return f"Blog post not found: {str(e)}", 404
++        logging.exception("Error rendering blog post")
++        return "Blog post not found", 404
+ 
+ 
+ 

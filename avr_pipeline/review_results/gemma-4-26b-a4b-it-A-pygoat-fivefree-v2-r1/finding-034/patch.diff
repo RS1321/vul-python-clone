@@ -1,0 +1,24 @@
+--- 
++++ 
+@@ -45,6 +45,7 @@
+ 
+ @app.route("/login", methods=["POST"])
+ def login():
++    import re
+     username = request.form.get("username")
+     password = request.form.get("password")
+     remember_me = request.form.get("remember_me")
+@@ -54,9 +55,12 @@
+     ):  # Vulnerable: Plain text password comparison
+         response = make_response(redirect(url_for("dashboard")))
+ 
++        # Sanitize username to prevent cookie injection
++        safe_username = re.sub(r'[^a-zA-Z0-9]', '', username)
++
+         # Vulnerable: Insecure session management
+         session_token = base64.b64encode(
+-            f"{username}:{datetime.now()}".encode()
++            f"{safe_username}:{datetime.now()}".encode()
+         ).decode()
+ 
+         if remember_me:

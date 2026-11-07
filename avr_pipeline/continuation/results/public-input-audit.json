@@ -1,0 +1,194 @@
+[
+  {
+    "dataset": "synthetic",
+    "public_url": "https://github.com/RS1321/vul-python-clone",
+    "commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "tracked_files": [
+      {
+        "path": "vulnerable_app.py",
+        "sha256": "e4cfff5f40dd9a55f48264b3a23e2b61e4dc25dd032e371cfc88b5cb959164b9",
+        "sanitised_sha256": "e4cfff5f40dd9a55f48264b3a23e2b61e4dc25dd032e371cfc88b5cb959164b9",
+        "redactions": 0
+      }
+    ],
+    "findings": 29,
+    "credential_guard": "passed",
+    "destination": "Google Gemini API"
+  },
+  {
+    "dataset": "pygoat",
+    "public_url": "https://github.com/adeyosemanputra/pygoat",
+    "commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "tracked_files": [
+      {
+        "path": "challenge/labs/bopla_lab/app.py",
+        "sha256": "4697602c2bf222465b216930cf27405b95f2210be2e25f61d15957b96a48c773",
+        "sanitised_sha256": "4697602c2bf222465b216930cf27405b95f2210be2e25f61d15957b96a48c773",
+        "redactions": 0
+      },
+      {
+        "path": "challenge/labs/business_logic_lab/app.py",
+        "sha256": "7445f878d24313c84b45960cb84cf4b07481c11c27051d7cae39260b23678c7b",
+        "sanitised_sha256": "7445f878d24313c84b45960cb84cf4b07481c11c27051d7cae39260b23678c7b",
+        "redactions": 0
+      },
+      {
+        "path": "challenge/labs/security_headers_lab/app.py",
+        "sha256": "4f66a503cb6e01e3c9c86740b326345548d79028526b36e51ec378c8048cc89a",
+        "sanitised_sha256": "4f66a503cb6e01e3c9c86740b326345548d79028526b36e51ec378c8048cc89a",
+        "redactions": 0
+      },
+      {
+        "path": "challenge/management/commands/startuplabs.py",
+        "sha256": "f9e27c1f9de7a6c26c74f4251c8d4c6ba684ef6abddcc51c9c15eced2b4c29f1",
+        "sanitised_sha256": "f9e27c1f9de7a6c26c74f4251c8d4c6ba684ef6abddcc51c9c15eced2b4c29f1",
+        "redactions": 0
+      },
+      {
+        "path": "challenge/views.py",
+        "sha256": "dd811572c4addac8dceb5e191cf0f33a875916cf773ede087a1a22dbb618112e",
+        "sanitised_sha256": "dd811572c4addac8dceb5e191cf0f33a875916cf773ede087a1a22dbb618112e",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/a9_uckv_lab/app.py",
+        "sha256": "564a3b3fcef2d44ba2c174fd669efd42d03828a670ceb843983340f4ecc8b79e",
+        "sanitised_sha256": "564a3b3fcef2d44ba2c174fd669efd42d03828a670ceb843983340f4ecc8b79e",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/auth_failure_lab/app.py",
+        "sha256": "456b1ba25e8ecab8c38065a52abd28653d18fe8b6d13f638e8351d766fdeb3d7",
+        "sanitised_sha256": "456b1ba25e8ecab8c38065a52abd28653d18fe8b6d13f638e8351d766fdeb3d7",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/broken_access_lab/main.py",
+        "sha256": "1d407ba3f34b936a1a2efba2869dc2344fbffdb0d9a893fd3de1e7fa54446cab",
+        "sanitised_sha256": "1d407ba3f34b936a1a2efba2869dc2344fbffdb0d9a893fd3de1e7fa54446cab",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/broken_auth_lab/app.py",
+        "sha256": "e5df5b70c84b6c8ee72e48c8ad82672356a1614f9177dd2aca002ee2cf2e6710",
+        "sanitised_sha256": "e5df5b70c84b6c8ee72e48c8ad82672356a1614f9177dd2aca002ee2cf2e6710",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/command_injection_lab/app.py",
+        "sha256": "43af219c885b2948c308d3756b1a70e12b12f93ca13b7e049bb103d577e46dcc",
+        "sanitised_sha256": "43af219c885b2948c308d3756b1a70e12b12f93ca13b7e049bb103d577e46dcc",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/crypto_failure_lab/app.py",
+        "sha256": "50aa54e576db335a59677160ea2ae18dd69212cffde2969cf397208a97dd6c17",
+        "sanitised_sha256": "50aa54e576db335a59677160ea2ae18dd69212cffde2969cf397208a97dd6c17",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/dependency_attack_lab/app.py",
+        "sha256": "a26085cfd867752e9b20a44286fb2adbc180303120aac06d0463d0fcb950fdbf",
+        "sanitised_sha256": "a26085cfd867752e9b20a44286fb2adbc180303120aac06d0463d0fcb950fdbf",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/insec_des_lab/main.py",
+        "sha256": "7e7e6707e16935692ee0c1d7535b7741502a624de0d4d3dea945a82a968a8ec7",
+        "sanitised_sha256": "7e7e6707e16935692ee0c1d7535b7741502a624de0d4d3dea945a82a968a8ec7",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/insecure_design_lab/app.py",
+        "sha256": "35ba88db50fe13855964590917c3fccb9942c6b8c283f01780706db2a0857636",
+        "sanitised_sha256": "35ba88db50fe13855964590917c3fccb9942c6b8c283f01780706db2a0857636",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/insufficient_logging_lab/app.py",
+        "sha256": "a633b3d0f3beefec9b3ea30a52f1d2e7bf3e95307c44f959d519aa0cfeab1ac4",
+        "sanitised_sha256": "a633b3d0f3beefec9b3ea30a52f1d2e7bf3e95307c44f959d519aa0cfeab1ac4",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/open_source_library_attack_lab/app.py",
+        "sha256": "16ee7494a3602c9c35dc16675a4d232999bdeddd71447ac8cb07bc5b19454e03",
+        "sanitised_sha256": "16ee7494a3602c9c35dc16675a4d232999bdeddd71447ac8cb07bc5b19454e03",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/package_injection_lab/app.py",
+        "sha256": "f0545c5b7bd0e1b0b61d6544bce63cd30215ae87289c269df178f3ef8309e6f5",
+        "sanitised_sha256": "f0545c5b7bd0e1b0b61d6544bce63cd30215ae87289c269df178f3ef8309e6f5",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/sde/app.py",
+        "sha256": "99b647514dab46fe86f9d43da5cf4d29e3bc6ea07138da15b55035b0d30ea22e",
+        "sanitised_sha256": "99b647514dab46fe86f9d43da5cf4d29e3bc6ea07138da15b55035b0d30ea22e",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/sec_misconfig/app.py",
+        "sha256": "d6f9f8a4d1dfaf8ac6363251efe97abe944d12957b16f353f7efda0e6226187d",
+        "sanitised_sha256": "f98d0cd72ab7b31311f6bb630628e00aea5388a436fb096445b1a834602d668d",
+        "redactions": 1
+      },
+      {
+        "path": "dockerized_labs/software_integrity_lab/app.py",
+        "sha256": "d324aa809c7d2936d0f04649b314fb9a5bf4c432e3b3ccc672ac2f0ed98df33f",
+        "sanitised_sha256": "d324aa809c7d2936d0f04649b314fb9a5bf4c432e3b3ccc672ac2f0ed98df33f",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/sql_injection_lab/app.py",
+        "sha256": "9a58b6da6a7c8e52ccccf70bde96e84b2ff71eb63a69dfea3be11c40c8e5fd5a",
+        "sanitised_sha256": "9a58b6da6a7c8e52ccccf70bde96e84b2ff71eb63a69dfea3be11c40c8e5fd5a",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/ssrf_lab/app.py",
+        "sha256": "862d84dea045ba4ecfe17bf09a99fcfbd148d4457e9da313fb09e7332cafd08b",
+        "sanitised_sha256": "862d84dea045ba4ecfe17bf09a99fcfbd148d4457e9da313fb09e7332cafd08b",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/template_injection_lab/app.py",
+        "sha256": "e5c7716ecc11e6a1de9024fb518d572e83ebf294096846ef118fbb4777a07da8",
+        "sanitised_sha256": "e5c7716ecc11e6a1de9024fb518d572e83ebf294096846ef118fbb4777a07da8",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/xss_lab/app.py",
+        "sha256": "dbcff08fec013d1fde896ac880ec2ab8441e7248cca58cbeed40f6e93f4723b4",
+        "sanitised_sha256": "dbcff08fec013d1fde896ac880ec2ab8441e7248cca58cbeed40f6e93f4723b4",
+        "redactions": 0
+      },
+      {
+        "path": "dockerized_labs/xxe_lab/app.py",
+        "sha256": "50a43aa0bad0d4604b33722c8465e24822d95dfb2ebfbce067589815b113e002",
+        "sanitised_sha256": "50a43aa0bad0d4604b33722c8465e24822d95dfb2ebfbce067589815b113e002",
+        "redactions": 0
+      }
+    ],
+    "findings": 62,
+    "credential_guard": "passed",
+    "destination": "Google Gemini API"
+  },
+  {
+    "dataset": "vampi",
+    "public_url": "https://github.com/erev0s/VAmPI",
+    "commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "tracked_files": [
+      {
+        "path": "api_views/users.py",
+        "sha256": "46006eb7207ebbae163f5320b13e3bf0ec464cef201a51fb2cd43b5cfdb4116c",
+        "sanitised_sha256": "46006eb7207ebbae163f5320b13e3bf0ec464cef201a51fb2cd43b5cfdb4116c",
+        "redactions": 0
+      }
+    ],
+    "findings": 3,
+    "credential_guard": "passed",
+    "destination": "Google Gemini API"
+  }
+]

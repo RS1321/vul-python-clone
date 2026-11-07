@@ -1,0 +1,14 @@
+[
+  {
+    "path": "encoder.py",
+    "sha256": "9cefbfceb0de3535cb5f57577fb32c88efeffd23c1c999b06e36679b57fda1a5",
+    "before": "def encode(value):\n    return {\"legacy\": value}\n",
+    "after": "def encode(value):\n    return {\"version\": 2, \"payload\": value}\n"
+  },
+  {
+    "path": "decoder.py",
+    "sha256": "33d82e654afd21a08fd160eb669b96599a9374b78ee59361429d492874145d52",
+    "before": "def decode(value):\n    return value[\"legacy\"]\n",
+    "after": "def decode(value):\n    if not isinstance(value, dict) or value.get(\"version\") != 2:\n        raise ValueError(\"Invalid version\")\n    return value[\"payload\"]\n"
+  }
+]

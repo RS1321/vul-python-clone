@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -54,7 +54,7 @@
+     if request.method == "POST":
+         try:
+             from defusedxml.minidom import parseString
+-            doc = parseString(request.data.decode("utf-8"))
++            doc = parseString(request.data.decode("utf-8"), forbid_dtd=True, forbid_entities=True)
+             for event, node in doc:
+                 if event == START_ELEMENT and node.tagName == "text":
+                     doc.expandNode(node)

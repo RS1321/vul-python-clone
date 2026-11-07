@@ -1,0 +1,62 @@
+
+Cycle 1
+gemma-4-31b-it B: 1/29 py/flask-debug:vulnerable_app.py:508:23
+gemma-4-31b-it B: 2/29 py/stack-trace-exposure:vulnerable_app.py:433:22
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 2,
+  "accepted_patches": 0,
+  "elapsed_seconds": 157.79700000000048
+}
+
+Cycle 2
+gemma-4-31b-it B: 2/29 py/stack-trace-exposure:vulnerable_app.py:433:22
+gemma-4-31b-it B: 3/29 py/xml-bomb:vulnerable_app.py:429:27
+gemma-4-31b-it B: 4/29 py/stack-trace-exposure:vulnerable_app.py:415:21
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 4,
+  "accepted_patches": 2,
+  "elapsed_seconds": 117.45299999999952
+}
+
+Cycle 3
+gemma-4-31b-it B: 4/29 py/stack-trace-exposure:vulnerable_app.py:415:21
+gemma-4-31b-it B: 5/29 py/command-line-injection:vulnerable_app.py:412:4
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 5,
+  "accepted_patches": 2,
+  "elapsed_seconds": 2954.25
+}
+
+Cycle 4
+gemma-4-31b-it B: 5/29 py/command-line-injection:vulnerable_app.py:412:4
+gemma-4-31b-it B: 6/29 py/stack-trace-exposure:vulnerable_app.py:393:20
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 6,
+  "accepted_patches": 2,
+  "elapsed_seconds": 150.78099999999904
+}
+
+Cycle 5
+gemma-4-31b-it B: 6/29 py/stack-trace-exposure:vulnerable_app.py:393:20
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 6,
+  "accepted_patches": 2,
+  "elapsed_seconds": 72.93700000000172
+}
+
+Cycle 6
+gemma-4-31b-it B: 6/29 py/stack-trace-exposure:vulnerable_app.py:393:20
+gemma-4-31b-it B: 7/29 py/reflective-xss:vulnerable_app.py:391:11
+gemma-4-31b-it B: 8/29 py/unsafe-deserialization:vulnerable_app.py:390:25
+gemma-4-31b-it B: 9/29 py/sql-injection:vulnerable_app.py:369:16
+{
+  "status": "interrupted_api_error",
+  "processed_findings": 9,
+  "accepted_patches": 5,
+  "elapsed_seconds": 292.21900000000096
+}
