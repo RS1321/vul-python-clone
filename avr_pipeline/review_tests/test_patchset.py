@@ -85,3 +85,23 @@ def test_validation_cannot_silently_change_accepted_source(tmp_path):
     result = apply_patchset(tmp_path, [edit(path, '1', '2')], check)
     assert not result['accepted'] and result['rolled_back']
     assert path.read_text() == 'value = 1\n'
+
+
+def test_transient_file_lock_during_rollback_restores_both_files(tmp_path, monkeypatch):
+    import llm.patchset as patchset
+    one, two = tmp_path / 'one.py', tmp_path / 'two.py'
+    for path in (one, two):
+        path.write_bytes(b'value = 1\r\n')
+    edits = [edit(path, '1', '2') for path in (one, two)]
+    replace = patchset.os.replace
+    locked = []
+    def temporarily_locked(source, destination):
+        if str(destination) == str(one) and b'value = 1' in __import__('pathlib').Path(source).read_bytes() and len(locked) < 2:
+            locked.append(True)
+            raise PermissionError('Temporary sharing violation during rollback')
+        return replace(source, destination)
+    monkeypatch.setattr(patchset.os, 'replace', temporarily_locked)
+    monkeypatch.setattr(patchset.time, 'sleep', lambda _: None)
+    result = apply_patchset(tmp_path, edits, lambda _: {'passed': False})
+    assert not result['accepted'] and result['rolled_back'] and len(locked) == 2
+    assert one.read_bytes() == two.read_bytes() == b'value = 1\r\n'

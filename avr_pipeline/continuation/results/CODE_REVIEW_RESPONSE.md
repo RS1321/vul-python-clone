@@ -4,7 +4,7 @@ The expanded follow-up measurements are in [External and production evaluation](
 
 The user deferred manuscript work. No title, claims, references, numbering or paper figures were edited.
 
-Pipeline verification: 39 passed, 0 failed/errored. This includes coordinated two-module contracts, rollback of every file on failed checks, stale-digest rejection, and JavaScript syntax/runtime checks.
+Pipeline verification: 40 passed, 0 failed/errored. This includes coordinated two-module contracts, rollback of every file on failed checks, stale-digest rejection, and JavaScript syntax/runtime checks.
 
 Ordinary startup contract: 17/17 recorded baseline/finished synthetic configurations pass with the Flask server mocked. This executes initialization and checks the server call without opening a network server.
 

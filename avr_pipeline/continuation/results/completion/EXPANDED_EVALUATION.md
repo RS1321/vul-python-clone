@@ -81,4 +81,6 @@ All 144 assertions in the pinned minimist test files, including proto.js, pass a
 
 See [setup and commands](REPRODUCE.md). Reports regenerate offline with `python continuation/completion_report.py`. Saved model outputs can be checked without API calls; new inference requires the configured free Google model and available quota. External source clones, fixture databases, runtime environments and ZAP installations are intentionally excluded from the delivery ZIP.
 
+Delivery verification also exposed a transient Windows file lock during rollback. The delivered patch writer now retries PermissionError on the same atomic replacement up to six times, then propagates persistent errors. A regression check reproduces a temporary lock during two-file rollback and verifies exact restoration. The pipeline checks now pass 40/40. The recorded repair trials preceded this filesystem retry change; no new model success is inferred from it.
+
 Known boundaries remain explicit: targeted route/lesson coverage rather than exhaustive active testing; one production model; four historical defects; two languages; three proposals per case; no original human-review provenance. The previous missing measurements now have recorded positive and negative results; unsupported general claims are not inferred.

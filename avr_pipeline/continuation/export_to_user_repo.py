@@ -73,7 +73,8 @@ def main():
             if target.is_symlink() or not target.resolve().is_relative_to(DEST.resolve()):
                 raise ValueError('Export path escapes owned directory')
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(data)
+            if not target.exists() or target.read_bytes() != data:
+                target.write_bytes(data)
             records.append({'path': relative.as_posix(), 'source_sha256': original_sha,
                             'export_sha256': digest(data), 'redactions': redactions + count,
                             'workspace_path_redactions': path_redactions})

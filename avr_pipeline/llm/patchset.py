@@ -9,6 +9,7 @@ import hashlib
 import os
 from pathlib import Path
 import tempfile
+import time
 
 
 def sha256(data):
@@ -37,7 +38,17 @@ def write_bytes(path, data):
         with os.fdopen(handle, 'wb') as stream:
             stream.write(data)
         os.chmod(temporary, mode)
-        os.replace(temporary, path)
+        # Antivirus/indexing/sync clients can briefly deny replacement on Windows,
+        # including during rollback. Keep the prepared bytes and retry the same
+        # atomic operation; persistent permission errors still propagate.
+        for attempt in range(6):
+            try:
+                os.replace(temporary, path)
+                break
+            except PermissionError:
+                if attempt == 5:
+                    raise
+                time.sleep(0.05 * (2 ** attempt))
     finally:
         if os.path.exists(temporary):
             os.unlink(temporary)

@@ -62,7 +62,9 @@ def main():
     with (OUT / 'five-model-observations.csv').open('w', newline='', encoding='utf-8') as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
         writer.writeheader(); writer.writerows(rows)
-    tests = OUT / 'pipeline-tests.xml'
+    tests = OUT / 'completion/pipeline-checks.xml'
+    if not tests.exists():
+        tests = OUT / 'pipeline-tests.xml'
     cases = list(ET.parse(tests).iter('testcase')) if tests.exists() else []
     failed = sum(c.find('failure') is not None or c.find('error') is not None for c in cases)
     vet = load(OUT / 'guidance-vetting.json', [])

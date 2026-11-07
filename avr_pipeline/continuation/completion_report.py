@@ -104,6 +104,8 @@ def main():
       'See [setup and commands](REPRODUCE.md). Reports regenerate offline with `python continuation/completion_report.py`. '
       'Saved model outputs can be checked without API calls; new inference requires the configured free Google model and available quota. '
       'External source clones, fixture databases, runtime environments and ZAP installations are intentionally excluded from the delivery ZIP.', '',
+      'Delivery verification also exposed a transient Windows file lock during rollback. The delivered patch writer now retries PermissionError on the same atomic replacement up to six times, then propagates persistent errors. '
+      'A regression check reproduces a temporary lock during two-file rollback and verifies exact restoration. The pipeline checks now pass 40/40. The recorded repair trials preceded this filesystem retry change; no new model success is inferred from it.', '',
       'Known boundaries remain explicit: targeted route/lesson coverage rather than exhaustive active testing; one production model; four historical defects; two languages; three proposals per case; no original human-review provenance. '
       'The previous missing measurements now have recorded positive and negative results; unsupported general claims are not inferred.', '']
     (OUT / 'EXPANDED_EVALUATION.md').write_text('\n'.join(lines), encoding='utf-8')
@@ -116,9 +118,10 @@ def main():
     audit = dict(external_configurations=len(grouped),external_suites=len(external),external_functionality_all_pass=all(r['result']['functionality_passed'] for r in external),
         production_original_accepted=sum(r['accepted'] for r in original),production_feedback_accepted=sum(r['accepted'] for r in feedback),
         production_trials_per_protocol=12,authenticated_scans=scan_summary,multifile_cases=len(multifile),
-        implementation_sha256={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files})
+        delivery_implementation_sha256={f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest() for f in files},
+        implementation_note='Digests describe delivered code. Repair measurements precede the bounded filesystem retry fix; the pre-fix patch writer is retained in experiment-implementation/patchset.py.')
     (OUT/'measurement-audit.json').write_text(json.dumps(audit,indent=2),encoding='utf-8')
-    print(json.dumps({k:v for k,v in audit.items() if k not in ('implementation_sha256','authenticated_scans')}))
+    print(json.dumps({k:v for k,v in audit.items() if k not in ('delivery_implementation_sha256','authenticated_scans','implementation_note')}))
 
 
 if __name__ == '__main__':

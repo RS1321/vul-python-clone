@@ -154,8 +154,8 @@
     },
     {
       "path": "continuation/completion_report.py",
-      "source_sha256": "c212d2b1ec6cd58bcfe122488a6ee5156d264c208caf73049687e41f76a471b9",
-      "export_sha256": "c212d2b1ec6cd58bcfe122488a6ee5156d264c208caf73049687e41f76a471b9",
+      "source_sha256": "29bc29d7889906db6bc35d5555fd1a8eb1cb77f10240ea504fedbddf811a1fc6",
+      "export_sha256": "29bc29d7889906db6bc35d5555fd1a8eb1cb77f10240ea504fedbddf811a1fc6",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -196,8 +196,8 @@
     },
     {
       "path": "continuation/export_to_user_repo.py",
-      "source_sha256": "9cf1e34b2deedc62be856b86280af5ec79cb634a0a037f7f1d6610763daa0fee",
-      "export_sha256": "9cf1e34b2deedc62be856b86280af5ec79cb634a0a037f7f1d6610763daa0fee",
+      "source_sha256": "4245d4c07650594918aaa0dd35096ba0d0c984a7ff8d92f5481a0cb1dec13c54",
+      "export_sha256": "4245d4c07650594918aaa0dd35096ba0d0c984a7ff8d92f5481a0cb1dec13c54",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -287,8 +287,8 @@
     },
     {
       "path": "continuation/report.py",
-      "source_sha256": "82cdc029e730290eaf80d4d4296b08c0da3baf8fedefc0896928287be287856e",
-      "export_sha256": "82cdc029e730290eaf80d4d4296b08c0da3baf8fedefc0896928287be287856e",
+      "source_sha256": "f824aa7b80b1822e9243462586c0e584a5de199e1e90f26920bb2830c51f34a0",
+      "export_sha256": "f824aa7b80b1822e9243462586c0e584a5de199e1e90f26920bb2830c51f34a0",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -329,8 +329,8 @@
     },
     {
       "path": "continuation/results/CODE_REVIEW_RESPONSE.md",
-      "source_sha256": "45c64cab80d5d6b3c4dc6bd9a9d6b5ece5eb34b24997524f40fea98574478969",
-      "export_sha256": "45c64cab80d5d6b3c4dc6bd9a9d6b5ece5eb34b24997524f40fea98574478969",
+      "source_sha256": "0a2a97c1af00ef799a589d1ec213a88f6837998fcbf8b757835ee0f56391b5fe",
+      "export_sha256": "0a2a97c1af00ef799a589d1ec213a88f6837998fcbf8b757835ee0f56391b5fe",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -392,8 +392,8 @@
     },
     {
       "path": "continuation/results/five-model-observations.json",
-      "source_sha256": "1ebe855958dc019426d6168f09cdd78c7894271850c038d6988aedfdc404acd3",
-      "export_sha256": "1ebe855958dc019426d6168f09cdd78c7894271850c038d6988aedfdc404acd3",
+      "source_sha256": "e4d08dd2963e61757a75c934d2c50dafaaee7b955a1f2ba7b8161a83c739eef9",
+      "export_sha256": "e4d08dd2963e61757a75c934d2c50dafaaee7b955a1f2ba7b8161a83c739eef9",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -623,8 +623,8 @@
     },
     {
       "path": "continuation/results/completion/EXPANDED_EVALUATION.md",
-      "source_sha256": "4d784f33eb18e27a469f82fa5c3392afa8beb029e4ee5a393a3914dc945d80b3",
-      "export_sha256": "4d784f33eb18e27a469f82fa5c3392afa8beb029e4ee5a393a3914dc945d80b3",
+      "source_sha256": "66691baa848da015a3f96531b1de459faede10d527cbabaa6bc413ff6db05652",
+      "export_sha256": "66691baa848da015a3f96531b1de459faede10d527cbabaa6bc413ff6db05652",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -644,15 +644,15 @@
     },
     {
       "path": "continuation/results/completion/measurement-audit.json",
-      "source_sha256": "018d14e9748d68518e3373d8db22d4cbae2f90b04ec56e26a61b9132716e7d0b",
-      "export_sha256": "018d14e9748d68518e3373d8db22d4cbae2f90b04ec56e26a61b9132716e7d0b",
+      "source_sha256": "c3d0afd354138621fd968cb241455f08e7182588189e1724cdaaa33dbc57329d",
+      "export_sha256": "c3d0afd354138621fd968cb241455f08e7182588189e1724cdaaa33dbc57329d",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
     {
       "path": "continuation/results/completion/pipeline-checks.xml",
-      "source_sha256": "2d5e7244f526eac3abcaac93f5c12053c6e9b6aad87d421e0748e3260fac2e7a",
-      "export_sha256": "2d5e7244f526eac3abcaac93f5c12053c6e9b6aad87d421e0748e3260fac2e7a",
+      "source_sha256": "46c9e417f132f7cc789f7cf61b16a560a8d6644b4ea8af92d67a40609ff42161",
+      "export_sha256": "46c9e417f132f7cc789f7cf61b16a560a8d6644b4ea8af92d67a40609ff42161",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -814,6 +814,20 @@
       "path": "continuation/results/completion/controls/urllib3-303-baseline.json",
       "source_sha256": "c2ae4e21437e1c627dfc783a8279046f578cdaea7d423a4d910df84bfef55103",
       "export_sha256": "c2ae4e21437e1c627dfc783a8279046f578cdaea7d423a4d910df84bfef55103",
+      "redactions": 0,
+      "workspace_path_redactions": 0
+    },
+    {
+      "path": "continuation/results/completion/experiment-implementation/patchset.py",
+      "source_sha256": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
+      "export_sha256": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
+      "redactions": 0,
+      "workspace_path_redactions": 0
+    },
+    {
+      "path": "continuation/results/completion/experiment-implementation/provenance.json",
+      "source_sha256": "8896d4daa26ddb62510d8d07af48f9d9f7308393b24b6846db5b0d849abc38e4",
+      "export_sha256": "8896d4daa26ddb62510d8d07af48f9d9f7308393b24b6846db5b0d849abc38e4",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -4641,8 +4655,8 @@
     },
     {
       "path": "llm/patchset.py",
-      "source_sha256": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
-      "export_sha256": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
+      "source_sha256": "c4888178e761c0ef6ca28d70caf992a4c73d92621b7ebdb3c92b68d2c3098d84",
+      "export_sha256": "c4888178e761c0ef6ca28d70caf992a4c73d92621b7ebdb3c92b68d2c3098d84",
       "redactions": 0,
       "workspace_path_redactions": 0
     },
@@ -41202,8 +41216,8 @@
     },
     {
       "path": "review_tests/test_patchset.py",
-      "source_sha256": "1dd3111024f1d4efad23803da4b8ad3737df3b4c782fdee87b20a1ee7a4bd1ae",
-      "export_sha256": "1dd3111024f1d4efad23803da4b8ad3737df3b4c782fdee87b20a1ee7a4bd1ae",
+      "source_sha256": "5afaed70cdc76f77cb30b3a49e9e66e70f95678c6d12bd69deed274488e4b4da",
+      "export_sha256": "5afaed70cdc76f77cb30b3a49e9e66e70f95678c6d12bd69deed274488e4b4da",
       "redactions": 0,
       "workspace_path_redactions": 0
     },

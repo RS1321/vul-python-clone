@@ -1,0 +1,5 @@
+{
+  "source_commit": "c665a40830804a6adbe825446e886f1f78b050d9",
+  "sha256": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
+  "scope": "Patch writer used for the recorded trials; delivered version adds only bounded retries for transient PermissionError."
+}

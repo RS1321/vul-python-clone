@@ -82,17 +82,18 @@
     }
   ],
   "multifile_cases": 4,
-  "implementation_sha256": {
+  "delivery_implementation_sha256": {
     "review/external_security.py": "f70ecee438c39aa43df0a6a56dda36acf910e18ba5a57866d3c5fe6224d36c8c",
     "review/production_security.py": "87bcb05bdc530b7681b94f4f7142e5012cfa4b110c4559d14142ca36e21a03a7",
     "review/minimist_security.js": "ef177169e759f28aee58ca633a4e65bd31e35a203ffa59493acbb59eb8822aae",
     "review/serve_external_scan.py": "e5d37c457ee51134dc4afc1270c30a824e90a396bb30b0925e967e701d565484",
-    "llm/patchset.py": "8c952f7c4770651db66ad7c6e38660c846ea7e6b94edcb730dddddbb592ccf91",
+    "llm/patchset.py": "c4888178e761c0ef6ca28d70caf992a4c73d92621b7ebdb3c92b68d2c3098d84",
     "llm/llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
     "continuation/production_evaluation.py": "6a30222b7e013fa330c996e7af8a92dc0b67e4ce636f26b7f40ad7faf4a8c0d2",
     "continuation/production_feedback.py": "a1ae3bf0e7cd41de9077fd44090b355393a6a3bab41350202648cb75b9d056e8",
     "continuation/external_security_suite.py": "f565a1d14560ee10d38d749e313a9049436273fedd7d81ffb20de1f569ee3469",
     "continuation/authenticated_scan.py": "be4560e94f8ac987534d7f85983b335c55057b83100d25fe5eae4c25542f86ca",
     "continuation/multifile_security_evaluation.py": "97073bc20d5ac891b9d6b80ea775cb05b79c3efad8818f978cdee7fa0944aaee"
-  }
+  },
+  "implementation_note": "Digests describe delivered code. Repair measurements precede the bounded filesystem retry fix; the pre-fix patch writer is retained in experiment-implementation/patchset.py."
 }
