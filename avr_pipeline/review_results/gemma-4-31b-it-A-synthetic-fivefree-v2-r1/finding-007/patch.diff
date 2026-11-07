@@ -1,0 +1,18 @@
+--- 
++++ 
+@@ -383,12 +383,14 @@
+ @app.route('/load_object', methods=['POST'])
+ def insecure_deserialization():
+     # --------------------------------------------
++    from flask import request
++    from markupsafe import escape
+     data = request.data
+ 
+     try:
+         # --------------------------------------------
+         obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        return f"<h2>Deserialized Object:</h2><pre>{escape(str(obj))}</pre>"
+     except Exception as e:
+         return "Error deserializing: An internal error occurred."
+ 

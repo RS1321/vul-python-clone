@@ -1,0 +1,25 @@
+{
+  "dataset": "synthetic",
+  "source_url": "https://github.com/RS1321/vul-python-clone.git",
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "findings": 29,
+  "affected_files": 1,
+  "cwe_classes": 12,
+  "cwes": {
+    "CWE-215": 1,
+    "CWE-209": 6,
+    "CWE-776": 1,
+    "CWE-078": 1,
+    "CWE-079": 7,
+    "CWE-502": 1,
+    "CWE-089": 5,
+    "CWE-918": 1,
+    "CWE-022": 2,
+    "CWE-327": 1,
+    "CWE-601": 1,
+    "CWE-074": 2
+  },
+  "library_covered_findings": 29,
+  "cross_file_taint_findings": 0,
+  "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809"
+}

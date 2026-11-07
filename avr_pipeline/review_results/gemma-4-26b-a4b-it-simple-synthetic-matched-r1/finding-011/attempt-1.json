@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 7.280999999959022,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Restrict the URL to a predefined allowlist of trusted domains to prevent Server-Side Request Forgery (SSRF).\n\n```python\n@app.route('/fetch_url')\ndef ssrf_vulnerability():\n    # --------------------------------------------\n    url = request.args.get('url', 'http://example.com')\n    from urllib.parse import urlparse\n\n    # Allowlist of trusted domains\n    ALLOWED_DOMAINS = {'example.com', 'trusted-api.com'}\n    \n    try:\n        parsed_url = urlparse(url)\n        if parsed_url.scheme not in ('http', 'https') or parsed_url.netloc not in ALLOWED_DOMAINS:\n            return \"Error: Invalid or unauthorized URL.\", 400\n\n        # --------------------------------------------\n        import urllib.request\n        response = urllib.request.urlopen(url, timeout=5)\n        content = response.read().decode('utf-8', errors='ignore')\n        return f\"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>\"\n    except Exception:\n        return \"Error fetching URL: An unexpected error occurred while processing your request.\", 500\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 350,
+      "completion_tokens": 277,
+      "total_tokens": 627
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/full-ssrf\",\n  \"cwe\": \"CWE-918\",\n  \"description\": \"The full URL of this request depends on a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/fetch_url')\ndef ssrf_vulnerability():\n    # --------------------------------------------\n    url = request.args.get('url', 'http://example.com')\n\n    try:\n        # --------------------------------------------\n        response = urllib.request.urlopen(url, timeout=5)\n        content = response.read().decode('utf-8', errors='ignore')\n        return f\"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>\"\n    except Exception:\n        return \"Error fetching URL: An unexpected error occurred while processing your request.\", 500\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "ssrf_vulnerability"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

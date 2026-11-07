@@ -1,0 +1,135 @@
+{
+  "finding_id": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 6.906000000075437,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the weak DES algorithm and ECB mode with AES in GCM mode for authenticated encryption.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    from Crypto.Random import get_random_bytes\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'thisis32byteslongsecretkey!!!!'  # AES-256 requires 32 bytes\n    cipher = AES.new(key, AES.MODE_GCM)\n    nonce = cipher.nonce\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    # Return nonce, ciphertext, and tag to allow decryption\n    return f\"<h2>Encrypted Data:</h2><p>Nonce: {nonce.hex()}<br>Ciphertext: {ciphertext.hex()}<br>Tag: {tag.hex()}</p>\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 699,
+          "completion_tokens": 236,
+          "total_tokens": 935
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": []\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "encrypt_data"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "23 added plus deleted lines; allowed 5",
+          "lines_added": 13,
+          "lines_removed": 10,
+          "total_churn": 23,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 54.48400000005495,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the weak DES ECB encryption with AES GCM mode using a 32-byte key and returning the nonce, ciphertext, and tag.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'0123456789abcdef0123456789abcdef'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>Nonce: {cipher.nonce.hex()}<br>Ciphertext: {ciphertext.hex()}<br>Tag: {tag.hex()}</p>\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 429,
+            "retry_wait_seconds": 47.611203097
+          },
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 997,
+          "completion_tokens": 218,
+          "total_tokens": 1215
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": []\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    from Crypto.Random import get_random_bytes\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'thisis32byteslongsecretkey!!!!'  # AES-256 requires 32 bytes\n    cipher = AES.new(key, AES.MODE_GCM)\n    nonce = cipher.nonce\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    # Return nonce, ciphertext, and tag to allow decryption\n    return f\"<h2>Encrypted Data:</h2><p>Nonce: {nonce.hex()}<br>Ciphertext: {ciphertext.hex()}<br>Tag: {tag.hex()}</p>\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"23 added plus deleted lines; allowed 5\", \"lines_added\": 13, \"lines_removed\": 10, \"total_churn\": 23, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "encrypt_data"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "20 added plus deleted lines; allowed 5",
+          "lines_added": 10,
+          "lines_removed": 10,
+          "total_churn": 20,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 5.484000000054948,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the weak DES ECB encryption with AES CBC mode using a proper key size and padding to minimize code churn.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    from Crypto.Util.Padding import pad\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'sixteen_byte_key'\n    cipher = AES.new(key, AES.MODE_CBC)\n    iv = cipher.iv\n    \n    # --------------------------------------------\n    encrypted = cipher.encrypt(pad(data.encode(), AES.block_size))\n    \n    return f\"<h2>Encrypted Data:</h2><p>{iv.hex()}{encrypted.hex()}</p>\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 968,
+          "completion_tokens": 192,
+          "total_tokens": 1160
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": []\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'0123456789abcdef0123456789abcdef'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    ciphertext, tag = cipher.encrypt_and_digest(data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>Nonce: {cipher.nonce.hex()}<br>Ciphertext: {ciphertext.hex()}<br>Tag: {tag.hex()}</p>\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"20 added plus deleted lines; allowed 5\", \"lines_added\": 10, \"lines_removed\": 10, \"total_churn\": 20, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "encrypt_data"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "22 added plus deleted lines; allowed 5",
+          "lines_added": 12,
+          "lines_removed": 10,
+          "total_churn": 22,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "ast_name": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

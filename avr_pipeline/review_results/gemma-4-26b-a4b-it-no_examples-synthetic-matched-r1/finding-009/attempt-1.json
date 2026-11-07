@@ -1,0 +1,39 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 5.172000000020489,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use parameterized queries to prevent SQL injection by passing the account_id as a separate argument to the execute method.\n\n```python\n@app.route('/account/<account_id>')\ndef idor_vulnerability(account_id):\n    # --------------------------------------------\n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    cursor.execute(\"SELECT * FROM accounts WHERE id = ?\", (account_id,))\n    account = cursor.fetchone()\n    conn.close()\n    \n    if account:\n        return f\"<h2>Account Details</h2><p>Username: {account[1]}<br>Balance: ${account[2]}<br>Account: {account[3]}</p>\"\n    else:\n        return \"Account not found\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 930,
+      "completion_tokens": 193,
+      "total_tokens": 1123
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 017\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:369:16\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 369,\n      \"end_line\": 369,\n      \"function\": \"idor_vulnerability\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 363,\n                      \"startColumn\": 24,\n                      \"endColumn\": 34\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for account_id\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 369,\n                      \"startColumn\": 20,\n                      \"endColumn\": 69\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Fstring\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"74788e6293fa34ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\nCWE repair guidance\nBind user data through the database driver's parameter interface. Keep SQL structure constant; allowlist identifiers if they must vary.\n\nCurrent source snapshot\n```python\n@app.route('/account/<account_id>')\ndef idor_vulnerability(account_id):\n    # --------------------------------------------\n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    cursor.execute(f\"SELECT * FROM accounts WHERE id = {account_id}\")\n    account = cursor.fetchone()\n    conn.close()\n    \n    if account:\n        return f\"<h2>Account Details</h2><p>Username: {account[1]}<br>Balance: ${account[2]}<br>Account: {account[3]}</p>\"\n    else:\n        return \"Account not found\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "idor_vulnerability"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "8 added plus deleted lines; allowed 5",
+      "lines_added": 4,
+      "lines_removed": 4,
+      "total_churn": 8,
+      "original_length": 13,
+      "limit": 5
+    }
+  }
+}

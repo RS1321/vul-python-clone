@@ -1,0 +1,25 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..d833b4a 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -421,16 +421,17 @@ def command_injection():
+ 
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
++    from defusedxml import ElementTree as safe_xml
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        root = safe_xml.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:
+-        return f"Error parsing XML: {str(e)}"
++        return "Error parsing XML: An internal error occurred."
+ 
+ 
+ # ============================================================================

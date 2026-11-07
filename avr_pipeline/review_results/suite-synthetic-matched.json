@@ -1,0 +1,26 @@
+[
+  {
+    "run": "gemma-4-26b-a4b-it-B-synthetic-matched-r1",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_guidance-synthetic-matched-r1",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-C-synthetic-matched-r1",
+    "status": "interrupted_api_error",
+    "returncode": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-simple-synthetic-matched-r1",
+    "status": "already_complete"
+  }
+]

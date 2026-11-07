@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -332,7 +332,7 @@
+         <form method="POST">
+             From: <input name="from"><br>
+             To: <input name="to"><br>
+-            Amount: <input name="amount"><br>
++            Amount: <input name="to"><br>
+             <input type="submit" value="Transfer">
+         </form>
+     '''

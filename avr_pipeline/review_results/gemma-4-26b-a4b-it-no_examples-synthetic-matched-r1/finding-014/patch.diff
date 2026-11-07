@@ -1,0 +1,10 @@
+--- 
++++ 
+@@ -317,6 +317,7 @@
+         amount = request.values.get('amount')
+ 
+         # --------------------------------------------
++        import sqlite3
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+         cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))

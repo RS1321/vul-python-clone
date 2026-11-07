@@ -1,0 +1,56 @@
+{
+  "attempt": 2,
+  "accepted": true,
+  "duration_seconds": 11.59299999999348,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace the exposure of the exception message in the response with a generic error message to prevent stack trace or internal detail leakage.\n\n```python\ndef stop_lab(request, lab_image_name):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    container_name = _get_container_name(username, lab_image_name)\n\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        container = next((c for c in user_containers if c.name == container_name), None)\n        if container is None:\n            return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n        if container.status == 'running':\n            container.stop()\n        container.remove()\n        return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})\n    except docker.errors.NotFound:\n        return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n    except Exception:\n        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 500
+      },
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1306,
+      "completion_tokens": 350,
+      "total_tokens": 1656
+    }
+  },
+  "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 023\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:533:22\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 533,\n      \"end_line\": 533,\n      \"function\": \"stop_lab\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"challenge/views.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 5\n                    },\n                    \"region\": {\n                      \"startLine\": 532,\n                      \"startColumn\": 25,\n                      \"endColumn\": 26\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for e\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"challenge/views.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 5\n                    },\n                    \"region\": {\n                      \"startLine\": 533,\n                      \"startColumn\": 60,\n                      \"endColumn\": 66\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for str()\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"challenge/views.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 5\n                    },\n                    \"region\": {\n                      \"startLine\": 533,\n                      \"startColumn\": 29,\n                      \"endColumn\": 67\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Dict\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"8a40eb9806ce567:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef stop_lab(request, lab_image_name):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n\n    username = request.user.username\n    container_name = _get_container_name(username, lab_image_name)\n\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        container = next((c for c in user_containers if c.name == container_name), None)\n        if container is None:\n            return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n        if container.status == 'running':\n            container.stop()\n        container.remove()\n        return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})\n    except docker.errors.NotFound:\n        return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)\n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n\n```\nValidation feedback\n('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "challenge/views.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "stop_lab"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "4 added plus deleted lines; allowed 10.5",
+      "lines_added": 2,
+      "lines_removed": 2,
+      "total_churn": 4,
+      "original_length": 21,
+      "limit": 10.5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 7.142857142857143,
+      "new_errors": [],
+      "preexisting_error_count": 5
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

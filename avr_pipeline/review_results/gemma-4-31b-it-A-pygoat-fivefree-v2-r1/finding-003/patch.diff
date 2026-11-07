@@ -1,0 +1,9 @@
+--- 
++++ 
+@@ -229,5 +229,4 @@
+ def health_check():
+     return "OK", 200
+ 
+-if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5011, debug=True)
++app.run(host='0.0.0.0', port=5011, debug=False)

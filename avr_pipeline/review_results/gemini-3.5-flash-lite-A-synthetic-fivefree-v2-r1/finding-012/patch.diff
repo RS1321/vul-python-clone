@@ -1,0 +1,25 @@
+--- 
++++ 
+@@ -315,7 +315,7 @@
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
++
+         # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+@@ -323,9 +323,10 @@
+         cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
+         conn.commit()
+         conn.close()
+-        
+-        return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++
++        from flask import render_template_string
++        return render_template_string("<h2>Transferred ${{amount}} from {{from_account}} to {{to_account}}</h2>", amount=amount, from_account=from_account, to_account=to_account)
++
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">

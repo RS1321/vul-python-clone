@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 4.687999999965541,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use `markupsafe.escape` to sanitize the user-provided URL before embedding it into the HTML template to prevent Cross-Site Scripting (XSS).\n\n```python\n@app.route('/frame_content')\ndef frame_content():\n    from markupsafe import escape\n    # --------------------------------------------\n    frame_url = request.args.get('url', 'https://example.com')\n\n    # --------------------------------------------\n    html_content = '''\n        <h2>External Content</h2>\n        <iframe src=\"{{ frame_url }}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content, frame_url=escape(frame_url))\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 323,
+      "completion_tokens": 167,
+      "total_tokens": 490
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/reflective-xss\",\n  \"cwe\": \"CWE-079\",\n  \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/frame_content')\ndef frame_content():\n    # --------------------------------------------\n    frame_url = request.args.get('url', 'https://example.com')\n\n    # --------------------------------------------\n    html_content = '''\n        <h2>External Content</h2>\n        <iframe src=\"{{ frame_url }}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content, frame_url=frame_url)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "frame_content"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

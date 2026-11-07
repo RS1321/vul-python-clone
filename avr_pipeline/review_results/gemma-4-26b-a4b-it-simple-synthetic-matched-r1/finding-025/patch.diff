@@ -1,0 +1,33 @@
+--- 
++++ 
+@@ -124,19 +124,21 @@
+ def profile():
+     # --------------------------------------------
+     username = request.args.get('name', session.get('username', 'Guest'))
+-    
+-    # --------------------------------------------
+-    html_content = f'''
++
++    # --------------------------------------------
++    comment = request.args.get('comment', 'No comment')
++    html_template = '''
+         <h1>User Profile</h1>
+-        <p>Welcome, {username}!</p>
+-        <p>Your comment: {request.args.get('comment', 'No comment')}</p>
++        <p>Welcome, {{ username }}!</p>
++        <p>Your comment: {{ comment }}</p>
+     '''
+-    
++
+     # --------------------------------------------
+     if username == 'admin':
+-        html_content += f'<p style="color:red;">Password Hint: {ADMIN_PASSWORD}</p>'
+-    
+-    return render_template_string(html_content)
++        html_template += '<p style="color:red;">Password Hint: {{ admin_password }}</p>'
++        return render_template_string(html_template, username=username, comment=comment, admin_password=ADMIN_PASSWORD)
++
++    return render_template_string(html_template, username=username, comment=comment)
+ 
+ 
+ # ============================================================================

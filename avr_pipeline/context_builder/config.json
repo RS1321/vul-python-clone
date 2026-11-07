@@ -1,0 +1,22 @@
+{
+  "repo": {
+    "path": "repo",
+    "url": "https://github.com/RS1321/vul-python-clone"
+  },
+  "artifacts": {
+    "sast_file": "../artifacts/python-results.sarif",
+    "dast_file": "../artifacts/full-scan-report.json"
+  },
+  "code_context": {
+    "context_lines_before": 10,
+    "context_lines_after": 10
+  },
+  "output": {
+    "context_file": "context.json",
+    "filtered_context_file": "filtered_context.json"
+  },
+  "filtering": {
+    "sast_depth": "medium",
+    "dast_depth": "medium"
+  }
+}

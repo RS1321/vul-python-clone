@@ -1,0 +1,26 @@
+--- 
++++ 
+@@ -179,9 +179,10 @@
+ # Lab 3: Session Management
+ @app.route("/lab3", methods=["GET", "POST"])
+ def lab3():
+-    import base64, json, hashlib
++    import base64, json
+     from datetime import datetime, timedelta
+     from flask import request, render_template, make_response
++    from werkzeug.security import generate_password_hash, check_password_hash
+     if request.method == "GET":
+         try:
+             session_id = request.cookies.get("session_id")
+@@ -212,9 +213,8 @@
+ 
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.sha256(password.encode()).hexdigest()
+-
+-        if username in USERS and USERS[username]["password"] == password_hash:
++
++        if username in USERS and check_password_hash(USERS[username]["password"], password):
+             session_data = {
+                 "username": username,
+                 "role": USERS[username]["role"],

@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -22,7 +22,8 @@
+ 
+ 
+ def custom_hash(password):
+-    return hashlib.sha1(password.encode()).hexdigest()
++    import hashlib
++    return hashlib.sha256(password.encode()).hexdigest()
+ 
+ 
+ @app.route("/")

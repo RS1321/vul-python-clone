@@ -1,0 +1,59 @@
+{
+  "attempt": 2,
+  "accepted": true,
+  "duration_seconds": 1.1880000000001019,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Added a domain allowlist check to prevent SSRF by restricting the URL to a trusted host.\n\n```python\ndef ssrf_vulnerability():\n    url = request.args.get('url', 'http://example.com')\n    if not url.startswith('https://trusted.com/'): return \"Invalid URL\", 400\n    try:\n        response = urllib.request.urlopen(url, timeout=5)\n        content = response.read().decode('utf-8', errors='ignore')\n        return f\"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>\"\n    except Exception as e:\n        return f\"Error fetching URL: {str(e)}\"\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1177,
+      "completion_tokens": 164,
+      "total_tokens": 1341
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 029\",\n  \"finding_id\": \"py/full-ssrf:vulnerable_app.py:351:28\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/full-ssrf\",\n    \"cwe\": \"CWE-918\",\n    \"all_cwes\": [\n      \"CWE-918\"\n    ],\n    \"description\": \"The full URL of this request depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 351,\n      \"end_line\": 351,\n      \"function\": \"ssrf_vulnerability\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 347,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 347,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 347,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 347,\n              \"node\": \"ControlFlowNode for url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 351,\n              \"node\": \"ControlFlowNode for url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"5239561325fd01a6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"11\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/fetch_url')\ndef ssrf_vulnerability():\n    # --------------------------------------------\n    url = request.args.get('url', 'http://example.com')\n    \n    try:\n        # --------------------------------------------\n        response = urllib.request.urlopen(url, timeout=5)\n        content = response.read().decode('utf-8', errors='ignore')\n        return f\"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>\"\n    except Exception as e:\n        return f\"Error fetching URL: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef ssrf_vulnerability():\n    import urllib.request\n    from urllib.parse import urlparse\n    url = request.args.get('url', 'http://example.com')\n    \n    if not url.startswith(('http://trusted.com/', 'https://trusted.com/')):\n        return \"Error: Invalid URL domain\", 400\n    \n    try:\n        response = urllib.request.urlopen(url, timeout=5)\n        content = response.read().decode('utf-8', errors='ignore')\n        return f\"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>\"\n    except Exception as e:\n        return f\"Error fetching URL: {str(e)}\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"9 added plus deleted lines; allowed 5\", \"lines_added\": 6, \"lines_removed\": 3, \"total_churn\": 9, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "ssrf_vulnerability"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "4 added plus deleted lines; allowed 5",
+      "lines_added": 1,
+      "lines_removed": 3,
+      "total_churn": 4,
+      "original_length": 11,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 5.151515151515151,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "failed",
+      "returncode": 1,
+      "tests": 68,
+      "failures": [
+        "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+        "tests.test_vulnerable_app::test_fetch_url_with_param"
+      ],
+      "infrastructure_error": false
+    }
+  }
+}

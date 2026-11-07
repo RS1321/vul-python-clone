@@ -1,0 +1,2376 @@
+[
+  {
+    "finding_number": "FINDING 008",
+    "finding_id": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/management/commands/startuplabs.py",
+        "start_line": 51,
+        "end_line": 51,
+        "function": "Command.handle"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 552,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 561,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 585,
+                        "startColumn": 60,
+                        "endColumn": 74
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/models.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 6
+                      },
+                      "region": {
+                        "startLine": 68,
+                        "endColumn": 25
+                      }
+                    },
+                    "message": {
+                      "text": "[orm-model] Class Lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 28,
+                        "startColumn": 10,
+                        "endColumn": 27
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 28,
+                        "startColumn": 3,
+                        "endColumn": 7
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for labs [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 14,
+                        "endColumn": 18
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for labs [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 7,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 21,
+                        "endColumn": 24
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 21,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "endColumn": 18
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "endColumn": 14
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 51,
+                        "startColumn": 26,
+                        "endColumn": 36
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 600,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 614,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 639,
+                        "startColumn": 30,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 639,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "[post] ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 640,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 641,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/models.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 6
+                      },
+                      "region": {
+                        "startLine": 68,
+                        "endColumn": 25
+                      }
+                    },
+                    "message": {
+                      "text": "[orm-model] Class Lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 28,
+                        "startColumn": 10,
+                        "endColumn": 27
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 28,
+                        "startColumn": 3,
+                        "endColumn": 7
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for labs [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 14,
+                        "endColumn": 18
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for labs [List element, Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 7,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 21,
+                        "endColumn": 24
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 21,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "endColumn": 18
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 50,
+                        "startColumn": 4,
+                        "endColumn": 14
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/management/commands/startuplabs.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 4
+                      },
+                      "region": {
+                        "startLine": 51,
+                        "startColumn": 26,
+                        "endColumn": 36
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "763e6942d3f8e292:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  },
+  {
+    "finding_number": "FINDING 009",
+    "finding_id": "py/path-injection:challenge/views.py:244:8",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 244,
+        "end_line": 244,
+        "function": "_resolve_build_path"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 552,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 561,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 570,
+                        "startColumn": 33,
+                        "endColumn": 47
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 231,
+                        "startColumn": 25,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 35,
+                        "endColumn": 75
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 18,
+                        "endColumn": 76
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "Config",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 244,
+                        "startColumn": 27,
+                        "endColumn": 65
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 552,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 561,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 563,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 585,
+                        "startColumn": 60,
+                        "endColumn": 74
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/models.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 6
+                      },
+                      "region": {
+                        "startLine": 68,
+                        "endColumn": 25
+                      }
+                    },
+                    "message": {
+                      "text": "[orm-model] Class Lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 217,
+                        "startColumn": 15,
+                        "endColumn": 51
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute() [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 217,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 220,
+                        "startColumn": 31,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 220,
+                        "startColumn": 31,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 218,
+                        "startColumn": 16,
+                        "endLine": 222,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 370,
+                        "startColumn": 22,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 370,
+                        "startColumn": 9,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 26,
+                        "endColumn": 36
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 26,
+                        "endColumn": 54
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Subscript"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 380,
+                        "startColumn": 53,
+                        "endColumn": 67
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 249,
+                        "startColumn": 45,
+                        "endColumn": 59
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 253,
+                        "startColumn": 42,
+                        "endColumn": 56
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 231,
+                        "startColumn": 25,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 35,
+                        "endColumn": 75
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 18,
+                        "endColumn": 76
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "Config",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 5,
+                        "endColumn": 15
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 244,
+                        "startColumn": 27,
+                        "endColumn": 65
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 600,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 614,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 623,
+                        "startColumn": 33,
+                        "endColumn": 47
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 231,
+                        "startColumn": 25,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 35,
+                        "endColumn": 75
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 18,
+                        "endColumn": 76
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "Config",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 244,
+                        "startColumn": 27,
+                        "endColumn": 65
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 600,
+                        "startColumn": 23,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 614,
+                        "startColumn": 9,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 26,
+                        "endColumn": 52
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 616,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 639,
+                        "startColumn": 30,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 639,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "[post] ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 640,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 641,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/models.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 6
+                      },
+                      "region": {
+                        "startLine": 68,
+                        "endColumn": 25
+                      }
+                    },
+                    "message": {
+                      "text": "[orm-model] Class Lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 217,
+                        "startColumn": 15,
+                        "endColumn": 51
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute() [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 217,
+                        "startColumn": 9,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 220,
+                        "startColumn": 31,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab [Attribute build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 220,
+                        "startColumn": 31,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 218,
+                        "startColumn": 16,
+                        "endLine": 222,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 370,
+                        "startColumn": 22,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 370,
+                        "startColumn": 9,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 26,
+                        "endColumn": 36
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 26,
+                        "endColumn": 54
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Subscript"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 371,
+                        "startColumn": 9,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 380,
+                        "startColumn": 53,
+                        "endColumn": 67
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 249,
+                        "startColumn": 45,
+                        "endColumn": 59
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 253,
+                        "startColumn": 42,
+                        "endColumn": 56
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 231,
+                        "startColumn": 25,
+                        "endColumn": 39
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_location"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 35,
+                        "endColumn": 75
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 18,
+                        "endColumn": 76
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "Config",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 238,
+                        "startColumn": 5,
+                        "endColumn": 15
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for build_path"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "challenge/views.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 5
+                      },
+                      "region": {
+                        "startLine": 244,
+                        "startColumn": 27,
+                        "endColumn": 65
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "35f55d710439d761:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  }
+]

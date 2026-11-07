@@ -1,0 +1,54 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 3.1719999999986612,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replaced insecure MD5 hashing with werkzeug's secure password hashing function.\n```python\ndef lab1():\n    from werkzeug.security import generate_password_hash, check_password_hash\n    if request.method == \"POST\":\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n        if username in LAB1_USERS and check_password_hash(LAB1_USERS[username], password):\n            return render_template(\"lab1.html\", user=username, success=True)\n        else:\n            return render_template(\"lab1.html\", success=False, failure=True)\n    return render_template(\"lab1.html\")\n```",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.015
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 983,
+      "completion_tokens": 168,
+      "total_tokens": 1151
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/crypto_failure_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 050\",\n  \"finding_id\": \"py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-sensitive-data-hashing\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\",\n      \"CWE-328\",\n      \"CWE-916\"\n    ],\n    \"description\": \"[Sensitive data (password)](1) is used in a hashing algorithm (MD5) that is insecure for password hashing, since it is not a computationally expensive hash function.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/crypto_failure_lab/app.py\",\n      \"start_line\": 38,\n      \"end_line\": 38,\n      \"function\": \"lab1\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 37,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 38,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"659f3522f8da232a:1\",\n    \"primaryLocationStartColumnFingerprint\": \"28\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route(\"/lab1\", methods=[\"GET\", \"POST\"])\ndef lab1():\n    if request.method == \"POST\":\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n        password_hash = hashlib.md5(password.encode()).hexdigest()\n        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:\n            return render_template(\"lab1.html\", user=username, success=True)\n        else:\n            return render_template(\"lab1.html\", success=False, failure=True)\n    return render_template(\"lab1.html\")\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "lab1"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "4 added plus deleted lines; allowed 5",
+      "lines_added": 2,
+      "lines_removed": 2,
+      "total_churn": 4,
+      "original_length": 11,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 6.666666666666667,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

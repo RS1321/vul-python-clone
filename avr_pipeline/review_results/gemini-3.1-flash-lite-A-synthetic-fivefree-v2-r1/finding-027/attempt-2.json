@@ -1,0 +1,40 @@
+{
+  "attempt": 2,
+  "accepted": false,
+  "duration_seconds": 11.030999999999949,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replaced the detailed exception message with a generic error response and logged the actual exception server-side to prevent information disclosure.\n\n```python\ndef login():\n    if request.method == 'GET':\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n    \n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n    \n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n        \n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n        \n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            return f\"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>\"\n    \n    except Exception:\n        app.logger.exception(\"Database error\")\n        return \"<h2>Database Error</h2><p>An internal error occurred.</p>\", 500\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 8.89
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1536,
+      "completion_tokens": 391,
+      "total_tokens": 1927
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 018\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:116:17\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 116,\n      \"end_line\": 116,\n      \"function\": \"login\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 114,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 116,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4d94edf673e43b6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n    \n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n    \n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n        \n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n        \n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>\"\n    \n    except Exception as e:\n        # --------------------------------------------\n        return f\"<h2>Database Error</h2><pre>{str(e)}</pre>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef login():\n    import logging\n    if request.method == 'GET':\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n    \n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n    \n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n        \n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n        \n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            return f\"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>\"\n    \n    except Exception as e:\n        logging.exception(\"Database error during login\")\n        return \"<h2>Database Error</h2><p>An internal error occurred. Please try again later.</p>\", 500\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"19 added plus deleted lines; allowed 18.5\", \"lines_added\": 8, \"lines_removed\": 11, \"total_churn\": 19, \"original_length\": 37, \"limit\": 18.5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "login"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "20 added plus deleted lines; allowed 18.5",
+      "lines_added": 8,
+      "lines_removed": 12,
+      "total_churn": 20,
+      "original_length": 37,
+      "limit": 18.5
+    }
+  }
+}

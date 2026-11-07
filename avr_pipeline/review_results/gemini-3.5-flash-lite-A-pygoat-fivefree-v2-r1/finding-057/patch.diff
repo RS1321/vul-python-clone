@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -110,7 +110,8 @@
+     try:
+         return render_template(f"blogs/{filename}")
+     except Exception as e:
+-        return f"Blog post not found: {str(e)}", 404
++        app.logger.exception("Error rendering blog post")
++        return "Blog post not found", 404
+ 
+ 
+ 

@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -93,6 +93,8 @@
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
+     import re
++    import random
++    from flask import request, make_response, render_template
+     if request.method == "POST":
+         email = request.form.get("email")
+         if email:

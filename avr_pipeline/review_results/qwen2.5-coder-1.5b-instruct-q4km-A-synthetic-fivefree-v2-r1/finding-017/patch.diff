@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -251,7 +251,7 @@
+     username = request.args.get('username')
+     password = request.args.get('password')
+     session_id = request.args.get('session_id')
+-    
++
+     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+         # --------------------------------------------
+         if session_id:
+@@ -261,7 +261,7 @@
+             new_session = secrets.token_hex(16)
+             user_sessions[new_session] = username
+             return f"Logged in with new session: {new_session}"
+-    
++
+     return "Login failed"
+ 
+ 

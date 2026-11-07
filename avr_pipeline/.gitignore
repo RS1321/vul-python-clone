@@ -1,0 +1,21 @@
+.venv
+.env
+artifacts
+context_builder/repo
+research papers
+Paper
+docs
+llm/reports
+reports
+tests
+commands.md
+debug_sarif.py
+.review-work/
+benchmarks/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+coverage.json
+derepo.ps1
+other

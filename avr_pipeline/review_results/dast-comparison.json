@@ -1,0 +1,7 @@
+{
+  "baseline_unique_alert_groups": 57,
+  "remaining_baseline_groups": 40,
+  "resolved_groups": 17,
+  "new_groups": 12,
+  "matching": "plugin id, CWE, method, path, query parameter names, alert parameter; payload values excluded"
+}

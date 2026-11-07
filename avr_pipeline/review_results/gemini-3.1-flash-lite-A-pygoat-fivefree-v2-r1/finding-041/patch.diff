@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -22,7 +22,9 @@
+ 
+ 
+ def custom_hash(password):
+-    return hashlib.sha1(password.encode()).hexdigest()
++    import hashlib, os
++    salt = b'static_salt'
++    return hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 600000).hex()
+ 
+ 
+ @app.route("/")

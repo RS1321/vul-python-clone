@@ -1,0 +1,14 @@
+{
+  "dataset": "vampi",
+  "source_url": "https://github.com/erev0s/VAmPI.git",
+  "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+  "findings": 3,
+  "affected_files": 1,
+  "cwe_classes": 1,
+  "cwes": {
+    "CWE-1333": 3
+  },
+  "library_covered_findings": 0,
+  "cross_file_taint_findings": 0,
+  "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652"
+}

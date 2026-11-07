@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -145,6 +145,7 @@
+ 
+ @app.route('/frame_content')
+ def frame_content():
++    from markupsafe import escape
+     # --------------------------------------------
+     frame_url = request.args.get('url', 'https://example.com')
+ 
+@@ -153,7 +154,7 @@
+         <h2>External Content</h2>
+         <iframe src="{{ frame_url }}" width="800" height="600"></iframe>
+     '''
+-    return render_template_string(html_content, frame_url=frame_url)
++    return render_template_string(html_content, frame_url=escape(frame_url))
+ 
+ 
+ # ============================================================================

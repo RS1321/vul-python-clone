@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -63,7 +63,8 @@
+             return render_template("result.html", content=data, filename=file.filename)
+         except Exception as e:
+             flash(f"Error processing file: {str(e)}")
+-            logger.error(f"Error processing YAML file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace("\n", "_").replace("\r", "_")
++            logger.error(f"Error processing YAML file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab1"))
+ 
+     flash("Invalid file type")

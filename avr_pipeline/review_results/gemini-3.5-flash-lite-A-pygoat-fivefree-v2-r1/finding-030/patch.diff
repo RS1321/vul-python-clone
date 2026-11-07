@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -95,6 +95,8 @@
+     if request.method == "POST":
+         email = request.form.get("email")
+         if email:
++            if "\n" in email or "\r" in email:
++                return "Invalid email", 400
+             # Vulnerable: Short OTP, no rate limiting
+             otp = str(random.randint(100, 999))
+             if email == "admin@pygoat.com":

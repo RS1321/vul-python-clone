@@ -1,0 +1,54 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 29.4220000000023,
+  "response": {
+    "content": "SCOPE: function lab1\nEXPLANATION: Sanitized the user-supplied email input by ensuring it only contains alphanumeric characters and standard email symbols before setting it as a cookie to prevent injection attacks.\n\n```python\ndef lab1():\n    import re\n    if request.method == \"POST\":\n        email = request.form.get(\"email\")\n        if email:\n            if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$', email):\n                return \"Invalid email format\", 400\n            # Vulnerable: Short OTP, no rate limiting\n            otp = str(random.randint(100, 999))\n            if email == \"admin@pygoat.com\":\n                global stored_admin_otp\n                stored_admin_otp = otp\n                # Vulnerable: Admin OTP not shown but predictable and no rate limiting\n                response = make_response(render_template(\"lab1.html\", otp_form=True))\n                response.set_cookie(\"email\", email)\n                return response\n            else:\n                stored_otps[email] = otp\n                response = make_response(\n                    render_template(\"lab1.html\", otp_form=True, otp=otp)\n                )\n                response.set_cookie(\"email\", email)\n                return response\n    return render_template(\"lab1.html\")\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 27.579
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1539,
+      "completion_tokens": 332,
+      "total_tokens": 1871
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/auth_failure_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:112:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/cookie-injection\",\n    \"cwe\": \"CWE-020\",\n    \"all_cwes\": [\n      \"CWE-020\"\n    ],\n    \"description\": \"Cookie is constructed from a [user-supplied input](1).\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/auth_failure_lab/app.py\",\n      \"start_line\": 112,\n      \"end_line\": 112,\n      \"function\": \"lab1\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 95,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for email\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 112,\n              \"node\": \"ControlFlowNode for email\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 1,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 96,\n              \"node\": \"ControlFlowNode for email\"\n            },\n            {\n              \"file\": \"dockerized_labs/auth_failure_lab/app.py\",\n              \"line\": 112,\n              \"node\": \"ControlFlowNode for email\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"8209dc78b94ab7ea:1\",\n    \"primaryLocationStartColumnFingerprint\": \"29\"\n  }\n}\n\nCWE repair guidance\nValidate type, size, range, and allowed values at the trust boundary. Reject invalid data with an appropriate client error.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nage = int(request.args['age'])\nAfter:\nage = int(request.args['age'])\nif not 0 <= age <= 150:\n    abort(400)\n\nCurrent source snapshot\n```python\n@app.route(\"/lab1\", methods=[\"GET\", \"POST\"])\ndef lab1():\n    if request.method == \"POST\":\n        email = request.form.get(\"email\")\n        if email:\n            # Vulnerable: Short OTP, no rate limiting\n            otp = str(random.randint(100, 999))\n            if email == \"admin@pygoat.com\":\n                global stored_admin_otp\n                stored_admin_otp = otp\n                # Vulnerable: Admin OTP not shown but predictable and no rate limiting\n                response = make_response(render_template(\"lab1.html\", otp_form=True))\n                response.set_cookie(\"email\", email)\n                return response\n            else:\n                stored_otps[email] = otp\n                response = make_response(\n                    render_template(\"lab1.html\", otp_form=True, otp=otp)\n                )\n                response.set_cookie(\"email\", email)\n                return response\n    return render_template(\"lab1.html\")\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "lab1"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "3 added plus deleted lines; allowed 11.0",
+      "lines_added": 3,
+      "lines_removed": 0,
+      "total_churn": 3,
+      "original_length": 22,
+      "limit": 11.0
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 5.416666666666667,
+      "new_errors": [],
+      "preexisting_error_count": 2
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

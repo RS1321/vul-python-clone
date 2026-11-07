@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -163,8 +163,13 @@
+ @app.route('/redirect')
+ def open_redirect():
+     # --------------------------------------------
++    from urllib.parse import urlparse
+     target_url = request.args.get('url', '/')
+-    
++
++    # Ensure the URL is relative to prevent open redirection to external domains
++    parsed = urlparse(target_url)
++    if parsed.netloc or parsed.scheme:
++        target_url = '/'
+     # --------------------------------------------
+     return redirect(target_url)
+ 

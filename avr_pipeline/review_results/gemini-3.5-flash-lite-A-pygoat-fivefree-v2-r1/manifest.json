@@ -1,0 +1,59 @@
+{
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "source_url": "https://github.com/adeyosemanputra/pygoat.git",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": null,
+  "implementation_sha256": {
+    "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+    "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": false,
+  "transport_policy": {
+    "AVR_INPUT_BUDGET_PER_MINUTE": "12000",
+    "AVR_REQUEST_TIMEOUT": "60",
+    "AVR_TRANSPORT_RETRIES": "2"
+  },
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 62,
+  "selected_findings": 62,
+  "utc": "2026-11-07T10:18:39.019074+00:00",
+  "status": "running",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "resume_history": [
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-07T10:18:39.019074+00:00",
+      "previous_elapsed_seconds": 4951.468999999999
+    }
+  ],
+  "resumed_from_findings": 6
+}

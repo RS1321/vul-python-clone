@@ -1,0 +1,45 @@
+{
+  "finding_id": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 5.906000000075437,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the weak DES algorithm and ECB mode with AES in CBC mode using a secure key and proper padding.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    from Crypto.Util.Padding import pad\n    from Crypto.Random import get_random_bytes\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'sixteen_byte_key_'  # AES requires 16, 24, or 32 bytes\n    iv = get_random_bytes(16)\n    cipher = AES.new(key, AES.MODE_CBC, iv)\n    \n    # --------------------------------------------\n    encrypted = cipher.encrypt(pad(data.encode(), AES.block_size))\n    \n    return f\"<h2>Encrypted Data:</h2><p>{iv.hex()}{encrypted.hex()}</p>\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 377,
+          "completion_tokens": 228,
+          "total_tokens": 605
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/weak-cryptographic-algorithm\",\n  \"cwe\": \"CWE-327\",\n  \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "encrypt_data"
+      },
+      "validation": {
+        "status": "disabled_by_condition"
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 13,
+  "lines_removed": 10
+}

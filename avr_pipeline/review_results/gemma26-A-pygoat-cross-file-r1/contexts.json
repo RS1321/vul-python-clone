@@ -1,0 +1,538 @@
+[
+  {
+    "finding_number": "FINDING 008",
+    "finding_id": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/management/commands/startuplabs.py",
+        "start_line": 51,
+        "end_line": 51,
+        "function": "Command.handle"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 552,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 561,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 585,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 50,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 51,
+                "node": "ControlFlowNode for build_path"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 600,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 614,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "[post] ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 640,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 641,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 50,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 51,
+                "node": "ControlFlowNode for build_path"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "763e6942d3f8e292:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  },
+  {
+    "finding_number": "FINDING 009",
+    "finding_id": "py/path-injection:challenge/views.py:244:8",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 244,
+        "end_line": 244,
+        "function": "_resolve_build_path"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 552,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 561,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 585,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for Attribute() [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 218,
+                "node": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for Subscript"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 380,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 249,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 253,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 231,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 244,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 600,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 614,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "[post] ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 640,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 641,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for Attribute() [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 218,
+                "node": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for Subscript"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 380,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 249,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 253,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 231,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 244,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "35f55d710439d761:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  }
+]

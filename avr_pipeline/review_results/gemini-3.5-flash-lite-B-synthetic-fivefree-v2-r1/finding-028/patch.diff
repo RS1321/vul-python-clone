@@ -1,0 +1,25 @@
+--- 
++++ 
+@@ -74,6 +74,7 @@
+ 
+ @app.route('/login', methods=['GET', 'POST'])
+ def login():
++    from markupsafe import escape
+     # --------------------------------------------
+     if request.method == 'GET':
+         # --------------------------------------------
+@@ -106,10 +107,12 @@
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            safe_user = escape(user[1])
++            return f"<h2>Login successful! Welcome {safe_user}</h2><br><a href='/profile'>View Profile</a>"
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
++            safe_username = escape(username)
++            return f"<h2>Login failed for user: {safe_username}</h2><p>Invalid credentials provided</p>"
+ 
+     except Exception as e:
+         # --------------------------------------------

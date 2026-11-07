@@ -1,0 +1,40 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 3.2969999999995707,
+  "response": {
+    "content": "SCOPE: function frame_content\nEXPLANATION: Replaced f-string interpolation with template variable injection to ensure the URL is properly escaped by the Jinja2 engine, preventing XSS.\n\n```python\ndef frame_content():\n    from flask import render_template_string, request\n    frame_url = request.args.get('url', 'https://example.com')\n    html_content = '''\n        <h2>External Content</h2>\n        <iframe src=\"{{ frame_url }}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content, frame_url=frame_url)\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1071,
+      "completion_tokens": 143,
+      "total_tokens": 1214
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 008\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:156:7\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 156,\n      \"end_line\": 156,\n      \"function\": \"frame_content\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 149,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 149,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 149,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 149,\n              \"node\": \"ControlFlowNode for frame_url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 152,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 156,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 156,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:2\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/frame_content')\ndef frame_content():\n    # --------------------------------------------\n    frame_url = request.args.get('url', 'https://example.com')\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h2>External Content</h2>\n        <iframe src=\"{frame_url}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "frame_content"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "10 added plus deleted lines; allowed 5",
+      "lines_added": 4,
+      "lines_removed": 6,
+      "total_churn": 10,
+      "original_length": 10,
+      "limit": 5
+    }
+  }
+}

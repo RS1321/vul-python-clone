@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -345,6 +345,8 @@
+ def ssrf_vulnerability():
+     # --------------------------------------------
+     url = request.args.get('url', 'http://example.com')
++    if url not in {'http://example.com', 'https://example.com'}:
++        return "Error fetching URL: The requested URL is not allowed.", 400
+ 
+     try:
+         # --------------------------------------------

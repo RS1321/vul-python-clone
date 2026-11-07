@@ -1,0 +1,29 @@
+--- 
++++ 
+@@ -293,14 +293,23 @@
+ @app.route('/read_log')
+ def resource_leak():
+     # --------------------------------------------
+-    log_file = request.args.get('log', 'app.log')
+-    
++    import os
++    from pathlib import Path
++
++    log_filename = request.args.get('log', 'app.log')
++    base_dir = Path.cwd().resolve()
++    log_path = (base_dir / log_filename).resolve()
++
++    if not log_path.is_relative_to(base_dir):
++        return "Access Denied", 403
++
++    log_file = str(log_path)
+     # --------------------------------------------
+     f = open(log_file, 'w')
+     f.write('Log entry: ' + str(time.time()))
+     # --------------------------------------------
+     open_files.append(f)
+-    
++
+     return "Log written successfully"
+ 
+ 

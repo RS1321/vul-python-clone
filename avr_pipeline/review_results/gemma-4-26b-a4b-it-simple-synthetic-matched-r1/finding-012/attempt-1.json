@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 8.34299999999348,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Escape user-provided values in the HTML response to prevent reflected Cross-Site Scripting (XSS).\n\n```python\n@app.route('/transfer_funds', methods=['GET', 'POST'])\ndef csrf_vulnerability():\n    # --------------------------------------------\n    if request.method == 'POST' or request.method == 'GET':\n        from_account = request.values.get('from')\n        to_account = request.values.get('to')\n        amount = request.values.get('amount')\n        \n        # --------------------------------------------\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n        cursor.execute(f\"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'\")\n        cursor.execute(f\"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'\")\n        conn.commit()\n        conn.close()\n        \n        import html\n        return f\"<h2>Transferred ${html.escape(amount)} from {html.escape(from_account)} to {html.escape(to_account)}</h2>\"\n    \n    return '''\n        <h2>Transfer Funds</h2>\n        <form method=\"POST\">\n            From: <input name=\"from\"><br>\n            To: <input name=\"to\"><br>\n            Amount: <input name=\"amount\"><br>\n            <input type=\"submit\" value=\"Transfer\">\n        </form>\n    '''\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 503,
+      "completion_tokens": 341,
+      "total_tokens": 844
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/reflective-xss\",\n  \"cwe\": \"CWE-079\",\n  \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/transfer_funds', methods=['GET', 'POST'])\ndef csrf_vulnerability():\n    # --------------------------------------------\n    if request.method == 'POST' or request.method == 'GET':\n        from_account = request.values.get('from')\n        to_account = request.values.get('to')\n        amount = request.values.get('amount')\n        \n        # --------------------------------------------\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n        cursor.execute(f\"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'\")\n        cursor.execute(f\"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'\")\n        conn.commit()\n        conn.close()\n        \n        return f\"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>\"\n    \n    return '''\n        <h2>Transfer Funds</h2>\n        <form method=\"POST\">\n            From: <input name=\"from\"><br>\n            To: <input name=\"to\"><br>\n            Amount: <input name=\"amount\"><br>\n            <input type=\"submit\" value=\"Transfer\">\n        </form>\n    '''\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "csrf_vulnerability"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

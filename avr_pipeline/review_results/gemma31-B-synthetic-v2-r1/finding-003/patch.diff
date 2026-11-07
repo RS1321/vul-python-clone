@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -422,6 +422,8 @@
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
+     # --------------------------------------------
++    from flask import request
++    import defusedxml.ElementTree as ET
+     xml_data = request.data.decode()
+ 
+     try:

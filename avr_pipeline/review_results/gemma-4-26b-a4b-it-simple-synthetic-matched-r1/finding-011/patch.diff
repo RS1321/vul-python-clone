@@ -1,0 +1,22 @@
+--- 
++++ 
+@@ -345,9 +345,18 @@
+ def ssrf_vulnerability():
+     # --------------------------------------------
+     url = request.args.get('url', 'http://example.com')
++    from urllib.parse import urlparse
++
++    # Allowlist of trusted domains
++    ALLOWED_DOMAINS = {'example.com', 'trusted-api.com'}
+ 
+     try:
+-        # --------------------------------------------
++        parsed_url = urlparse(url)
++        if parsed_url.scheme not in ('http', 'https') or parsed_url.netloc not in ALLOWED_DOMAINS:
++            return "Error: Invalid or unauthorized URL.", 400
++
++        # --------------------------------------------
++        import urllib.request
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')
+         return f"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>"

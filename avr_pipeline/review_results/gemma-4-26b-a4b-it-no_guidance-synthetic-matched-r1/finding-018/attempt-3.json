@@ -1,0 +1,46 @@
+{
+  "attempt": 3,
+  "accepted": false,
+  "duration_seconds": 30.859000000054948,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace the exposure of the exception string with a generic error message to prevent stack trace/information leakage.\n\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception:\n        return \"Error reading file\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 429,
+        "retry_wait_seconds": 20.981689443
+      },
+      {
+        "http_status": 500
+      },
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1096,
+      "completion_tokens": 130,
+      "total_tokens": 1226
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 019\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:241:18\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 241,\n      \"end_line\": 241,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 240,\n                      \"startColumn\": 25,\n                      \"endColumn\": 26\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for e\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 241,\n                      \"startColumn\": 16,\n                      \"endColumn\": 47\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Fstring\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"b403815f120b694e:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception:\n        return \"Error reading file\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"6 added plus deleted lines; allowed 5\", \"lines_added\": 3, \"lines_removed\": 3, \"total_churn\": 6, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "directory_traversal"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "6 added plus deleted lines; allowed 5",
+      "lines_added": 3,
+      "lines_removed": 3,
+      "total_churn": 6,
+      "original_length": 11,
+      "limit": 5
+    }
+  }
+}

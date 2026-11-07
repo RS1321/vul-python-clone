@@ -1,0 +1,7 @@
+{
+  "returncode": 0,
+  "target": "http://127.0.0.1:3000",
+  "authenticated": false,
+  "status": "complete",
+  "limits": "Unauthenticated spider; five-minute active scan; not equivalent to original paper profile."
+}

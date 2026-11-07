@@ -1,0 +1,45 @@
+{
+  "finding_id": "py/stack-trace-exposure:vulnerable_app.py:393:20",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 3.922000000020489,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the detailed exception message with a generic error message to prevent stack trace or internal state exposure.\n\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception:\n        return \"Error deserializing object.\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 314,
+          "completion_tokens": 123,
+          "total_tokens": 437
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/stack-trace-exposure\",\n  \"cwe\": \"CWE-209\",\n  \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception as e:\n        return f\"Error deserializing: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "insecure_deserialization"
+      },
+      "validation": {
+        "status": "disabled_by_condition"
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 3,
+  "lines_removed": 3
+}

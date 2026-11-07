@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -344,9 +344,14 @@
+ @app.route('/fetch_url')
+ def ssrf_vulnerability():
+     # --------------------------------------------
++    import urllib.parse
+     url = request.args.get('url', 'http://example.com')
++    allowed_domains = {'example.com', 'api.trusted-service.com'}
+ 
+     try:
++        parsed = urllib.parse.urlparse(url)
++        if parsed.scheme not in ('http', 'https') or parsed.hostname not in allowed_domains:
++            return "Forbidden", 403
+         # --------------------------------------------
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')

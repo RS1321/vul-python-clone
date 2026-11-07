@@ -1,0 +1,33 @@
+env:
+  contexts:
+  - name: local-benchmark
+    urls:
+    - http://127.0.0.1:3000
+    includePaths:
+    - ^http://127\.0\.0\.1:3000(?:/.*)?$
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+jobs:
+- type: spider
+  parameters:
+    context: local-benchmark
+    maxDuration: 1
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 1
+- type: activeScan
+  parameters:
+    context: local-benchmark
+    maxScanDurationInMins: 5
+    maxRuleDurationInMins: 1
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 1
+- type: report
+  parameters:
+    template: traditional-json
+    reportDir: <WORKSPACE>\AVR-System-review\review_results\dast-post-synthetic-full-A
+    reportFile: scan.json
+    reportTitle: Local Flask ZAP scan

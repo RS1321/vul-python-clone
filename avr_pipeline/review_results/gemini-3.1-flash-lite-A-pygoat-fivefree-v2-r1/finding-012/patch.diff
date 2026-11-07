@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -486,6 +486,7 @@
+ 
+ 
+ def list_user_labs(request):
++    import logging
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+ 
+@@ -504,7 +505,8 @@
+             })
+         return JsonResponse({'status': 'success', 'labs': labs})
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        logging.exception("Error listing user labs")
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 
+ 
+ def stop_lab(request, lab_image_name):

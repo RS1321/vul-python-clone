@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -234,10 +234,11 @@
+     is outside LAB_BUILD_ROOTS (e.g. an absolute path or one using "..") or
+     has no Dockerfile.
+     """
++    import os
+     base = os.path.realpath(settings.BASE_DIR)
+     build_path = os.path.realpath(os.path.join(base, build_location or ""))
+-    roots = [os.path.join(base, root) for root in LAB_BUILD_ROOTS]
+-    if not any(build_path.startswith(root + os.sep) for root in roots):
++    roots = [os.path.realpath(os.path.join(base, root)) for root in LAB_BUILD_ROOTS]
++    if not any(os.path.commonpath([root, build_path]) == root for root in roots):
+         raise ValueError(
+             "Build location must be a directory under " + " or ".join(LAB_BUILD_ROOTS)
+         )

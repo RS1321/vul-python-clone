@@ -1,0 +1,45 @@
+{
+  "finding_id": "py/flask-debug:vulnerable_app.py:508:23",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 5.282000000006519,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Disable Flask debug mode to prevent arbitrary code execution via the interactive debugger.\n\n```python\ndef main():\n    \"\"\"Main entry point for the application\"\"\"\n    print(\"=\" * 70)\n    print(\"STARTING WEB APPLICATION\")\n    print(\"=\" * 70)\n    print(\"Flask web server starting...\")\n    print(\"=\" * 70)\n    \n    # --------------------------------------------\n    init_database()\n    print(\"\\n[+] Database initialized with sample data\")\n    print(\"[+] Starting Flask server on http://127.0.0.1:3000\")\n    print(\"[+] Press Ctrl+C to stop\\n\")\n    \n    # --------------------------------------------\n    app.run(debug=False, host='127.0.0.1', port=3000)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 387,
+          "completion_tokens": 195,
+          "total_tokens": 582
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/flask-debug\",\n  \"cwe\": \"CWE-215\",\n  \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\"\n}\n\n\n\nCurrent source snapshot\n```python\ndef main():\n    \"\"\"Main entry point for the application\"\"\"\n    print(\"=\" * 70)\n    print(\"STARTING WEB APPLICATION\")\n    print(\"=\" * 70)\n    print(\"Flask web server starting...\")\n    print(\"=\" * 70)\n    \n    # --------------------------------------------\n    init_database()\n    print(\"\\n[+] Database initialized with sample data\")\n    print(\"[+] Starting Flask server on http://127.0.0.1:3000\")\n    print(\"[+] Press Ctrl+C to stop\\n\")\n    \n    # --------------------------------------------\n    app.run(debug=True, host='127.0.0.1', port=3000)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "main"
+      },
+      "validation": {
+        "status": "disabled_by_condition"
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 4,
+  "lines_removed": 4
+}

@@ -1,0 +1,145 @@
+{
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "source_url": "https://github.com/RS1321/vul-python-clone.git",
+  "provider": "gemini",
+  "model": "gemma-4-26b-a4b-it",
+  "condition": "no_examples",
+  "settings": {
+    "guidance": true,
+    "examples": false,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": "minimal",
+  "implementation_sha256": {
+    "review\\runner.py": "a98e947eb9a58ec8a6b3c43a448fc4e247a97817dc5c218681a88410099f2683",
+    "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-synthetic\\scan.sarif",
+  "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+  "zap_sha256": null,
+  "context_profile": "full",
+  "cross_file_only": false,
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [
+    "tests",
+    "-m",
+    "not network"
+  ],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 29,
+  "selected_findings": 29,
+  "utc": "2026-11-05T05:21:04.245222+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 1213.938000000082,
+  "accepted_patches": 12,
+  "processed_findings": 29,
+  "post_tests": {
+    "status": "passed",
+    "returncode": 0,
+    "tests": 68,
+    "failures": [],
+    "infrastructure_error": false
+  },
+  "sast": {
+    "baseline_findings": 29,
+    "remaining_baseline_findings": 18,
+    "resolved_findings": 11,
+    "new_findings": 0,
+    "resolution_rate": 0.3793103448275862,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/xml-bomb",
+          "vulnerable_app.py",
+          "xxe_vulnerability"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/unsafe-deserialization",
+          "vulnerable_app.py",
+          "insecure_deserialization"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "csrf_vulnerability"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/sql-injection",
+          "vulnerable_app.py",
+          "csrf_vulnerability"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "session_fixation"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/template-injection",
+          "vulnerable_app.py",
+          "frame_content"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "frame_content"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "vulnerable_app.py",
+          "login"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/reflective-xss",
+          "vulnerable_app.py",
+          "login"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/sql-injection",
+          "vulnerable_app.py",
+          "login"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
+}

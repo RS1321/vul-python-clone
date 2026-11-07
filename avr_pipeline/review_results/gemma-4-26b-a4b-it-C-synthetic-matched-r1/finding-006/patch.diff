@@ -1,0 +1,20 @@
+--- 
++++ 
+@@ -384,13 +384,15 @@
+ def insecure_deserialization():
+     # --------------------------------------------
+     data = request.data
+-    
++
+     try:
+         # --------------------------------------------
+         obj = pickle.loads(data)
+         return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
+     except Exception as e:
+-        return f"Error deserializing: {str(e)}"
++        import logging
++        logging.exception("Error during deserialization")
++        return "Error deserializing object", 500
+ 
+ 
+ # ============================================================================

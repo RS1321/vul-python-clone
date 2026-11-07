@@ -1,0 +1,114 @@
+{
+  "finding_id": "py/path-injection:vulnerable_app.py:237:0",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 50.43700000003446,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use os.path.basename to prevent directory traversal by ensuring only the filename is used, and restrict file access to a specific directory.\n\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        # Use basename to prevent directory traversal and join with a safe base directory\n        safe_filename = os.path.basename(filename)\n        file_path = os.path.join('files', safe_filename)\n        \n        with open(file_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 429,
+            "retry_wait_seconds": 43.944103502
+          },
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1600,
+          "completion_tokens": 201,
+          "total_tokens": 1801
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for ImportMember\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 23\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 28\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"AdditionalTaintStep\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 54\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute()\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"dict.get\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 5,\n                      \"endColumn\": 13\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for filename\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 237,\n                      \"startColumn\": 19,\n                      \"endColumn\": 27\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for filename\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "directory_traversal"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "9 added plus deleted lines; allowed 5",
+          "lines_added": 7,
+          "lines_removed": 2,
+          "total_churn": 9,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": true,
+      "duration_seconds": 4.579000000027008,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use os.path.basename to prevent directory traversal by stripping path components from the user-provided filename.\n\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = os.path.basename(request.args.get('file', 'readme.txt'))\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1850,
+          "completion_tokens": 149,
+          "total_tokens": 1999
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for ImportMember\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 23\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 28\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"AdditionalTaintStep\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 16,\n                      \"endColumn\": 54\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute()\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"dict.get\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 233,\n                      \"startColumn\": 5,\n                      \"endColumn\": 13\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for filename\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 237,\n                      \"startColumn\": 19,\n                      \"endColumn\": 27\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for filename\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        # Use basename to prevent directory traversal and join with a safe base directory\n        safe_filename = os.path.basename(filename)\n        file_path = os.path.join('files', safe_filename)\n        \n        with open(file_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"9 added plus deleted lines; allowed 5\", \"lines_added\": 7, \"lines_removed\": 2, \"total_churn\": 9, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "directory_traversal"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "5 added plus deleted lines; allowed 5",
+          "lines_added": 3,
+          "lines_removed": 2,
+          "total_churn": 5,
+          "original_length": 11,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 5.147058823529412,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "failed",
+          "returncode": 1,
+          "tests": 68,
+          "failures": [
+            "tests.test_vulnerable_app::test_fetch_url_invalid_url"
+          ],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 2,
+    "success": 2,
+    "ast_name": 2
+  },
+  "lines_added": 3,
+  "lines_removed": 2
+}

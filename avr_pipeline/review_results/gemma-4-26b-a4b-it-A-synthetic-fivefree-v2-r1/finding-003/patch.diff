@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -426,7 +426,8 @@
+ 
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        from defusedxml import ElementTree as safe_ET
++        root = safe_ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:

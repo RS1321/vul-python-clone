@@ -1,0 +1,5 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "error": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+}

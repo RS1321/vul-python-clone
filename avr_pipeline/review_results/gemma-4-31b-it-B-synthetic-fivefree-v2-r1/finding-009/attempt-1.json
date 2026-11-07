@@ -1,0 +1,6 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "error": "Gemini transport failure: ReadTimeout",
+  "infrastructure_error": true
+}

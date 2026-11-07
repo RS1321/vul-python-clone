@@ -1,0 +1,30 @@
+[
+  {
+    "model": "gemma-4-31b-it",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "usage": {
+        "prompt_tokens": 14,
+        "completion_tokens": 92,
+        "total_tokens": 106
+      }
+    }
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "status": "available",
+    "response": {
+      "content": "OK",
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "usage": {
+        "prompt_tokens": 14,
+        "completion_tokens": 87,
+        "total_tokens": 101
+      }
+    }
+  }
+]

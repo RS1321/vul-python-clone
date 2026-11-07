@@ -1,0 +1,61 @@
+{
+  "repo": "<WORKSPACE>\\AVR-System-review\\benchmarks\\vampi",
+  "scope": "ordinary HTTP regression checks; not a security oracle",
+  "checks": [
+    {
+      "name": "home",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "users list",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "missing authentication",
+      "observed": 404,
+      "expected": 401,
+      "passed": false
+    },
+    {
+      "name": "normal registration",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "registration succeeds",
+      "observed": "success",
+      "expected": "success",
+      "passed": true
+    },
+    {
+      "name": "normal login",
+      "observed": 200,
+      "expected": 200,
+      "passed": true
+    },
+    {
+      "name": "login produces token",
+      "observed": true,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "authenticated profile",
+      "observed": 404,
+      "expected": 200,
+      "passed": false
+    },
+    {
+      "name": "profile retains username",
+      "observed": null,
+      "expected": "avr_fixture",
+      "passed": false
+    }
+  ],
+  "passed": false
+}

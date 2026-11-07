@@ -1,0 +1,58 @@
+{
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "source_url": "https://github.com/adeyosemanputra/pygoat.git",
+  "provider": "gemini",
+  "model": "gemma-4-26b-a4b-it",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": "minimal",
+  "implementation_sha256": {
+    "review\\runner.py": "660e5ac28468bd41b10e7c8f23f750c5728d9543ec169cbf914602dfb13ca738",
+    "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+    "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": true,
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 62,
+  "selected_findings": 2,
+  "utc": "2026-11-05T04:54:10.693484+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "cross-file taint pilot",
+  "elapsed_seconds": 184.93800000008196,
+  "accepted_patches": 1,
+  "processed_findings": 2,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 62,
+    "remaining_baseline_findings": 62,
+    "resolved_findings": 0,
+    "new_findings": 0,
+    "resolution_rate": 0.0,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [],
+    "new_groups": []
+  }
+}

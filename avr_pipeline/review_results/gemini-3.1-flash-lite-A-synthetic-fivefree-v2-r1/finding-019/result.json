@@ -1,0 +1,134 @@
+{
+  "finding_id": "py/path-injection:vulnerable_app.py:237:0",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 1.3599999999996726,
+      "response": {
+        "content": "SCOPE: function directory_traversal\nEXPLANATION: The code now resolves the absolute path of the requested file and verifies it is contained within the current working directory to prevent path traversal attacks.\n\n```python\ndef directory_traversal():\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    base_dir = os.path.abspath(os.getcwd())\n    target_path = os.path.abspath(os.path.join(base_dir, filename))\n    \n    if not target_path.startswith(base_dir):\n        return \"Access denied\", 403\n    \n    try:\n        with open(target_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1033,
+          "completion_tokens": 200,
+          "total_tokens": 1233
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "directory_traversal"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "12 added plus deleted lines; allowed 5",
+          "lines_added": 8,
+          "lines_removed": 4,
+          "total_churn": 12,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 32.10999999999967,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use pathlib to resolve the absolute path and verify it remains within the intended base directory to prevent path traversal.\n\n```python\ndef directory_traversal():\n    from pathlib import Path\n    base = Path('.').resolve()\n    target = (base / request.args.get('file', 'readme.txt')).resolve()\n    if not target.is_relative_to(base): return \"Access denied\", 403\n    try:\n        return f\"<pre>{target.read_text()}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 30.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1280,
+          "completion_tokens": 142,
+          "total_tokens": 1422
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef directory_traversal():\n    import os\n    filename = request.args.get('file', 'readme.txt')\n    base_dir = os.path.abspath(os.getcwd())\n    target_path = os.path.abspath(os.path.join(base_dir, filename))\n    \n    if not target_path.startswith(base_dir):\n        return \"Access denied\", 403\n    \n    try:\n        with open(target_path, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"12 added plus deleted lines; allowed 5\", \"lines_added\": 8, \"lines_removed\": 4, \"total_churn\": 12, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "directory_traversal"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "12 added plus deleted lines; allowed 5",
+          "lines_added": 5,
+          "lines_removed": 7,
+          "total_churn": 12,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 6.219000000000051,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use pathlib to resolve the target path and verify it remains within the intended base directory to prevent directory traversal.\n\n```python\ndef directory_traversal():\n    from pathlib import Path\n    base, target = Path('.').resolve(), (Path('.') / request.args.get('file', 'readme.txt')).resolve()\n    if not target.is_relative_to(base): return \"Access denied\", 403\n    try: return f\"<pre>{target.read_text()}</pre>\"\n    except Exception as e: return f\"Error reading file: {str(e)}\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 1.219
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1232,
+          "completion_tokens": 137,
+          "total_tokens": 1369
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n    \n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ndef directory_traversal():\n    from pathlib import Path\n    base = Path('.').resolve()\n    target = (base / request.args.get('file', 'readme.txt')).resolve()\n    if not target.is_relative_to(base): return \"Access denied\", 403\n    try:\n        return f\"<pre>{target.read_text()}</pre>\"\n    except Exception as e:\n        return f\"Error reading file: {str(e)}\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"12 added plus deleted lines; allowed 5\", \"lines_added\": 5, \"lines_removed\": 7, \"total_churn\": 12, \"original_length\": 11, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "directory_traversal"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "15 added plus deleted lines; allowed 5",
+          "lines_added": 5,
+          "lines_removed": 10,
+          "total_churn": 15,
+          "original_length": 11,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "ast_name": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

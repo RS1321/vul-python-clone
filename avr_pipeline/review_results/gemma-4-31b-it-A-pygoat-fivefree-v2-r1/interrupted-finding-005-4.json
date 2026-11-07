@@ -1,0 +1,16 @@
+{
+  "finding_id": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "error": "Gemini HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\n    \"status\": \"UNAVAILABLE\"\n  }\n}\n",
+      "infrastructure_error": true
+    }
+  ],
+  "application_counts": {},
+  "lines_added": 0,
+  "lines_removed": 0
+}

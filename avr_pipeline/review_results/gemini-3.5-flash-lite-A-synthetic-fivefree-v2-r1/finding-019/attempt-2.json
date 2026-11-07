@@ -1,0 +1,30 @@
+{
+  "attempt": 2,
+  "accepted": false,
+  "duration_seconds": 1.6880000000001019,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Prevent directory traversal by validating that the resolved path is within the allowed root directory.\n\n```python\n@app.route('/download')\ndef directory_xlversal():\n    from pathlib import Path\n    from flask import abort, request\n    root = Path('.').resolve()\n    candidate = (root / request.args.get('file', 'readme.txt')).resolve()\n    if not candidate.is_relative_to(root): abort(403)\n    try:\n        with open(candidate, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        app.logger.exception('Request failed')\n        return \"Error reading file\", 500\n```",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1293,
+      "completion_tokens": 175,
+      "total_tokens": 1468
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:237:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 237,\n      \"end_line\": 237,\n      \"function\": \"directory_traversal\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 233,\n              \"node\": \"ControlFlowNode for filename\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 237,\n              \"node\": \"ControlFlowNode for filename\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2d8d785079c2e8e6:1\",\n    \"primaryLocationStartColumnFingerprint\": \"10\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/download')\ndef directory_traversal():\n    # --------------------------------------------\n    filename = request.args.get('file', 'readme.txt')\n\n    try:\n        # --------------------------------------------\n        with open(filename, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        app.logger.exception('Request failed')\n        return \"Error reading file\", 500\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/download')\ndef directory_traversal():\n    from pathlib import Path\n    from flask import abort, request\n    filename = request.args.get('file', 'readme.txt')\n    root = Path('.').resolve()\n    try:\n        candidate = (root / filename).resolve()\n        if not candidate.is_relative_to(root) or not candidate.is_file():\n            abort(403)\n        with open(candidate, 'r') as f:\n            content = f.read()\n        return f\"<pre>{content}</pre>\"\n    except Exception as e:\n        app.logger.exception('Request failed')\n        return \"Error reading file\", 500\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"11 added plus deleted lines; allowed 5\", \"lines_added\": 7, \"lines_removed\": 4, \"total_churn\": 11, \"original_length\": 12, \"limit\": 5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": false,
+    "error": "Patch changes the target function name or async kind"
+  },
+  "error": "Patch changes the target function name or async kind"
+}

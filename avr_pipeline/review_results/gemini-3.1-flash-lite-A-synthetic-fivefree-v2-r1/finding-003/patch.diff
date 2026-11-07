@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -421,11 +421,9 @@
+ 
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
+-    # --------------------------------------------
++    from defusedxml import ElementTree as ET
+     xml_data = request.data.decode()
+-    
+     try:
+-        # --------------------------------------------
+         root = ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"

@@ -1,0 +1,40 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 7.094000000000051,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use a static template string and pass user-provided values as context variables to prevent Server-Side Template Injection (SSTI).\n\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    template = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n        {% if is_admin %}\n        <p style=\"color:red;\">Password Hint: {{ admin_password }}</p>\n        {% endif %}\n    '''\n    \n    is_admin = username == 'admin'\n    admin_password = ADMIN_PASSWORD if is_admin else None\n    \n    return render_template_string(\n        template, \n        username=username, \n        comment=comment, \n        is_admin=is_admin, \n        admin_password=admin_password\n    )\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1319,
+      "completion_tokens": 259,
+      "total_tokens": 1578
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 003\",\n  \"finding_id\": \"py/template-injection:vulnerable_app.py:139:2\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/template-injection\",\n    \"cwe\": \"CWE-074\",\n    \"all_cwes\": [\n      \"CWE-074\"\n    ],\n    \"description\": \"This template construction depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"30\"\n  }\n}\n\nCWE repair guidance\nKeep template source constant. Pass untrusted values as template data rather than executable template text.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn render_template_string(user_text)\nAfter:\nreturn render_template_string('{{ content }}', content=user_text)\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "profile"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "31 added plus deleted lines; allowed 5",
+      "lines_added": 20,
+      "lines_removed": 11,
+      "total_churn": 31,
+      "original_length": 14,
+      "limit": 5
+    }
+  }
+}

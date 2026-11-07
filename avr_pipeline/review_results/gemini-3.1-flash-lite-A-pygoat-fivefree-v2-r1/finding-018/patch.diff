@@ -1,0 +1,21 @@
+--- 
++++ 
+@@ -62,6 +62,7 @@
+             return render(request, "challenge.html", {"chal": chal, "user_chal": None})
+ 
+     def post(self, request, challenge):
++        import logging
+         if not request.user.is_authenticated:
+             return redirect("login")
+ 
+@@ -106,8 +107,9 @@
+         except (docker.errors.DockerException, KeyError, IndexError, TypeError) as e:
+             if container is not None:
+                 container.remove(force=True)
++            logging.exception("Failed to start challenge container")
+             return JsonResponse(
+-                {"message": f"Failed to start challenge: {e}", "status": "500", "endpoint": "None"},
++                {"message": "Failed to start challenge", "status": "500", "endpoint": "None"},
+                 status=500,
+             )
+ 

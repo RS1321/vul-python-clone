@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -101,7 +101,8 @@
+         filename = create_blog_post(title, content)
+         return redirect(url_for("view_blog", filename=filename))
+     except Exception as e:
+-        return f"Error: {str(e)}", 400
++        app.logger.exception("Error creating blog post")
++        return "An error occurred while creating the blog post.", 400
+ 
+ 
+ @app.route("/blog/<filename>")

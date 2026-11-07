@@ -1,0 +1,14 @@
+{
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "variant": "Gemma 26B A checkpoint after seven accepted patches",
+  "source_sha256": "bd5a534130a43c7d6f1c427af3cd2058d9ab7c39ee0861ba15fe47ec902d3465",
+  "sast_at_checkpoint": {
+    "resolved": 8,
+    "baseline": 29,
+    "new": 0
+  },
+  "pytest_at_checkpoint": {
+    "executed": 68,
+    "failing": 4
+  }
+}

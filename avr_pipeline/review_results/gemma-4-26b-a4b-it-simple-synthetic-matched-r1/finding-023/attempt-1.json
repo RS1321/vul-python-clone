@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 6.562000000034459,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use Jinja2's template variable substitution instead of f-string interpolation to prevent Server-Side Template Injection (SSTI).\n\n```python\n@app.route('/frame_content')\ndef frame_content():\n    # --------------------------------------------\n    frame_url = request.args.get('url', 'https://example.com')\n    \n    # --------------------------------------------\n    html_content = '''\n        <h2>External Content</h2>\n        <iframe src=\"{{ frame_url }}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content, frame_url=frame_url)\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 315,
+      "completion_tokens": 152,
+      "total_tokens": 467
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/template-injection\",\n  \"cwe\": \"CWE-074\",\n  \"description\": \"This template construction depends on a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/frame_content')\ndef frame_content():\n    # --------------------------------------------\n    frame_url = request.args.get('url', 'https://example.com')\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h2>External Content</h2>\n        <iframe src=\"{frame_url}\" width=\"800\" height=\"600\"></iframe>\n    '''\n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "frame_content"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

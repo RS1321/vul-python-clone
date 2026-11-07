@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="68" time="3.332" timestamp="2026-11-05T10:52:47.969655+05:30" hostname="Rahuls_OMEN"><testcase classname="tests.test_vulnerable_app" name="test_init_database_creates_tables" time="0.180" /><testcase classname="tests.test_vulnerable_app" name="test_init_database_seeds_users" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_init_database_seeds_accounts" time="0.004" /><testcase classname="tests.test_vulnerable_app" name="test_init_database_admin_password_is_md5" time="0.004" /><testcase classname="tests.test_vulnerable_app" name="test_init_database_idempotent" time="0.009" /><testcase classname="tests.test_vulnerable_app" name="test_index_returns_200" time="0.015" /><testcase classname="tests.test_vulnerable_app" name="test_index_contains_endpoint_links" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_health_returns_200" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_health_returns_json" time="0.004" /><testcase classname="tests.test_vulnerable_app" name="test_login_get_no_params_returns_form" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_login_post_valid_admin_credentials" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_login_post_valid_user_alice" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_login_post_invalid_password" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_login_post_nonexistent_user" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_login_post_empty_username" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_login_with_special_characters" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_login_sets_session_on_success" time="0.008" /><testcase classname="tests.test_vulnerable_app" name="test_profile_default_behavior" time="0.007" /><testcase classname="tests.test_vulnerable_app" name="test_profile_with_name_param" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_profile_with_special_characters" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_profile_with_comment_param" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_frame_content_returns_200" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_frame_content_with_url_param" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_redirect_returns_redirect_status" time="0.004" /><testcase classname="tests.test_vulnerable_app" name="test_redirect_with_url_param" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_encrypt_returns_200" time="0.125"><failure message="ValueError: Incorrect AES key length (17 bytes)">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_encrypt_returns_200(client):
+        """GET /encrypt returns 200."""
+&gt;       response = client.get('/encrypt?data=hello')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_vulnerable_app.py:243: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1166: in get
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vulnerable_app.py:201: in encrypt_data
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:228: in new
+    return _create_cipher(sys.modules[__name__], key, mode, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\__init__.py:79: in _create_cipher
+    return modes[mode](factory, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\_mode_cbc.py:274: in _create_cbc_cipher
+    cipher_state = factory._create_base_cipher(kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dict_parameters = {'IV': b'\x8f:gm\xb6ehV\x0b3\x0c\xa0\xba\x90\xb5!'}
+
+    def _create_base_cipher(dict_parameters):
+        """This method instantiates and returns a handle to a low-level
+        base cipher. It will absorb named parameters in the process."""
+    
+        use_aesni = dict_parameters.pop("use_aesni", True)
+    
+        try:
+            key = dict_parameters.pop("key")
+        except KeyError:
+            raise TypeError("Missing 'key' parameter")
+    
+        if len(key) not in key_size:
+&gt;           raise ValueError("Incorrect AES key length (%d bytes)" % len(key))
+E           ValueError: Incorrect AES key length (17 bytes)
+
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:90: ValueError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_encrypt_with_data_param" time="0.005"><failure message="ValueError: Incorrect AES key length (17 bytes)">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_encrypt_with_data_param(client):
+        """Encrypt accepts data parameter."""
+&gt;       response = client.get('/encrypt?data=testdata')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_vulnerable_app.py:249: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1166: in get
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vulnerable_app.py:201: in encrypt_data
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:228: in new
+    return _create_cipher(sys.modules[__name__], key, mode, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\__init__.py:79: in _create_cipher
+    return modes[mode](factory, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\_mode_cbc.py:274: in _create_cbc_cipher
+    cipher_state = factory._create_base_cipher(kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dict_parameters = {'IV': b'\x03\x1fY\x10\xe0\x99\xccf\x17\xe7\x9b\xac\xa5\xe9\x92\xe8'}
+
+    def _create_base_cipher(dict_parameters):
+        """This method instantiates and returns a handle to a low-level
+        base cipher. It will absorb named parameters in the process."""
+    
+        use_aesni = dict_parameters.pop("use_aesni", True)
+    
+        try:
+            key = dict_parameters.pop("key")
+        except KeyError:
+            raise TypeError("Missing 'key' parameter")
+    
+        if len(key) not in key_size:
+&gt;           raise ValueError("Incorrect AES key length (%d bytes)" % len(key))
+E           ValueError: Incorrect AES key length (17 bytes)
+
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:90: ValueError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_encrypt_default_data" time="0.005"><failure message="ValueError: Incorrect AES key length (17 bytes)">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_encrypt_default_data(client):
+        """GET /encrypt with no params works."""
+&gt;       response = client.get('/encrypt')
+                   ^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_vulnerable_app.py:255: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1166: in get
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+vulnerable_app.py:201: in encrypt_data
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:228: in new
+    return _create_cipher(sys.modules[__name__], key, mode, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\__init__.py:79: in _create_cipher
+    return modes[mode](factory, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\_mode_cbc.py:274: in _create_cbc_cipher
+    cipher_state = factory._create_base_cipher(kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+dict_parameters = {'IV': b'\xeb\x9ao9\x81G\xdb\x1e-\xc1\x92H\x10N\xf7\xb0'}
+
+    def _create_base_cipher(dict_parameters):
+        """This method instantiates and returns a handle to a low-level
+        base cipher. It will absorb named parameters in the process."""
+    
+        use_aesni = dict_parameters.pop("use_aesni", True)
+    
+        try:
+            key = dict_parameters.pop("key")
+        except KeyError:
+            raise TypeError("Missing 'key' parameter")
+    
+        if len(key) not in key_size:
+&gt;           raise ValueError("Incorrect AES key length (%d bytes)" % len(key))
+E           ValueError: Incorrect AES key length (17 bytes)
+
+..\..\..\.venv\Lib\site-packages\Crypto\Cipher\AES.py:90: ValueError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_set_header_returns_200" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_set_header_default_works" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_set_header_with_special_chars" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_process_data_returns_200" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_process_data_with_input" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_process_data_with_session" time="0.008" /><testcase classname="tests.test_vulnerable_app" name="test_download_with_file_param" time="0.008"><failure message="assert 500 == 200&#10; +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_download_with_file_param(client):
+        """Download accepts file parameter."""
+        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.txt') as f:
+            f.write('test content')
+            temp_path = f.name
+    
+        try:
+            response = client.get(f'/download?file={temp_path}')
+&gt;           assert response.status_code == 200
+E           assert 500 == 200
+E            +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code
+
+tests\test_vulnerable_app.py:318: AssertionError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_download_missing_file" time="0.006"><failure message="assert 500 == 200&#10; +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_download_missing_file(client):
+        """Download handles missing file."""
+        response = client.get('/download?file=nonexistent_xyz.txt')
+&gt;       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code
+
+tests\test_vulnerable_app.py:326: AssertionError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_download_with_path" time="0.005"><failure message="assert 500 == 200&#10; +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_download_with_path(client):
+        """Download handles path parameter."""
+        response = client.get('/download?file=test.txt')
+&gt;       assert response.status_code == 200
+E       assert 500 == 200
+E        +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code
+
+tests\test_vulnerable_app.py:332: AssertionError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_session_login_valid_credentials" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_session_login_invalid_credentials" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_session_login_with_session_id" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_session_login_generates_token" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_search_returns_200" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_search_with_query_param" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_search_empty_query" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_search_with_special_chars" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_read_log_returns_200" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_read_log_with_param" time="0.007" /><testcase classname="tests.test_vulnerable_app" name="test_read_log_creates_file" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_transfer_funds_returns_200" time="0.009" /><testcase classname="tests.test_vulnerable_app" name="test_transfer_funds_post" time="0.009" /><testcase classname="tests.test_vulnerable_app" name="test_transfer_funds_updates_balance" time="0.011" /><testcase classname="tests.test_vulnerable_app" name="test_fetch_url_invalid_url" time="0.005"><failure message="assert 400 == 200&#10; +  where 400 = &lt;WrapperTestResponse streamed [400 BAD REQUEST]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_fetch_url_invalid_url(client):
+        """Invalid URL handled."""
+        response = client.get('/fetch_url?url=not_a_valid_url')
+&gt;       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = &lt;WrapperTestResponse streamed [400 BAD REQUEST]&gt;.status_code
+
+tests\test_vulnerable_app.py:474: AssertionError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_fetch_url_with_param" time="0.008"><failure message="assert 400 == 200&#10; +  where 400 = &lt;WrapperTestResponse streamed [400 BAD REQUEST]&gt;.status_code">client = &lt;FlaskClient &lt;Flask 'vulnerable_app'&gt;&gt;
+
+    def test_fetch_url_with_param(client):
+        """Fetch URL accepts parameter."""
+        response = client.get('/fetch_url?url=http://localhost:1')
+&gt;       assert response.status_code == 200
+E       assert 400 == 200
+E        +  where 400 = &lt;WrapperTestResponse streamed [400 BAD REQUEST]&gt;.status_code
+
+tests\test_vulnerable_app.py:480: AssertionError</failure></testcase><testcase classname="tests.test_vulnerable_app" name="test_account_valid_id_1" time="0.008" /><testcase classname="tests.test_vulnerable_app" name="test_account_valid_id_2" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_account_nonexistent_id" time="0.008" /><testcase classname="tests.test_vulnerable_app" name="test_account_with_special_chars" time="0.007" /><testcase classname="tests.test_vulnerable_app" name="test_load_object_with_data" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_load_object_simple_string" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_load_object_invalid_data" time="0.005" /><testcase classname="tests.test_vulnerable_app" name="test_ping_localhost" time="1.039" /><testcase classname="tests.test_vulnerable_app" name="test_ping_default_host" time="1.039" /><testcase classname="tests.test_vulnerable_app" name="test_ping_with_special_chars" time="0.037" /><testcase classname="tests.test_vulnerable_app" name="test_parse_xml_valid_document" time="0.017" /><testcase classname="tests.test_vulnerable_app" name="test_parse_xml_multiple_children" time="0.007" /><testcase classname="tests.test_vulnerable_app" name="test_parse_xml_malformed" time="0.007" /><testcase classname="tests.test_vulnerable_app" name="test_parse_xml_empty_root" time="0.006" /><testcase classname="tests.test_vulnerable_app" name="test_parse_xml_with_content_type" time="0.007" /></testsuite></testsuites>

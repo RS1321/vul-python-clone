@@ -1,0 +1,45 @@
+{
+  "finding_id": "py/path-injection:vulnerable_app.py:299:1",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 5.858999999938533,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use pathlib to resolve the absolute path and ensure it remains within the intended directory to prevent path traversal attacks.\n\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    import os\n    from pathlib import Path\n    \n    log_filename = request.args.get('log', 'app.log')\n    base_dir = Path.cwd().resolve()\n    log_path = (base_dir / log_filename).resolve()\n\n    if not log_path.is_relative_to(base_dir):\n        return \"Access Denied\", 403\n\n    log_file = str(log_path)\n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1707,
+          "completion_tokens": 223,
+          "total_tokens": 1930
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for ImportMember\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 296,\n                      \"startColumn\": 16,\n                      \"endColumn\": 23\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 296,\n                      \"startColumn\": 16,\n                      \"endColumn\": 28\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"AdditionalTaintStep\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 296,\n                      \"startColumn\": 16,\n                      \"endColumn\": 50\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Attribute()\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"dict.get\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 296,\n                      \"startColumn\": 5,\n                      \"endColumn\": 13\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for log_file\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 299,\n                      \"startColumn\": 14,\n                      \"endColumn\": 22\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for log_file\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\nCWE repair guidance\nResolve the candidate and allowed root, then check containment by path components. Account for symlinks. A string prefix check or normpath alone is insufficient.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn send_file(root / filename)\nAfter:\ncandidate = (root / filename).resolve()\nif not candidate.is_relative_to(root.resolve()):\n    abort(403)\nreturn send_file(candidate)\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "resource_leak"
+      },
+      "validation": {
+        "status": "disabled_by_condition"
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 12,
+  "lines_removed": 3
+}

@@ -1,0 +1,100 @@
+{
+  "finding_id": "py/template-injection:vulnerable_app.py:139:2",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 6.702999999997701,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use `render_template` with a static template string and pass user-provided data as context variables to prevent Server-Side Template Injection (SSTI).\n\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    template_str = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n        {% if username == 'admin' %}\n        <p style=\"color:red;\">Password Hint: {{ admin_password }}</p>\n        {% endif %}\n    '''\n    \n    from flask import render_template_string\n    return render_template_string(\n        template_str, \n        username=username, \n        comment=comment, \n        admin_password=ADMIN_PASSWORD if username == 'admin' else None\n    )\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1248,
+          "completion_tokens": 259,
+          "total_tokens": 1507
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 003\",\n  \"finding_id\": \"py/template-injection:vulnerable_app.py:139:2\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/template-injection\",\n    \"cwe\": \"CWE-074\",\n    \"all_cwes\": [\n      \"CWE-074\"\n    ],\n    \"description\": \"This template construction depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"30\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "profile"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "30 added plus deleted lines; allowed 5",
+          "lines_added": 19,
+          "lines_removed": 11,
+          "total_churn": 30,
+          "original_length": 14,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 6.296999999998661,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use `render_template_string` with context variables instead of f-string interpolation to prevent Server-Side Template Injection (SSTI).\n\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n        {% if username == 'admin' %}<p style=\"color:red;\">Password Hint: {{ admin_password }}</p>{% endif %}\n    '''\n    \n    # --------------------------------------------\n    comment = request.args.get('comment', 'No comment')\n    admin_password = ADMIN_PASSWORD if username == 'admin' else None\n    \n    return render_template_string(html_content, username=username, comment=comment, admin_password=admin_password)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1556,
+          "completion_tokens": 238,
+          "total_tokens": 1794
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 003\",\n  \"finding_id\": \"py/template-injection:vulnerable_app.py:139:2\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/template-injection\",\n    \"cwe\": \"CWE-074\",\n    \"all_cwes\": [\n      \"CWE-074\"\n    ],\n    \"description\": \"This template construction depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"30\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    template_str = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n        {% if username == 'admin' %}\n        <p style=\"color:red;\">Password Hint: {{ admin_password }}</p>\n        {% endif %}\n    '''\n    \n    from flask import render_template_string\n    return render_template_string(\n        template_str, \n        username=username, \n        comment=comment, \n        admin_password=ADMIN_PASSWORD if username == 'admin' else None\n    )\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"30 added plus deleted lines; allowed 5\", \"lines_added\": 19, \"lines_removed\": 11, \"total_churn\": 30, \"original_length\": 14, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "profile"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "23 added plus deleted lines; allowed 5",
+          "lines_added": 12,
+          "lines_removed": 11,
+          "total_churn": 23,
+          "original_length": 14,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "error": "Gemini transport failure: ReadTimeout",
+      "infrastructure_error": true
+    }
+  ],
+  "application_counts": {
+    "attempts": 2,
+    "success": 2,
+    "ast_name": 2
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

@@ -1,0 +1,22 @@
+--- 
++++ 
+@@ -508,6 +508,7 @@
+ 
+ 
+ def stop_lab(request, lab_image_name):
++    import logging
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+ 
+@@ -529,8 +530,9 @@
+         return JsonResponse({'status': 'success', 'message': f'Stopped {lab_image_name}'})
+     except docker.errors.NotFound:
+         return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)
+-    except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++    except Exception:
++        logging.exception("Error stopping lab container")
++        return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 
+ 
+ def list_custom_labs(request):

@@ -1,0 +1,35 @@
+--- 
++++ 
+@@ -179,12 +179,14 @@
+ # Lab 3: Session Management
+ @app.route("/lab3", methods=["GET", "POST"])
+ def lab3():
++    import base64, json, hashlib
++    from datetime import datetime, timedelta
++    from flask import request, render_template, make_response
+     if request.method == "GET":
+         try:
+             session_id = request.cookies.get("session_id")
+             if session_id:
+                 try:
+-                    # Vulnerable: Predictable session format and no signature verification
+                     session_data = base64.b64decode(session_id).decode()
+                     session_info = json.loads(session_data)
+                     if (
+@@ -213,7 +215,6 @@
+         password_hash = hashlib.sha256(password.encode()).hexdigest()
+ 
+         if username in USERS and USERS[username]["password"] == password_hash:
+-            # Vulnerable: Session information stored in cookie without signature
+             session_data = {
+                 "username": username,
+                 "role": USERS[username]["role"],
+@@ -224,7 +225,7 @@
+             response = make_response(
+                 render_template("lab3.html", success=True, username=username)
+             )
+-            response.set_cookie("session_id", session_id)
++            response.set_cookie("session_id", session_id, httponly=True)
+             return response
+ 
+         return render_template("lab3.html", failure=True)

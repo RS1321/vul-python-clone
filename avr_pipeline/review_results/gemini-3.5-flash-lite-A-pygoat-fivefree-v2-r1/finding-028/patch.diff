@@ -1,0 +1,25 @@
+--- 
++++ 
+@@ -193,9 +193,11 @@
+                         and datetime.fromisoformat(session_info["valid_until"])
+                         > datetime.now()
+                     ):
+-                        return render_template(
++                        response = make_response(render_template(
+                             "lab3.html", username=session_info["username"], success=True
+-                        )
++                        ))
++                        response.set_cookie("session_id", session_id, httponly=True, secure=True)
++                        return response
+                 except:
+                     pass
+             return render_template("lab3.html")
+@@ -206,7 +208,7 @@
+     elif request.method == "POST":
+         if "username" not in request.form:
+             response = make_response(render_template("lab3.html"))
+-            response.set_cookie("session_id", "", expires=0)
++            response.set_cookie("session_id", "", expires=0, httponly=True, secure=True)
+             return response
+ 
+         username = request.form.get("username")

@@ -1,0 +1,16 @@
+{
+  "finding_id": "py/sql-injection:vulnerable_app.py:322:14",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "error": "Gemini HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n",
+      "infrastructure_error": true
+    }
+  ],
+  "application_counts": {},
+  "lines_added": 0,
+  "lines_removed": 0
+}

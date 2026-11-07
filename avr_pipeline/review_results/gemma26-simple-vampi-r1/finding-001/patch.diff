@@ -1,0 +1,24 @@
+--- 
++++ 
+@@ -130,6 +130,10 @@
+ 
+ 
+ def update_email(username):
++    import re
++    import jsonschema
++    import json
++    from flask import request, Response
+     request_data = request.get_json()
+     try:
+         jsonschema.validate(request_data, update_email_schema)
+@@ -141,8 +145,9 @@
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+         if vuln:  # Regex DoS
++            # Use a non-backtracking email pattern to prevent ReDoS
+             match = re.search(
+-                r"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@{1}([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$",
++                r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$",
+                 str(request_data.get('email')))
+             if match:
+                 user.email = request_data.get('email')

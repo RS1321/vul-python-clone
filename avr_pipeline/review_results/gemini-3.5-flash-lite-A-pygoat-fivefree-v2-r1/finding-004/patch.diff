@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -186,7 +186,10 @@
+     session["secure_mode"] = not session.get("secure_mode", False)
+     session.modified = True
+ 
+-    return redirect(request.referrer or url_for("index"))
++    from urllib.parse import urlparse
++    ref = request.referrer
++    safe_ref = ref if ref and urlparse(ref).netloc == request.host else None
++    return redirect(safe_ref or url_for("index"))
+ 
+ 
+ @app.route("/check_headers")

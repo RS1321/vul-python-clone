@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -112,7 +112,8 @@
+             )
+         except Exception as e:
+             flash(f"Error processing image: {str(e)}")
+-            logger.error(f"Error processing image file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace("\n", "").replace("\r", "")
++            logger.error(f"Error processing image file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab2"))
+ 
+ @app.route("/health")

@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -225,7 +225,7 @@
+             response = make_response(
+                 render_template("lab3.html", success=True, username=username)
+             )
+-            response.set_cookie("session_id", session_id, httponly=True)
++            response.set_cookie("session_id", session_id, httponly=True, secure=True)
+             return response
+ 
+         return render_template("lab3.html", failure=True)

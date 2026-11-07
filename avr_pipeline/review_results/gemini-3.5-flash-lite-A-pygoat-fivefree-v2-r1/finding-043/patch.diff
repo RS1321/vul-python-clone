@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -34,10 +34,14 @@
+ @app.route("/deserialize", methods=["POST"])
+ def deserialize_data():
+     try:
++        import json
+         serialized_data = request.form.get("serialized_data", "")
+         decoded_data = base64.b64decode(serialized_data)
+-        # Intentionally vulnerable deserialization, matching PyGoat
+-        user = pickle.loads(decoded_data)
++        user_data = json.loads(decoded_data.decode("utf-8"))
++
++        username = user_data.get("username", "Guest")
++        is_admin = bool(user_data.get("is_admin", False))
++        user = User(username, is_admin)
+ 
+         if isinstance(user, User):
+             if user.is_admin:

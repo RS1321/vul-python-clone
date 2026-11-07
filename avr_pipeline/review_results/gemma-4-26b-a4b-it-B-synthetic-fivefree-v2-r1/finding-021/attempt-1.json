@@ -1,0 +1,40 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 6.953000000001339,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace the weak DES algorithm and insecure ECB mode with AES in CBC mode using a secure key and proper padding.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    from Crypto.Cipher import AES\n    from Crypto.Util.Padding import pad\n    from Crypto.Random import get_random_bytes\n    \n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    # Using AES-256 with CBC mode. Key must be 32 bytes.\n    key = b'this_is_a_very_secret_32_byte_key'\n    iv = get_random_bytes(16)\n    cipher = AES.new(key, AES.MODE_CBC, iv)\n    \n    # --------------------------------------------\n    encrypted = cipher.encrypt(pad(data.encode(), AES.block_size))\n    \n    # Prepend IV to the ciphertext so it can be used for decryption\n    result = iv + encrypted\n    return f\"<h2>Encrypted Data:</h2><p>{result.hex()}</p>\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.015
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 650,
+      "completion_tokens": 263,
+      "total_tokens": 913
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "encrypt_data"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "27 added plus deleted lines; allowed 5",
+      "lines_added": 17,
+      "lines_removed": 10,
+      "total_churn": 27,
+      "original_length": 11,
+      "limit": 5
+    }
+  }
+}

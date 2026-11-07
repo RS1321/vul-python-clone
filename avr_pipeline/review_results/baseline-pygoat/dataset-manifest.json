@@ -1,0 +1,29 @@
+{
+  "dataset": "pygoat",
+  "source_url": "https://github.com/adeyosemanputra/pygoat.git",
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "findings": 62,
+  "affected_files": 25,
+  "cwe_classes": 16,
+  "cwes": {
+    "CWE-215": 19,
+    "CWE-601": 2,
+    "CWE-022": 3,
+    "CWE-209": 14,
+    "CWE-117": 2,
+    "CWE-502": 3,
+    "CWE-020": 6,
+    "CWE-1004": 2,
+    "CWE-614": 2,
+    "CWE-327": 3,
+    "CWE-094": 1,
+    "CWE-078": 1,
+    "CWE-089": 1,
+    "CWE-918": 1,
+    "CWE-611": 1,
+    "CWE-776": 1
+  },
+  "library_covered_findings": 55,
+  "cross_file_taint_findings": 2,
+  "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4"
+}

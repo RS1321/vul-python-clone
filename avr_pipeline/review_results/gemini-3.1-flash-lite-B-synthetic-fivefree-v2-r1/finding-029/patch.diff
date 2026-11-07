@@ -1,0 +1,21 @@
+--- 
++++ 
+@@ -74,6 +74,7 @@
+ 
+ @app.route('/login', methods=['GET', 'POST'])
+ def login():
++    import sqlite3
+     from markupsafe import escape
+     # --------------------------------------------
+     if request.method == 'GET':
+@@ -99,8 +100,8 @@
+         cursor = conn.cursor()
+ 
+         # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        query = "SELECT * FROM users WHERE username = ? AND password = ?"
++        cursor.execute(query, (username, password))
+         user = cursor.fetchone()
+         conn.close()
+ 

@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -422,8 +422,9 @@
+ @app.route('/parse_xml', methods=['POST'])
+ def xxe_vulnerability():
+     # --------------------------------------------
++    import defusedxml.ElementTree as ET
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+         root = ET.fromstring(xml_data)

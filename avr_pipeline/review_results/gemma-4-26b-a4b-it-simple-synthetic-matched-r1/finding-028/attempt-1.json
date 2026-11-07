@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 10.60999999998603,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use `markupsafe.escape` to sanitize the user-provided `username` before embedding it in the HTML response to prevent Cross-Site Scripting (XSS).\n\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    from markupsafe import escape\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>\"\n\n    except Exception as e:\n        # --------------------------------------------\n        return \"<h2>Database Error</h2><p>An internal error occurred. Please try again later.</p>\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 598,
+      "completion_tokens": 447,
+      "total_tokens": 1045
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/reflective-xss\",\n  \"cwe\": \"CWE-079\",\n  \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>\"\n\n    except Exception as e:\n        # --------------------------------------------\n        return \"<h2>Database Error</h2><p>An internal error occurred. Please try again later.</p>\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "login"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

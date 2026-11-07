@@ -1,0 +1,39 @@
+{
+  "attempt": 2,
+  "accepted": false,
+  "duration_seconds": 3.4679999999934807,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace the detailed exception message with a generic error message to prevent stack trace exposure.\n\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception:\n        return \"Error deserializing object.\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1065,
+      "completion_tokens": 120,
+      "total_tokens": 1185
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:393:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 393,\n      \"end_line\": 393,\n      \"function\": \"insecure_deserialization\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 392,\n                      \"startColumn\": 25,\n                      \"endColumn\": 26\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for e\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 393,\n                      \"startColumn\": 16,\n                      \"endColumn\": 48\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Fstring\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"ba78d8f6caf23930:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception as e:\n        return f\"Error deserializing: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception:\n        return \"Error deserializing object.\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"6 added plus deleted lines; allowed 5\", \"lines_added\": 3, \"lines_removed\": 3, \"total_churn\": 6, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "insecure_deserialization"
+  },
+  "validation": {
+    "minimality": {
+      "passed": false,
+      "message": "6 added plus deleted lines; allowed 5",
+      "lines_added": 3,
+      "lines_removed": 3,
+      "total_churn": 6,
+      "original_length": 10,
+      "limit": 5
+    }
+  }
+}

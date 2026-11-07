@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -32,11 +32,11 @@
+ 
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
++    from werkzeug.security import generate_password_hash, check_password_hash
+     if request.method == "POST":
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.md5(password.encode()).hexdigest()
+-        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:
++        if username in LAB1_USERS and check_password_hash(LAB1_USERS[username], password):
+             return render_template("lab1.html", user=username, success=True)
+         else:
+             return render_template("lab1.html", success=False, failure=True)

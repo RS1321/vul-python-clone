@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -423,7 +423,7 @@
+ def xxe_vulnerability():
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+         root = ET.fromstring(xml_data)

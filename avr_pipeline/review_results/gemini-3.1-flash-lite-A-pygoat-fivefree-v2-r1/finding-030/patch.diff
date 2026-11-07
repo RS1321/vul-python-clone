@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -92,9 +92,12 @@
+ # Lab 1: OTP Bypass Routes
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
++    import re
+     if request.method == "POST":
+         email = request.form.get("email")
+         if email:
++            if not re.match(r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', email):
++                return "Invalid email format", 400
+             # Vulnerable: Short OTP, no rate limiting
+             otp = str(random.randint(100, 999))
+             if email == "admin@pygoat.com":

@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -384,11 +384,12 @@
+ def insecure_deserialization():
+     # --------------------------------------------
+     from markupsafe import escape
++    import json
+     data = request.data
+ 
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
++        obj = json.loads(data)
+         return f"<h2>Deserialized Object:</h2><pre>{escape(obj)}</pre>"
+     except Exception as e:
+         return "Error deserializing: An internal error occurred."

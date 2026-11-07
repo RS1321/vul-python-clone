@@ -1,0 +1,110 @@
+{
+  "finding_id": "py/stack-trace-exposure:vulnerable_app.py:393:20",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 11.264999999999418,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the exception string in the HTTP response with a generic error message while logging the exception server-side.\n\n```python\ndef insecure_deserialization():\n    import logging\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception:\n        logging.exception(\"Error deserializing object\")\n        return \"Error deserializing\"\n```",
+        "model": "gemini-3.6-flash",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 783,
+          "completion_tokens": 2089,
+          "total_tokens": 2872
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:393:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 393,\n      \"end_line\": 393,\n      \"function\": \"insecure_deserialization\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 392,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 393,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"ba78d8f6caf23930:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception as e:\n        return f\"Error deserializing: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "insecure_deserialization"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "8 added plus deleted lines; allowed 5",
+          "lines_added": 5,
+          "lines_removed": 3,
+          "total_churn": 8,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": true,
+      "duration_seconds": 12.84400000000096,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Return a generic error message upon deserialization failure to prevent exposure of exception details.\n\n```python\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception as e:\n        return \"Error deserializing\"\n```",
+        "model": "gemini-3.6-flash",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 963,
+          "completion_tokens": 2434,
+          "total_tokens": 3397
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:393:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 393,\n      \"end_line\": 393,\n      \"function\": \"insecure_deserialization\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 392,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 393,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"ba78d8f6caf23930:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception as e:\n        return f\"Error deserializing: {str(e)}\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef insecure_deserialization():\n    import logging\n    # --------------------------------------------\n    data = request.data\n    \n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{obj}</pre>\"\n    except Exception:\n        logging.exception(\"Error deserializing object\")\n        return \"Error deserializing\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"8 added plus deleted lines; allowed 5\", \"lines_added\": 5, \"lines_removed\": 3, \"total_churn\": 8, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "insecure_deserialization"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "4 added plus deleted lines; allowed 5",
+          "lines_added": 2,
+          "lines_removed": 2,
+          "total_churn": 4,
+          "original_length": 10,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 5.025380710659898,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "passed",
+          "returncode": 0,
+          "tests": 68,
+          "failures": [],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 2,
+    "success": 2,
+    "ast_name": 2
+  },
+  "lines_added": 2,
+  "lines_removed": 2
+}

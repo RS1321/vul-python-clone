@@ -1,0 +1,165 @@
+diff --git a/vulnerable_app.py b/vulnerable_app.py
+index 71282b4..80e709e 100644
+--- a/vulnerable_app.py
++++ b/vulnerable_app.py
+@@ -82,7 +82,7 @@ def login():
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,28 +92,32 @@ def login():
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
++        import sqlite3
++        from markupsafe import escape
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
++
+         # --------------------------------------------
+-        query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+-        cursor.execute(query)
++        query = "SELECT * FROM users WHERE username = ? AND password = ?"
++        cursor.execute(query, (username, password))
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            return f"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>"
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++            return f"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>"
++
+     except Exception as e:
+         # --------------------------------------------
+-        return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
++        import logging
++        logging.error(f"Database error during login: {e}")
++        return "<h2>Error</h2><p>An internal error occurred. Please try again later.</p>"
+ 
+ 
+ # ============================================================================
+@@ -231,14 +235,14 @@ def trust_boundary():
+ def directory_traversal():
+     # --------------------------------------------
+     filename = request.args.get('file', 'readme.txt')
+-    
++
+     try:
+         # --------------------------------------------
+         with open(filename, 'r') as f:
+             content = f.read()
+         return f"<pre>{content}</pre>"
+     except Exception as e:
+-        return f"Error reading file: {str(e)}"
++        return "Error reading file", 500
+ 
+ 
+ # ============================================================================
+@@ -248,20 +252,21 @@ def directory_traversal():
+ @app.route('/login_with_session')
+ def session_fixation():
+     # --------------------------------------------
++    from markupsafe import escape
+     username = request.args.get('username')
+     password = request.args.get('password')
+     session_id = request.args.get('session_id')
+-    
++
+     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+         # --------------------------------------------
+         if session_id:
+             user_sessions[session_id] = username
+-            return f"Logged in with session: {session_id}"
++            return f"Logged in with session: {escape(session_id)}"
+         else:
+             new_session = secrets.token_hex(16)
+             user_sessions[new_session] = username
+             return f"Logged in with new session: {new_session}"
+-    
++
+     return "Login failed"
+ 
+ 
+@@ -312,20 +317,21 @@ def resource_leak():
+ def csrf_vulnerability():
+     # --------------------------------------------
+     if request.method == 'POST' or request.method == 'GET':
++        from markupsafe import escape
+         from_account = request.values.get('from')
+         to_account = request.values.get('to')
+         amount = request.values.get('amount')
+-        
++
+         # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute("UPDATE accounts SET balance = balance - ? WHERE username = ?", (amount, from_account))
++        cursor.execute("UPDATE accounts SET balance = balance + ? WHERE username = ?", (amount, to_account))
+         conn.commit()
+         conn.close()
+-        
+-        return f"<h2>Transferred ${amount} from {from_account} to {to_account}</h2>"
+-    
++
++        return f"<h2>Transferred ${escape(amount)} from {escape(from_account)} to {escape(to_account)}</h2>"
++
+     return '''
+         <h2>Transfer Funds</h2>
+         <form method="POST">
+@@ -384,13 +390,15 @@ def idor_vulnerability(account_id):
+ def insecure_deserialization():
+     # --------------------------------------------
+     data = request.data
+-    
++
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        import markupsafe
++        import json
++        obj = json.loads(data)
++        return f"<h2>Deserialized Object:</h2><pre>{markupsafe.escape(str(obj))}</pre>"
+     except Exception as e:
+-        return f"Error deserializing: {str(e)}"
++        return "Error deserializing object", 500
+ 
+ 
+ # ============================================================================
+@@ -423,14 +431,16 @@ def command_injection():
+ def xxe_vulnerability():
+     # --------------------------------------------
+     xml_data = request.data.decode()
+-    
++
+     try:
+         # --------------------------------------------
+-        root = ET.fromstring(xml_data)
++        from defusedxml import ElementTree as safe_ET
++        root = safe_ET.fromstring(xml_data)
+         result = [(child.tag, child.text) for child in root]
+         return f"<h2>Parsed XML:</h2><pre>{result}</pre>"
+     except Exception as e:
+-        return f"Error parsing XML: {str(e)}"
++        app.logger.error(f"Error parsing XML: {str(e)}")
++        return "Error parsing XML", 500
+ 
+ 
+ # ============================================================================

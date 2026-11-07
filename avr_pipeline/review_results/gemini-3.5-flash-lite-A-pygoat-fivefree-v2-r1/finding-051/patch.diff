@@ -1,0 +1,28 @@
+--- 
++++ 
+@@ -29,6 +29,8 @@
+ @app.route("/lab1")
+ def lab1():
+     """Lab 1: Insecure Deserialization"""
++    import base64
++    import json
+     response = render_template("lab1.html", message="Only Admins can see this page")
+     token = request.cookies.get("token")
+ 
+@@ -41,10 +43,12 @@
+     else:
+         try:
+             token = base64.b64decode(token)
+-            admin = pickle.loads(
+-                token
+-            )  # Intentionally vulnerable to pickle deserialization
+-            if admin.admin == 1:
++            admin_data = json.loads(token.decode("utf-8"))
++            class AdminObj:
++                def __init__(self, d):
++                    self.__dict__.update(d)
++            admin = AdminObj(admin_data)
++            if getattr(admin, "admin", 0) == 1:
+                 response = render_template(
+                     "lab1.html", message="Welcome Admin, SECRETKEY:ADMIN123"
+                 )

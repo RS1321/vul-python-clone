@@ -1,0 +1,21 @@
+--- 
++++ 
+@@ -72,6 +72,8 @@
+ 
+ @app.route("/process_image", methods=["POST"])
+ def process_image():
++    import logging
++    logger = logging.getLogger(__name__)
+     if "image" not in request.files:
+         flash("No image file selected")
+         return redirect(url_for("lab2"))
+@@ -112,7 +114,8 @@
+             )
+         except Exception as e:
+             flash(f"Error processing image: {str(e)}")
+-            logger.error(f"Error processing image file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace('\n', '').replace('\r', '')
++            logger.error(f"Error processing image file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab2"))
+ 
+ @app.route("/health")

@@ -1,0 +1,2285 @@
+{
+  "schema": 1,
+  "conditions": {
+    "A": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "B": {
+      "guidance": false,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "C": {
+      "guidance": true,
+      "examples": true,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor"
+    },
+    "no_guidance": {
+      "guidance": false,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "no_examples": {
+      "guidance": true,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "simple": {
+      "guidance": false,
+      "examples": false,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor",
+      "simple": true
+    },
+    "A_strict": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "block"
+    }
+  },
+  "original_models": [
+    "qwen/qwen3.5-flash-02-23",
+    "moonshotai/kimi-k2.5",
+    "minimax/minimax-m2.5",
+    "deepseek/deepseek-v3.2",
+    "z-ai/glm-5"
+  ],
+  "original_provider": "openrouter",
+  "original_model_access": "not_configured",
+  "available_free_cohort": {
+    "provider": "gemini",
+    "models": [
+      "gemma-4-31b-it",
+      "gemma-4-26b-a4b-it"
+    ],
+    "pricing_source": "https://aistudio.google.com/docs/pricing#gemma-4"
+  },
+  "repetitions_planned": 3,
+  "datasets": [
+    "synthetic-flask",
+    "pygoat",
+    "vampi"
+  ],
+  "plan": [
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "synthetic-flask",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "pygoat",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "moonshotai/kimi-k2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "minimax/minimax-m2.5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "deepseek/deepseek-v3.2",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "B",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "C",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "no_examples",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "simple",
+      "repetition": 3,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 1,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 2,
+      "status": "not_run"
+    },
+    {
+      "dataset": "vampi",
+      "model": "z-ai/glm-5",
+      "condition": "A_strict",
+      "repetition": 3,
+      "status": "not_run"
+    }
+  ]
+}

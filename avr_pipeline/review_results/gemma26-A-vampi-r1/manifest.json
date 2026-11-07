@@ -1,0 +1,72 @@
+{
+  "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+  "source_url": "https://github.com/erev0s/VAmPI.git",
+  "provider": "gemini",
+  "model": "gemma-4-26b-a4b-it",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": "minimal",
+  "implementation_sha256": {
+    "review\\runner.py": "8711848d9455ffc0acdb6357ae80cfc6c40a8cadfc47d2063ae2d42143b35e85",
+    "llm\\llm_client.py": "48d5c22a33a88f074036d2b11b6963051187a513d337387191ef4a1e9dff0a3a",
+    "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-vampi\\scan.sarif",
+  "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 3,
+  "selected_findings": 3,
+  "utc": "2026-11-05T04:24:42.538882+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 82.04700000002049,
+  "accepted_patches": 3,
+  "processed_findings": 3,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 3,
+    "remaining_baseline_findings": 1,
+    "resolved_findings": 2,
+    "new_findings": 0,
+    "resolution_rate": 0.6666666666666666,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/polynomial-redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  }
+}

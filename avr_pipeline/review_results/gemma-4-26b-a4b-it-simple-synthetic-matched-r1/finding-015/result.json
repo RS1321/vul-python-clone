@@ -1,0 +1,15 @@
+{
+  "finding_id": "py/path-injection:vulnerable_app.py:299:1",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "error": "HTTPSConnectionPool(host='generativelanguage.googleapis.com', port=443): Read timed out. (read timeout=120)"
+    }
+  ],
+  "application_counts": {},
+  "lines_added": 0,
+  "lines_removed": 0
+}

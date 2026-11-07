@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -186,7 +186,7 @@
+     session["secure_mode"] = not session.get("secure_mode", False)
+     session.modified = True
+ 
+-    return redirect(request.referrer or url_for("index"))
++    return redirect(url_for("index"))
+ 
+ 
+ @app.route("/check_headers")

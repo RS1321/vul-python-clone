@@ -1,0 +1,59 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 1.7659999999996217,
+  "response": {
+    "content": "SCOPE: function login\nEXPLANATION: Replaced the f-string SQL query with a parameterized query to prevent SQL injection.\n\n```python\ndef login():\n    import sqlite3\n    from markupsafe import escape\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = \"SELECT * FROM users WHERE username = ? AND password = ?\"\n        cursor.execute(query, (username, password))\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>\"\n\n    except Exception as e:\n        # --------------------------------------------\n        return f\"<h2>Database Error</h2><pre>{escape(str(e))}</pre>\"\n```",
+    "model": "gemini-3.1-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1552,
+      "completion_tokens": 417,
+      "total_tokens": 1969
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 013\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:102:12\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 102,\n      \"end_line\": 102,\n      \"function\": \"login\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 78,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for username\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 101,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 102,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 81,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 81,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 81,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 101,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 102,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 2\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"1d9ff5b54b53f7fc:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    from markupsafe import escape\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>\"\n\n    except Exception as e:\n        # --------------------------------------------\n        return f\"<h2>Database Error</h2><pre>{escape(str(e))}</pre>\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "login"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "5 added plus deleted lines; allowed 19.0",
+      "lines_added": 3,
+      "lines_removed": 2,
+      "total_churn": 5,
+      "original_length": 38,
+      "limit": 19.0
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 5.170731707317073,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "failed",
+      "returncode": 1,
+      "tests": 68,
+      "failures": [
+        "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+        "tests.test_vulnerable_app::test_fetch_url_with_param"
+      ],
+      "infrastructure_error": false
+    }
+  }
+}

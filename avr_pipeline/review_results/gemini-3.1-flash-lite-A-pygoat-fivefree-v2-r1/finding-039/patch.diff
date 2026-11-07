@@ -1,0 +1,21 @@
+--- 
++++ 
+@@ -58,6 +58,7 @@
+ 
+ @app.route("/lab3", methods=["GET", "POST"])
+ def lab3():
++    import re
+     if request.method == "GET":
+         try:
+             cookie = request.cookies.get("cookie")
+@@ -84,7 +85,9 @@
+     elif request.method == "POST":
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        # In a real app, you'd validate credentials here
++        if not username or not re.match(r'^[a-zA-Z0-9]+$', username):
++            response = make_response(render_template("lab3.html", success=False, failure=True))
++            return response
+         if username == "User" and password == "P@$$w0rd":
+             expire = datetime.datetime.now() + datetime.timedelta(minutes=60)
+             cookie_data = f"{username}|{expire}"

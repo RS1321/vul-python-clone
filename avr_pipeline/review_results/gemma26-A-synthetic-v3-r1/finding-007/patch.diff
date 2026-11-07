@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -387,8 +387,10 @@
+ 
+     try:
+         # --------------------------------------------
++        import markupsafe
++        import pickle
+         obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        return f"<h2>Deserialized Object:</h2><pre>{markupsafe.escape(str(obj))}</pre>"
+     except Exception as e:
+         return "Error deserializing object", 500
+ 

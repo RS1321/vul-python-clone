@@ -1,0 +1,33 @@
+variant,pattern,source_line,input,matched,median_microseconds
+baseline,1,144,normal address,True,1.9
+baseline,1,144,host without dot,False,4.9
+baseline,1,144,invalid address,False,2.7
+baseline,1,144,bounded near miss,False,17761.6
+baseline,2,162,normal address,True,0.9
+baseline,2,162,host without dot,False,0.9
+baseline,2,162,invalid address,False,0.7
+baseline,2,162,bounded near miss,False,2.2
+Gemma 26B A,1,145,normal address,True,0.9
+Gemma 26B A,1,145,host without dot,True,0.6
+Gemma 26B A,1,145,invalid address,False,0.5
+Gemma 26B A,1,145,bounded near miss,False,0.9
+Gemma 26B A,2,164,normal address,True,0.7
+Gemma 26B A,2,164,host without dot,False,0.7
+Gemma 26B A,2,164,invalid address,False,0.6
+Gemma 26B A,2,164,bounded near miss,False,1.7
+Gemma 26B simple,1,149,normal address,True,1.0
+Gemma 26B simple,1,149,host without dot,True,0.5
+Gemma 26B simple,1,149,invalid address,False,0.5
+Gemma 26B simple,1,149,bounded near miss,False,0.8
+Gemma 26B simple,2,167,normal address,True,0.7
+Gemma 26B simple,2,167,host without dot,False,0.6
+Gemma 26B simple,2,167,invalid address,False,0.6
+Gemma 26B simple,2,167,bounded near miss,False,0.8
+Gemma 31B A,1,146,normal address,True,1.3
+Gemma 31B A,1,146,host without dot,False,1.0
+Gemma 31B A,1,146,invalid address,False,0.7
+Gemma 31B A,1,146,bounded near miss,False,1.0
+Gemma 31B A,2,164,normal address,True,1.0
+Gemma 31B A,2,164,host without dot,False,1.4
+Gemma 31B A,2,164,invalid address,False,1.1
+Gemma 31B A,2,164,bounded near miss,False,3.5

@@ -1,0 +1,134 @@
+{
+  "finding_id": "py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 4.577999999997701,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disabled Flask debug mode to prevent potential arbitrary code execution via the interactive debugger.\n```python\n    app.run(host=\"0.0.0.0\", port=5011, debug=False)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 889,
+          "completion_tokens": 55,
+          "total_tokens": 944
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/software_integrity_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 033\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/software_integrity_lab/app.py\",\n      \"start_line\": 78,\n      \"end_line\": 90,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"816c3c04f803d3e4:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Ensure static files exist\\n    static_dir = Path(\\\"./static\\\")\\n    static_dir.mkdir(exist_ok=True)\\n\\n    # Create sample files for lab2\\n    with open(static_dir / \\\"real.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"Congratulations! You downloaded the real file.\\\")\\n\\n    with open(static_dir / \\\"fake.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"This is a fake file that could contain malicious code.\\\")\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5011, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Ensure static files exist\n    static_dir = Path(\"./static\")\n    static_dir.mkdir(exist_ok=True)\n\n    # Create sample files for lab2\n    with open(static_dir / \"real.txt\", \"w\") as f:\n        f.write(\"Congratulations! You downloaded the real file.\")\n\n    with open(static_dir / \"fake.txt\", \"w\") as f:\n        f.write(\"This is a fake file that could contain malicious code.\")\n\n    app.run(host=\"0.0.0.0\", port=5011, debug=True)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "dockerized_labs/software_integrity_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "14 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 13,
+          "total_churn": 14,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 3.827999999997701,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode to prevent potential arbitrary code execution via the interactive debugger.\n```python\n    app.run(host=\"0.0.0.0\", port=5011, debug=False)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.016
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1007,
+          "completion_tokens": 55,
+          "total_tokens": 1062
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/software_integrity_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 033\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/software_integrity_lab/app.py\",\n      \"start_line\": 78,\n      \"end_line\": 90,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"816c3c04f803d3e4:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Ensure static files exist\\n    static_dir = Path(\\\"./static\\\")\\n    static_dir.mkdir(exist_ok=True)\\n\\n    # Create sample files for lab2\\n    with open(static_dir / \\\"real.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"Congratulations! You downloaded the real file.\\\")\\n\\n    with open(static_dir / \\\"fake.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"This is a fake file that could contain malicious code.\\\")\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5011, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Ensure static files exist\n    static_dir = Path(\"./static\")\n    static_dir.mkdir(exist_ok=True)\n\n    # Create sample files for lab2\n    with open(static_dir / \"real.txt\", \"w\") as f:\n        f.write(\"Congratulations! You downloaded the real file.\")\n\n    with open(static_dir / \"fake.txt\", \"w\") as f:\n        f.write(\"This is a fake file that could contain malicious code.\")\n\n    app.run(host=\"0.0.0.0\", port=5011, debug=True)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\napp.run(host=\"0.0.0.0\", port=5011, debug=False)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"14 added plus deleted lines; allowed 5\", \"lines_added\": 1, \"lines_removed\": 13, \"total_churn\": 14, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "dockerized_labs/software_integrity_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "14 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 13,
+          "total_churn": 14,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 2.264999999999418,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode to prevent potential arbitrary code execution via the interactive debugger.\n```python\n    app.run(host=\"0.0.0.0\", port=5011, debug=False)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1007,
+          "completion_tokens": 55,
+          "total_tokens": 1062
+        }
+      },
+      "prompt": "Repair the reported vulnerability in dockerized_labs/software_integrity_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 033\",\n  \"finding_id\": \"py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/software_integrity_lab/app.py\",\n      \"start_line\": 78,\n      \"end_line\": 90,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"816c3c04f803d3e4:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # Ensure static files exist\\n    static_dir = Path(\\\"./static\\\")\\n    static_dir.mkdir(exist_ok=True)\\n\\n    # Create sample files for lab2\\n    with open(static_dir / \\\"real.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"Congratulations! You downloaded the real file.\\\")\\n\\n    with open(static_dir / \\\"fake.txt\\\", \\\"w\\\") as f:\\n        f.write(\\\"This is a fake file that could contain malicious code.\\\")\\n\\n    app.run(host=\\\"0.0.0.0\\\", port=5011, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # Ensure static files exist\n    static_dir = Path(\"./static\")\n    static_dir.mkdir(exist_ok=True)\n\n    # Create sample files for lab2\n    with open(static_dir / \"real.txt\", \"w\") as f:\n        f.write(\"Congratulations! You downloaded the real file.\")\n\n    with open(static_dir / \"fake.txt\", \"w\") as f:\n        f.write(\"This is a fake file that could contain malicious code.\")\n\n    app.run(host=\"0.0.0.0\", port=5011, debug=True)\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\napp.run(host=\"0.0.0.0\", port=5011, debug=False)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"14 added plus deleted lines; allowed 5\", \"lines_added\": 1, \"lines_removed\": 13, \"total_churn\": 14, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "dockerized_labs/software_integrity_lab/app.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "14 added plus deleted lines; allowed 5",
+          "lines_added": 1,
+          "lines_removed": 13,
+          "total_churn": 14,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "verified_line": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

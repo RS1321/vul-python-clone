@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -385,10 +385,11 @@
+     # --------------------------------------------
+     data = request.data
+     import html
++    import json
+ 
+     try:
+         # --------------------------------------------
+-        obj = pickle.loads(data)
++        obj = json.loads(data.decode('utf-8'))
+         return f"<h2>Deserialized Object:</h2><pre>{html.escape(str(obj))}</pre>"
+     except Exception as e:
+         return "Error deserializing object."

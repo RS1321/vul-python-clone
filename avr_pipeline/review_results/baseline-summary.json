@@ -1,0 +1,70 @@
+[
+  {
+    "dataset": "synthetic",
+    "source_url": "https://github.com/RS1321/vul-python-clone.git",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "findings": 29,
+    "affected_files": 1,
+    "cwe_classes": 12,
+    "cwes": {
+      "CWE-215": 1,
+      "CWE-209": 6,
+      "CWE-776": 1,
+      "CWE-078": 1,
+      "CWE-079": 7,
+      "CWE-502": 1,
+      "CWE-089": 5,
+      "CWE-918": 1,
+      "CWE-022": 2,
+      "CWE-327": 1,
+      "CWE-601": 1,
+      "CWE-074": 2
+    },
+    "library_covered_findings": 29,
+    "cross_file_taint_findings": 0,
+    "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809"
+  },
+  {
+    "dataset": "pygoat",
+    "source_url": "https://github.com/adeyosemanputra/pygoat.git",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "findings": 62,
+    "affected_files": 25,
+    "cwe_classes": 16,
+    "cwes": {
+      "CWE-215": 19,
+      "CWE-601": 2,
+      "CWE-022": 3,
+      "CWE-209": 14,
+      "CWE-117": 2,
+      "CWE-502": 3,
+      "CWE-020": 6,
+      "CWE-1004": 2,
+      "CWE-614": 2,
+      "CWE-327": 3,
+      "CWE-094": 1,
+      "CWE-078": 1,
+      "CWE-089": 1,
+      "CWE-918": 1,
+      "CWE-611": 1,
+      "CWE-776": 1
+    },
+    "library_covered_findings": 55,
+    "cross_file_taint_findings": 2,
+    "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4"
+  },
+  {
+    "dataset": "vampi",
+    "source_url": "https://github.com/erev0s/VAmPI.git",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "findings": 3,
+    "affected_files": 1,
+    "cwe_classes": 1,
+    "cwes": {
+      "CWE-1333": 3
+    },
+    "library_covered_findings": 0,
+    "cross_file_taint_findings": 0,
+    "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652"
+  }
+]

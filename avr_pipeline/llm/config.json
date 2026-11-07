@@ -1,0 +1,42 @@
+{
+  "pipeline": {
+    "max_findings_to_fix": 30,
+    "max_fix_attempts": 3,
+    "min_pylint_score": 2.0,
+    "prompts_module": "factorial_prompts",
+    "include_guidance": true,
+    "include_examples": true
+  },
+  "llm": {
+    "provider": "gemini",
+    "model": "gemma-4-26b-a4b-it",
+    "temperature": 0.1,
+    "max_tokens": 8000
+  },
+  "repository": {
+    "local_path": "../context_builder/repo",
+    "url": "https://github.com/RS1321/vul-python-clone",
+    "main_branch": "main",
+    "publish": false
+  },
+  "artifacts": {
+    "filtered_context": "../artifacts/filtered_context.json"
+  },
+  "validation": {
+    "run_pylint": true,
+    "run_tests": true,
+    "test_policy": "block",
+    "pytest_args": ["tests", "-m", "not network"],
+    "run_pycompile": true,
+    "enforce_minimality": true,
+    "run_code_repair": false,
+    "pylint_target": "changed_file"
+  },
+  "coverage": {
+    "enabled": true,
+    "repo_path": "../context_builder/repo",
+    "pytest_command": "pytest -m \"not network\" --cov=. --cov-report=json --cov-report=term",
+    "baseline_file": "../artifacts/baseline_coverage.json",
+    "coverage_file": "coverage.json"
+  }
+}

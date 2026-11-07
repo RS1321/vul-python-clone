@@ -1,0 +1,54 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 3.2030000000013388,
+  "response": {
+    "content": "SCOPE: line\nEXPLANATION: Disable Flask debug mode in the application entry point to prevent arbitrary code execution via the interactive debugger.\n\n```python\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5010, debug=False)\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 648,
+      "completion_tokens": 68,
+      "total_tokens": 716
+    }
+  },
+  "prompt": "Repair the reported vulnerability in challenge/labs/business_logic_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 046\",\n  \"finding_id\": \"py/flask-debug:challenge/labs/business_logic_lab/app.py:200:45\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"challenge/labs/business_logic_lab/app.py\",\n      \"start_line\": 199,\n      \"end_line\": 200,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"1c4adc773a2981ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    app.run(host='0.0.0.0', port=5010, debug=True)\"\n}\n\nCWE repair guidance\nDisable interactive debugging in execution entry points and avoid exposing framework diagnostic configuration.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\napp.run(debug=True)\nAfter:\napp.run(debug=False)\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5010, debug=True)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "challenge/labs/business_logic_lab/app.py",
+    "scope": "line",
+    "route": "verified_line",
+    "success": true,
+    "target": null
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "2 added plus deleted lines; allowed 5",
+      "lines_added": 1,
+      "lines_removed": 1,
+      "total_churn": 2,
+      "original_length": 2,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 8.352941176470589,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

@@ -1,0 +1,18 @@
+--- 
++++ 
+@@ -383,12 +383,14 @@
+ @app.route('/load_object', methods=['POST'])
+ def insecure_deserialization():
+     # --------------------------------------------
++    import html
++    import pickle
+     data = request.data
+ 
+     try:
+         # --------------------------------------------
+         obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        return f"<h2>Deserialized Object:</h2><pre>{html.escape(str(obj))}</pre>"
+     except Exception:
+         return "Error deserializing object."
+ 

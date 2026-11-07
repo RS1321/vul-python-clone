@@ -1,0 +1,74 @@
+{
+  "finding_id": "py/unsafe-deserialization:vulnerable_app.py:390:25",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 4.531000000075437,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the unsafe `pickle.loads` with `json.loads` to prevent arbitrary code execution via deserialization.\n\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n\n    try:\n        # --------------------------------------------\n        import markupsafe\n        import json\n        obj = json.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{markupsafe.escape(str(obj))}</pre>\"\n    except Exception as e:\n        return \"Error deserializing object\", 500\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1354,
+          "completion_tokens": 150,
+          "total_tokens": 1504
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 026\",\n  \"finding_id\": \"py/unsafe-deserialization:vulnerable_app.py:390:25\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/unsafe-deserialization\",\n    \"cwe\": \"CWE-502\",\n    \"all_cwes\": [\n      \"CWE-502\"\n    ],\n    \"description\": \"Unsafe deserialization depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 390,\n      \"end_line\": 390,\n      \"function\": \"insecure_deserialization\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for ImportMember\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 7,\n                      \"startColumn\": 26,\n                      \"endColumn\": 33\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 386,\n                      \"startColumn\": 12,\n                      \"endColumn\": 19\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for request\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 386,\n                      \"startColumn\": 5,\n                      \"endColumn\": 9\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for data\"\n                  }\n                },\n                \"taxa\": [\n                  {\n                    \"id\": \"AdditionalTaintStep\",\n                    \"properties\": {\n                      \"CodeQL/DataflowRole\": \"step\"\n                    }\n                  }\n                ]\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 390,\n                      \"startColumn\": 28,\n                      \"endColumn\": 32\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for data\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"d1bed404fd565727:1\",\n    \"primaryLocationStartColumnFingerprint\": \"19\"\n  }\n}\n\nCWE repair guidance\nDo not deserialize attacker-controlled Python objects. Use a data-only format with schema and size validation. Preserve the documented input contract or explicitly report an API change.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ndata = pickle.loads(request.data)\nAfter:\ndata = json.loads(request.data)\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    data = request.data\n\n    try:\n        # --------------------------------------------\n        import markupsafe\n        import pickle\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{markupsafe.escape(str(obj))}</pre>\"\n    except Exception as e:\n        return \"Error deserializing object\", 500\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "insecure_deserialization"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "4 added plus deleted lines; allowed 5",
+          "lines_added": 2,
+          "lines_removed": 2,
+          "total_churn": 4,
+          "original_length": 12,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 4.95,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "failed",
+          "returncode": 1,
+          "tests": 68,
+          "failures": [
+            "tests.test_vulnerable_app::test_load_object_with_data",
+            "tests.test_vulnerable_app::test_load_object_simple_string",
+            "tests.test_vulnerable_app::test_load_object_invalid_data",
+            "tests.test_vulnerable_app::test_parse_xml_malformed"
+          ],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 2,
+  "lines_removed": 2
+}

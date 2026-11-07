@@ -1,0 +1,79 @@
+{
+  "finding_id": "py/reflective-xss:vulnerable_app.py:112:5",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 2.063000000000102,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use render_template_string to safely escape user input and prevent reflected XSS.\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return render_template_string(\"<h2>Login successful! Welcome {{ name }}</h2><br><a href='/profile'>View Profile</a>\", name=user[1])\n        else:\n            # --------------------------------------------\n            return render_template_string(\"<h2>Login failed for user: {{ username }}</h2><p>Invalid credentials provided</p>\", username=username)\n\n    except Exception as e:\n        app.logger.exception('Request failed')\n        return \"<h2>Internal Server Error</h2><p>An unexpected error occurred.</p>\", 500\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1562,
+          "completion_tokens": 436,
+          "total_tokens": 1998
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 006\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:112:5\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 112,\n      \"end_line\": 112,\n      \"function\": \"login\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 78,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 80,\n              \"node\": \"ControlFlowNode for username\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 112,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 83,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 83,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 83,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 83,\n              \"node\": \"ControlFlowNode for username\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 112,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 2\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4313565452af0d59:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    # --------------------------------------------\n    if request.method == 'GET':\n        # --------------------------------------------\n        username = request.args.get('username', '')\n        password = request.args.get('password', '')\n    else:\n        username = request.form.get('username', '')\n        password = request.form.get('password', '')\n\n    if not username or not password:\n        return render_template_string('''\n            <h2>Login</h2>\n            <form method=\"POST\">\n                Username: <input name=\"username\"><br>\n                Password: <input type=\"password\" name=\"password\"><br>\n                <input type=\"submit\" value=\"Login\">\n            </form>\n        ''')\n\n    try:\n        conn = sqlite3.connect('vulnerable_app.db')\n        cursor = conn.cursor()\n\n        # --------------------------------------------\n        query = f\"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'\"\n        cursor.execute(query)\n        user = cursor.fetchone()\n        conn.close()\n\n        if user:\n            session['username'] = user[1]\n            session['role'] = user[4]\n            return f\"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>\"\n        else:\n            # --------------------------------------------\n            return f\"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>\"\n\n    except Exception as e:\n        app.logger.exception('Request failed')\n        return \"<h2>Internal Server Error</h2><p>An unexpected error occurred.</p>\", 500\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "login"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "4 added plus deleted lines; allowed 18.5",
+          "lines_added": 2,
+          "lines_removed": 2,
+          "total_churn": 4,
+          "original_length": 37,
+          "limit": 18.5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 5.095238095238096,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "failed",
+          "returncode": 1,
+          "tests": 68,
+          "failures": [
+            "tests.test_vulnerable_app::test_download_missing_file",
+            "tests.test_vulnerable_app::test_download_with_path",
+            "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+            "tests.test_vulnerable_app::test_fetch_url_with_param",
+            "tests.test_vulnerable_app::test_load_object_with_data",
+            "tests.test_vulnerable_app::test_load_object_simple_string",
+            "tests.test_vulnerable_app::test_load_object_invalid_data",
+            "tests.test_vulnerable_app::test_parse_xml_malformed"
+          ],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 2,
+  "lines_removed": 2
+}

@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -343,11 +343,12 @@
+ 
+ @app.route('/fetch_url')
+ def ssrf_vulnerability():
+-    # --------------------------------------------
++    from urllib.parse import urlparse
+     url = request.args.get('url', 'http://example.com')
++    if urlparse(url).netloc not in ('example.com', 'www.example.com'):
++        return "Error: Invalid URL.", 400
+ 
+     try:
+-        # --------------------------------------------
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')
+         return f"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>"

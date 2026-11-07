@@ -1,0 +1,4347 @@
+[
+  {
+    "finding_number": "FINDING 042",
+    "finding_id": "py/flask-debug:challenge/labs/bopla_lab/app.py:152:41",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "challenge/labs/bopla_lab/app.py",
+        "start_line": 151,
+        "end_line": 152,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1bc685c301a98ae7:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=8080, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 046",
+    "finding_id": "py/flask-debug:challenge/labs/business_logic_lab/app.py:200:45",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "challenge/labs/business_logic_lab/app.py",
+        "start_line": 199,
+        "end_line": 200,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1c4adc773a2981ed:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5010, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 036",
+    "finding_id": "py/flask-debug:challenge/labs/security_headers_lab/app.py:233:35",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "challenge/labs/security_headers_lab/app.py",
+        "start_line": 232,
+        "end_line": 233,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "583fa03bb508b1de:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5011, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 055",
+    "finding_id": "py/url-redirection:challenge/labs/security_headers_lab/app.py:189:54",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/url-redirection",
+      "cwe": "CWE-601",
+      "all_cwes": [
+        "CWE-601"
+      ],
+      "description": "Untrusted URL redirection depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "challenge/labs/security_headers_lab/app.py",
+        "start_line": 189,
+        "end_line": 189,
+        "function": "toggle_secure_mode"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/labs/security_headers_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "challenge/labs/security_headers_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/labs/security_headers_lab/app.py",
+                "line": 189,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/labs/security_headers_lab/app.py",
+                "line": 189,
+                "node": "ControlFlowNode for BoolExpr"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "233e8bfd55ed4d96:1",
+      "primaryLocationStartColumnFingerprint": "16"
+    }
+  },
+  {
+    "finding_number": "FINDING 008",
+    "finding_id": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/management/commands/startuplabs.py",
+        "start_line": 51,
+        "end_line": 51,
+        "function": "Command.handle"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 552,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 561,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 585,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 50,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 51,
+                "node": "ControlFlowNode for build_path"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 600,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 614,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "[post] ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 640,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 641,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for Attribute() [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 28,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for labs [List element, Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 33,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 35,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 50,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/management/commands/startuplabs.py",
+                "line": 51,
+                "node": "ControlFlowNode for build_path"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "763e6942d3f8e292:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  },
+  {
+    "finding_number": "FINDING 028",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:675:27",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 675,
+        "end_line": 675,
+        "function": "delete_custom_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 674,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 675,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 675,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "8e5226da4843b4ff:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 027",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:654:26",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 654,
+        "end_line": 654,
+        "function": "update_custom_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 653,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 654,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 654,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "867b257386e60e72:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 026",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:625:25",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 625,
+        "end_line": 625,
+        "function": "update_custom_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 624,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 625,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 625,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "a7af86456ba9d40d:2",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 025",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:597:24",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 597,
+        "end_line": 597,
+        "function": "create_custom_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 596,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 597,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 597,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "f928794123d11046:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 024",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:572:23",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 572,
+        "end_line": 572,
+        "function": "create_custom_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 571,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 572,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 572,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "a7af86456ba9d40d:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 023",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:533:22",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 533,
+        "end_line": 533,
+        "function": "stop_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 532,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 533,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 533,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "8a40eb9806ce567:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 022",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:507:21",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 507,
+        "end_line": 507,
+        "function": "list_user_labs"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 506,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 507,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 507,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "7c5d88c1d455fd08:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 021",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:485:20",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 485,
+        "end_line": 485,
+        "function": "stop_user_labs"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 484,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 485,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 485,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "9f42d0545ada7a4b:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 020",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:408:19",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 408,
+        "end_line": 408,
+        "function": "start_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 407,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 408,
+                "node": "ControlFlowNode for str()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 408,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "9c18109fecf705af:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 019",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:374:18",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 374,
+        "end_line": 374,
+        "function": "start_lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 373,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 374,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 374,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "e7038c56a9d21399:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 009",
+    "finding_id": "py/path-injection:challenge/views.py:244:8",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).\nThis path depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 244,
+        "end_line": 244,
+        "function": "_resolve_build_path"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 552,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 561,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 563,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 585,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for Attribute() [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 218,
+                "node": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for Subscript"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 380,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 249,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 253,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 231,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 244,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 600,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 614,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for data"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 616,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 639,
+                "node": "[post] ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 640,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 641,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/models.py",
+                "line": 68,
+                "node": "[orm-model] Class Lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for Attribute() [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 217,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for lab [Attribute build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 220,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 218,
+                "node": "ControlFlowNode for Dict [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for _get_lab_config() [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 370,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for lab_config [Dictionary element at key build_location]"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for Subscript"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 371,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 380,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 249,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 253,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 231,
+                "node": "ControlFlowNode for build_location"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 238,
+                "node": "ControlFlowNode for build_path"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 244,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "35f55d710439d761:1",
+      "primaryLocationStartColumnFingerprint": "22"
+    }
+  },
+  {
+    "finding_number": "FINDING 018",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:147:17",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 147,
+        "end_line": 147,
+        "function": "DoItFast.delete"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 146,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 147,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 147,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "20c29d734a32d3ae:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 017",
+    "finding_id": "py/stack-trace-exposure:challenge/views.py:110:16",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.\n[Stack trace information](1) flows to this location and may be exposed to an external user.\n[Stack trace information](1) flows to this location and may be exposed to an external user.\n[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "challenge/views.py",
+        "start_line": 110,
+        "end_line": 110,
+        "function": "DoItFast.post"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 106,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 110,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 110,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "challenge/views.py",
+                "line": 106,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 110,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "challenge/views.py",
+                "line": 110,
+                "node": "ControlFlowNode for Dict"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "70b74d9309b85e76:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 032",
+    "finding_id": "py/flask-debug:dockerized_labs/a9_uckv_lab/app.py:124:31",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/a9_uckv_lab/app.py",
+        "start_line": 122,
+        "end_line": 124,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bd1e43d02322b94f:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    # Ensure we're binding to all interfaces\n    app.run(host=\"0.0.0.0\", port=9000, debug=True, use_reloader=True, threaded=True)"
+  },
+  {
+    "finding_number": "FINDING 062",
+    "finding_id": "py/log-injection:dockerized_labs/a9_uckv_lab/app.py:115:61",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/log-injection",
+      "cwe": "CWE-117",
+      "all_cwes": [
+        "CWE-117"
+      ],
+      "description": "This log entry depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/a9_uckv_lab/app.py",
+        "start_line": 115,
+        "end_line": 115,
+        "function": "process_image"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 75,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 79,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 115,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 79,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 79,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 115,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "f4ddc0dd482fbba5:1",
+      "primaryLocationStartColumnFingerprint": "13"
+    }
+  },
+  {
+    "finding_number": "FINDING 061",
+    "finding_id": "py/log-injection:dockerized_labs/a9_uckv_lab/app.py:66:60",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/log-injection",
+      "cwe": "CWE-117",
+      "all_cwes": [
+        "CWE-117"
+      ],
+      "description": "This log entry depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/a9_uckv_lab/app.py",
+        "start_line": 66,
+        "end_line": 66,
+        "function": "upload_yaml"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 66,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 66,
+                "node": "ControlFlowNode for Fstring"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "ef08f4c0f2cc96b2:1",
+      "primaryLocationStartColumnFingerprint": "13"
+    }
+  },
+  {
+    "finding_number": "FINDING 051",
+    "finding_id": "py/unsafe-deserialization:dockerized_labs/a9_uckv_lab/app.py:62:50",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/unsafe-deserialization",
+      "cwe": "CWE-502",
+      "all_cwes": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/a9_uckv_lab/app.py",
+        "start_line": 62,
+        "end_line": 62,
+        "function": "upload_yaml"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 62,
+                "node": "ControlFlowNode for Attribute"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/a9_uckv_lab/app.py",
+                "line": 62,
+                "node": "ControlFlowNode for Attribute"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "278315279ccb6228:1",
+      "primaryLocationStartColumnFingerprint": "17"
+    }
+  },
+  {
+    "finding_number": "FINDING 035",
+    "finding_id": "py/flask-debug:dockerized_labs/auth_failure_lab/app.py:238:34",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 236,
+        "end_line": 238,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "3ec8873a16fd05b5:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    init_db()\n    app.run(host=\"0.0.0.0\", port=5007, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 003",
+    "finding_id": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:227:2",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 227,
+        "end_line": 227,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 182,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 218,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 217,
+                "node": "ControlFlowNode for Dict [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 217,
+                "node": "ControlFlowNode for session_data [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for session_data [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for session_id"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 227,
+                "node": "ControlFlowNode for session_id"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 205,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 211,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 218,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 217,
+                "node": "ControlFlowNode for Dict [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 217,
+                "node": "ControlFlowNode for session_data [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for session_data [Dictionary element at key username]"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 222,
+                "node": "ControlFlowNode for session_id"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 227,
+                "node": "ControlFlowNode for session_id"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "6887526fe55caa5d:1",
+      "primaryLocationStartColumnFingerprint": "34"
+    }
+  },
+  {
+    "finding_number": "FINDING 014",
+    "finding_id": "py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:227:13",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/client-exposed-cookie",
+      "cwe": "CWE-1004",
+      "all_cwes": [
+        "CWE-1004"
+      ],
+      "description": "Sensitive server cookie is set without HttpOnly flag.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 227,
+        "end_line": 227,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "6887526fe55caa5d:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 058",
+    "finding_id": "py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:227:57",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/insecure-cookie",
+      "cwe": "CWE-614",
+      "all_cwes": [
+        "CWE-614"
+      ],
+      "description": "Cookie is added to response without the 'secure' flag being set.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 227,
+        "end_line": 227,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "6887526fe55caa5d:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 048",
+    "finding_id": "py/weak-sensitive-data-hashing:dockerized_labs/auth_failure_lab/app.py:213:47",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/weak-sensitive-data-hashing",
+      "cwe": "CWE-327",
+      "all_cwes": [
+        "CWE-327",
+        "CWE-328",
+        "CWE-916"
+      ],
+      "description": "[Sensitive data (password)](1) is used in a hashing algorithm (SHA256) that is insecure for password hashing, since it is not a computationally expensive hash function.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 213,
+        "end_line": 213,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 212,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 212,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 213,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "724283f5c554aa51:1",
+      "primaryLocationStartColumnFingerprint": "31"
+    }
+  },
+  {
+    "finding_number": "FINDING 013",
+    "finding_id": "py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:208:12",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/client-exposed-cookie",
+      "cwe": "CWE-1004",
+      "all_cwes": [
+        "CWE-1004"
+      ],
+      "description": "Sensitive server cookie is set without HttpOnly flag.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 208,
+        "end_line": 208,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4a5aea519f39599c:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 057",
+    "finding_id": "py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:208:56",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/insecure-cookie",
+      "cwe": "CWE-614",
+      "all_cwes": [
+        "CWE-614"
+      ],
+      "description": "Cookie is added to response without the 'secure' flag being set.",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 208,
+        "end_line": 208,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4a5aea519f39599c:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 002",
+    "finding_id": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:112:1",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 112,
+        "end_line": 112,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 95,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for email"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 112,
+                "node": "ControlFlowNode for email"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for email"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 112,
+                "node": "ControlFlowNode for email"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "8209dc78b94ab7ea:1",
+      "primaryLocationStartColumnFingerprint": "29"
+    }
+  },
+  {
+    "finding_number": "FINDING 001",
+    "finding_id": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:105:0",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/auth_failure_lab/app.py",
+        "start_line": 105,
+        "end_line": 105,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 95,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for email"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 105,
+                "node": "ControlFlowNode for email"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 96,
+                "node": "ControlFlowNode for email"
+              },
+              {
+                "file": "dockerized_labs/auth_failure_lab/app.py",
+                "line": 105,
+                "node": "ControlFlowNode for email"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "af2af09e9c83f30e:1",
+      "primaryLocationStartColumnFingerprint": "29"
+    }
+  },
+  {
+    "finding_number": "FINDING 047",
+    "finding_id": "py/flask-debug:dockerized_labs/broken_access_lab/main.py:70:46",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/broken_access_lab/main.py",
+        "start_line": 69,
+        "end_line": 70,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1bc685c301a98ae7:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=8080, debug=True) "
+  },
+  {
+    "finding_number": "FINDING 038",
+    "finding_id": "py/flask-debug:dockerized_labs/broken_auth_lab/app.py:147:37",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/broken_auth_lab/app.py",
+        "start_line": 146,
+        "end_line": 147,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "f35c3b096b3ae51e:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5000, debug=True)  # Vulnerable: Debug mode enabled in production "
+  },
+  {
+    "finding_number": "FINDING 005",
+    "finding_id": "py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:66:4",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/broken_auth_lab/app.py",
+        "start_line": 66,
+        "end_line": 66,
+        "function": "login"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 58,
+                "node": "ControlFlowNode for session_token"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 66,
+                "node": "ControlFlowNode for session_token"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "15f9ac9d4566bfad:1",
+      "primaryLocationStartColumnFingerprint": "31"
+    }
+  },
+  {
+    "finding_number": "FINDING 004",
+    "finding_id": "py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:64:3",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/broken_auth_lab/app.py",
+        "start_line": 64,
+        "end_line": 64,
+        "function": "login"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 4,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 58,
+                "node": "ControlFlowNode for session_token"
+              },
+              {
+                "file": "dockerized_labs/broken_auth_lab/app.py",
+                "line": 64,
+                "node": "ControlFlowNode for session_token"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "70293ebe042a6bfe:1",
+      "primaryLocationStartColumnFingerprint": "31"
+    }
+  },
+  {
+    "finding_number": "FINDING 029",
+    "finding_id": "py/flask-debug:dockerized_labs/command_injection_lab/app.py:60:28",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/command_injection_lab/app.py",
+        "start_line": 59,
+        "end_line": 60,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "d02927c4aac711c0:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5013, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 012",
+    "finding_id": "py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/code-injection",
+      "cwe": "CWE-094",
+      "all_cwes": [
+        "CWE-094",
+        "CWE-095",
+        "CWE-116"
+      ],
+      "description": "This code execution depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/command_injection_lab/app.py",
+        "start_line": 49,
+        "end_line": 49,
+        "function": "lab2"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 45,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for expression"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 49,
+                "node": "ControlFlowNode for expression"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 48,
+                "node": "ControlFlowNode for expression"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 49,
+                "node": "ControlFlowNode for expression"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "645fd304e9564718:1",
+      "primaryLocationStartColumnFingerprint": "14"
+    }
+  },
+  {
+    "finding_number": "FINDING 010",
+    "finding_id": "py/command-line-injection:dockerized_labs/command_injection_lab/app.py:30:9",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/command-line-injection",
+      "cwe": "CWE-078",
+      "all_cwes": [
+        "CWE-078",
+        "CWE-088"
+      ],
+      "description": "This command line depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/command_injection_lab/app.py",
+        "start_line": 30,
+        "end_line": 30,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for domain"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 23,
+                "node": "ControlFlowNode for command"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 30,
+                "node": "ControlFlowNode for command"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 19,
+                "node": "ControlFlowNode for domain"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 25,
+                "node": "ControlFlowNode for command"
+              },
+              {
+                "file": "dockerized_labs/command_injection_lab/app.py",
+                "line": 30,
+                "node": "ControlFlowNode for command"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "c4282c4342bcb9a:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 006",
+    "finding_id": "py/cookie-injection:dockerized_labs/crypto_failure_lab/app.py:101:5",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/cookie-injection",
+      "cwe": "CWE-020",
+      "all_cwes": [
+        "CWE-020"
+      ],
+      "description": "Cookie is constructed from a [user-supplied input](1).",
+      "location": {
+        "file_path": "dockerized_labs/crypto_failure_lab/app.py",
+        "start_line": 101,
+        "end_line": 101,
+        "function": "lab3"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 90,
+                "node": "ControlFlowNode for cookie_data"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 91,
+                "node": "ControlFlowNode for encoded_cookie"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 101,
+                "node": "ControlFlowNode for encoded_cookie"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 84,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 85,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 90,
+                "node": "ControlFlowNode for cookie_data"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 91,
+                "node": "ControlFlowNode for encoded_cookie"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 101,
+                "node": "ControlFlowNode for encoded_cookie"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 1
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "236939d4b38e3bfb:1",
+      "primaryLocationStartColumnFingerprint": "30"
+    }
+  },
+  {
+    "finding_number": "FINDING 050",
+    "finding_id": "py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/weak-sensitive-data-hashing",
+      "cwe": "CWE-327",
+      "all_cwes": [
+        "CWE-327",
+        "CWE-328",
+        "CWE-916"
+      ],
+      "description": "[Sensitive data (password)](1) is used in a hashing algorithm (MD5) that is insecure for password hashing, since it is not a computationally expensive hash function.",
+      "location": {
+        "file_path": "dockerized_labs/crypto_failure_lab/app.py",
+        "start_line": 38,
+        "end_line": 38,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 37,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 37,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 38,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "659f3522f8da232a:1",
+      "primaryLocationStartColumnFingerprint": "28"
+    }
+  },
+  {
+    "finding_number": "FINDING 049",
+    "finding_id": "py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/weak-sensitive-data-hashing",
+      "cwe": "CWE-327",
+      "all_cwes": [
+        "CWE-327",
+        "CWE-328",
+        "CWE-916"
+      ],
+      "description": "[Sensitive data (password)](1) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.\n[Sensitive data (password)](2) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.",
+      "location": {
+        "file_path": "dockerized_labs/crypto_failure_lab/app.py",
+        "start_line": 25,
+        "end_line": 25,
+        "function": "custom_hash"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 24,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 25,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 51,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 24,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/crypto_failure_lab/app.py",
+                "line": 25,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4c79c8076e8e7cb7:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 043",
+    "finding_id": "py/flask-debug:dockerized_labs/dependency_attack_lab/app.py:198:42",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/dependency_attack_lab/app.py",
+        "start_line": 197,
+        "end_line": 198,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "efd7c3a63f6691c8:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == \"__main__\":\n    app.run(host=\"0.0.0.0\", port=5020, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 053",
+    "finding_id": "py/unsafe-deserialization:dockerized_labs/insec_des_lab/main.py:40:52",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/unsafe-deserialization",
+      "cwe": "CWE-502",
+      "all_cwes": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/insec_des_lab/main.py",
+        "start_line": 40,
+        "end_line": 40,
+        "function": "deserialize_data"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 37,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 37,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 37,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 37,
+                "node": "ControlFlowNode for serialized_data"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 38,
+                "node": "ControlFlowNode for decoded_data"
+              },
+              {
+                "file": "dockerized_labs/insec_des_lab/main.py",
+                "line": 40,
+                "node": "ControlFlowNode for decoded_data"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "71a4942175c424e4:1",
+      "primaryLocationStartColumnFingerprint": "20"
+    }
+  },
+  {
+    "finding_number": "FINDING 041",
+    "finding_id": "py/flask-debug:dockerized_labs/insecure_design_lab/app.py:153:40",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/insecure_design_lab/app.py",
+        "start_line": 152,
+        "end_line": 153,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "5190af354ee113a0:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5008, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 040",
+    "finding_id": "py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/insufficient_logging_lab/app.py",
+        "start_line": 91,
+        "end_line": 96,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "354a875268a163b7:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    # Create log file if it doesn't exist\n    if not os.path.exists(\"app.log\"):\n        open(\"app.log\", \"a\").close()\n\n    app.run(host=\"0.0.0.0\", port=5014, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 031",
+    "finding_id": "py/flask-debug:dockerized_labs/open_source_library_attack_lab/app.py:259:30",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/open_source_library_attack_lab/app.py",
+        "start_line": 258,
+        "end_line": 259,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "67c14b2f3524f1aa:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == \"__main__\":\n    app.run(host=\"0.0.0.0\", port=5022, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 034",
+    "finding_id": "py/flask-debug:dockerized_labs/package_injection_lab/app.py:260:33",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/package_injection_lab/app.py",
+        "start_line": 259,
+        "end_line": 260,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2bcc876aba45c1b9:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == \"__main__\":\n    app.run(host=\"0.0.0.0\", port=5021, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 030",
+    "finding_id": "py/flask-debug:dockerized_labs/sde/app.py:49:29",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/sde/app.py",
+        "start_line": 48,
+        "end_line": 49,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "3b02128fce6a15e7:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == \"__main__\":\n    app.run(host=\"0.0.0.0\", port=5100, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 045",
+    "finding_id": "py/flask-debug:dockerized_labs/sec_misconfig/app.py:135:44",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/sec_misconfig/app.py",
+        "start_line": 134,
+        "end_line": 135,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "984187375a11412d:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(debug=True, host='0.0.0.0', port=5009)"
+  },
+  {
+    "finding_number": "FINDING 033",
+    "finding_id": "py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/software_integrity_lab/app.py",
+        "start_line": 78,
+        "end_line": 90,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "816c3c04f803d3e4:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    # Ensure static files exist\n    static_dir = Path(\"./static\")\n    static_dir.mkdir(exist_ok=True)\n\n    # Create sample files for lab2\n    with open(static_dir / \"real.txt\", \"w\") as f:\n        f.write(\"Congratulations! You downloaded the real file.\")\n\n    with open(static_dir / \"fake.txt\", \"w\") as f:\n        f.write(\"This is a fake file that could contain malicious code.\")\n\n    app.run(host=\"0.0.0.0\", port=5011, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 052",
+    "finding_id": "py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/unsafe-deserialization",
+      "cwe": "CWE-502",
+      "all_cwes": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/software_integrity_lab/app.py",
+        "start_line": 45,
+        "end_line": 45,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 33,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 33,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 33,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 33,
+                "node": "ControlFlowNode for token"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 43,
+                "node": "ControlFlowNode for token"
+              },
+              {
+                "file": "dockerized_labs/software_integrity_lab/app.py",
+                "line": 45,
+                "node": "ControlFlowNode for token"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "72e1532c8f349c06:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 037",
+    "finding_id": "py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/sql_injection_lab/app.py",
+        "start_line": 74,
+        "end_line": 78,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "bd60ffc972e303d5:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == \"__main__\":\n    # Initialize database\n    init_db()\n\n    app.run(host=\"0.0.0.0\", port=5012, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 011",
+    "finding_id": "py/sql-injection:dockerized_labs/sql_injection_lab/app.py:57:10",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/sql_injection_lab/app.py",
+        "start_line": 57,
+        "end_line": 57,
+        "function": "lab"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 45,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 46,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 46,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 46,
+                "node": "ControlFlowNode for username"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for sql_query"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 57,
+                "node": "ControlFlowNode for sql_query"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 46,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 47,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 47,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 47,
+                "node": "ControlFlowNode for password"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 50,
+                "node": "ControlFlowNode for sql_query"
+              },
+              {
+                "file": "dockerized_labs/sql_injection_lab/app.py",
+                "line": 57,
+                "node": "ControlFlowNode for sql_query"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 2
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "d29d7c5f95b6ac82:1",
+      "primaryLocationStartColumnFingerprint": "19"
+    }
+  },
+  {
+    "finding_number": "FINDING 060",
+    "finding_id": "py/full-ssrf:dockerized_labs/ssrf_lab/app.py:37:59",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/full-ssrf",
+      "cwe": "CWE-918",
+      "all_cwes": [
+        "CWE-918"
+      ],
+      "description": "The full URL of this request depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/ssrf_lab/app.py",
+        "start_line": 37,
+        "end_line": 37,
+        "function": "lab2"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 34,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for url"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 37,
+                "node": "ControlFlowNode for url"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 35,
+                "node": "ControlFlowNode for url"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 37,
+                "node": "ControlFlowNode for url"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "9396014ac18bfa16:1",
+      "primaryLocationStartColumnFingerprint": "11"
+    }
+  },
+  {
+    "finding_number": "FINDING 007",
+    "finding_id": "py/path-injection:dockerized_labs/ssrf_lab/app.py:22:6",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/ssrf_lab/app.py",
+        "start_line": 22,
+        "end_line": 22,
+        "function": "lab1"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 17,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 21,
+                "node": "ControlFlowNode for file_path"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 22,
+                "node": "ControlFlowNode for file_path"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for Attribute"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 18,
+                "node": "ControlFlowNode for file"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 21,
+                "node": "ControlFlowNode for file_path"
+              },
+              {
+                "file": "dockerized_labs/ssrf_lab/app.py",
+                "line": 22,
+                "node": "ControlFlowNode for file_path"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "40f8975be8acf4c0:1",
+      "primaryLocationStartColumnFingerprint": "10"
+    }
+  },
+  {
+    "finding_number": "FINDING 039",
+    "finding_id": "py/flask-debug:dockerized_labs/template_injection_lab/app.py:123:38",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/template_injection_lab/app.py",
+        "start_line": 122,
+        "end_line": 123,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "4812af4da08571a2:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5015, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 016",
+    "finding_id": "py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:113:15",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "dockerized_labs/template_injection_lab/app.py",
+        "start_line": 113,
+        "end_line": 113,
+        "function": "view_blog"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 112,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 113,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 113,
+                "node": "ControlFlowNode for Tuple"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "fd81a8cb9a5d8435:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 015",
+    "finding_id": "py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:104:14",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "dockerized_labs/template_injection_lab/app.py",
+        "start_line": 104,
+        "end_line": 104,
+        "function": "create_blog"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 103,
+                "node": "ControlFlowNode for e"
+              },
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 104,
+                "node": "ControlFlowNode for Fstring"
+              },
+              {
+                "file": "dockerized_labs/template_injection_lab/app.py",
+                "line": 104,
+                "node": "ControlFlowNode for Tuple"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "507309a17b1dd8e1:1",
+      "primaryLocationStartColumnFingerprint": "7"
+    }
+  },
+  {
+    "finding_number": "FINDING 054",
+    "finding_id": "py/url-redirection:dockerized_labs/xss_lab/app.py:84:53",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/url-redirection",
+      "cwe": "CWE-601",
+      "all_cwes": [
+        "CWE-601"
+      ],
+      "description": "Untrusted URL redirection depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "dockerized_labs/xss_lab/app.py",
+        "start_line": 84,
+        "end_line": 84,
+        "function": "toggle_theme"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/xss_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/xss_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xss_lab/app.py",
+                "line": 84,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xss_lab/app.py",
+                "line": 84,
+                "node": "ControlFlowNode for BoolExpr"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2372e4a964e2fdeb:1",
+      "primaryLocationStartColumnFingerprint": "30"
+    }
+  },
+  {
+    "finding_number": "FINDING 044",
+    "finding_id": "py/flask-debug:dockerized_labs/xxe_lab/app.py:95:43",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "dockerized_labs/xxe_lab/app.py",
+        "start_line": 94,
+        "end_line": 95,
+        "function": null
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "1c4adc773a2981ed:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    app.run(host='0.0.0.0', port=5010, debug=True)"
+  },
+  {
+    "finding_number": "FINDING 056",
+    "finding_id": "py/xxe:dockerized_labs/xxe_lab/app.py:61:55",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/xxe",
+      "cwe": "CWE-611",
+      "all_cwes": [
+        "CWE-611",
+        "CWE-827"
+      ],
+      "description": "XML parsing depends on a [user-provided value](1) without guarding against external entity expansion.",
+      "location": {
+        "file_path": "dockerized_labs/xxe_lab/app.py",
+        "start_line": 61,
+        "end_line": 61,
+        "function": "xxe_parse"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "72537bdd08055432:1",
+      "primaryLocationStartColumnFingerprint": "18"
+    }
+  },
+  {
+    "finding_number": "FINDING 059",
+    "finding_id": "py/xml-bomb:dockerized_labs/xxe_lab/app.py:61:58",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/xml-bomb",
+      "cwe": "CWE-776",
+      "all_cwes": [
+        "CWE-776",
+        "CWE-400"
+      ],
+      "description": "XML parsing depends on a [user-provided value](1) without guarding against uncontrolled entity expansion.",
+      "location": {
+        "file_path": "dockerized_labs/xxe_lab/app.py",
+        "start_line": 61,
+        "end_line": 61,
+        "function": "xxe_parse"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 54,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          },
+          {
+            "steps": [
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 1,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "dockerized_labs/xxe_lab/app.py",
+                "line": 61,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "72537bdd08055432:1",
+      "primaryLocationStartColumnFingerprint": "18"
+    }
+  }
+]

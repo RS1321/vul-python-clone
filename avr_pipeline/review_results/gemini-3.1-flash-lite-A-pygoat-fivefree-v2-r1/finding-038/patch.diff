@@ -1,0 +1,26 @@
+--- 
++++ 
+@@ -15,19 +15,19 @@
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
+     """Lab 1: Name Server Lookup with Command Injection"""
++    import subprocess
+     if request.method == "POST":
+         domain = request.form.get("domain", "")
+         os_type = request.form.get("os", "")
+ 
+         if os_type == "win":
+-            command = f"nslookup {domain}"
++            command = ["nslookup", domain]
+         else:
+-            command = f"dig {domain}"
++            command = ["dig", domain]
+ 
+         try:
+-            # Intentionally vulnerable command execution
+             process = subprocess.Popen(
+-                command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
++                command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+             )
+             stdout, stderr = process.communicate()
+             output = stdout.decode("utf-8") + stderr.decode("utf-8")

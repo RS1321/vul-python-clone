@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -230,8 +230,9 @@
+ @app.route('/download')
+ def directory_traversal():
+     # --------------------------------------------
+-    filename = request.args.get('file', 'readme.txt')
+-    
++    import os
++    filename = os.path.basename(request.args.get('file', 'readme.txt'))
++
+     try:
+         # --------------------------------------------
+         with open(filename, 'r') as f:

@@ -1,0 +1,22 @@
+name: AVR pipeline checks
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'avr_pipeline/**'
+      - '.github/workflows/avr-pipeline-checks.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: avr_pipeline
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements-review.txt
+      - run: python -m pytest review_tests -q --basetemp=.review-work/ci-checks

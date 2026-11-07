@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -151,7 +151,7 @@
+     # --------------------------------------------
+     html_content = '''
+         <h2>External Content</h2>
+-        <iframe src="{{ url }}" width="800" height="600"></iframe>
++        <iframe src="{{ url | e }}" width="800" height="600"></iframe>
+     '''
+     from flask import render_template_string
+     return render_template_string(html_content, url=frame_url)

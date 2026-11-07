@@ -1,0 +1,126 @@
+{
+  "finding_id": "py/stack-trace-exposure:challenge/views.py:485:20",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 1.6560000000026776,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Prevent stack trace exposure by returning a generic error message and logging the exception.\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        import logging\n        logging.getLogger(__name__).exception(\"Failed to stop user labs\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 998,
+          "completion_tokens": 327,
+          "total_tokens": 1325
+        }
+      },
+      "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:485:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 485,\n      \"end_line\": 485,\n      \"function\": \"stop_user_labs\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 484,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9f42d0545ada7a4b:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "challenge/views.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "stop_user_labs"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "14 added plus deleted lines; allowed 12.5",
+          "lines_added": 8,
+          "lines_removed": 6,
+          "total_churn": 14,
+          "original_length": 25,
+          "limit": 12.5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 57.18700000000172,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replaced the exception string exposure with a generic error message while logging the error server-side.\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        import logging; logging.getLogger(__name__).exception(\"Failed to stop user labs\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 54.578
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1394,
+          "completion_tokens": 330,
+          "total_tokens": 1724
+        }
+      },
+      "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:485:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 485,\n      \"end_line\": 485,\n      \"function\": \"stop_user_labs\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 484,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9f42d0545ada7a4b:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        import logging\n        logging.getLogger(__name__).exception(\"Failed to stop user labs\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"14 added plus deleted lines; allowed 12.5\", \"lines_added\": 8, \"lines_removed\": 6, \"total_churn\": 14, \"original_length\": 25, \"limit\": 12.5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "challenge/views.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "stop_user_labs"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "13 added plus deleted lines; allowed 12.5",
+          "lines_added": 7,
+          "lines_removed": 6,
+          "total_churn": 13,
+          "original_length": 25,
+          "limit": 12.5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 1.875,
+      "response": {
+        "content": "SCOPE: stop_user_labs\nEXPLANATION: Replaced the stack trace exposure with a generic error message while logging the exception server-side.\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        import logging; logging.exception(\"Failed to stop user labs\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1393,
+          "completion_tokens": 330,
+          "total_tokens": 1723
+        }
+      },
+      "prompt": "Repair the reported vulnerability in challenge/views.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 021\",\n  \"finding_id\": \"py/stack-trace-exposure:challenge/views.py:485:20\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"challenge/views.py\",\n      \"start_line\": 485,\n      \"end_line\": 485,\n      \"function\": \"stop_user_labs\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 484,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for str()\"\n            },\n            {\n              \"file\": \"challenge/views.py\",\n              \"line\": 485,\n              \"node\": \"ControlFlowNode for Dict\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9f42d0545ada7a4b:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ndef stop_user_labs(request):\n    if not request.user.is_authenticated:\n        return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)\n    \n    username = request.user.username\n    client = get_docker_client()\n    if client is None:\n        return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)\n\n    try:\n        user_containers = _get_user_containers(client, username)\n        \n        stopped_count = 0\n        for container in user_containers:\n            try:\n                if container.status == 'running':\n                    container.stop()\n                container.remove()\n                stopped_count += 1\n            except Exception as e:\n                print(f\"Error stopping container {container.name}: {e}\")\n        \n        return JsonResponse({\n            'status': 'success', \n            'message': f'Stopped and removed {stopped_count} lab container(s)',\n            'count': stopped_count\n        })\n        \n    except Exception as e:\n        import logging; logging.getLogger(__name__).exception(\"Failed to stop user labs\")\n        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"13 added plus deleted lines; allowed 12.5\", \"lines_added\": 7, \"lines_removed\": 6, \"total_churn\": 13, \"original_length\": 25, \"limit\": 12.5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "challenge/views.py",
+        "scope": "stop_user_labs",
+        "route": "rejected",
+        "success": false,
+        "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+      },
+      "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 2,
+    "ast_name": 2,
+    "failures": 1,
+    "rejected": 1
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

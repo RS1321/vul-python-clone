@@ -1,0 +1,25 @@
+diff --git a/api_views/users.py b/api_views/users.py
+index 172540a..d031266 100644
+--- a/api_views/users.py
++++ b/api_views/users.py
+@@ -141,8 +141,9 @@ def update_email(username):
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+         if vuln:  # Regex DoS
++            import re
+             match = re.search(
+-                r"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@{1}([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$",
++                r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$",
+                 str(request_data.get('email')))
+             if match:
+                 user.email = request_data.get('email')
+@@ -159,7 +160,8 @@ def update_email(username):
+                 return Response(error_message_helper("Please Provide a valid email address."), 400,
+                                 mimetype="application/json")
+         else:
+-            regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
++            import re
++            regex = r'^[a-z0-9]+[\._]?[a-z0-9]+@[a-z0-9]+\.[a-z]{2,3}$'
+             if (re.search(regex, request_data.get('email'))):
+                 user.email = request_data.get('email')
+                 db.session.commit()

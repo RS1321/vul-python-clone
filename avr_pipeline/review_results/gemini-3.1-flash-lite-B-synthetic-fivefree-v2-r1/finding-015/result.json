@@ -1,0 +1,134 @@
+{
+  "finding_id": "py/path-injection:vulnerable_app.py:299:1",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 1.2339999999994689,
+      "response": {
+        "content": "SCOPE: function resource_leak\nEXPLANATION: Prevent path traversal by ensuring the log file path is restricted to the intended directory using os.path.basename.\n\n```python\ndef resource_leak():\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    open_files.append(f)\n    return \"Log written successfully\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 932,
+          "completion_tokens": 121,
+          "total_tokens": 1053
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "resource_leak"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "8 added plus deleted lines; allowed 5",
+          "lines_added": 2,
+          "lines_removed": 6,
+          "total_churn": 8,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 35.34400000000005,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use os.path.basename to sanitize the user-provided filename and prevent directory traversal attacks.\n\n```python\ndef resource_leak():\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    open_files.append(f)\n    return \"Log written successfully\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 34.125
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1104,
+          "completion_tokens": 115,
+          "total_tokens": 1219
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\ndef resource_leak():\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    open_files.append(f)\n    return \"Log written successfully\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"8 added plus deleted lines; allowed 5\", \"lines_added\": 2, \"lines_removed\": 6, \"total_churn\": 8, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "resource_leak"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "8 added plus deleted lines; allowed 5",
+          "lines_added": 2,
+          "lines_removed": 6,
+          "total_churn": 8,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 0.9840000000003783,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use os.path.basename to sanitize the user-provided filename and prevent directory traversal attacks.\n\n```python\ndef resource_leak():\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    open_files.append(f)\n    return \"Log written successfully\"\n```",
+        "model": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1104,
+          "completion_tokens": 115,
+          "total_tokens": 1219
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/path-injection:vulnerable_app.py:299:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/path-injection\",\n    \"cwe\": \"CWE-022\",\n    \"all_cwes\": [\n      \"CWE-022\",\n      \"CWE-023\",\n      \"CWE-036\",\n      \"CWE-073\",\n      \"CWE-099\"\n    ],\n    \"description\": \"This path depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 299,\n      \"end_line\": 299,\n      \"function\": \"resource_leak\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 296,\n              \"node\": \"ControlFlowNode for log_file\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 299,\n              \"node\": \"ControlFlowNode for log_file\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4e33904f62ae23ed:1\",\n    \"primaryLocationStartColumnFingerprint\": \"9\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/read_log')\ndef resource_leak():\n    # --------------------------------------------\n    log_file = request.args.get('log', 'app.log')\n    \n    # --------------------------------------------\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    # --------------------------------------------\n    open_files.append(f)\n    \n    return \"Log written successfully\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\ndef resource_leak():\n    import os\n    log_file = os.path.basename(request.args.get('log', 'app.log'))\n    f = open(log_file, 'w')\n    f.write('Log entry: ' + str(time.time()))\n    open_files.append(f)\n    return \"Log written successfully\"\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"8 added plus deleted lines; allowed 5\", \"lines_added\": 2, \"lines_removed\": 6, \"total_churn\": 8, \"original_length\": 10, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "resource_leak"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "8 added plus deleted lines; allowed 5",
+          "lines_added": 2,
+          "lines_removed": 6,
+          "total_churn": 8,
+          "original_length": 10,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "ast_name": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

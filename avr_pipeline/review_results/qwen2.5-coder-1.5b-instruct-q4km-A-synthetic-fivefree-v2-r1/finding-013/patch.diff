@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -319,8 +319,8 @@
+         # --------------------------------------------
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = '{from_account}'")
+-        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = '{to_account}'")
++        cursor.execute(f"UPDATE accounts SET balance = balance - {amount} WHERE username = ?", (from_account,))
++        cursor.execute(f"UPDATE accounts SET balance = balance + {amount} WHERE username = ?", (to_account,))
+         conn.commit()
+         conn.close()
+ 

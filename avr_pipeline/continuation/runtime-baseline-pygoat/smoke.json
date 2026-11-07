@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/",
+    "status": 302
+  },
+  {
+    "path": "/accounts/login/",
+    "status": 200
+  },
+  {
+    "path": "/register",
+    "status": 200
+  },
+  {
+    "path": "/robots.txt",
+    "status": 302
+  },
+  {
+    "path": "/auth/verify/",
+    "status": 401
+  },
+  {
+    "path": "/challenge/",
+    "status": 404
+  }
+]

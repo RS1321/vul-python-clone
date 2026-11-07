@@ -1,0 +1,142 @@
+{
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "source_url": "https://github.com/adeyosemanputra/pygoat.git",
+  "provider": "gemini",
+  "model": "gemma-4-26b-a4b-it",
+  "condition": "A",
+  "settings": {
+    "guidance": true,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": "minimal",
+  "implementation_sha256": {
+    "review\\runner.py": "4b9d9c6e813899ca3cb4678849788b75384ac649ba87da1328c37282bcb6f483",
+    "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+    "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+    "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+  },
+  "baseline_sarif": "<WORKSPACE>\\AVR-System-review\\review_results\\baseline-pygoat\\scan.sarif",
+  "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+  "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [],
+  "seed": null,
+  "repetition": 1,
+  "eligible_findings": 62,
+  "selected_findings": 62,
+  "utc": "2026-11-05T04:36:04.830716+00:00",
+  "status": "interrupted_api_error",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "resume_history": [
+    {
+      "previous_status": "interrupted_api_error",
+      "previous_implementation": {
+        "review\\runner.py": "8711848d9455ffc0acdb6357ae80cfc6c40a8cadfc47d2063ae2d42143b35e85",
+        "llm\\llm_client.py": "48d5c22a33a88f074036d2b11b6963051187a513d337387191ef4a1e9dff0a3a",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b"
+      },
+      "utc": "2026-11-05T04:36:04.830716+00:00",
+      "previous_elapsed_seconds": 111.70400000002701
+    }
+  ],
+  "resumed_from_findings": 4,
+  "elapsed_seconds": 658.9679999999935,
+  "accepted_patches": 11,
+  "processed_findings": 16,
+  "post_tests": {
+    "status": "not_configured",
+    "passed": null,
+    "failures": null
+  },
+  "sast": {
+    "baseline_findings": 62,
+    "remaining_baseline_findings": 51,
+    "resolved_findings": 11,
+    "new_findings": 0,
+    "resolution_rate": 0.1774193548387097,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/bopla_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/business_logic_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "challenge/labs/security_headers_lab/app.py",
+          "<module>"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "update_custom_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "create_custom_lab"
+        ],
+        "count": 2
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "stop_lab"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "list_user_labs"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "stop_user_labs"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "challenge/views.py",
+          "start_lab"
+        ],
+        "count": 2
+      }
+    ],
+    "new_groups": []
+  }
+}

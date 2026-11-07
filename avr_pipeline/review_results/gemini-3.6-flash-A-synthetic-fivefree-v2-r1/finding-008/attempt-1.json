@@ -1,0 +1,30 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 21.187999999998283,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace unsafe pickle deserialization with json deserialization to prevent arbitrary code execution from untrusted inputs.\n\ndef insecure_deserialization():\n    # --------------------------------------------\n    import html\n    import json\n    data = request.data\n\n    try:\n        # --------------------------------------------\n        obj = json.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{html.escape(str(obj))}</pre>\"\n    except Exception as e:\n        return \"Error deserializing\"",
+    "model": "gemini-3.6-flash",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 889,
+      "completion_tokens": 774,
+      "total_tokens": 1663
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 026\",\n  \"finding_id\": \"py/unsafe-deserialization:vulnerable_app.py:390:25\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/unsafe-deserialization\",\n    \"cwe\": \"CWE-502\",\n    \"all_cwes\": [\n      \"CWE-502\"\n    ],\n    \"description\": \"Unsafe deserialization depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 390,\n      \"end_line\": 390,\n      \"function\": \"insecure_deserialization\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 386,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 386,\n              \"node\": \"ControlFlowNode for data\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 390,\n              \"node\": \"ControlFlowNode for data\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"d1bed404fd565727:1\",\n    \"primaryLocationStartColumnFingerprint\": \"19\"\n  }\n}\n\nCWE repair guidance\nDo not deserialize attacker-controlled Python objects. Use a data-only format with schema and size validation. Preserve the documented input contract or explicitly report an API change.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ndata = pickle.loads(request.data)\nAfter:\ndata = json.loads(request.data)\n\nCurrent source snapshot\n```python\n@app.route('/load_object', methods=['POST'])\ndef insecure_deserialization():\n    # --------------------------------------------\n    import html\n    data = request.data\n\n    try:\n        # --------------------------------------------\n        obj = pickle.loads(data)\n        return f\"<h2>Deserialized Object:</h2><pre>{html.escape(str(obj))}</pre>\"\n    except Exception as e:\n        return \"Error deserializing\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "rejected",
+    "success": false,
+    "error": "Response must contain exactly one nonempty Python code block"
+  },
+  "error": "Response must contain exactly one nonempty Python code block"
+}

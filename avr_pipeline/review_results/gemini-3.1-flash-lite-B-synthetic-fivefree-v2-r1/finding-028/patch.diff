@@ -1,0 +1,55 @@
+--- 
++++ 
+@@ -74,6 +74,7 @@
+ 
+ @app.route('/login', methods=['GET', 'POST'])
+ def login():
++    from markupsafe import escape
+     # --------------------------------------------
+     if request.method == 'GET':
+         # --------------------------------------------
+@@ -82,7 +83,7 @@
+     else:
+         username = request.form.get('username', '')
+         password = request.form.get('password', '')
+-    
++
+     if not username or not password:
+         return render_template_string('''
+             <h2>Login</h2>
+@@ -92,28 +93,28 @@
+                 <input type="submit" value="Login">
+             </form>
+         ''')
+-    
++
+     try:
+         conn = sqlite3.connect('vulnerable_app.db')
+         cursor = conn.cursor()
+-        
++
+         # --------------------------------------------
+         query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+         cursor.execute(query)
+         user = cursor.fetchone()
+         conn.close()
+-        
++
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            return f"<h2>Login successful! Welcome {escape(user[1])}</h2><br><a href='/profile'>View Profile</a>"
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
+-    
++            return f"<h2>Login failed for user: {escape(username)}</h2><p>Invalid credentials provided</p>"
++
+     except Exception as e:
+         # --------------------------------------------
+-        return f"<h2>Database Error</h2><pre>{str(e)}</pre>"
++        return f"<h2>Database Error</h2><pre>{escape(str(e))}</pre>"
+ 
+ 
+ # ============================================================================

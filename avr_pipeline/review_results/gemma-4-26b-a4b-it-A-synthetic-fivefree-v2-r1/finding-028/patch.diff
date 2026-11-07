@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -106,10 +106,10 @@
+         if user:
+             session['username'] = user[1]
+             session['role'] = user[4]
+-            return f"<h2>Login successful! Welcome {user[1]}</h2><br><a href='/profile'>View Profile</a>"
++            return render_template_string("<h2>Login successful! Welcome {{ name }}</h2><br><a href='/profile'>View Profile</a>", name=user[1])
+         else:
+             # --------------------------------------------
+-            return f"<h2>Login failed for user: {username}</h2><p>Invalid credentials provided</p>"
++            return render_template_string("<h2>Login failed for user: {{ username }}</h2><p>Invalid credentials provided</p>", username=username)
+ 
+     except Exception as e:
+         # --------------------------------------------

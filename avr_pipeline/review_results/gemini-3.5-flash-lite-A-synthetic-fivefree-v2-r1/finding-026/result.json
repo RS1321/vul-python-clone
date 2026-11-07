@@ -1,0 +1,134 @@
+{
+  "finding_id": "py/reflective-xss:vulnerable_app.py:139:6",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 2.0,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use render_template_string with template variables instead of f-string formatting to prevent reflective XSS.\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += '<p style=\"color:red;\">Password Hint: {{ admin_password }}</p>'\n    \n    return render_template_string(html_content, username=username, comment=comment, admin_password=ADMIN_PASSWORD)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1431,
+          "completion_tokens": 215,
+          "total_tokens": 1646
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 007\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:139:6\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "profile"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "19 added plus deleted lines; allowed 5",
+          "lines_added": 10,
+          "lines_removed": 9,
+          "total_churn": 19,
+          "original_length": 14,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 28.813000000000102,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use safe template context variables instead of string formatting to prevent XSS.\n\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ request.args.get('comment', 'No comment') }}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content, username=username)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 27.235
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1704,
+          "completion_tokens": 191,
+          "total_tokens": 1895
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 007\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:139:6\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += '<p style=\"color:red;\">Password Hint: {{ admin_password }}</p>'\n    \n    return render_template_string(html_content, username=username, comment=comment, admin_password=ADMIN_PASSWORD)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"19 added plus deleted lines; allowed 5\", \"lines_added\": 10, \"lines_removed\": 9, \"total_churn\": 19, \"original_length\": 14, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "profile"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "16 added plus deleted lines; allowed 5",
+          "lines_added": 8,
+          "lines_removed": 8,
+          "total_churn": 16,
+          "original_length": 14,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 30.875,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Use safe template variable rendering to prevent cross-site scripting vulnerabilities.\n\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    comment = request.args.get('comment', 'No comment')\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ comment }}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content, username=username, comment=comment)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 29.141
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1686,
+          "completion_tokens": 199,
+          "total_tokens": 1885
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 007\",\n  \"finding_id\": \"py/reflective-xss:vulnerable_app.py:139:6\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/reflective-xss\",\n    \"cwe\": \"CWE-079\",\n    \"all_cwes\": [\n      \"CWE-079\",\n      \"CWE-116\"\n    ],\n    \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 139,\n      \"end_line\": 139,\n      \"function\": \"profile\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 126,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 132,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 129,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for html_content\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 139,\n              \"node\": \"ControlFlowNode for render_template_string()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 1\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"bdc2fbf659528aec:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nUse contextual output encoding. Retain template autoescaping and avoid marking untrusted input safe. HTML escaping alone does not secure JavaScript or URL contexts.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn '<p>' + name + '</p>'\nAfter:\nreturn render_template_string('<p>{{ name }}</p>', name=name)\n\nCurrent source snapshot\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = f'''\n        <h1>User Profile</h1>\n        <p>Welcome, {username}!</p>\n        <p>Your comment: {request.args.get('comment', 'No comment')}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content)\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\n@app.route('/profile')\ndef profile():\n    # --------------------------------------------\n    username = request.args.get('name', session.get('username', 'Guest'))\n    \n    # --------------------------------------------\n    html_content = '''\n        <h1>User Profile</h1>\n        <p>Welcome, {{ username }}!</p>\n        <p>Your comment: {{ request.args.get('comment', 'No comment') }}</p>\n    '''\n    \n    # --------------------------------------------\n    if username == 'admin':\n        html_content += f'<p style=\"color:red;\">Password Hint: {ADMIN_PASSWORD}</p>'\n    \n    return render_template_string(html_content, username=username)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"16 added plus deleted lines; allowed 5\", \"lines_added\": 8, \"lines_removed\": 8, \"total_churn\": 16, \"original_length\": 14, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "profile"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "17 added plus deleted lines; allowed 5",
+          "lines_added": 9,
+          "lines_removed": 8,
+          "total_churn": 17,
+          "original_length": 14,
+          "limit": 5
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "success": 3,
+    "ast_name": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

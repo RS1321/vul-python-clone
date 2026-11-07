@@ -1,0 +1,95 @@
+{
+  "finding_id": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 43.04699999999866,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: The DES algorithm is weak and should not be used. Replace DES with AES in the code.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```",
+        "model": "qwen2.5-coder-1.5b-instruct-q4km",
+        "provider": "local",
+        "usage": {
+          "completion_tokens": 141,
+          "prompt_tokens": 670,
+          "total_tokens": 811,
+          "prompt_tokens_details": {
+            "cached_tokens": 444
+          }
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "line",
+        "route": "rejected",
+        "success": false,
+        "error": "A bound function requires function scope; line scope cannot replace it"
+      },
+      "error": "A bound function requires function scope; line scope cannot replace it"
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "duration_seconds": 47.18800000000192,
+      "response": {
+        "content": "SCOPE: line\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```",
+        "model": "qwen2.5-coder-1.5b-instruct-q4km",
+        "provider": "local",
+        "usage": {
+          "completion_tokens": 118,
+          "prompt_tokens": 815,
+          "total_tokens": 933,
+          "prompt_tokens_details": {
+            "cached_tokens": 664
+          }
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "line",
+        "route": "rejected",
+        "success": false,
+        "error": "A bound function requires function scope; line scope cannot replace it"
+      },
+      "error": "A bound function requires function scope; line scope cannot replace it"
+    },
+    {
+      "attempt": 3,
+      "accepted": false,
+      "duration_seconds": 36.57800000000134,
+      "response": {
+        "content": "SCOPE: line\n\nEXPLANATION: The provided code uses DES, which is weak and should not be used. The correct approach is to use authenticated encryption with a securely generated key and a unique nonce. The `AES.new` function should be used with the `AES.MODE_GCM` mode, which provides both encryption and authentication.\n\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted, tag = cipher.encrypt_and_digest(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```",
+        "model": "qwen2.5-coder-1.5b-instruct-q4km",
+        "provider": "local",
+        "usage": {
+          "completion_tokens": 185,
+          "prompt_tokens": 815,
+          "total_tokens": 1000,
+          "prompt_tokens_details": {
+            "cached_tokens": 667
+          }
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 025\",\n  \"finding_id\": \"py/weak-cryptographic-algorithm:vulnerable_app.py:187:24\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-cryptographic-algorithm\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\"\n    ],\n    \"description\": \"[The block mode ECB](1) is broken or weak, and should not be used.\\n[The cryptographic algorithm DES](2) is broken or weak, and should not be used.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 187,\n      \"end_line\": 187,\n      \"function\": \"encrypt_data\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"51c0f571304d0a6f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"12\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = DES.new(key, DES.MODE_ECB)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nReturn the minimal patch using the required format.\n\nAttempt 3 of 3.\nPrevious candidate\n```python\n@app.route('/encrypt')\ndef encrypt_data():\n    # --------------------------------------------\n    data = request.args.get('data', 'secret message')\n    \n    # --------------------------------------------\n    key = b'8bytekey'\n    cipher = AES.new(key, AES.MODE_GCM)\n    \n    # --------------------------------------------\n    padded_data = data + ' ' * (8 - len(data) % 8)\n    encrypted = cipher.encrypt(padded_data.encode())\n    \n    return f\"<h2>Encrypted Data:</h2><p>{encrypted.hex()}</p>\"\n```\nValidation feedback\nA bound function requires function scope; line scope cannot replace it\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "line",
+        "route": "rejected",
+        "success": false,
+        "error": "A bound function requires function scope; line scope cannot replace it"
+      },
+      "error": "A bound function requires function scope; line scope cannot replace it"
+    }
+  ],
+  "application_counts": {
+    "attempts": 3,
+    "failures": 3,
+    "rejected": 3
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

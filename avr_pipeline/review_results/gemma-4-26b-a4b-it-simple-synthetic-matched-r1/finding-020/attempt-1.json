@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 24.530999999959022,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Use `markupsafe.escape` to sanitize user-provided input before embedding it in the HTML response to prevent Cross-Site Scripting (XSS).\n\n```python\n@app.route('/process_data')\ndef trust_boundary():\n    # --------------------------------------------\n    from markupsafe import escape\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = escape(user_input) + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {combined_data}</h2>\"\n```",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 313,
+      "completion_tokens": 157,
+      "total_tokens": 470
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/reflective-xss\",\n  \"cwe\": \"CWE-079\",\n  \"description\": \"Cross-site scripting vulnerability due to a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/process_data')\ndef trust_boundary():\n    # --------------------------------------------\n    user_input = request.args.get('input', '')\n    \n    # --------------------------------------------\n    trusted_role = session.get('role', 'guest')\n    combined_data = user_input + ':' + trusted_role\n    \n    # --------------------------------------------\n    return f\"<h2>Processing: {combined_data}</h2>\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "trust_boundary"
+  },
+  "validation": {
+    "status": "disabled_by_condition"
+  }
+}

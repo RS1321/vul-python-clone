@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -388,7 +388,7 @@
+     try:
+         # --------------------------------------------
+         obj = pickle.loads(data)
+-        return f"<h2>Deserialized Object:</h2><pre>{obj}</pre>"
++        return render_template_string('<p>{{ obj }}</p>', obj=obj)
+     except Exception as e:
+         app.logger.exception('Request failed')
+         return 'Internal server error', 500

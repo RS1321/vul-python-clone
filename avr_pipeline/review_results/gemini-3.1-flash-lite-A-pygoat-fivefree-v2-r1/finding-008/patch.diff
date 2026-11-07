@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -622,8 +622,9 @@
+ 
+         try:
+             _resolve_build_path(build_location)
+-        except ValueError as e:
+-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
++        except ValueError:
++            logging.exception("Invalid build path provided")
++            return JsonResponse({'status': 'error', 'message': 'Invalid build location'}, status=400)
+ 
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)

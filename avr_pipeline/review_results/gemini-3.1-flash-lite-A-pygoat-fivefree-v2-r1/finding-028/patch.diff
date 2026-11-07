@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -208,7 +208,7 @@
+     elif request.method == "POST":
+         if "username" not in request.form:
+             response = make_response(render_template("lab3.html"))
+-            response.set_cookie("session_id", "", expires=0)
++            response.set_cookie("session_id", "", expires=0, httponly=True, secure=True)
+             return response
+ 
+         username = request.form.get("username")

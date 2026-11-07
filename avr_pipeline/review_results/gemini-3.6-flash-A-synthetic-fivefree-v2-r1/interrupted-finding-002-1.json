@@ -1,0 +1,50 @@
+{
+  "finding_id": "py/stack-trace-exposure:vulnerable_app.py:433:22",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 14.625,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace exception detail in the response with a generic error message while logging the error server-side.\n\ndef xxe_vulnerability():\n    # --------------------------------------------\n    xml_data = request.data.decode()\n    \n    try:\n        # --------------------------------------------\n        root = ET.fromstring(xml_data)\n        result = [(child.tag, child.text) for child in root]\n        return f\"<h2>Parsed XML:</h2><pre>{result}</pre>\"\n    except Exception as e:\n        import logging\n        logging.exception(\"Error parsing XML\")\n        return \"Error parsing XML\"",
+        "model": "gemini-3.6-flash",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 809,
+          "completion_tokens": 1671,
+          "total_tokens": 2480
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 023\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:433:22\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 433,\n      \"end_line\": 433,\n      \"function\": \"xxe_vulnerability\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 432,\n              \"node\": \"ControlFlowNode for e\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 433,\n              \"node\": \"ControlFlowNode for Fstring\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"1880aab084a2681a:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/parse_xml', methods=['POST'])\ndef xxe_vulnerability():\n    # --------------------------------------------\n    xml_data = request.data.decode()\n    \n    try:\n        # --------------------------------------------\n        root = ET.fromstring(xml_data)\n        result = [(child.tag, child.text) for child in root]\n        return f\"<h2>Parsed XML:</h2><pre>{result}</pre>\"\n    except Exception as e:\n        return f\"Error parsing XML: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "rejected",
+        "success": false,
+        "error": "Response must contain exactly one nonempty Python code block"
+      },
+      "error": "Response must contain exactly one nonempty Python code block"
+    },
+    {
+      "attempt": 2,
+      "accepted": false,
+      "error": "Gemini transport failure: ReadTimeout",
+      "infrastructure_error": true
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "failures": 1,
+    "rejected": 1
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

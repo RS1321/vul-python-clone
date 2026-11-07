@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -162,11 +162,8 @@
+ 
+ @app.route('/redirect')
+ def open_redirect():
+-    # --------------------------------------------
+     target_url = request.args.get('url', '/')
+-    
+-    # --------------------------------------------
+-    return redirect(target_url)
++    return redirect(target_url if not target_url.startswith('http') else '/')
+ 
+ 
+ # ============================================================================

@@ -1,0 +1,22 @@
+--- 
++++ 
+@@ -147,13 +147,14 @@
+ def frame_content():
+     # --------------------------------------------
+     frame_url = request.args.get('url', 'https://example.com')
+-    
+-    # --------------------------------------------
+-    html_content = f'''
++
++    # --------------------------------------------
++    html_content = '''
+         <h2>External Content</h2>
+-        <iframe src="{frame_url}" width="800" height="600"></iframe>
++        <iframe src="{{ url }}" width="800" height="600"></iframe>
+     '''
+-    return render_template_string(html_content)
++    from flask import render_template_string
++    return render_template_string(html_content, url=frame_url)
+ 
+ 
+ # ============================================================================

@@ -1,0 +1,27 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 12.217999999999847,
+  "response": {
+    "content": "SCOPE: line\nEXPLANATION: The vulnerability is due to the use of a user-provided value in the SQL query without proper sanitization. The patch ensures that the search term is properly escaped to prevent SQL injection.\n\n```python\n@app.route('/search')\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    # --------------------------------------------\n    query = f\"SELECT username, email FROM users WHERE username LIKE ?\"\n    cursor.execute(query, (search_term,))\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "usage": {
+      "completion_tokens": 138,
+      "prompt_tokens": 838,
+      "total_tokens": 976,
+      "prompt_tokens_details": {
+        "cached_tokens": 151
+      }
+    }
+  },
+  "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 014\",\n  \"finding_id\": \"py/sql-injection:vulnerable_app.py:282:13\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/sql-injection\",\n    \"cwe\": \"CWE-089\",\n    \"all_cwes\": [\n      \"CWE-089\"\n    ],\n    \"description\": \"This SQL query depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 282,\n      \"end_line\": 282,\n      \"function\": \"sql_injection_orm\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 275,\n              \"node\": \"ControlFlowNode for search_term\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 281,\n              \"node\": \"ControlFlowNode for query\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 282,\n              \"node\": \"ControlFlowNode for query\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"5e679878af3c1297:1\",\n    \"primaryLocationStartColumnFingerprint\": \"15\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\n@app.route('/search')\ndef sql_injection_orm():\n    # --------------------------------------------\n    search_term = request.args.get('q', '')\n    \n    conn = sqlite3.connect('vulnerable_app.db')\n    cursor = conn.cursor()\n    \n    # --------------------------------------------\n    query = f\"SELECT username, email FROM users WHERE username LIKE '%{search_term}%'\"\n    cursor.execute(query)\n    results = cursor.fetchall()\n    conn.close()\n    \n    return f\"<h2>Search Results:</h2><pre>{results}</pre>\"\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "vulnerable_app.py",
+    "scope": "line",
+    "route": "rejected",
+    "success": false,
+    "error": "A bound function requires function scope; line scope cannot replace it"
+  },
+  "error": "A bound function requires function scope; line scope cannot replace it"
+}

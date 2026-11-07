@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -182,11 +182,12 @@
+ 
+ @app.route("/toggle_secure_mode")
+ def toggle_secure_mode():
++    from flask import redirect, request, url_for, session
+     init_session()
+     session["secure_mode"] = not session.get("secure_mode", False)
+     session.modified = True
+-
+-    return redirect(request.referrer or url_for("index"))
++    ref = request.referrer if request.referrer and request.host in request.referrer else None
++    return redirect(ref or url_for("index"))
+ 
+ 
+ @app.route("/check_headers")

@@ -1,0 +1,75 @@
+{
+  "finding_id": "py/stack-trace-exposure:vulnerable_app.py:433:22",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 41.57799999997951,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Replace the detailed exception message in the response with a generic error message to prevent stack trace exposure.\n\n```python\n@app.route('/parse_xml', methods=['POST'])\ndef xxe_vulnerability():\n    # --------------------------------------------\n    xml_data = request.data.decode()\n    \n    try:\n        # --------------------------------------------\n        root = ET.fromstring(xml_data)\n        result = [(child.tag, child.text) for child in root]\n        return f\"<h2>Parsed XML:</h2><pre>{result}</pre>\"\n    except Exception as e:\n        app.logger.error(f\"Error parsing XML: {str(e)}\")\n        return \"Error parsing XML\", 500\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 429,
+            "retry_wait_seconds": 35.902330539
+          },
+          {
+            "http_status": 200
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 959,
+          "completion_tokens": 172,
+          "total_tokens": 1131
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 023\",\n  \"finding_id\": \"py/stack-trace-exposure:vulnerable_app.py:433:22\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/stack-trace-exposure\",\n    \"cwe\": \"CWE-209\",\n    \"all_cwes\": [\n      \"CWE-209\",\n      \"CWE-497\"\n    ],\n    \"description\": \"[Stack trace information](1) flows to this location and may be exposed to an external user.\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 433,\n      \"end_line\": 433,\n      \"function\": \"xxe_vulnerability\"\n    },\n    \"data_flow\": [\n      {\n        \"threadFlows\": [\n          {\n            \"locations\": [\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 432,\n                      \"startColumn\": 25,\n                      \"endColumn\": 26\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for e\"\n                  }\n                }\n              },\n              {\n                \"location\": {\n                  \"physicalLocation\": {\n                    \"artifactLocation\": {\n                      \"uri\": \"vulnerable_app.py\",\n                      \"uriBaseId\": \"%SRCROOT%\",\n                      \"index\": 0\n                    },\n                    \"region\": {\n                      \"startLine\": 433,\n                      \"startColumn\": 16,\n                      \"endColumn\": 46\n                    }\n                  },\n                  \"message\": {\n                    \"text\": \"ControlFlowNode for Fstring\"\n                  }\n                }\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"1880aab084a2681a:1\",\n    \"primaryLocationStartColumnFingerprint\": \"7\"\n  }\n}\n\nCWE repair guidance\nReturn a generic error message to the client. Record useful diagnostic details in server-side logs without disclosing them in the response.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn str(error), 500\nAfter:\napp.logger.exception('Request failed')\nreturn 'Internal server error', 500\n\nCurrent source snapshot\n```python\n@app.route('/parse_xml', methods=['POST'])\ndef xxe_vulnerability():\n    # --------------------------------------------\n    xml_data = request.data.decode()\n    \n    try:\n        # --------------------------------------------\n        root = ET.fromstring(xml_data)\n        result = [(child.tag, child.text) for child in root]\n        return f\"<h2>Parsed XML:</h2><pre>{result}</pre>\"\n    except Exception as e:\n        return f\"Error parsing XML: {str(e)}\"\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "xxe_vulnerability"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "5 added plus deleted lines; allowed 5",
+          "lines_added": 3,
+          "lines_removed": 2,
+          "total_churn": 5,
+          "original_length": 11,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 5.126903553299492,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "failed",
+          "returncode": 1,
+          "tests": 68,
+          "failures": [
+            "tests.test_vulnerable_app::test_parse_xml_malformed"
+          ],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "ast_name": 1
+  },
+  "lines_added": 3,
+  "lines_removed": 2
+}

@@ -1,0 +1,19 @@
+--- 
++++ 
+@@ -229,12 +229,15 @@
+ 
+ @app.route('/download')
+ def directory_traversal():
++    import os
+     # --------------------------------------------
+     filename = request.args.get('file', 'readme.txt')
++    # Sanitize filename to prevent directory traversal
++    safe_filename = os.path.basename(filename)
+ 
+     try:
+         # --------------------------------------------
+-        with open(filename, 'r') as f:
++        with open(safe_filename, 'r') as f:
+             content = f.read()
+         return f"<pre>{content}</pre>"
+     except Exception:

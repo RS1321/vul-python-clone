@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -407,7 +407,7 @@
+         wait_for_health(container, remove_on_failure=created)
+         return JsonResponse({'status': 'created' if created else 'ready', 'url': lab_url})
+ 
+-    except Exception as e:
++    except Exception:
+         logger.exception("An unexpected error occurred while starting the lab")
+         return JsonResponse({'status': 'error', 'message': 'An internal error occurred'}, status=500)
+ 

@@ -1,0 +1,33 @@
+--- 
++++ 
+@@ -349,10 +349,10 @@
+ def start_lab(request, lab_image_name):
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+-    
++
+     if not check_traefik_reachable():
+         return JsonResponse({'status': 'error', 'message': 'Traefik reverse proxy is not reachable'}, status=503)
+-    
++
+     client = get_docker_client()
+     if client is None:
+         return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)
+@@ -364,7 +364,7 @@
+     lab_url = f"http://{container_name}.{domain}"
+ 
+     per_user_limit = getattr(settings, 'LABS_PER_USER_LIMIT', 3)
+-    
++
+ 
+     try:
+         lab_config = _get_lab_config(safe_image)
+@@ -405,7 +405,7 @@
+         return JsonResponse({'status': 'created' if created else 'ready', 'url': lab_url})
+ 
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def _create_lab_container(client, image, container_name, domain, lab_port):

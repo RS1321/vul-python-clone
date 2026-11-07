@@ -1,0 +1,54 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 5.484000000000378,
+  "response": {
+    "content": "SCOPE: function\nEXPLANATION: Replace the weak SHA1 hashing algorithm with hashlib.sha256 to securely hash sensitive data.\n```python\ndef custom_hash(password):\n    import hashlib\n    return hashlib.sha256(password.encode()).hexdigest()\n```",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.015
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1105,
+      "completion_tokens": 63,
+      "total_tokens": 1168
+    }
+  },
+  "prompt": "Repair the reported vulnerability in dockerized_labs/crypto_failure_lab/app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 049\",\n  \"finding_id\": \"py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/weak-sensitive-data-hashing\",\n    \"cwe\": \"CWE-327\",\n    \"all_cwes\": [\n      \"CWE-327\",\n      \"CWE-328\",\n      \"CWE-916\"\n    ],\n    \"description\": \"[Sensitive data (password)](1) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.\\n[Sensitive data (password)](2) is used in a hashing algorithm (SHA1) that is insecure for password hashing, since it is not a computationally expensive hash function.\",\n    \"location\": {\n      \"file_path\": \"dockerized_labs/crypto_failure_lab/app.py\",\n      \"start_line\": 25,\n      \"end_line\": 25,\n      \"function\": \"custom_hash\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 24,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 25,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        },\n        {\n          \"steps\": [\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 50,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 51,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 24,\n              \"node\": \"ControlFlowNode for password\"\n            },\n            {\n              \"file\": \"dockerized_labs/crypto_failure_lab/app.py\",\n              \"line\": 25,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"4c79c8076e8e7cb7:1\",\n    \"primaryLocationStartColumnFingerprint\": \"20\"\n  }\n}\n\nCWE repair guidance\nUse authenticated encryption with a securely generated key and a unique nonce. Store nonce and authentication tag with ciphertext; avoid DES, ECB, and unauthenticated CBC.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\ncipher = DES.new(key, DES.MODE_ECB)\nAfter:\ncipher = AES.new(key, AES.MODE_GCM)\nciphertext, tag = cipher.encrypt_and_digest(data)\nresult = (cipher.nonce, ciphertext, tag)\n\nCurrent source snapshot\n```python\ndef custom_hash(password):\n    return hashlib.sha1(password.encode()).hexdigest()\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "scope": "function",
+    "route": "ast_name",
+    "success": true,
+    "target": "custom_hash"
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "3 added plus deleted lines; allowed 5",
+      "lines_added": 2,
+      "lines_removed": 1,
+      "total_churn": 3,
+      "original_length": 2,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 6.119402985074627,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

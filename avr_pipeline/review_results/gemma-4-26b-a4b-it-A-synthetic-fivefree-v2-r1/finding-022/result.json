@@ -1,0 +1,114 @@
+{
+  "finding_id": "py/url-redirection:vulnerable_app.py:169:26",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 25.686999999999898,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Validate that the target URL is a relative path to prevent open redirection to external domains.\n\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    from urllib.parse import urlparse\n    target_url = request.args.get('url', '/')\n    \n    # Ensure the URL is relative to prevent redirection to external domains\n    parsed = urlparse(target_url)\n    if parsed.netloc or parsed.scheme:\n        target_url = '/'\n    # --------------------------------------------\n    return redirect(target_url)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 21.5
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 931,
+          "completion_tokens": 137,
+          "total_tokens": 1068
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 027\",\n  \"finding_id\": \"py/url-redirection:vulnerable_app.py:169:26\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/url-redirection\",\n    \"cwe\": \"CWE-601\",\n    \"all_cwes\": [\n      \"CWE-601\"\n    ],\n    \"description\": \"Untrusted URL redirection depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 169,\n      \"end_line\": 169,\n      \"function\": \"open_redirect\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for target_url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 169,\n              \"node\": \"ControlFlowNode for target_url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9cf2e3b53171c63f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"16\"\n  }\n}\n\nCWE repair guidance\nMap redirect choices to trusted destinations. Reject unknown choices and avoid passing arbitrary input to redirect.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn redirect(request.args.get('next'))\nAfter:\ndestinations = {'home': '/', 'profile': '/profile'}\nreturn redirect(destinations.get(request.args.get('next'), '/'))\n\nCurrent source snapshot\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    return redirect(target_url)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "open_redirect"
+      },
+      "validation": {
+        "minimality": {
+          "passed": false,
+          "message": "7 added plus deleted lines; allowed 5",
+          "lines_added": 6,
+          "lines_removed": 1,
+          "total_churn": 7,
+          "original_length": 6,
+          "limit": 5
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "accepted": true,
+      "duration_seconds": 17.20299999999952,
+      "response": {
+        "content": "SCOPE: function\nEXPLANATION: Validate that the target URL is relative by ensuring it has no scheme or network location, preventing open redirection to external domains.\n\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    from urllib.parse import urlparse\n    target_url = request.args.get('url', '/')\n    if urlparse(target_url).netloc or urlparse(target_url).scheme:\n        target_url = '/'\n    # --------------------------------------------\n    return redirect(target_url)\n```",
+        "model": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 13.156
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1126,
+          "completion_tokens": 127,
+          "total_tokens": 1253
+        }
+      },
+      "prompt": "Repair the reported vulnerability in vulnerable_app.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 027\",\n  \"finding_id\": \"py/url-redirection:vulnerable_app.py:169:26\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/url-redirection\",\n    \"cwe\": \"CWE-601\",\n    \"all_cwes\": [\n      \"CWE-601\"\n    ],\n    \"description\": \"Untrusted URL redirection depends on a [user-provided value](1).\",\n    \"location\": {\n      \"file_path\": \"vulnerable_app.py\",\n      \"start_line\": 169,\n      \"end_line\": 169,\n      \"function\": \"open_redirect\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 166,\n              \"node\": \"ControlFlowNode for target_url\"\n            },\n            {\n              \"file\": \"vulnerable_app.py\",\n              \"line\": 169,\n              \"node\": \"ControlFlowNode for target_url\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"9cf2e3b53171c63f:1\",\n    \"primaryLocationStartColumnFingerprint\": \"16\"\n  }\n}\n\nCWE repair guidance\nMap redirect choices to trusted destinations. Reject unknown choices and avoid passing arbitrary input to redirect.\n\nIllustrative CWE example (not independently expert reviewed)\nBefore:\nreturn redirect(request.args.get('next'))\nAfter:\ndestinations = {'home': '/', 'profile': '/profile'}\nreturn redirect(destinations.get(request.args.get('next'), '/'))\n\nCurrent source snapshot\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    target_url = request.args.get('url', '/')\n    \n    # --------------------------------------------\n    return redirect(target_url)\n```\nReturn the minimal patch using the required format.\n\nAttempt 2 of 3.\nPrevious candidate\n```python\n@app.route('/redirect')\ndef open_redirect():\n    # --------------------------------------------\n    from urllib.parse import urlparse\n    target_url = request.args.get('url', '/')\n    \n    # Ensure the URL is relative to prevent redirection to external domains\n    parsed = urlparse(target_url)\n    if parsed.netloc or parsed.scheme:\n        target_url = '/'\n    # --------------------------------------------\n    return redirect(target_url)\n```\nValidation feedback\n{\"minimality\": {\"passed\": false, \"message\": \"7 added plus deleted lines; allowed 5\", \"lines_added\": 6, \"lines_removed\": 1, \"total_churn\": 7, \"original_length\": 6, \"limit\": 5}}\nReturn a corrected minimal patch.",
+      "application": {
+        "file": "vulnerable_app.py",
+        "scope": "function",
+        "route": "ast_name",
+        "success": true,
+        "target": "open_redirect"
+      },
+      "validation": {
+        "minimality": {
+          "passed": true,
+          "message": "4 added plus deleted lines; allowed 5",
+          "lines_added": 3,
+          "lines_removed": 1,
+          "total_churn": 4,
+          "original_length": 6,
+          "limit": 5
+        },
+        "compile": {
+          "passed": true
+        },
+        "pylint": {
+          "passed": true,
+          "score": 5.142857142857143,
+          "new_errors": [],
+          "preexisting_error_count": 0
+        },
+        "pytest": {
+          "status": "failed",
+          "returncode": 1,
+          "tests": 68,
+          "failures": [
+            "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+            "tests.test_vulnerable_app::test_fetch_url_with_param",
+            "tests.test_vulnerable_app::test_parse_xml_malformed"
+          ],
+          "infrastructure_error": false
+        }
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 2,
+    "success": 2,
+    "ast_name": 2
+  },
+  "lines_added": 3,
+  "lines_removed": 1
+}

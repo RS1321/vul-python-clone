@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -348,6 +348,13 @@
+ 
+     try:
+         # --------------------------------------------
++        from urllib.parse import urlparse
++        allowed_hosts = {'example.com', 'api.example.com'}
++        parsed_url = urlparse(url)
++
++        if parsed_url.scheme not in ('http', 'https') or parsed_url.hostname not in allowed_hosts:
++            return "Invalid or unauthorized URL.", 400
++
+         response = urllib.request.urlopen(url, timeout=5)
+         content = response.read().decode('utf-8', errors='ignore')
+         return f"<h2>Fetched Content:</h2><pre>{content[:500]}</pre>"

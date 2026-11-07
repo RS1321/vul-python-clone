@@ -1,0 +1,31 @@
+--- 
++++ 
+@@ -127,17 +127,22 @@
+ 
+     # --------------------------------------------
+     comment = request.args.get('comment', 'No comment')
++
++    # Use a static template string to prevent template injection and rely on Jinja2 auto-escaping
++    if username == 'admin':
++        html_template = '''
++            <h1>User Profile</h1>
++            <p>Welcome, {{ username }}!</p>
++            <p>Your comment: {{ comment }}</p>
++            <p style="color:red;">Password Hint: {{ admin_password }}</p>
++        '''
++        return render_template_string(html_template, username=username, comment=comment, admin_password=ADMIN_PASSWORD)
++
+     html_template = '''
+         <h1>User Profile</h1>
+         <p>Welcome, {{ username }}!</p>
+         <p>Your comment: {{ comment }}</p>
+     '''
+-
+-    # --------------------------------------------
+-    if username == 'admin':
+-        html_template += '<p style="color:red;">Password Hint: {{ admin_password }}</p>'
+-        return render_template_string(html_template, username=username, comment=comment, admin_password=ADMIN_PASSWORD)
+-
+     return render_template_string(html_template, username=username, comment=comment)
+ 
+ 
