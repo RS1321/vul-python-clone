@@ -1,0 +1,36 @@
+{
+  "lesson": "sensitive_data_exposure",
+  "checks": [
+    {
+      "name": "anonymous bulk data denied",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "ordinary account bulk data denied",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "owner API remains available",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "owner API omits raw secrets",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "authorized staff listing works",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "staff listing omits raw secrets",
+      "passed": true,
+      "category": "security"
+    }
+  ],
+  "passed": true
+}

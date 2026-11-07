@@ -1,5 +1,7 @@
 # Code revision: evidence and remaining limits
 
+Latest follow-up: [Security repairs and authenticated active scans](security-resolution-v6/SECURITY_RESOLUTION.md). This resolves the previously failing targeted assertions in separate hardened clones; agent-authored repairs are distinct from the measured free-model cohort.
+
 The expanded follow-up measurements are in [External and production evaluation](completion/EXPANDED_EVALUATION.md). That report adds authenticated application checks and passive ZAP measurements, repeated production security trials in Python/JavaScript, and a real two-module repair with rollback/drift controls. The historical pilot sections below remain for comparison; their missing measurements are superseded only within the exact follow-up scope.
 
 The user deferred manuscript work. No title, claims, references, numbering or paper figures were edited.

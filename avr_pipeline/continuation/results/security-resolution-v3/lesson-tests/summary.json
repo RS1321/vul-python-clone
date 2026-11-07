@@ -1,0 +1,3738 @@
+[
+  {
+    "state": "baseline",
+    "lesson": "a9_uckv_lab",
+    "result": {
+      "lesson": "a9_uckv_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal YAML parsed",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "Python YAML tags rejected",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "allowed image operation works",
+          "passed": false,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "untrusted expression never evaluated",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/get_version",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/upload_yaml",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/process_image",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "auth_failure_lab",
+    "result": {
+      "lesson": "auth_failure_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned session rejected",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "valid session login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "OTP has expiry and attempt bound",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "OTP replay rejected",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "login error body/status uniform",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab1/verify",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "broken_access_lab",
+    "result": {
+      "lesson": "broken_access_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned admin cookie denied",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal user login works",
+          "passed": false,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "legitimate admin login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab/login",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "broken_auth_lab",
+    "result": {
+      "lesson": "broken_auth_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "forged base64 session denied",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal signed login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/login",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/register",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/reset-password",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/reset/<token>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/dashboard",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "command_injection_lab",
+    "result": {
+      "lesson": "command_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "crypto_failure_lab",
+    "result": {
+      "lesson": "crypto_failure_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned admin cookie rejected",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "dependency_attack_lab",
+    "result": {
+      "lesson": "dependency_attack_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unknown package not trusted",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/exfiltrated-data",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/check-dependencies",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/use-feature",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/check-package",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "insec_des_lab",
+    "result": {
+      "lesson": "insec_des_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal data round trip",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "untrusted pickle loader not invoked",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/serialize",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/deserialize",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "insecure_design_lab",
+    "result": {
+      "lesson": "insecure_design_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal ticket issuance works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "negative count cannot create tickets",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/login",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/register",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/logout",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "insufficient_logging_lab",
+    "result": {
+      "lesson": "insufficient_logging_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "anonymous password mutation denied",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authenticated password change works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/login",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2/change_password",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2/change_role",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "open_source_library_attack_lab",
+    "result": {
+      "lesson": "open_source_library_attack_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "educational timeline remains available",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "informational API JSON is nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/timeline",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/version/<version>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/compare",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/investigation/clues",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/investigation/mark-found",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/impact",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/scan",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "package_injection_lab",
+    "result": {
+      "lesson": "package_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unknown package not trusted",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/malicious-activity",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/check-packages",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/use-package",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/verify-package",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "sde",
+    "result": {
+      "lesson": "sde",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "error handler does not disclose config",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "500 response is generic",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/500error",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "sec_misconfig",
+    "result": {
+      "lesson": "sec_misconfig",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "spoofed host cannot disclose secret",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal token verifies",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "client cannot mint admin role",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "missing page stays 404",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/get-secret",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/check-auth",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab3/get-token",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3/verify-token",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "sensitive_data_exposure",
+    "result": {
+      "lesson": "sensitive_data_exposure",
+      "checks": [
+        {
+          "name": "anonymous bulk data denied",
+          "passed": false,
+          "category": "security"
+        },
+        {
+          "name": "ordinary account bulk data denied",
+          "passed": false,
+          "category": "security"
+        },
+        {
+          "name": "owner API remains available",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "owner API omits raw secrets",
+          "passed": false,
+          "category": "security"
+        },
+        {
+          "name": "authorized staff listing works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "staff listing omits raw secrets",
+          "passed": false,
+          "category": "security"
+        }
+      ],
+      "passed": false
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "software_integrity_lab",
+    "result": {
+      "lesson": "software_integrity_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "cookie never invokes pickle loader",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "download-link markup escaped",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/download/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "sql_injection_lab",
+    "result": {
+      "lesson": "sql_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "ssrf_lab",
+    "result": {
+      "lesson": "ssrf_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/internal",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "template_injection_lab",
+    "result": {
+      "lesson": "template_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "blog creation works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "blog data not template source",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/create_blog",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/blog/<filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "xss_lab",
+    "result": {
+      "lesson": "xss_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "baseline",
+    "lesson": "xxe_lab",
+    "result": {
+      "lesson": "xxe_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "ordinary XML stored",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "DTD/entity declarations rejected",
+          "passed": false,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": false,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/see",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/parse",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "a9_uckv_lab",
+    "result": {
+      "lesson": "a9_uckv_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal YAML parsed",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "Python YAML tags rejected",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "allowed image operation works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "untrusted expression never evaluated",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/get_version",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/upload_yaml",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/process_image",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "auth_failure_lab",
+    "result": {
+      "lesson": "auth_failure_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned session rejected",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "valid session login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "OTP has expiry and attempt bound",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "OTP accepted once",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "OTP replay rejected",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "login error body/status uniform",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab1/verify",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "broken_access_lab",
+    "result": {
+      "lesson": "broken_access_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned admin cookie denied",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal user login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "legitimate admin login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab/login",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "broken_auth_lab",
+    "result": {
+      "lesson": "broken_auth_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "forged base64 session denied",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal signed login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/login",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/register",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/reset-password",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/reset/<token>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/dashboard",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "command_injection_lab",
+    "result": {
+      "lesson": "command_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "crypto_failure_lab",
+    "result": {
+      "lesson": "crypto_failure_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unsigned admin cookie rejected",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal login works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "dependency_attack_lab",
+    "result": {
+      "lesson": "dependency_attack_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unknown package not trusted",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/exfiltrated-data",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/check-dependencies",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/use-feature",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/check-package",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "insec_des_lab",
+    "result": {
+      "lesson": "insec_des_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal data round trip",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "untrusted pickle loader not invoked",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/serialize",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/deserialize",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "insecure_design_lab",
+    "result": {
+      "lesson": "insecure_design_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal ticket issuance works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "negative count cannot create tickets",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/login",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/register",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/logout",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "insufficient_logging_lab",
+    "result": {
+      "lesson": "insufficient_logging_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "anonymous password mutation denied",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authenticated password change works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/login",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2/change_password",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2/change_role",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "open_source_library_attack_lab",
+    "result": {
+      "lesson": "open_source_library_attack_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "educational timeline remains available",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "informational API JSON is nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/timeline",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/version/<version>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/compare",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/investigation/clues",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/investigation/mark-found",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/impact",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/scan",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "package_injection_lab",
+    "result": {
+      "lesson": "package_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "unknown package not trusted",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/malicious-activity",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/check-packages",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/api/use-package",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/api/verify-package",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "sde",
+    "result": {
+      "lesson": "sde",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "error handler does not disclose config",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "500 response is generic",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/500error",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "sec_misconfig",
+    "result": {
+      "lesson": "sec_misconfig",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "spoofed host cannot disclose secret",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal token verifies",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "client cannot mint admin role",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "missing page stays 404",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/get-secret",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1/check-auth",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab3/get-token",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3/verify-token",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "sensitive_data_exposure",
+    "result": {
+      "lesson": "sensitive_data_exposure",
+      "checks": [
+        {
+          "name": "anonymous bulk data denied",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "ordinary account bulk data denied",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "owner API remains available",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "owner API omits raw secrets",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "authorized staff listing works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "staff listing omits raw secrets",
+          "passed": true,
+          "category": "security"
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "software_integrity_lab",
+    "result": {
+      "lesson": "software_integrity_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "cookie never invokes pickle loader",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "download-link markup escaped",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/download/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "sql_injection_lab",
+    "result": {
+      "lesson": "sql_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "ssrf_lab",
+    "result": {
+      "lesson": "ssrf_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/internal",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "template_injection_lab",
+    "result": {
+      "lesson": "template_injection_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "blog creation works",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "blog data not template source",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/create_blog",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/blog/<filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "xss_lab",
+    "result": {
+      "lesson": "xss_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "targeted suite supplied separately",
+          "passed": true,
+          "category": "coverage",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab1",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab2",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/lab3",
+          "methods": [
+            "GET",
+            "POST"
+          ]
+        },
+        {
+          "path": "/toggle-theme",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "state": "hardened",
+    "lesson": "xxe_lab",
+    "result": {
+      "lesson": "xxe_lab",
+      "checks": [
+        {
+          "name": "homepage renders",
+          "passed": true,
+          "category": "functionality",
+          "detail": 200
+        },
+        {
+          "name": "debug disabled",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response nosniff",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "response CSP present",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "ordinary XML stored",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "DTD/entity declarations rejected",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        }
+      ],
+      "passed": true,
+      "routes": [
+        {
+          "path": "/static/<path:filename>",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/lab",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/see",
+          "methods": [
+            "GET"
+          ]
+        },
+        {
+          "path": "/parse",
+          "methods": [
+            "POST"
+          ]
+        },
+        {
+          "path": "/health",
+          "methods": [
+            "GET"
+          ]
+        }
+      ]
+    }
+  }
+]

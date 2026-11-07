@@ -1,0 +1,63 @@
+{
+  "lesson": "sql_injection_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "targeted suite supplied separately",
+      "passed": true,
+      "category": "coverage",
+      "detail": null
+    }
+  ],
+  "passed": false,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    }
+  ]
+}

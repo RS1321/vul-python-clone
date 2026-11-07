@@ -1,0 +1,119 @@
+{
+  "kind": "pygoat",
+  "checks": [
+    {
+      "name": "anonymous denied /",
+      "passed": true,
+      "category": "security",
+      "detail": 302
+    },
+    {
+      "name": "anonymous denied /xss",
+      "passed": true,
+      "category": "security",
+      "detail": 302
+    },
+    {
+      "name": "anonymous denied /scoring/scores/",
+      "passed": true,
+      "category": "security",
+      "detail": 302
+    },
+    {
+      "name": "anonymous denied /scoring/achievements/",
+      "passed": true,
+      "category": "security",
+      "detail": 302
+    },
+    {
+      "name": "anonymous denied /challenge/list-labs/",
+      "passed": true,
+      "category": "security",
+      "detail": 401
+    },
+    {
+      "name": "wrong password rejected",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "valid login works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "authenticated home works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "forward-auth lab-avr_owner-xss_lab.localhost",
+      "passed": true,
+      "category": "security",
+      "detail": 200
+    },
+    {
+      "name": "forward-auth lab-avr_other-xss_lab.localhost",
+      "passed": true,
+      "category": "security",
+      "detail": 403
+    },
+    {
+      "name": "forward-auth lab-avr_owner-unknown.localhost",
+      "passed": true,
+      "category": "security",
+      "detail": 403
+    },
+    {
+      "name": "forward-auth lab-avr_owner-xss_lab.localhost.evil.invalid",
+      "passed": true,
+      "category": "security",
+      "detail": 400
+    },
+    {
+      "name": "CSRF enforced on registration",
+      "passed": true,
+      "category": "security",
+      "detail": 403
+    },
+    {
+      "name": "logout invalidates access",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "known local build directory accepted",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "unregistered build path rejected ../../outside",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "unregistered build path rejected C:/Windows",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "unregistered build path rejected unknown/lab",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "container error not disclosed",
+      "passed": true,
+      "category": "security"
+    }
+  ],
+  "security_passed": 12,
+  "security_total": 12,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked.",
+  "passed": true
+}

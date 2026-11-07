@@ -1,0 +1,205 @@
+{
+	"@programName": "ZAP",
+	"@version": "2.17.0",
+	"@generated": "Sat, 7 Nov 2026 19:46:35",
+	"created": "2026-11-07T14:16:35.511340500Z",
+	"insights":[
+		{
+			"level": "Low",
+			"reason": "Warning",
+			"site": "",
+			"key": "insight.log.error",
+			"description": "ZAP errors logged - see the zap.log file for details",
+			"statistic": "1"
+		},
+		{
+			"level": "Low",
+			"reason": "Warning",
+			"site": "",
+			"key": "insight.log.warn",
+			"description": "ZAP warnings logged - see the zap.log file for details",
+			"statistic": "2"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.code.2xx",
+			"description": "Percentage of responses with status code 2xx",
+			"statistic": "42"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.code.4xx",
+			"description": "Percentage of responses with status code 4xx",
+			"statistic": "57"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.endpoint.ctype.text/html",
+			"description": "Percentage of endpoints with content type text/html",
+			"statistic": "100"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.endpoint.method.GET",
+			"description": "Percentage of endpoints with method GET",
+			"statistic": "33"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.endpoint.method.POST",
+			"description": "Percentage of endpoints with method POST",
+			"statistic": "66"
+		},
+		{
+			"level": "Info",
+			"reason": "Informational",
+			"site": "http://127.0.0.1:18622",
+			"key": "insight.endpoint.total",
+			"description": "Count of total endpoints",
+			"statistic": "3"
+		}
+	],
+	"site":[ 
+		{
+			"@name": "http://127.0.0.1:18622",
+			"@host": "127.0.0.1",
+			"@port": "18622",
+			"@ssl": "false",
+			"alerts": [ 
+				{
+					"pluginid": "10036",
+					"alertRef": "10036-2",
+					"alert": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"name": "Server Leaks Version Information via \"Server\" HTTP Response Header Field",
+					"riskcode": "1",
+					"confidence": "3",
+					"riskdesc": "Low (High)",
+					"desc": "<p>The web/application server is leaking version information via the \"Server\" HTTP response header. Access to such information may facilitate attackers identifying other vulnerabilities your web/application server is subject to.</p>",
+					"instances":[ 
+						{
+							"id": "2",
+							"uri": "http://127.0.0.1:18622/_lessons/xss_lab/lab1?q=fixture",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/xss_lab\/lab1 (q)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "WSGIServer/0.2 CPython/3.12.14",
+							"otherinfo": ""
+						},
+						{
+							"id": "6",
+							"uri": "http://127.0.0.1:18622/_lessons/sql_injection_lab/lab",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/sql_injection_lab\/lab ()(csrf_token,password,username)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "WSGIServer/0.2 CPython/3.12.14",
+							"otherinfo": ""
+						},
+						{
+							"id": "3",
+							"uri": "http://127.0.0.1:18622/_lessons/xss_lab/lab2",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/xss_lab\/lab2 ()(csrf_token,username)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "WSGIServer/0.2 CPython/3.12.14",
+							"otherinfo": ""
+						}
+					],
+					"count": "3",
+					"systemic": true,
+					"solution": "<p>Ensure that your web server, application server, load balancer, etc. is configured to suppress the \"Server\" header or provide generic details.</p>",
+					"otherinfo": "",
+					"reference": "<p>https://httpd.apache.org/docs/current/mod/core.html#servertokens</p><p>https://learn.microsoft.com/en-us/previous-versions/msp-n-p/ff648552(v=pandp.10)</p><p>https://www.troyhunt.com/shhh-dont-let-your-response-headers/</p>",
+					"cweid": "497",
+					"wascid": "13",
+					"sourceid": "1"
+				},
+				{
+					"pluginid": "10111",
+					"alertRef": "10111",
+					"alert": "Authentication Request Identified",
+					"name": "Authentication Request Identified",
+					"riskcode": "0",
+					"confidence": "1",
+					"riskdesc": "Informational (Low)",
+					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
+					"instances":[ 
+						{
+							"id": "4",
+							"uri": "http://127.0.0.1:18622/_lessons/sql_injection_lab/lab",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/sql_injection_lab\/lab ()(csrf_token,password,username)",
+							"method": "POST",
+							"param": "username",
+							"attack": "",
+							"evidence": "password",
+							"otherinfo": "userParam=username\nuserValue=avr_scan_fixture\npasswordParam=password"
+						}
+					],
+					"count": "1",
+					"systemic": false,
+					"solution": "<p>This is an informational alert rather than a vulnerability and so there is nothing to fix.</p>",
+					"otherinfo": "<p>userParam=username</p><p>userValue=avr_scan_fixture</p><p>passwordParam=password</p>",
+					"reference": "<p>https://www.zaproxy.org/docs/desktop/addons/authentication-helper/auth-req-id/</p>",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "6"
+				},
+				{
+					"pluginid": "10109",
+					"alertRef": "10109",
+					"alert": "Modern Web Application",
+					"name": "Modern Web Application",
+					"riskcode": "0",
+					"confidence": "2",
+					"riskdesc": "Informational (Medium)",
+					"desc": "<p>The application appears to be a modern web application. If you need to explore it automatically then the Ajax Spider may well be more effective than the standard one.</p>",
+					"instances":[ 
+						{
+							"id": "1",
+							"uri": "http://127.0.0.1:18622/_lessons/xss_lab/lab1?q=fixture",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/xss_lab\/lab1 (q)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>\n        function toggleTheme() {\n            const html = document.documentElement;\n            const currentTheme = html.getAttribute('data-theme');\n            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';\n            \n            requestAnimationFrame(() => {\n                html.setAttribute('data-theme', newTheme);\n                localStorage.setItem('theme', newTheme);\n                \n                const themeToggle = document.querySelector('.theme-toggle');\n                themeToggle.innerHTML = newTheme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';\n            });\n        }\n\n        // Set theme on page load\n        document.addEventListener('DOMContentLoaded', () => {\n            const savedTheme = localStorage.getItem('theme') || 'light';\n            const html = document.documentElement;\n            \n            requestAnimationFrame(() => {\n                html.setAttribute('data-theme', savedTheme);\n                const themeToggle = document.querySelector('.theme-toggle');\n                themeToggle.innerHTML = savedTheme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';\n            });\n        });\n    </script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						},
+						{
+							"id": "5",
+							"uri": "http://127.0.0.1:18622/_lessons/sql_injection_lab/lab",
+							"nodeName": "http:\/\/127.0.0.1:18622\/_lessons\/sql_injection_lab\/lab ()(csrf_token,password,username)",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "<script>\n        function toggleTheme() {\n            const body = document.body;\n            const currentTheme = body.getAttribute('data-theme');\n            if (currentTheme === 'dark') {\n                body.removeAttribute('data-theme');\n                localStorage.setItem('theme', 'light');\n            } else {\n                body.setAttribute('data-theme', 'dark');\n                localStorage.setItem('theme', 'dark');\n            }\n        }\n\n        document.addEventListener('DOMContentLoaded', () => {\n            const savedTheme = localStorage.getItem('theme');\n            if (savedTheme === 'dark') {\n                document.body.setAttribute('data-theme', 'dark');\n            }\n        });\n    </script>",
+							"otherinfo": "No links have been found while there are scripts, which is an indication that this is a modern web application."
+						}
+					],
+					"count": "2",
+					"systemic": true,
+					"solution": "<p>This is an informational alert and so no changes are required.</p>",
+					"otherinfo": "<p>No links have been found while there are scripts, which is an indication that this is a modern web application.</p>",
+					"reference": "",
+					"cweid": "-1",
+					"wascid": "-1",
+					"sourceid": "1"
+				}
+			]
+		}
+	],
+	"sequences":[
+	]
+
+}

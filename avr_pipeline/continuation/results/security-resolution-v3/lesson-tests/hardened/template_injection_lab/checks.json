@@ -1,0 +1,86 @@
+{
+  "lesson": "template_injection_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "blog creation works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "blog data not template source",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/toggle-theme",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/create_blog",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/blog/<filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

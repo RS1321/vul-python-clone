@@ -1,0 +1,110 @@
+{
+  "lesson": "open_source_library_attack_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "educational timeline remains available",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "informational API JSON is nosniff",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": false,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/timeline",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/version/<version>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/compare",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/api/investigation/clues",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/investigation/mark-found",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/api/impact",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/scan",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

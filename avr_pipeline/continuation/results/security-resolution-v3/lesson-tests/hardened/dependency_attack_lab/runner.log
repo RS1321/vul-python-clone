@@ -1,0 +1,2 @@
+[WARNING] Malicious dependency 'data-utils' loaded!
+{"lesson": "dependency_attack_lab", "passed": true, "checks": 5}

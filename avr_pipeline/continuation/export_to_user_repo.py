@@ -20,7 +20,9 @@ TOP = {'llm', 'context_builder', 'review', 'review_tests', 'review_results', 'co
 FILES = {'README.md', 'requirements-review.txt', '.gitignore', '.env.example'}
 EXTENSIONS = {'.py', '.js', '.json', '.md', '.txt', '.log', '.xml', '.diff', '.patch', '.yaml', '.yml',
               '.sarif', '.toml', '.ini', '.ps1', '.csv', '.example', '.tap'}
-KEY_PATTERN = r'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|AKIA[0-9A-Z]{16}'
+# Review diffs can include removed credential-shaped public benchmark fixtures.
+# Redact those too. Reproduce through the repair scripts, not sanitized diffs.
+KEY_PATTERN = r'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{12,}|AKIA[0-9A-Z]{16}'
 
 
 def digest(data):

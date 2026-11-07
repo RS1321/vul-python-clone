@@ -1,0 +1,76 @@
+{
+  "lesson": "ssrf_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "targeted suite supplied separately",
+      "passed": true,
+      "category": "coverage",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab2",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/internal",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

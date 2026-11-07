@@ -66,7 +66,8 @@ def run(kind, repo, out):
         from models.user_model import User
         from models.books_model import Book
         app = config.vuln_app.app
-        client = app.test_client()
+        from security_test_client import test_client
+        client = test_client(app)
         with app.app_context():
             db.create_all()
             owner = User(username='avr_owner', password='LocalFixture-4812', email='owner@example.com')
@@ -90,9 +91,11 @@ def run(kind, repo, out):
         record('owner reads own book', r.status_code == 200 and b'fixture-private-marker' in r.data, category='functionality')
         r = client.get('/books/v1/private_fixture', headers=h_other)
         record('other account cannot read private book', r.status_code in (401, 403, 404) and b'fixture-private-marker' not in r.data, r.status_code)
+        with app.app_context():
+            original_password = User.query.filter_by(username='avr_owner').first().password
         r = client.put('/users/v1/avr_owner/password', headers=h_other, json={'password': 'ChangedFixture-4812'})
         with app.app_context():
-            record('other account cannot change owner password', User.query.filter_by(username='avr_owner').first().password == 'LocalFixture-4812', r.status_code)
+            record('other account cannot change owner password', User.query.filter_by(username='avr_owner').first().password == original_password, r.status_code)
         client.post('/users/v1/register', json={'username': 'avr_selfadmin', 'password': 'LocalFixture-4812', 'email': 'new@example.com', 'admin': True})
         with app.app_context():
             user = User.query.filter_by(username='avr_selfadmin').first()
@@ -114,7 +117,8 @@ def run(kind, repo, out):
         sys.modules[spec.name] = module
         spec.loader.exec_module(module)
         app = module.app
-        client = app.test_client()
+        from security_test_client import test_client
+        client = test_client(app)
         record('lesson homepage works', client.get('/').status_code == 200, category='functionality')
         if lab == 'xss_lab':
             marker = '<b data-avr="fixture">inert-marker</b>'
@@ -142,7 +146,7 @@ def run(kind, repo, out):
                 r = client.post('/lab2', data={'url': 'http://127.0.0.1/private-fixture'})
                 record('private destination blocked before fetch', get.call_count == 0 and r.status_code < 500, {'status': r.status_code, 'fetches': get.call_count})
         elif lab == 'command_injection_lab':
-            fake = SimpleNamespace(communicate=lambda: (b'fixture-result', b''), returncode=0)
+            fake = SimpleNamespace(communicate=lambda **kwargs: (b'fixture-result', b''), returncode=0)
             with patch.object(module.subprocess, 'Popen', return_value=fake) as popen:
                 r = client.post('/lab1', data={'domain': 'example.invalid', 'os': 'win'})
                 record('ordinary command route responds', r.status_code == 200 and popen.call_count == 1 and b'fixture-result' in r.data, category='functionality')

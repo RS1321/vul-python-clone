@@ -29,7 +29,7 @@ with zipfile.ZipFile(pending,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as archiv
                 if needle in data:
                     data=data.replace(needle,b'<redacted-credential>')
                     redacted+=1
-            data,count=re.subn(rb'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|AKIA[0-9A-Z]{16}',b'REDACTED_BENCHMARK_CREDENTIAL',data)
+            data,count=re.subn(rb'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|(?:sk|rk)_(?:live|test)_[A-Za-z0-9]{12,}|AKIA[0-9A-Z]{16}',b'REDACTED_BENCHMARK_CREDENTIAL',data)
             redacted+=bool(count)
             archive.writestr('AVR-System-review/'+str(path.relative_to(package_root)).replace('\\','/'),data)
 with zipfile.ZipFile(pending) as archive:

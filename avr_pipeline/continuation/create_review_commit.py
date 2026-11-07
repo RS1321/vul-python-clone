@@ -20,6 +20,10 @@ def git(*args, env=None, check=True):
 
 
 def main():
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--replace-unpublished',action='store_true')
+    args=parser.parse_args()
     marker = json.loads((REPO / 'avr_pipeline/EXPORT_MANIFEST.json').read_text())
     if not marker.get('files') or marker['application_baseline_commit'] != '1a23c1dbc0dd843c294036c077ea2a7538a45790':
         raise ValueError('Verified export is required')
@@ -32,6 +36,16 @@ def main():
     if previous and saved.get('commit') != previous:
         raise ValueError('Review branch changed outside this export; refusing to overwrite')
     parent = previous or head
+    if args.replace_unpublished:
+        # Replace only an agent-owned commit rejected by remote push protection.
+        # The remote reference is read and retained as the new parent: no remote
+        # force push, published-history rewrite, working HEAD or index changes.
+        remote=git('ls-remote','--heads','origin',BRANCH).stdout.strip().split()
+        if len(remote)!=2 or not previous:
+            raise ValueError('Cannot verify published parent')
+        parent=remote[0]
+        if parent==previous or git('merge-base','--is-ancestor',parent,previous,check=False).returncode:
+            raise ValueError('Expected an unpublished descendant of the remote branch')
     env = dict(os.environ, GIT_INDEX_FILE=str(ROOT / '.review-work' / f'review-index-{time.time_ns()}'))
     # Existing Git identity is retained. A missing identity uses an explicit
     # local agent identity, without modifying the user's Git configuration.
@@ -56,11 +70,11 @@ def main():
     if tree == git('rev-parse', parent + '^{tree}').stdout.strip():
         print('No new export changes'); return
     message = ROOT / '.review-work/review-commit-message.txt'
-    message.write_text('Extend external security and cross-language production evaluations\n\n'
-        'Add fixture-based authenticated application checks, fixed-route passive ZAP measurements, '
-        'and repeated production repair trials with vulnerable/maintainer-fixed controls.\n\n'
-        'Verify a real two-module urllib3 security repair, partial-change rollback and source drift; '
-        'preserve failed proposals and report the exact coverage and remaining vulnerabilities. '
+    message.write_text('Resolve external application security failures and add active validation\n\n'
+        'Add explicit agent-authored VAmPI/PyGoat repairs, all-lesson security regressions, '
+        'authenticated active SQL/XSS scans, final static rescans and replayable patches.\n\n'
+        'Preserve original benchmark/model observations and distinguish agent repairs from model scores; '
+        'record exact coverage, source hashes, normal-use checks and scanner limitations. '
         'Manuscript revisions remain deferred.\n', encoding='utf-8')
     commit = git('commit-tree', tree, '-p', parent, '-F', str(message), env=env).stdout.strip()
     git('update-ref', BRANCH, commit, previous or '0' * 40)

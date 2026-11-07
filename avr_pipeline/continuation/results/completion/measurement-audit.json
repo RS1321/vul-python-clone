@@ -83,7 +83,7 @@
   ],
   "multifile_cases": 4,
   "delivery_implementation_sha256": {
-    "review/external_security.py": "f70ecee438c39aa43df0a6a56dda36acf910e18ba5a57866d3c5fe6224d36c8c",
+    "review/external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
     "review/production_security.py": "87bcb05bdc530b7681b94f4f7142e5012cfa4b110c4559d14142ca36e21a03a7",
     "review/minimist_security.js": "ef177169e759f28aee58ca633a4e65bd31e35a203ffa59493acbb59eb8822aae",
     "review/serve_external_scan.py": "e5d37c457ee51134dc4afc1270c30a824e90a396bb30b0925e967e701d565484",

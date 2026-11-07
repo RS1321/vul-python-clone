@@ -1,0 +1,111 @@
+{
+  "lesson": "dependency_attack_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "browser CSRF helper served",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "template script nonces match policy",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "POST without CSRF token rejected",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "unknown package not trusted",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/api/exfiltrated-data",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/check-dependencies",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/api/use-feature",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/api/check-package",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/_security_client.js",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

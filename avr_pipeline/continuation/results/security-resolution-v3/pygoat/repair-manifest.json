@@ -1,0 +1,131 @@
+{
+  "dataset": "pygoat",
+  "author": "agent-authored defensive follow-up; not a measured free-model trial",
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "files": [
+    {
+      "path": "challenge/labs/bopla_lab/app.py",
+      "sha256": "4fee10931b99463a8c59647772830e1d627c26c380212fb5aee3bc52e8269465"
+    },
+    {
+      "path": "challenge/labs/business_logic_lab/app.py",
+      "sha256": "68b3ccb5463519b2fd8a76446a1c5a7cfda389493e6777db0ade4845cb9c6d75"
+    },
+    {
+      "path": "challenge/labs/security_headers_lab/app.py",
+      "sha256": "33de6e23f81ae5ea15fec42a943cd27708b6a5c1da476b74d98e0c0fdca36cd4"
+    },
+    {
+      "path": "challenge/views.py",
+      "sha256": "c070f8fd732a57a8916c6b0ee2e3b5cd11d271786ae6eb37749bb6fceb653b1d"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/app.py",
+      "sha256": "9f11ae69182483f6839e5f171ceaa9c265a2cff48baaa924a44254bda6cd28a8"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/app.py",
+      "sha256": "a1b25870353ede6eec66a278b3d55a684a57a104d9137760434aa71b89c7dbf2"
+    },
+    {
+      "path": "dockerized_labs/broken_access_lab/main.py",
+      "sha256": "edb98788cbe88e439ed2562c55009ed2d545c2e7c3e27ced4fa44faebe228763"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/app.py",
+      "sha256": "f642fb31fa208f9267e7cb79d01a5c3f04f9935f3877fddad11e083917d0d4f9"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/app.py",
+      "sha256": "9a1c5a354fb666dfd6e0888e1ab23ea8cc47e7f9d8f5db7fedb126dbe99a5d9a"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/app.py",
+      "sha256": "f2e9fbe9f46012d470aec0473ee897c07ec9d89f5fa8ee047256155cff219a41"
+    },
+    {
+      "path": "dockerized_labs/dependency_attack_lab/app.py",
+      "sha256": "849ef5f468348cf7128cea924d9498e6e8ed4853c131c3090fc2ca8231b66415"
+    },
+    {
+      "path": "dockerized_labs/insec_des_lab/main.py",
+      "sha256": "2fc2211c55eece0ff735959f903c3c27f6f7b8065a6989f071849f6dd47f91df"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/app.py",
+      "sha256": "8883afd810512c2e5e5e0570f08ad9d94edc2ed84c9b39993d13182be13d448b"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/lab.html",
+      "sha256": "638446e460c07e68fce12743f31d03a0e4f9fe6e1d13652105aea0f59180dfa2"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/app.py",
+      "sha256": "0893908560ad10ea450ed9f778f079b05946245848938d9abc527dadcdab8f82"
+    },
+    {
+      "path": "dockerized_labs/open_source_library_attack_lab/app.py",
+      "sha256": "45e05cf00b958861366bbf10c34d8c80b06d6653b1fe8bd840b4388e508095f8"
+    },
+    {
+      "path": "dockerized_labs/package_injection_lab/app.py",
+      "sha256": "aabbf4157ba8fe69a0e929f204149a3982836f9f09b9151e9b7b703358fad34a"
+    },
+    {
+      "path": "dockerized_labs/sde/app.py",
+      "sha256": "f0993d08f743108c956f2b9f54d5bf1ee9ac8b8d64e94078752e02ea6dc40898"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/app.py",
+      "sha256": "2fd978e341bf62e879a091d8a2fdf30ee0656b48bf0ee687d49fab59ea316a87"
+    },
+    {
+      "path": "dockerized_labs/sensitive_data_exposure/dataexposure/views.py",
+      "sha256": "c47495cfc2f9d52a49cbfbe31d520165b0ac33cd25d5a56acd9cf51d1679d13d"
+    },
+    {
+      "path": "dockerized_labs/sensitive_data_exposure/templates/login.html",
+      "sha256": "d56181f91ba451f1ce9fa2a277657067d71b464e66d9ef4278a2543366335671"
+    },
+    {
+      "path": "dockerized_labs/software_integrity_lab/app.py",
+      "sha256": "20a9b7368af11dfb4a3fe221a9418b248c53a0e7bf2021e5c3aa211f2c5b7bb4"
+    },
+    {
+      "path": "dockerized_labs/sql_injection_lab/app.py",
+      "sha256": "52f9049af9e36f30ed17ff2ae751aff2504784023ebd0720b4449ac266dff575"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/app.py",
+      "sha256": "325c5f48cf9e74d895b32b055e2f66d29908ec1e465d1464712876a208ba5a5c"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/templates/lab2.html",
+      "sha256": "45b56d597c0c2a8bee594465e82afa45b8f36270ea3140dcae188ce0b796413d"
+    },
+    {
+      "path": "dockerized_labs/template_injection_lab/app.py",
+      "sha256": "7ef2eaa9a1524cbbd97e2a62165c1125e10b379af10e812360f580f6858e97d2"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/app.py",
+      "sha256": "e72ee4a8df58f7ab03af313e4dd3c2d7e39aa943e086006d6ac0c17dbffa9ee8"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/index.html",
+      "sha256": "60d36ac1bf5c469c25244bf9840770be929d5cfaefbd7c71b7b47f910c44f378"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/lab1.html",
+      "sha256": "8b168e02bb2085ecc72c18c7511d7a4603348f374747942e4df5bce03b800c20"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/lab2.html",
+      "sha256": "79b7f8b607b4e78d30cfaafbce4482734d04738d40c7e872149d923849e90e13"
+    },
+    {
+      "path": "dockerized_labs/xxe_lab/app.py",
+      "sha256": "bf5ef294049fed2f67c094f73988bb437711c0dd25e49cdb7a2732d19a10013a"
+    }
+  ]
+}

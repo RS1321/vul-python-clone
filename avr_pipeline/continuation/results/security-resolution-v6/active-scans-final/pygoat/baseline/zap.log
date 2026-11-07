@@ -1,0 +1,55 @@
+Defaulting ZAP install dir to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\zap\ZAP_2.17.0
+665 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\zap-home\config.xml
+780 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\zap-home\session
+808 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\zap-home\dirbuster
+831 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\zap-home\fuzzers
+832 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\zap-home\plugin
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/zap/ZAP_2.17.0/plugin/network-beta-0.25.0.zap)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Job requestor set url = http://127.0.0.1:18622/_lessons/xss_lab/lab1?q=fixture
+Job requestor set method = GET
+Job requestor set headers = [Content-Type: application/x-www-form-urlencoded]
+Job requestor set responseCode = 200
+Job requestor set url = http://127.0.0.1:18622/_lessons/xss_lab/lab2
+Job requestor set method = POST
+Job requestor set headers = [Content-Type: application/x-www-form-urlencoded]
+Job requestor set responseCode = 200
+Job requestor set data = username=fixture
+Job requestor set url = http://127.0.0.1:18622/_lessons/sql_injection_lab/lab
+Job requestor set method = POST
+Job requestor set headers = [Content-Type: application/x-www-form-urlencoded]
+Job requestor set responseCode = 200
+Job requestor set data = username=avr_scan_fixture&password=LocalFixture-4812
+Job activeScan set context = authenticated-local
+Job activeScan set threadPerHost = 2
+Job activeScan set maxScanDurationInMins = 3
+Job activeScan set maxRuleDurationInMins = 1
+Job activeScan set injectPluginIdInHeader = true
+Job activeScan set defaultThreshold = Off
+Job activeScan set defaultStrength = Low
+Job passiveScan-wait set maxDuration = 1
+Job report set template = traditional-json
+Job report set reportDir = C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline
+Job report set reportFile = scan.json
+Job report set reportTitle = Authenticated active SQL/XSS scan
+Job requestor started
+Job requestor requesting URL http://127.0.0.1:18622/_lessons/xss_lab/lab1?q=fixture
+Job requestor requesting URL http://127.0.0.1:18622/_lessons/xss_lab/lab2
+Job requestor requesting URL http://127.0.0.1:18622/_lessons/sql_injection_lab/lab
+Job requestor finished, time taken: 00:00:00
+Job activeScan started
+Job activeScan set default strength to LOW
+Job activeScan set default threshold to OFF
+Job activeScan set rule 40012 strength to LOW
+Job activeScan set rule 40012 threshold to MEDIUM
+Job activeScan set rule 40018 strength to LOW
+Job activeScan set rule 40018 threshold to MEDIUM
+Job activeScan finished, time taken: 00:00:02
+Job passiveScan-wait started
+Job passiveScan-wait finished, time taken: 00:00:00
+Job report started
+Job report generated report C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans-final\pygoat\baseline\scan.json
+Job report finished, time taken: 00:00:00
+Automation plan succeeded!

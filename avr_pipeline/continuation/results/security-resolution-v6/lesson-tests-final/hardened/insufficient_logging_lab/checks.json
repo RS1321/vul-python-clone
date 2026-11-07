@@ -1,0 +1,122 @@
+{
+  "lesson": "insufficient_logging_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "browser CSRF helper served",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "template script nonces match policy",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "POST without CSRF token rejected",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "anonymous password mutation denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "authenticated password change works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1/login",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab2",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab2/change_password",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab2/change_role",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/toggle-theme",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/_security_client.js",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

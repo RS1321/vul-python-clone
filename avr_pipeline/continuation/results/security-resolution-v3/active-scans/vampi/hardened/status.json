@@ -1,0 +1,23 @@
+{
+  "dataset": "vampi",
+  "state": "hardened",
+  "returncode": 0,
+  "anonymous_status": 401,
+  "authenticated_status": 200,
+  "traffic": {
+    "requests": 56,
+    "authenticated_requests": 55,
+    "active_rules": {
+      "40012": 15,
+      "40018": 21
+    },
+    "statuses": {
+      "401 UNAUTHORIZED": 1,
+      "200 OK": 40,
+      "403 Forbidden": 13,
+      "404 NOT FOUND": 2
+    }
+  },
+  "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+  "status": "complete"
+}

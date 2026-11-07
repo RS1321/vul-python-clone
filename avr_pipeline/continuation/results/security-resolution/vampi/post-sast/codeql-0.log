@@ -1,0 +1,16 @@
+ERROR: Log directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\log is not writable.
+WARNING: Diagnostic directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\diagnostic is not writable.
+Initializing database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db.
+WARNING: Diagnostic directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\diagnostic is not writable.
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by com.semmle.util.files.SubstResolver in an unnamed module (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/codeql-cli/codeql/tools/codeql.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+ERROR: Log directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\log is not writable.
+WARNING: Diagnostic directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\diagnostic is not writable.
+Running build command: []
+WARNING: Diagnostic directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\diagnostic is not writable.
+Finalizing database at C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db.
+WARNING: Diagnostic directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution\vampi\post-sast\codeql-db\diagnostic is not writable.
+ERROR: CodeQL detected code written in Python but could not process any of it. For more information, review our troubleshooting guide at https://gh.io/troubleshooting-code-scanning/no-source-code-seen-during-build.

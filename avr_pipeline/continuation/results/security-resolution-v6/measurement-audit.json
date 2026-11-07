@@ -1,0 +1,144 @@
+{
+  "author": "agent-authored repairs; not model-cohort performance",
+  "lessons_passed": 21,
+  "vampi_security_passed": 11,
+  "vampi_security_total": 11,
+  "static_results": {
+    "pygoat": 0,
+    "vampi": 0
+  },
+  "active_scans": [
+    {
+      "dataset": "pygoat",
+      "state": "baseline",
+      "returncode": 0,
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "traffic": {
+        "requests": 82,
+        "authenticated_requests": 81,
+        "active_rules": {
+          "40012": 28,
+          "40018": 35
+        },
+        "statuses": {
+          "401 Unauthorized": 1,
+          "200 OK": 69,
+          "403 Forbidden": 10,
+          "404 NOT FOUND": 2
+        }
+      },
+      "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+      "status": "complete",
+      "active_alert_groups": 1,
+      "other_alert_ids": [
+        "10020",
+        "10021",
+        "10036",
+        "10038",
+        "10109",
+        "10202"
+      ]
+    },
+    {
+      "dataset": "pygoat",
+      "state": "hardened",
+      "returncode": 0,
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "traffic": {
+        "requests": 88,
+        "authenticated_requests": 87,
+        "active_rules": {
+          "40012": 34,
+          "40018": 35
+        },
+        "statuses": {
+          "401 Unauthorized": 1,
+          "200 OK": 75,
+          "403 Forbidden": 10,
+          "404 NOT FOUND": 2
+        }
+      },
+      "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+      "status": "complete",
+      "active_alert_groups": 0,
+      "other_alert_ids": [
+        "10036",
+        "10109",
+        "10111",
+        "10112"
+      ]
+    },
+    {
+      "dataset": "vampi",
+      "state": "baseline",
+      "returncode": 0,
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "traffic": {
+        "requests": 56,
+        "authenticated_requests": 55,
+        "active_rules": {
+          "40012": 15,
+          "40018": 21
+        },
+        "statuses": {
+          "401 UNAUTHORIZED": 1,
+          "200 OK": 40,
+          "403 Forbidden": 13,
+          "404 NOT FOUND": 2
+        }
+      },
+      "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+      "status": "complete",
+      "active_alert_groups": 0,
+      "other_alert_ids": [
+        "10021",
+        "10036"
+      ]
+    },
+    {
+      "dataset": "vampi",
+      "state": "hardened",
+      "returncode": 0,
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "traffic": {
+        "requests": 56,
+        "authenticated_requests": 55,
+        "active_rules": {
+          "40012": 15,
+          "40018": 21
+        },
+        "statuses": {
+          "401 UNAUTHORIZED": 1,
+          "200 OK": 40,
+          "403 Forbidden": 13,
+          "404 NOT FOUND": 2
+        }
+      },
+      "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+      "status": "complete",
+      "active_alert_groups": 0,
+      "other_alert_ids": [
+        "10036"
+      ]
+    }
+  ],
+  "pipeline_passed": 40,
+  "pipeline_total": 40,
+  "implementation_sha256": {
+    "continuation/resolve_security.py": "d481fa4b12ff98ed8c9b21408168eb9bc8bd9dd16e08f255ad2bf2980d6169ab",
+    "continuation/pygoat_hardening.py": "144e89d6cd5ba096d09003d63d7da26c48e15959495d2dd111b624fd01fdaf36",
+    "continuation/static_followup.py": "bb9683724cce7b844f7b94fe525ee324d425f0d6e1211c3f07c6b8c827a887ca",
+    "review/external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+    "review/lesson_security.py": "6a108fa01ee3ef319d9c4e0a06327fb80a248020765213fc3a73fb4c9c62f3e5",
+    "review/data_exposure_security.py": "fddfd1a54887fb2cf115144ebf82200241701c01aa6280fec64d184137b77354",
+    "review/security_test_client.py": "2cdfa8bce5789c3a5a875d898cf417c068b0f311e4de5c48e36d59fda5f64d2c",
+    "review/vampi_resolution_checks.py": "a12a0c3718aa0de846daa7e5727870031cea75a6410dc67d1d4e99cabb73f72b",
+    "review/challenge_security.py": "e9aec81a0e27d32f0d92ac365c3bb5bbc00997276dea46c677864bb5bbe9ff1d",
+    "review/serve_active_scan.py": "608c735a882302814af14fa557be24c38db5afd2b34b5ac6e322349c8a9bc1fd",
+    "continuation/active_security_scan.py": "240438f7d865a7552d5d772533a7b6bd090f00005bffa140338d7d9c498da3c3"
+  }
+}

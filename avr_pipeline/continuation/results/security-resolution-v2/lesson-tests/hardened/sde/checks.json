@@ -1,0 +1,74 @@
+{
+  "lesson": "sde",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "error handler does not disclose config",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "500 response is generic",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/500error",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

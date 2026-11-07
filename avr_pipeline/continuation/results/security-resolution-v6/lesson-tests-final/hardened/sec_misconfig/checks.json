@@ -1,0 +1,140 @@
+{
+  "lesson": "sec_misconfig",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "browser CSRF helper served",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "template script nonces match policy",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "POST without CSRF token rejected",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "spoofed host cannot disclose secret",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "normal token verifies",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "client cannot mint admin role",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "missing page stays 404",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": true,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1/get-secret",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1/check-auth",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab2",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab3",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab3/get-token",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab3/verify-token",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/_security_client.js",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

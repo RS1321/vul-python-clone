@@ -1,0 +1,23 @@
+{
+  "dataset": "pygoat",
+  "state": "baseline",
+  "returncode": 0,
+  "anonymous_status": 401,
+  "authenticated_status": 200,
+  "traffic": {
+    "requests": 82,
+    "authenticated_requests": 81,
+    "active_rules": {
+      "40012": 28,
+      "40018": 35
+    },
+    "statuses": {
+      "401 Unauthorized": 1,
+      "200 OK": 69,
+      "403 Forbidden": 10,
+      "404 NOT FOUND": 2
+    }
+  },
+  "profile": "authenticated active SQL injection 40018 and reflected XSS 40012; local disposable data; 3 minute scan cap; no other active rules",
+  "status": "complete"
+}

@@ -1,0 +1,415 @@
+{
+  "dataset": "pygoat",
+  "author": "agent-authored defensive follow-up; not a measured free-model trial",
+  "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+  "files": [
+    {
+      "path": "challenge/labs/bopla_lab/app.py",
+      "sha256": "4fee10931b99463a8c59647772830e1d627c26c380212fb5aee3bc52e8269465"
+    },
+    {
+      "path": "challenge/labs/business_logic_lab/app.py",
+      "sha256": "68b3ccb5463519b2fd8a76446a1c5a7cfda389493e6777db0ade4845cb9c6d75"
+    },
+    {
+      "path": "challenge/labs/security_headers_lab/app.py",
+      "sha256": "aeda803b8385e1dfded87a458e33ed1676f9da778f7005e7264a4165dacb6f5a"
+    },
+    {
+      "path": "challenge/management/commands/startuplabs.py",
+      "sha256": "ff4b788a046732f0d2032e772e123f415a94d14df0e42e47f63e3a468ba88aba"
+    },
+    {
+      "path": "challenge/views.py",
+      "sha256": "a7e6021113aa23efe875d57005d408fc4d8c653e5235959f1cc5290b22e87033"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/app.py",
+      "sha256": "2a1cb9d15994674c5073b67d83a06fae2dc8519b05e4f1af7adac6e4807e2513"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/templates/base.html",
+      "sha256": "e822553730d7d7c2468a85222532d1aa9fc39a86be2977bacf1672710423fe97"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/templates/index.html",
+      "sha256": "12487ff6e1b7101a90fdbaf9668c264d4e3ec5b08a8f91fd1d66a63d6a2d3e25"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/templates/lab1.html",
+      "sha256": "62b576ef88def6f73d2a8d092344c882124243dad8497f2ba6ba002870cb3dc7"
+    },
+    {
+      "path": "dockerized_labs/a9_uckv_lab/templates/lab2.html",
+      "sha256": "2caae0ee312ff17ac2dc0c28d49f58ef4c3dcf4453558e09a0731b710c85a6d1"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/app.py",
+      "sha256": "9ffe1567f7e136a11fe506a35d7c5bd15d49c93f967c96fdeb8eaaf8c892c7d5"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/templates/base.html",
+      "sha256": "e0433bd7c1cc87ef3eb54a025ed11b95b4340dd0cef75e90aef6f3e6db744fa8"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/templates/index.html",
+      "sha256": "28370b45fe59905cf4bd8a1707677085e67ebda1bd9f5c8cd259f56823ed519f"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/templates/lab1.html",
+      "sha256": "3e7480f4d068e76e96c888ed84179515919b704cc24004090b91d2b90e99d6a7"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/templates/lab2.html",
+      "sha256": "ef1289c1fff6017127b4d1e240d64146935685c118cda4588c26cb0bb791bf27"
+    },
+    {
+      "path": "dockerized_labs/auth_failure_lab/templates/lab3.html",
+      "sha256": "970b4d0ef6d30b7f6186081b6981ac95370288f06ddbc4b058aff942b9ff711c"
+    },
+    {
+      "path": "dockerized_labs/broken_access_lab/main.py",
+      "sha256": "d14cb79292177f5d799e2c7ed017ec2cfd3293af7e4d94139622e1a00d6fdefd"
+    },
+    {
+      "path": "dockerized_labs/broken_access_lab/templates/base.html",
+      "sha256": "c0ccea73d9798415bc54842c7cc14b3da349533c1b04360a03dc050446c69783"
+    },
+    {
+      "path": "dockerized_labs/broken_access_lab/templates/index.html",
+      "sha256": "ee5426c1d92288a9c79cccd7db2cdecc10de9ce4467322aa8acb4dc3de82b6d5"
+    },
+    {
+      "path": "dockerized_labs/broken_access_lab/templates/lab.html",
+      "sha256": "c333957b42b64578cdc63f1e1211c55808d1045eb1ecef810ee5d898c539d17b"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/app.py",
+      "sha256": "67b84110b310be50fe22af781eb05f3de0c956301e5ce9e4f90f88b712794e33"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/templates/base.html",
+      "sha256": "b2928c8154f2ed903e88495707866251cd545b54e8534f720f03990a62921bfa"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/templates/dashboard.html",
+      "sha256": "c6c2fd32d48a45255126b147e4e58354f1e2230b9b8bd1ac9441754c712b0b84"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/templates/index.html",
+      "sha256": "6faa8248b134c2d709ad44809bb3344cdd33936fa952b35f7b3d01dcbd258f19"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/templates/lab.html",
+      "sha256": "e8495fea2ee938ddc180c790f660b32773085e04da16a7d1e3d9ab0c91d6dad0"
+    },
+    {
+      "path": "dockerized_labs/broken_auth_lab/templates/reset.html",
+      "sha256": "54b6b1260b56eab9775fbd64cc6db83dd11e5b53254218b47ac3aafade6c6e2a"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/app.py",
+      "sha256": "e03a35455bd04b0f468995cd2218fbb772f2fd7c7c1fd83be641244e03f188cc"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/templates/base.html",
+      "sha256": "16e5b1194336d4a10a5470730540be232184d679497d9281d5940776f3dbd3dc"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/templates/index.html",
+      "sha256": "65e014290db6afb0e679542a9633ef88777e552d2ab0331ca1178f2b52a7a320"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/templates/lab1.html",
+      "sha256": "9df8cf70829863350ed5e7aa9e15826f469e3908a180fcdfe0caec1c7fc67b2f"
+    },
+    {
+      "path": "dockerized_labs/command_injection_lab/templates/lab2.html",
+      "sha256": "7df9774fb08b82623b0af7501d3324d988125a3bd5381f8f99abf7806b6e6084"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/app.py",
+      "sha256": "f104acde75294677c1032c3a6d549041741dbc2fb2eb61f1c4fb153aafa424f3"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/templates/base.html",
+      "sha256": "b2928c8154f2ed903e88495707866251cd545b54e8534f720f03990a62921bfa"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/templates/index.html",
+      "sha256": "2d116ec2d85f3590874328fee90f92396fea7a01a0b6a627501f22c00aa51535"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/templates/lab1.html",
+      "sha256": "f4c00ce67839973556561283876985f5991a7b1cd3f8c9d13420da15584a9a6a"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/templates/lab2.html",
+      "sha256": "1ef7bdf13998ca047c8bb4ac6dd9846dba938ed5596fd13e319a154c5fe19ef1"
+    },
+    {
+      "path": "dockerized_labs/crypto_failure_lab/templates/lab3.html",
+      "sha256": "47511d6c275818fae71f29cdecf0d094d198c726d85c6bd2597136a9fb72ea5d"
+    },
+    {
+      "path": "dockerized_labs/dependency_attack_lab/app.py",
+      "sha256": "77931cab285452468b9db11c86907c9680280489f7dc7799b5c178ab4f6345ba"
+    },
+    {
+      "path": "dockerized_labs/dependency_attack_lab/templates/base.html",
+      "sha256": "05c1e768d2b73ccde3765379e18cc23387b489225cfbe8cd6b6bdfab9b96b076"
+    },
+    {
+      "path": "dockerized_labs/dependency_attack_lab/templates/index.html",
+      "sha256": "68616ad13cf09200b7b4ae750995b6bedb381bcc51a66a315e948e828cb7a15e"
+    },
+    {
+      "path": "dockerized_labs/dependency_attack_lab/templates/lab.html",
+      "sha256": "1dc5a4355b923361d19940b5356771b56575448a59ad79ddd222d2beb2129b74"
+    },
+    {
+      "path": "dockerized_labs/insec_des_lab/main.py",
+      "sha256": "a0d1436a026068fc99affea8f4fd916ec86448a8d8ce317aa95cc669f3da3ec4"
+    },
+    {
+      "path": "dockerized_labs/insec_des_lab/templates/base.html",
+      "sha256": "8ead7f9a2c972f6ac65b595469110c6f44248a07ee79390f2b3f521a7b4c2f95"
+    },
+    {
+      "path": "dockerized_labs/insec_des_lab/templates/index.html",
+      "sha256": "bc6c5c432f224728e73dcadd0d6493dc02ead4787a5d86df3a18037a47c853ac"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/app.py",
+      "sha256": "66b43aa966e4a54d6695e4a31670b75ed648ebdca8124f3ba7c106196817ef70"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/base.html",
+      "sha256": "811f690c24aae22bb62b7a495dc874e4135dda94ef3fc5cbdc0d4cad1d951c1a"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/index.html",
+      "sha256": "42b6fdcd3b30d095e30d5a9f9d945134678da60cab8088aab567e6d31fe20643"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/lab.html",
+      "sha256": "c80c28582bbfa9fd1834a17a68eaefc6eacee6f6d1033675158e4f4256bcc1b7"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/login.html",
+      "sha256": "0b7711d2250e4442a04e69326029715a1851ec9374e646de5495ea544ceca17b"
+    },
+    {
+      "path": "dockerized_labs/insecure_design_lab/templates/register.html",
+      "sha256": "1b4e0b9a4918c6d42ad9470982ffa3c1eab9fbd2e0a3f5dcf8707b6e41017732"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/app.py",
+      "sha256": "ec270330a733821c022fcb051c6e856aa354894e966e47b53f13822f700a8b9f"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/templates/base.html",
+      "sha256": "3a9653b3a3c4ca036fdcd430d4d778a2df2f593bc6d88370daafc3171ea47885"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/templates/index.html",
+      "sha256": "78bb2cc922f3186193d8bd92691e374bc7cf305b35fdd94b177b7bf160235dfc"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/templates/lab1.html",
+      "sha256": "26e8f7d90b3b6156327c8faaa084bbeebbaf4ceb871c1709920958a480c69fa8"
+    },
+    {
+      "path": "dockerized_labs/insufficient_logging_lab/templates/lab2.html",
+      "sha256": "db7eeecd00165cfde4a45c367d8ba4d079d3c737792c979047f99e0c96f7f400"
+    },
+    {
+      "path": "dockerized_labs/open_source_library_attack_lab/app.py",
+      "sha256": "22f3f4dfa425bbdbbe2def647da1db7d0817fb5f4cf365c7a93551f6d7827d1c"
+    },
+    {
+      "path": "dockerized_labs/open_source_library_attack_lab/templates/base.html",
+      "sha256": "05c1e768d2b73ccde3765379e18cc23387b489225cfbe8cd6b6bdfab9b96b076"
+    },
+    {
+      "path": "dockerized_labs/open_source_library_attack_lab/templates/index.html",
+      "sha256": "04d25a266b88afb997f7c6ae7bcbe69bbb04a5deaf000dd1d21704429d3884a5"
+    },
+    {
+      "path": "dockerized_labs/open_source_library_attack_lab/templates/lab.html",
+      "sha256": "3a13acc90d09405ef1b8f3dae90dd1011215e41e2cb726981e6e1b60be66a596"
+    },
+    {
+      "path": "dockerized_labs/package_injection_lab/app.py",
+      "sha256": "430dcd4d6c1c267b6e8e1633852c12aac92167945522e31146ca9a8ddb2c1857"
+    },
+    {
+      "path": "dockerized_labs/package_injection_lab/templates/base.html",
+      "sha256": "05c1e768d2b73ccde3765379e18cc23387b489225cfbe8cd6b6bdfab9b96b076"
+    },
+    {
+      "path": "dockerized_labs/package_injection_lab/templates/index.html",
+      "sha256": "33ad961f4948e8603ad98e303331963e348646f7d0b46f007b1870637f77c038"
+    },
+    {
+      "path": "dockerized_labs/package_injection_lab/templates/lab.html",
+      "sha256": "effbd42e46df460087bca1e05b6b531df8ad325a56471f9e64d2540d7cdb84d1"
+    },
+    {
+      "path": "dockerized_labs/sde/app.py",
+      "sha256": "f678d9a1e68644638bfe984288b722a7ea537bf4280eb057bec15c403db4b616"
+    },
+    {
+      "path": "dockerized_labs/sde/templates/base.html",
+      "sha256": "90b219e5c9d8a958e637505c3781ffb934d77f1c1cfe49e3d1b0d4fd05d9eb30"
+    },
+    {
+      "path": "dockerized_labs/sde/templates/index.html",
+      "sha256": "c8703b43cce96c576607e8a5c94c5e261fc5f20297e935753dba86f159ab4d88"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/app.py",
+      "sha256": "1211e5e1b756e8611cc08c872ce340f855c2aa9662b4948cb4a5ba2806b61e9f"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/templates/base.html",
+      "sha256": "16e5b1194336d4a10a5470730540be232184d679497d9281d5940776f3dbd3dc"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/templates/index.html",
+      "sha256": "d25f9282a8bdd84ad0b99cb45ccff8b51a26f42ff8d23c2e5fddd7be4745113b"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/templates/lab1.html",
+      "sha256": "c04f75521835bdced27c05a9268b91c5d4d163d3ae21f58389267feb86736ea9"
+    },
+    {
+      "path": "dockerized_labs/sec_misconfig/templates/lab3.html",
+      "sha256": "24b5c79f8378d82b25c98543139c4a8b5c2b56bb091055d3e8f2336f29330bb3"
+    },
+    {
+      "path": "dockerized_labs/sensitive_data_exposure/dataexposure/views.py",
+      "sha256": "c47495cfc2f9d52a49cbfbe31d520165b0ac33cd25d5a56acd9cf51d1679d13d"
+    },
+    {
+      "path": "dockerized_labs/sensitive_data_exposure/sensitive_data_lab/settings.py",
+      "sha256": "53be0015ac3a5b1acc94ec030e18c0e942b38b67d7cf930e812893a0435fd22a"
+    },
+    {
+      "path": "dockerized_labs/sensitive_data_exposure/templates/login.html",
+      "sha256": "d56181f91ba451f1ce9fa2a277657067d71b464e66d9ef4278a2543366335671"
+    },
+    {
+      "path": "dockerized_labs/software_integrity_lab/app.py",
+      "sha256": "3e4bff8a3e5be4e2f0fcfd99c4c185c998b48ca0e0614821b546486c86db896f"
+    },
+    {
+      "path": "dockerized_labs/software_integrity_lab/templates/index.html",
+      "sha256": "0a5d6c9847b9b1a4851a57651315fc060751cf5d94ba98ab55defa1f3db25415"
+    },
+    {
+      "path": "dockerized_labs/software_integrity_lab/templates/lab2.html",
+      "sha256": "de2aab9f27f404fe315cd490f521a1ac1007b99b3635632bb7ecf2a2c3842a8b"
+    },
+    {
+      "path": "dockerized_labs/software_integrity_lab/templates/layout.html",
+      "sha256": "4b41055ae958e890e936e909cfcc083264c6713fc2aa05f3fb0d4e94e4a2ba29"
+    },
+    {
+      "path": "dockerized_labs/sql_injection_lab/app.py",
+      "sha256": "99d72c679b8a27abd11e4d8bcb830d5e9ed3e14de858397b9db6bc04463370de"
+    },
+    {
+      "path": "dockerized_labs/sql_injection_lab/templates/base.html",
+      "sha256": "16e5b1194336d4a10a5470730540be232184d679497d9281d5940776f3dbd3dc"
+    },
+    {
+      "path": "dockerized_labs/sql_injection_lab/templates/index.html",
+      "sha256": "313ce9cdda339d3ebe63caa74718d1eddaa53c68d12afe44510dcd0a31c48556"
+    },
+    {
+      "path": "dockerized_labs/sql_injection_lab/templates/lab.html",
+      "sha256": "7e92b719226ed40f07cacc14932413cca6100170dd89495b83d84680ac9c5e7b"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/app.py",
+      "sha256": "b8b383f510e56944f6802bc2bb8d91693e8bbd64e42fca0f431720068b418415"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/templates/base.html",
+      "sha256": "b2928c8154f2ed903e88495707866251cd545b54e8534f720f03990a62921bfa"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/templates/index.html",
+      "sha256": "70dee867c243b50f49298127064d53e3bcfad5a3a32ec09a0f6d7b6851c6cd3c"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/templates/lab1.html",
+      "sha256": "6b66a93983c61a25be9c7caf3c55dcd8247ef4286d4d0691ed251566c89b1dd7"
+    },
+    {
+      "path": "dockerized_labs/ssrf_lab/templates/lab2.html",
+      "sha256": "5f5c2ac632ff21e1e877451d21c0667127d7e7155c4f5a5e86061dce169a89e7"
+    },
+    {
+      "path": "dockerized_labs/template_injection_lab/app.py",
+      "sha256": "fc741e50b8850a5a8f2f7e3e8ac4dee64392d197662ee27d53057533cee5c30b"
+    },
+    {
+      "path": "dockerized_labs/template_injection_lab/templates/base.html",
+      "sha256": "16e5b1194336d4a10a5470730540be232184d679497d9281d5940776f3dbd3dc"
+    },
+    {
+      "path": "dockerized_labs/template_injection_lab/templates/index.html",
+      "sha256": "10abc5248cffa6c0fc6c2356b0f635b247329c75244678abc19210c186466e41"
+    },
+    {
+      "path": "dockerized_labs/template_injection_lab/templates/lab.html",
+      "sha256": "c00b862e9f8721c94415feb78347a6b2898814dfe2d6aa487d27974936a7ca64"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/app.py",
+      "sha256": "9d43efa9568c0b50842d468961b5fb5849db50d6a09c2a1289435b8fcec68881"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/base.html",
+      "sha256": "245dfc720adb4622eb0e2169783d418a8e06656c0544cbec3c4cd03550f86bac"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/index.html",
+      "sha256": "cd6fa0fe4d19178178b9fec4fa3006ac425753ace57c26579db3a8d45197e3a6"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/lab1.html",
+      "sha256": "8b168e02bb2085ecc72c18c7511d7a4603348f374747942e4df5bce03b800c20"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/lab2.html",
+      "sha256": "82410bff42ca5e82673dd1d89c5a685ccd2befcc60023d7d2ef8cb2e67614548"
+    },
+    {
+      "path": "dockerized_labs/xss_lab/templates/lab3.html",
+      "sha256": "51a78d995115c4364b2534c07917b702a7f164ad8e524cbc279166b3041db4de"
+    },
+    {
+      "path": "dockerized_labs/xxe_lab/app.py",
+      "sha256": "06e91354be939ba7c9b72a7237859888fc980d938c613214668b8a5e5ab7005d"
+    },
+    {
+      "path": "dockerized_labs/xxe_lab/templates/base.html",
+      "sha256": "48a9dddf1f93609ce02998e97778f5c355b65d534d872e4a62c4a6ad85aecacd"
+    },
+    {
+      "path": "dockerized_labs/xxe_lab/templates/index.html",
+      "sha256": "8a09b354f301cd3f33e7960a442f7a75840d1ef432722f4525c72ba0711ce98b"
+    },
+    {
+      "path": "dockerized_labs/xxe_lab/templates/xxe_lab.html",
+      "sha256": "77dd02f411928112ac972b87e6fcefc69ab664a355d90032ee44e3101fc826d9"
+    },
+    {
+      "path": "pygoat/settings.py",
+      "sha256": "5f5ad955d9ddb81115d15358f0614cac8ac37aef9fc32cf57a2d3db3170a32ba"
+    }
+  ]
+}

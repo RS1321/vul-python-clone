@@ -1,0 +1,23 @@
+{
+  "dataset": "vampi",
+  "author": "agent-authored defensive follow-up; not a measured free-model trial",
+  "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+  "files": [
+    {
+      "path": "api_views/books.py",
+      "sha256": "1c5285e82d999ee7ebc6e9531c9996095e61dffacc298cb9b7652432b303890a"
+    },
+    {
+      "path": "api_views/users.py",
+      "sha256": "73c3aaeda1bfafd64a210e58eb5ad7cf923eb346b9bd8ca1c43a4fd4cfce4766"
+    },
+    {
+      "path": "config.py",
+      "sha256": "9bd96a5272836b1d2e7a2c78e4d1f335c63a586491624471a075ccd52b94c1cd"
+    },
+    {
+      "path": "models/user_model.py",
+      "sha256": "8fc05f2ee1311122f471ab0300294174ccd548cdccf2e4a3b357401b66beea3e"
+    }
+  ]
+}

@@ -1,0 +1,1837 @@
+diff --git a/challenge/labs/bopla_lab/app.py b/challenge/labs/bopla_lab/app.py
+index ff75b54..4f6cfa7 100644
+--- a/challenge/labs/bopla_lab/app.py
++++ b/challenge/labs/bopla_lab/app.py
+@@ -149,4 +149,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True)
++    app.run(host='0.0.0.0', port=8080, debug=False)
+diff --git a/challenge/labs/business_logic_lab/app.py b/challenge/labs/business_logic_lab/app.py
+index 669a6e7..476508c 100644
+--- a/challenge/labs/business_logic_lab/app.py
++++ b/challenge/labs/business_logic_lab/app.py
+@@ -197,4 +197,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)
+diff --git a/challenge/labs/security_headers_lab/app.py b/challenge/labs/security_headers_lab/app.py
+index ebefd88..f779556 100644
+--- a/challenge/labs/security_headers_lab/app.py
++++ b/challenge/labs/security_headers_lab/app.py
+@@ -186,7 +186,10 @@ def toggle_secure_mode():
+     session["secure_mode"] = not session.get("secure_mode", False)
+     session.modified = True
+ 
+-    return redirect(request.referrer or url_for("index"))
++    from urllib.parse import urlparse
++    ref = request.referrer
++    safe_ref = ref if ref and urlparse(ref).netloc == request.host else None
++    return redirect(safe_ref or url_for("index"))
+ 
+ 
+ @app.route("/check_headers")
+@@ -230,4 +233,4 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5011, debug=True)
++    app.run(host='0.0.0.0', port=5011, debug=False)
+diff --git a/challenge/views.py b/challenge/views.py
+index 6f99bdc..8346fda 100644
+--- a/challenge/views.py
++++ b/challenge/views.py
+@@ -349,10 +349,10 @@ def wait_for_health(container, timeout=60, remove_on_failure=True):
+ def start_lab(request, lab_image_name):
+     if not request.user.is_authenticated:
+         return JsonResponse({'status': 'error', 'message': 'Authentication required'}, status=401)
+-    
++
+     if not check_traefik_reachable():
+         return JsonResponse({'status': 'error', 'message': 'Traefik reverse proxy is not reachable'}, status=503)
+-    
++
+     client = get_docker_client()
+     if client is None:
+         return JsonResponse({'status': 'error', 'message': 'Docker daemon unavailable'}, status=503)
+@@ -364,14 +364,16 @@ def start_lab(request, lab_image_name):
+     lab_url = f"http://{container_name}.{domain}"
+ 
+     per_user_limit = getattr(settings, 'LABS_PER_USER_LIMIT', 3)
+-    
++
+ 
+     try:
+         lab_config = _get_lab_config(safe_image)
+         build_location = lab_config['build_location']
+         lab_port = str(lab_config['port'])
+     except (FileNotFoundError, json.JSONDecodeError, KeyError) as e:
+-        return JsonResponse({'status': 'error', 'message': f'Error loading lab configuration: {str(e)}'}, status=500)
++        import logging
++        logging.getLogger(__name__).exception('Error loading lab configuration')
++        return JsonResponse({'status': 'error', 'message': 'Error loading lab configuration'}, status=500)
+ 
+     try:
+         container = _get_container_or_none(client, container_name)
+@@ -405,7 +407,9 @@ def start_lab(request, lab_image_name):
+         return JsonResponse({'status': 'created' if created else 'ready', 'url': lab_url})
+ 
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.getLogger(__name__).exception('Request failed')
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def _create_lab_container(client, image, container_name, domain, lab_port):
+@@ -530,7 +534,9 @@ def stop_lab(request, lab_image_name):
+     except docker.errors.NotFound:
+         return JsonResponse({'status': 'error', 'message': 'Lab container not found'}, status=404)
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logging.getLogger(__name__).exception('Failed to stop lab container')
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def list_custom_labs(request):
+@@ -556,32 +562,35 @@ def create_custom_lab(request):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-    
++
+     try:
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+         try:
+             _resolve_build_path(build_location)
+         except ValueError as e:
+-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++            import logging
++            logger = logging.getLogger(__name__)
++            logger.exception("Build path resolution failed")
++            return JsonResponse({'status': 'error', 'message': 'Invalid build path'}, status=400)
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab = Lab.objects.create(name=name, build_location=build_location, port=port)
+         return JsonResponse({
+             'status': 'success',
+@@ -594,7 +603,10 @@ def create_custom_lab(request):
+             }
+         })
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logger = logging.getLogger(__name__)
++        logger.exception("An error occurred while creating custom lab")
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def update_custom_lab(request, lab_id):
+@@ -604,18 +616,18 @@ def update_custom_lab(request, lab_id):
+         return JsonResponse({'status': 'error', 'message': 'Only staff users can manage custom labs'}, status=403)
+     if request.method != "POST":
+         return JsonResponse({'status': 'error', 'message': 'Method not allowed'}, status=405)
+-        
++
+     try:
+         try:
+             lab = Lab.objects.get(id=lab_id, is_custom=True)
+         except Lab.DoesNotExist:
+             return JsonResponse({'status': 'error', 'message': 'Lab not found'}, status=404)
+-            
++
+         data = json.loads(request.body)
+         name = data.get('name')
+         build_location = data.get('build_location')
+         port = data.get('port')
+-        
++
+         if not name or not build_location or not port:
+             return JsonResponse({'status': 'error', 'message': 'Missing required fields'}, status=400)
+ 
+@@ -623,23 +635,23 @@ def update_custom_lab(request, lab_id):
+             _resolve_build_path(build_location)
+         except ValueError as e:
+             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+-            
++
+         if not re.match(r'^[-a-zA-Z0-9_]+$', name):
+             return JsonResponse({'status': 'error', 'message': 'Invalid lab name. Only alphanumeric characters, hyphens, and underscores are allowed.'}, status=400)
+-            
++
+         try:
+             port = int(port)
+         except ValueError:
+             return JsonResponse({'status': 'error', 'message': 'Port must be an integer'}, status=400)
+-            
++
+         if Lab.objects.filter(name=name).exclude(id=lab_id).exists():
+             return JsonResponse({'status': 'error', 'message': f'Lab with name {name} already exists'}, status=400)
+-            
++
+         lab.name = name
+         lab.build_location = build_location
+         lab.port = port
+         lab.save()
+-        
++
+         return JsonResponse({
+             'status': 'success',
+             'message': f'Lab {name} updated successfully',
+@@ -651,7 +663,10 @@ def update_custom_lab(request, lab_id):
+             }
+         })
+     except Exception as e:
+-        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
++        import logging
++        logger = logging.getLogger(__name__)
++        logger.exception("An error occurred while updating custom lab")
++        return JsonResponse({'status': 'error', 'message': 'Internal server error'}, status=500)
+ 
+ 
+ def delete_custom_lab(request, lab_id):
+diff --git a/dockerized_labs/a9_uckv_lab/app.py b/dockerized_labs/a9_uckv_lab/app.py
+index 21204cc..3103c6b 100644
+--- a/dockerized_labs/a9_uckv_lab/app.py
++++ b/dockerized_labs/a9_uckv_lab/app.py
+@@ -58,12 +58,13 @@ def upload_yaml():
+ 
+     if file and allowed_file(file.filename):
+         try:
+-            # Intentionally vulnerable YAML loading
+-            data = yaml.load(file.stream, Loader=yaml.Loader)
++            # Securely load YAML using safe_load
++            data = yaml.safe_load(file.stream)
+             return render_template("result.html", content=data, filename=file.filename)
+         except Exception as e:
+             flash(f"Error processing file: {str(e)}")
+-            logger.error(f"Error processing YAML file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace("\n", "_").replace("\r", "_")
++            logger.error(f"Error processing YAML file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab1"))
+ 
+     flash("Invalid file type")
+@@ -91,7 +92,7 @@ def process_image():
+             r, g, b = img.split()
+ 
+             # Intentionally vulnerable expression evaluation
+-            output = ImageMath.eval(expression, img=img, r=r, g=g, b=b)
++            output = {'img': img, 'r': r.convert('RGB'), 'g': g.convert('RGB'), 'b': b.convert('RGB')}[expression]
+ 
+             # Save processed image
+             buffered = io.BytesIO()
+@@ -112,7 +113,8 @@ def process_image():
+             )
+         except Exception as e:
+             flash(f"Error processing image: {str(e)}")
+-            logger.error(f"Error processing image file {file.filename}: {str(e)}")
++            safe_filename = file.filename.replace("\n", "").replace("\r", "")
++            logger.error(f"Error processing image file {safe_filename}: {str(e)}")
+             return redirect(url_for("lab2"))
+ 
+ @app.route("/health")
+@@ -121,4 +123,17 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     # Ensure we're binding to all interfaces
+-    app.run(host="0.0.0.0", port=9000, debug=True, use_reloader=True, threaded=True)
++    app.run(host="0.0.0.0", port=9000, debug=False, use_reloader=False, threaded=True)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/auth_failure_lab/app.py b/dockerized_labs/auth_failure_lab/app.py
+index 7c73cca..8652da8 100644
+--- a/dockerized_labs/auth_failure_lab/app.py
++++ b/dockerized_labs/auth_failure_lab/app.py
+@@ -90,144 +90,59 @@ def index():
+ 
+ 
+ # Lab 1: OTP Bypass Routes
+-@app.route("/lab1", methods=["GET", "POST"])
++@app.route('/lab1',methods=['GET','POST'])
+ def lab1():
+-    if request.method == "POST":
+-        email = request.form.get("email")
+-        if email:
+-            # Vulnerable: Short OTP, no rate limiting
+-            otp = str(random.randint(100, 999))
+-            if email == "admin@pygoat.com":
+-                global stored_admin_otp
+-                stored_admin_otp = otp
+-                # Vulnerable: Admin OTP not shown but predictable and no rate limiting
+-                response = make_response(render_template("lab1.html", otp_form=True))
+-                response.set_cookie("email", email)
+-                return response
+-            else:
+-                stored_otps[email] = otp
+-                response = make_response(
+-                    render_template("lab1.html", otp_form=True, otp=otp)
+-                )
+-                response.set_cookie("email", email)
+-                return response
+-    return render_template("lab1.html")
+-
+-
+-@app.route("/lab1/verify", methods=["POST"])
++    from flask import session
++    import secrets,time
++    if request.method=='POST':
++        email=request.form.get('email','')
++        if not email or len(email)>254:return 'Invalid email',400
++        stored_otps[email]={'code':f'{secrets.randbelow(1000000):06d}','expires':time.time()+300,'attempts':0}
++        session['otp_email']=email
++        # Delivery belongs to the configured mail transport, never the response.
++        return render_template('lab1.html',otp_form=True)
++    return render_template('lab1.html')
++
++
++@app.route('/lab1/verify',methods=['POST'])
+ def verify_otp():
+-    email = request.cookies.get("email")
+-    otp = request.form.get("otp")
+-    if email == "admin@pygoat.com":
+-        # Vulnerable: No rate limiting, can brute force the 3-digit OTP
+-        if otp == stored_admin_otp:
+-            return render_template("lab1.html", email=email)
+-    elif email in stored_otps and otp == stored_otps[email]:
+-        return render_template("lab1.html", email=email)
+-    return render_template("lab1.html", otp_form=True)
++    from flask import session
++    import time,secrets
++    email=session.get('otp_email');entry=stored_otps.get(email)
++    if not entry or entry['expires']<time.time() or entry['attempts']>=5:
++        return render_template('lab1.html',otp_form=True),401
++    entry['attempts']+=1
++    if not secrets.compare_digest(entry['code'],request.form.get('otp','')):
++        return render_template('lab1.html',otp_form=True),401
++    stored_otps.pop(email,None);session.pop('otp_email',None)
++    return render_template('lab1.html',email=email)
+ 
+ 
+ # Lab 2: Admin Panel with Account Lockout
+-@app.route("/lab2", methods=["GET", "POST"])
++@app.route('/lab2',methods=['GET','POST'])
+ def lab2():
+-    if request.method == "POST":
+-        username = request.form.get("username")
+-        password = request.form.get("password")
++    if request.method=='POST':
++        user=Admin.query.filter_by(username=request.form.get('username','')).first()
+         try:
+-            user = Admin.query.filter_by(username=username).first()
+-            if not user:
+-                # Vulnerable: Username enumeration through different error message
+-                return render_template(
+-                    "lab2.html", success=False, failure=True, error="Invalid username"
+-                )
+-
+-            if user.is_locked and user.lockout_cooldown > datetime.now():
+-                # Vulnerable: Confirms account exists through lockout message
+-                return render_template("lab2.html", is_locked=True)
+-
+-            try:
+-                ph = PasswordHasher()
+-                ph.verify(user.password, password)
+-                if user.is_locked and user.lockout_cooldown < datetime.now():
+-                    user.is_locked = False
+-                    user.last_login = datetime.now()
+-                    user.fail_attempts = 0
+-                    db.session.commit()
+-                return render_template("lab2.html", user=user, success=True)
+-            except:
+-                fail_attempts = user.fail_attempts + 1
+-                if fail_attempts == 5:
+-                    user.is_active = False
+-                    user.fail_attempts = 0
+-                    user.is_locked = True
+-                    user.lockout_cooldown = datetime.now() + timedelta(minutes=1440)
+-                    db.session.commit()
+-                    return render_template(
+-                        "lab2.html", success=False, failure=True, is_locked=True
+-                    )
+-                user.fail_attempts = fail_attempts
+-                db.session.commit()
+-                # Vulnerable: Password-specific error message
+-                return render_template(
+-                    "lab2.html", success=False, failure=True, error="Invalid password"
+-                )
+-        except Exception as e:
+-            return render_template("lab2.html", success=False, failure=True)
+-    return render_template("lab2.html")
++            if user is not None and not user.is_locked:
++                PasswordHasher().verify(user.password,request.form.get('password',''))
++                return render_template('lab2.html',user=user,success=True)
++        except Exception:pass
++        return render_template('lab2.html',success=False,failure=True,error='Invalid credentials'),401
++    return render_template('lab2.html')
+ 
+ 
+ # Lab 3: Session Management
+-@app.route("/lab3", methods=["GET", "POST"])
++@app.route('/lab3',methods=['GET','POST'])
+ def lab3():
+-    if request.method == "GET":
+-        try:
+-            session_id = request.cookies.get("session_id")
+-            if session_id:
+-                try:
+-                    # Vulnerable: Predictable session format and no signature verification
+-                    session_data = base64.b64decode(session_id).decode()
+-                    session_info = json.loads(session_data)
+-                    if (
+-                        session_info.get("valid_until")
+-                        and datetime.fromisoformat(session_info["valid_until"])
+-                        > datetime.now()
+-                    ):
+-                        return render_template(
+-                            "lab3.html", username=session_info["username"], success=True
+-                        )
+-                except:
+-                    pass
+-            return render_template("lab3.html")
+-        except:
+-            pass
+-        return render_template("lab3.html")
+-
+-    elif request.method == "POST":
+-        if "username" not in request.form:
+-            response = make_response(render_template("lab3.html"))
+-            response.set_cookie("session_id", "", expires=0)
+-            return response
+-
+-        username = request.form.get("username")
+-        password = request.form.get("password")
+-        password_hash = hashlib.sha256(password.encode()).hexdigest()
+-
+-        if username in USERS and USERS[username]["password"] == password_hash:
+-            # Vulnerable: Session information stored in cookie without signature
+-            session_data = {
+-                "username": username,
+-                "role": USERS[username]["role"],
+-                "valid_until": (datetime.now() + timedelta(hours=1)).isoformat(),
+-            }
+-            session_id = base64.b64encode(json.dumps(session_data).encode()).decode()
+-
+-            response = make_response(
+-                render_template("lab3.html", success=True, username=username)
+-            )
+-            response.set_cookie("session_id", session_id)
+-            return response
+-
+-        return render_template("lab3.html", failure=True)
++    from flask import session
++    if request.method=='POST':
++        username=request.form.get('username','');password=request.form.get('password','')
++        if username not in USERS or USERS[username]['password']!=hashlib.sha256(password.encode()).hexdigest():
++            return render_template('lab3.html',failure=True),401
++        session.clear();session['auth_user']=username
++    username=session.get('auth_user')
++    return render_template('lab3.html',username=username,success=username in USERS)
+ 
+ @app.route("/health")
+ def health_check():
+@@ -235,4 +150,17 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     init_db()
+-    app.run(host="0.0.0.0", port=5007, debug=True)
++    app.run(host="0.0.0.0", port=5007, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/broken_access_lab/main.py b/dockerized_labs/broken_access_lab/main.py
+index 3fe3c63..651e9ed 100644
+--- a/dockerized_labs/broken_access_lab/main.py
++++ b/dockerized_labs/broken_access_lab/main.py
+@@ -30,41 +30,34 @@ def lab():
+     return render_template("lab.html")
+ 
+ 
+-@app.route("/lab/login", methods=["GET", "POST"])
++@app.route('/lab/login',methods=['GET','POST'])
+ def lab_login():
+-    if request.cookies.get("admin") == "1":
+-        return render_template(
+-            "result.html",
+-            username="admin",
+-            message="Welcome Admin! Secret key: ADMIN_KEY_123",
+-        )
+-
+-    if request.method == "POST":
+-        username = request.form.get("username")
+-        password = request.form.get("password")
+-
+-    if username in users and users[username].password == password:
+-        user = users[username]
+-        response = make_response(
+-            render_template(
+-                "result.html",
+-                username=username,
+-                message=(
+-                    "Welcome back!"
+-                    if not user.is_admin
+-                    else "Welcome Admin! Secret key: ADMIN_KEY_123"
+-                ),
+-            )
+-        )
+-        # Set admin cookie - intentionally vulnerable
+-        response.set_cookie("admin", "0" if not user.is_admin else "1", max_age=200)
+-        return response
+-
+-    return render_template("result.html", message="Invalid credentials")
++    from flask import session
++    if request.method=='POST':
++        username=request.form.get('username','');password=request.form.get('password','')
++        if username not in users or users[username].password!=password:
++            return render_template('result.html',message='Invalid credentials'),401
++        session.clear();session['username']=username
++    user=users.get(session.get('username'))
++    if user is None:return render_template('result.html',message='Authentication required'),401
++    return render_template('result.html',username=user.username,message='Welcome Admin! Secret key: ADMIN_KEY_123' if user.is_admin else 'Welcome back!')
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080, debug=True) 
++    app.run(host='0.0.0.0', port=8080, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/broken_auth_lab/app.py b/dockerized_labs/broken_auth_lab/app.py
+index 1ef23dc..cd13c2e 100644
+--- a/dockerized_labs/broken_auth_lab/app.py
++++ b/dockerized_labs/broken_auth_lab/app.py
+@@ -43,32 +43,14 @@ def lab():
+     return render_template("lab.html")
+ 
+ 
+-@app.route("/login", methods=["POST"])
++@app.route('/login',methods=['POST'])
+ def login():
+-    username = request.form.get("username")
+-    password = request.form.get("password")
+-    remember_me = request.form.get("remember_me")
+-
+-    if (
+-        username in users and users[username]["password"] == password
+-    ):  # Vulnerable: Plain text password comparison
+-        response = make_response(redirect(url_for("dashboard")))
+-
+-        # Vulnerable: Insecure session management
+-        session_token = base64.b64encode(
+-            f"{username}:{datetime.now()}".encode()
+-        ).decode()
+-
+-        if remember_me:
+-            # Vulnerable: Insecure "Remember Me" implementation
+-            response.set_cookie("session", session_token, max_age=30 * 24 * 60 * 60)
+-        else:
+-            response.set_cookie("session", session_token)
+-
+-        return response
+-
+-    flash("Invalid username or password")
+-    return redirect(url_for("lab"))
++    from flask import session
++    username=request.form.get('username','');password=request.form.get('password','')
++    if username in users and users[username]['password']==password:
++        session.clear();session['username']=username
++        return redirect(url_for('dashboard'))
++    return render_template('lab.html',error='Invalid credentials'),401
+ 
+ 
+ @app.route("/register", methods=["POST"])
+@@ -92,24 +74,12 @@ def register():
+     return redirect(url_for("lab"))
+ 
+ 
+-@app.route("/reset-password", methods=["POST"])
++@app.route('/reset-password',methods=['POST'])
+ def reset_password():
+-    email = request.form.get("email")
+-
+-    # Vulnerable: Password reset token generation
+-    for username, user_data in users.items():
+-        if user_data["email"] == email:
+-            # Vulnerable: Predictable token generation
+-            token = hashlib.md5(f"{email}:{datetime.now()}".encode()).hexdigest()
+-            password_reset_tokens[token] = username
+-
+-            # In a real application, this would send an email
+-            # Vulnerable: Token exposed in response
+-            flash(f"Password reset link: /reset/{token}")
+-            return redirect(url_for("lab"))
+-
+-    flash("Email not found")
+-    return redirect(url_for("lab"))
++    # A production mail transport is deliberately not configured in this lab.
++    # Never return a live password-reset bearer token in the HTTP response.
++    flash('If the account exists, reset instructions will be sent.')
++    return redirect(url_for('lab'))
+ 
+ 
+ @app.route("/reset/<token>")
+@@ -119,29 +89,29 @@ def reset_form(token):
+     return "Invalid token"
+ 
+ 
+-@app.route("/dashboard")
++@app.route('/dashboard')
+ def dashboard():
+-    session_token = request.cookies.get("session")
+-    if not session_token:
+-        return redirect(url_for("lab"))
+-
+-    try:
+-        # Vulnerable: Insecure session validation
+-        username = base64.b64decode(session_token).decode().split(":")[0]
+-        if username in users:
+-            return render_template(
+-                "dashboard.html",
+-                username=username,
+-                role=users[username]["role"],
+-                email=users[username]["email"],
+-            )
+-    except:
+-        pass
+-    return redirect(url_for("lab"))
++    from flask import session
++    username=session.get('username')
++    if username not in users:return redirect(url_for('lab'))
++    return render_template('dashboard.html',username=username,role=users[username]['role'],email=users[username]['email'])
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5000, debug=True)  # Vulnerable: Debug mode enabled in production 
++    app.run(host='0.0.0.0', port=5000, debug=False)  # Vulnerable: Debug mode enabled in production
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/command_injection_lab/app.py b/dockerized_labs/command_injection_lab/app.py
+index ce3accb..db90981 100644
+--- a/dockerized_labs/command_injection_lab/app.py
++++ b/dockerized_labs/command_injection_lab/app.py
+@@ -20,14 +20,14 @@ def lab1():
+         os_type = request.form.get("os", "")
+ 
+         if os_type == "win":
+-            command = f"nslookup {domain}"
++            command = ["nslookup", domain]
+         else:
+-            command = f"dig {domain}"
++            command = ["dig", domain]
+ 
+         try:
+-            # Intentionally vulnerable command execution
++            # Secure command execution without shell interpretation
+             process = subprocess.Popen(
+-                command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
++                command, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+             )
+             stdout, stderr = process.communicate()
+             output = stdout.decode("utf-8") + stderr.decode("utf-8")
+@@ -44,9 +44,9 @@ def lab2():
+     """Lab 2: Python eval() Code Execution"""
+     if request.method == "POST":
+         try:
+-            # Intentionally vulnerable eval
++            import ast
+             expression = request.form.get("val", "")
+-            output = eval(expression)
++            output = ast.literal_eval(expression)
+             return render_template("lab2.html", output=str(output))
+         except Exception as e:
+             return render_template("lab2.html", output=str(e))
+@@ -57,4 +57,17 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5013, debug=True)
++    app.run(host='0.0.0.0', port=5013, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/crypto_failure_lab/app.py b/dockerized_labs/crypto_failure_lab/app.py
+index 9750f32..bdb3172 100644
+--- a/dockerized_labs/crypto_failure_lab/app.py
++++ b/dockerized_labs/crypto_failure_lab/app.py
+@@ -22,7 +22,8 @@ LAB2_USERS = {
+ 
+ 
+ def custom_hash(password):
+-    return hashlib.sha1(password.encode()).hexdigest()
++    import hashlib
++    return hashlib.sha256(password.encode()).hexdigest()
+ 
+ 
+ @app.route("/")
+@@ -32,11 +33,11 @@ def index():
+ 
+ @app.route("/lab1", methods=["GET", "POST"])
+ def lab1():
++    from werkzeug.security import generate_password_hash, check_password_hash
+     if request.method == "POST":
+         username = request.form.get("username")
+         password = request.form.get("password")
+-        password_hash = hashlib.md5(password.encode()).hexdigest()
+-        if username in LAB1_USERS and LAB1_USERS[username] == password_hash:
++        if username in LAB1_USERS and check_password_hash(LAB1_USERS[username], password):
+             return render_template("lab1.html", user=username, success=True)
+         else:
+             return render_template("lab1.html", success=False, failure=True)
+@@ -56,56 +57,14 @@ def lab2():
+     return render_template("lab2.html")
+ 
+ 
+-@app.route("/lab3", methods=["GET", "POST"])
++@app.route('/lab3',methods=['GET','POST'])
+ def lab3():
+-    if request.method == "GET":
+-        try:
+-            cookie = request.cookies.get("cookie")
+-            if cookie:
+-                decoded_cookie = base64.b64decode(cookie).decode()
+-                username, expire = decoded_cookie.split("|")
+-                expire = datetime.datetime.fromisoformat(expire)
+-                now = datetime.datetime.now()
+-                if now > expire:
+-                    return render_template("lab3.html", success=False, failure=False)
+-                elif username == "admin":
+-                    return render_template(
+-                        "lab3.html", success=True, failure=False, admin=True
+-                    )
+-                else:
+-                    return render_template(
+-                        "lab3.html", success=True, failure=False, admin=False
+-                    )
+-        except Exception as e:
+-            print(e)
+-            pass
+-        return render_template("lab3.html")
+-
+-    elif request.method == "POST":
+-        username = request.form.get("username")
+-        password = request.form.get("password")
+-        # In a real app, you'd validate credentials here
+-        if username == "User" and password == "P@$$w0rd":
+-            expire = datetime.datetime.now() + datetime.timedelta(minutes=60)
+-            cookie_data = f"{username}|{expire}"
+-            encoded_cookie = base64.b64encode(cookie_data.encode()).decode()
+-            response = make_response(
+-                render_template(
+-                    "lab3.html",
+-                    success=True,
+-                    failure=False,
+-                    admin=False,
+-                    logged_in=True,
+-                )
+-            )
+-            response.set_cookie("cookie", encoded_cookie)
+-            return response
+-        else:
+-            response = make_response(
+-                render_template("lab3.html", success=False, failure=True)
+-            )
+-            response.delete_cookie("cookie")
+-            return response
++    from flask import session
++    if request.method=='POST':
++        if request.form.get('username')!='User' or request.form.get('password')!='P@$$w0rd':
++            return render_template('lab3.html',success=False,failure=True),401
++        session.clear();session['crypto_user']='User'
++    return render_template('lab3.html',success=bool(session.get('crypto_user')),admin=False,logged_in=bool(session.get('crypto_user')))
+ 
+ @app.route("/health")
+ def health_check():
+@@ -113,3 +72,16 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=5000)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/dependency_attack_lab/app.py b/dockerized_labs/dependency_attack_lab/app.py
+index c82ad11..b40e1d7 100644
+--- a/dockerized_labs/dependency_attack_lab/app.py
++++ b/dockerized_labs/dependency_attack_lab/app.py
+@@ -195,4 +195,17 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5020, debug=True)
++    app.run(host="0.0.0.0", port=5020, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/insec_des_lab/main.py b/dockerized_labs/insec_des_lab/main.py
+index 76c7987..7384485 100644
+--- a/dockerized_labs/insec_des_lab/main.py
++++ b/dockerized_labs/insec_des_lab/main.py
+@@ -21,41 +21,36 @@ def index():
+     return render_template("index.html")
+ 
+ 
+-@app.route("/serialize", methods=["POST"])
++@app.route('/serialize',methods=['POST'])
+ def serialize_data():
+-    username = request.form.get("username", "guest")
+-    # Create regular user with admin=False
+-    user = User(username=username, is_admin=False)
+-    # Match PyGoat's serialization format
+-    serialized = base64.b64encode(pickle.dumps(user)).decode()
+-    return render_template("result.html", serialized=serialized)
++    from itsdangerous import URLSafeTimedSerializer
++    token=URLSafeTimedSerializer(app.secret_key,salt='lesson-user').dumps({'username':request.form.get('username','guest'),'is_admin':False})
++    return render_template('result.html',serialized=token)
+ 
+ 
+-@app.route("/deserialize", methods=["POST"])
++@app.route('/deserialize',methods=['POST'])
+ def deserialize_data():
++    from itsdangerous import URLSafeTimedSerializer,BadSignature
+     try:
+-        serialized_data = request.form.get("serialized_data", "")
+-        decoded_data = base64.b64decode(serialized_data)
+-        # Intentionally vulnerable deserialization, matching PyGoat
+-        user = pickle.loads(decoded_data)
+-
+-        if isinstance(user, User):
+-            if user.is_admin:
+-                message = f"Welcome Admin {user.username}! Here's the secret admin content: ADMIN_KEY_123"
+-            else:
+-                message = (
+-                    f"Welcome {user.username}. Only admins can see the secret content."
+-                )
+-        else:
+-            message = "Invalid user data"
+-
+-        return render_template("result.html", message=message)
+-    except Exception as e:
+-        return render_template("result.html", message=f"Error: {str(e)}")
++        data=URLSafeTimedSerializer(app.secret_key,salt='lesson-user').loads(request.form.get('serialized_data',''),max_age=3600)
++        return render_template('result.html',message=f"Welcome {data['username']}. Only admins can see the secret content.")
++    except (BadSignature,KeyError,TypeError):return render_template('result.html',message='Invalid user data'),400
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=8080)
+\ No newline at end of file
++    app.run(host='0.0.0.0', port=8080)
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/insecure_design_lab/app.py b/dockerized_labs/insecure_design_lab/app.py
+index aae9060..10302f2 100644
+--- a/dockerized_labs/insecure_design_lab/app.py
++++ b/dockerized_labs/insecure_design_lab/app.py
+@@ -150,4 +150,17 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5008, debug=True)
++    app.run(host='0.0.0.0', port=5008, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/insecure_design_lab/templates/lab.html b/dockerized_labs/insecure_design_lab/templates/lab.html
+index 85218c5..0c590a4 100644
+--- a/dockerized_labs/insecure_design_lab/templates/lab.html
++++ b/dockerized_labs/insecure_design_lab/templates/lab.html
+@@ -19,7 +19,7 @@
+     <div style="display:flex; flex-direction: column; align-items:center">
+         {% if error %}
+         <div class="btn btn-info" style="text-align:center;">
+-            {{ error|safe }}
++            {{ error }}
+         </div>
+         {% endif %}
+         <br>
+diff --git a/dockerized_labs/insufficient_logging_lab/app.py b/dockerized_labs/insufficient_logging_lab/app.py
+index 5cafa77..85e25e9 100644
+--- a/dockerized_labs/insufficient_logging_lab/app.py
++++ b/dockerized_labs/insufficient_logging_lab/app.py
+@@ -31,19 +31,16 @@ def lab1():
+     return render_template("lab1.html")
+ 
+ 
+-@app.route("/lab1/login", methods=["POST"])
++@app.route('/lab1/login',methods=['POST'])
+ def lab1_login():
+-    username = request.form.get("username")
+-    password = request.form.get("password")
+-
+-    # Vulnerable implementation - insufficient logging
+-    if username in users and users[username]["password"] == password:
+-        # Success case - no logging at all
+-        return redirect(url_for("lab2"))
+-    else:
+-        # Failed case - minimal logging
+-        log_to_file(f"Login failed for username: {username}")
+-        return render_template("lab1.html", error="Invalid credentials")
++    from flask import session
++    username=request.form.get('username','');password=request.form.get('password','')
++    if username in users and users[username]['password']==password:
++        session.clear();session['logging_user']=username
++        app.logger.info('authentication_success')
++        return redirect(url_for('lab2'))
++    app.logger.warning('authentication_failure')
++    return render_template('lab1.html',error='Invalid credentials'),401
+ 
+ 
+ @app.route("/lab2")
+@@ -51,32 +48,28 @@ def lab2():
+     return render_template("lab2.html")
+ 
+ 
+-@app.route("/lab2/change_password", methods=["POST"])
++@app.route('/lab2/change_password',methods=['POST'])
+ def change_password():
+-    username = request.form.get("username")
+-    new_password = request.form.get("new_password")
+-
+-    if username in users:
+-        # Vulnerable - no logging of password changes
+-        users[username]["password"] = new_password
+-        return render_template("lab2.html", message=f"Password changed for {username}")
+-    return render_template("lab2.html", message="User not found")
++    from flask import session
++    username=request.form.get('username','')
++    if session.get('logging_user')!=username:return 'Forbidden',403
++    password=request.form.get('new_password','')
++    if len(password)<8:return 'Invalid password',400
++    users[username]['password']=password
++    app.logger.info('password_changed')
++    return render_template('lab2.html',message='Password changed')
+ 
+ 
+-@app.route("/lab2/change_role", methods=["POST"])
++@app.route('/lab2/change_role',methods=['POST'])
+ def change_role():
+-    username = request.form.get("username")
+-    new_role = request.form.get("new_role")
+-
+-    if username in users:
+-        # Vulnerable - no logging of role changes
+-        old_role = users[username]["role"]
+-        users[username]["role"] = new_role
+-        return render_template(
+-            "lab2.html",
+-            message=f"Role changed for {username} from {old_role} to {new_role}",
+-        )
+-    return render_template("lab2.html", message="User not found")
++    from flask import session
++    actor=users.get(session.get('logging_user'))
++    target=users.get(request.form.get('username'))
++    role=request.form.get('new_role')
++    if not actor or actor['role']!='admin':return 'Forbidden',403
++    if not target or role not in ('user','admin'):return 'Invalid request',400
++    target['role']=role;app.logger.info('role_changed')
++    return render_template('lab2.html',message='Role changed')
+ 
+ 
+ @app.route("/toggle-theme")
+@@ -94,3 +87,16 @@ if __name__ == '__main__':
+         open("app.log", "a").close()
+ 
+     app.run(host="0.0.0.0", port=5014, debug=True)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/open_source_library_attack_lab/app.py b/dockerized_labs/open_source_library_attack_lab/app.py
+index 1307e0b..ba2eb7e 100644
+--- a/dockerized_labs/open_source_library_attack_lab/app.py
++++ b/dockerized_labs/open_source_library_attack_lab/app.py
+@@ -256,4 +256,17 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5022, debug=True)
++    app.run(host="0.0.0.0", port=5022, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/package_injection_lab/app.py b/dockerized_labs/package_injection_lab/app.py
+index 64d58b9..168a80c 100644
+--- a/dockerized_labs/package_injection_lab/app.py
++++ b/dockerized_labs/package_injection_lab/app.py
+@@ -257,4 +257,17 @@ def health_check():
+ 
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5021, debug=True)
++    app.run(host="0.0.0.0", port=5021, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/sde/app.py b/dockerized_labs/sde/app.py
+index 4d40f89..310ca2d 100644
+--- a/dockerized_labs/sde/app.py
++++ b/dockerized_labs/sde/app.py
+@@ -27,23 +27,31 @@ def lab():
+     return render_template("lab.html")
+ 
+ 
+-@app.route("/500error")
++@app.route('/500error')
+ def trigger_error():
+-    # Intentional crash
+-    undefined_variable = some_undefined_variable  # noqa: F821
+-    return "This won't be reached"
++    return 'Internal server error',500
+ 
+ 
+ @app.errorhandler(404)
+ def handle_404(e):
+-    # Dump the entire Flask config (including sensitive values)
+-    sensitive_dump = "\n".join(f"{k} = {v}" for k, v in app.config.items())
+-    sensitive_dump += f"\nFLAG = {SENSITIVE_DATA}"
+-    raise RuntimeError(f"Invalid Route \n\n{sensitive_dump}")
++    return 'Not found',404
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == "__main__":
+-    app.run(host="0.0.0.0", port=5100, debug=True)
++    app.run(host="0.0.0.0", port=5100, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/sec_misconfig/app.py b/dockerized_labs/sec_misconfig/app.py
+index c7af5d6..fe5d219 100644
+--- a/dockerized_labs/sec_misconfig/app.py
++++ b/dockerized_labs/sec_misconfig/app.py
+@@ -25,13 +25,9 @@ def lab1():
+     return render_template("lab1.html")
+ 
+ 
+-@app.route("/lab1/get-secret")
++@app.route('/lab1/get-secret')
+ def get_secret():
+-    if request.headers.get("X-Host") == "admin.localhost:8000":
+-        secret = SENSITIVE_DATA["secret_key"]
+-        return jsonify({"secret": secret})
+-    else:
+-        return jsonify({"secret": None})
++    return jsonify({'error':'Forbidden'}),403
+ 
+ 
+ @app.route("/lab1/check-auth")
+@@ -49,38 +45,7 @@ def lab2():
+ 
+ @app.errorhandler(404)
+ def page_not_found(e):
+-    # def trigger_error():
+-    # Sensitive configuration and credentials that would be exposed in debug mode
+-    app_config = {
+-        "SECRET_KEY": "super_secret_production_key_123",
+-        "DATABASE_URI": "postgresql://admin:secretpassword@production-db.internal:5432/users",
+-        "REDIS_PASSWORD": "redis_prod_password_456",
+-        "AWS_ACCESS_KEY": "REDACTED_BENCHMARK_CREDENTIAL",
+-        "AWS_SECRET_KEY": "aws_secret_key_very_sensitive_789",
+-        "STRIPE_API_KEY": "REDACTED_BENCHMARK_CREDENTIAL",
+-        "ADMIN_CREDENTIALS": {
+-            "username": "admin",
+-            "password": "admin_secure_password_999",
+-        },
+-    }
+-
+-    # Production API endpoints that shouldn't be exposed
+-    internal_apis = {
+-        "auth_service": "http://internal-auth.prod:8080",
+-        "payment_service": "http://internal-payments.prod:9000",
+-        "admin_panel": "http://internal-admin.prod:8888",
+-    }
+-
+-    # More sensitive environment variables
+-    os.environ["ENCRYPTION_KEY"] = "encryption_key_should_not_be_exposed"
+-    os.environ["JWT_SECRET"] = "jwt_signing_key_very_secret"
+-    os.environ["ADMIN_TOKEN"] = "admin_access_token_highly_sensitive"
+-
+-    # This will cause an error and expose all the above information in debug mode
+-    raise Exception(
+-        "An intentional error was triggered to demonstrate a vulnerability."
+-    )
+-    return result  # noqa: F821
++    return 'Not found',404
+ 
+ 
+ @app.route("/lab3")
+@@ -88,48 +53,37 @@ def lab3():
+     return render_template("lab3.html")
+ 
+ 
+-@app.route("/lab3/get-token", methods=["POST"])
++@app.route('/lab3/get-token',methods=['POST'])
+ def get_token():
+-    data = request.get_json()
+-    username = data.get("username", "")
+-    role = data.get("role", "user")
+-
+-    # Using a weak secret key (misconfiguration)
+-    secret = "secret123"
+-
+-    token = jwt.encode(
+-        {
+-            "username": username,
+-            "role": role,
+-            "exp": datetime.utcnow() + timedelta(hours=1),
+-        },
+-        secret,
+-        algorithm="HS256",
+-    )
+-    return jsonify({"token": token})
+-
+-
+-@app.route("/lab3/verify-token", methods=["POST"])
++    data=request.get_json(silent=True) or {}
++    token=jwt.encode({'username':str(data.get('username','guest'))[:80],'role':'user','exp':datetime.utcnow()+timedelta(hours=1)},app.secret_key,algorithm='HS256')
++    return jsonify({'token':token})
++
++
++@app.route('/lab3/verify-token',methods=['POST'])
+ def verify_token():
+-    token = request.get_json().get("token", "")
+-    secret = "secret123"
++    token=(request.get_json(silent=True) or {}).get('token','')
+     try:
+-        payload = jwt.decode(token, secret, algorithms=["HS256"])
+-        if payload["role"] == "admin":
+-            return jsonify(
+-                {"message": "Success! You gained admin access.", "payload": payload}
+-            )
+-        return jsonify(
+-            {"message": "Token verified but user is not admin", "payload": payload}
+-        )
+-    except jwt.ExpiredSignatureError:
+-        return jsonify({"error": "Token has expired"}), 401
+-    except jwt.InvalidTokenError:
+-        return jsonify({"error": "Invalid token"}), 401
++        payload=jwt.decode(token,app.secret_key,algorithms=['HS256'])
++        return jsonify({'message':'Token verified','payload':payload})
++    except jwt.InvalidTokenError:return jsonify({'error':'Invalid token'}),401
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(debug=True, host='0.0.0.0', port=5009)
++    app.run(debug=False, host='0.0.0.0', port=5009)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/sensitive_data_exposure/dataexposure/views.py b/dockerized_labs/sensitive_data_exposure/dataexposure/views.py
+index 434bf86..9c7be1e 100644
+--- a/dockerized_labs/sensitive_data_exposure/dataexposure/views.py
++++ b/dockerized_labs/sensitive_data_exposure/dataexposure/views.py
+@@ -44,10 +44,8 @@ def login_view(request):
+ 
+ 
+ def generate_api_key():
+-    # generate a random api key
+-    # I should probably use a better method but this works for now
+-    chars = string.ascii_lowercase + string.digits
+-    return "".join(random.choices(chars, k=16))  # 16 chars should be enough right?
++    import secrets
++    return secrets.token_urlsafe(32)
+ 
+ 
+ def register_view(request):
+@@ -100,54 +98,14 @@ def profile_view(request):
+ 
+ @login_required
+ def api_data_view(request):
+-    # FIXME: this is insecure AF - just for demo purposes!!
+-    # sends all user data as json - bad practice!!
+-    try:
+-        user_data = UserData.objects.get(user=request.user)
+-    except UserData.DoesNotExist:
+-        # If no user data exists, create some dummy data for demo
+-        user_data = UserData.objects.create(
+-            user=request.user,
+-            credit_card="4111111111111111",  # test card number
+-            ssn="123456789",  # demo SSN
+-            api_key=generate_api_key(),  # simple api key
+-        )
+-
+-    data = {
+-        "username": request.user.username,
+-        "credit_card": user_data.credit_card,
+-        "ssn": user_data.ssn,
+-        "api_key": user_data.api_key,
+-    }
+-    # Intentionally exposing sensitive data through API
+-    # cuz we're teaching about data exposure, duh!
+-    return JsonResponse(data)
++    return JsonResponse({'username':request.user.username})
+ 
+ 
+ # Intentionally insecure - for teaching purposes!
+ def all_users_data_view(request):
+-    # MAJOR SECURITY FLAW: This endpoint allows ANY user (even unauthenticated ones!)
+-    # to see ALL users' sensitive data!
+-    # This demonstrates why proper authentication/authorization is essential.
+-
+-    # Note for students: Notice how there are no checks for who's requesting the data!
+-
+-    all_users_data = []
+-    for user_data in UserData.objects.all():
+-        all_users_data.append(
+-            {
+-                "username": user_data.user.username,
+-                "credit_card": user_data.credit_card,  # Completely exposed! No masking!
+-                "ssn": user_data.ssn,  # Sending full SSN - terrible practice!
+-                "api_key": user_data.api_key,  # API keys should never be exposed like this
+-            }
+-        )
+-
+-    # In a secure application, we would add:
+-    # if not request.user.is_authenticated or not request.user.is_staff:
+-    #     return JsonResponse({'error': 'Unauthorized'}, status=401)
+-
+-    return JsonResponse({"users": all_users_data})
++    if not request.user.is_authenticated:return JsonResponse({'error':'Authentication required'},status=401)
++    if not request.user.is_staff:return JsonResponse({'error':'Forbidden'},status=403)
++    return JsonResponse({'users':[{'username':row.user.username} for row in UserData.objects.select_related('user').all()]})
+ 
+ 
+ def logout_view(request):
+diff --git a/dockerized_labs/sensitive_data_exposure/templates/login.html b/dockerized_labs/sensitive_data_exposure/templates/login.html
+index c3fcb60..2d54222 100644
+--- a/dockerized_labs/sensitive_data_exposure/templates/login.html
++++ b/dockerized_labs/sensitive_data_exposure/templates/login.html
+@@ -56,12 +56,12 @@
+                             <div class="form-group">
+                                 <label for="id_username">Username:</label>
+                                 {{ form.username.errors }}
+-                                {{ form.username|safe }}
++                                {{ form.username }}
+                             </div>
+                             <div class="form-group">
+                                 <label for="id_password">Password:</label>
+                                 {{ form.password.errors }}
+-                                {{ form.password|safe }}
++                                {{ form.password }}
+                             </div>
+                             <button type="submit" class="btn btn-primary">Login</button>
+                         </form>
+diff --git a/dockerized_labs/software_integrity_lab/app.py b/dockerized_labs/software_integrity_lab/app.py
+index b8ee05e..6618453 100644
+--- a/dockerized_labs/software_integrity_lab/app.py
++++ b/dockerized_labs/software_integrity_lab/app.py
+@@ -26,31 +26,16 @@ def index():
+     return render_template("index.html")
+ 
+ 
+-@app.route("/lab1")
++@app.route('/lab1')
+ def lab1():
+-    """Lab 1: Insecure Deserialization"""
+-    response = render_template("lab1.html", message="Only Admins can see this page")
+-    token = request.cookies.get("token")
+-
+-    if token is None:
+-        token = encoded_user
+-        response = make_response(
+-            render_template("lab1.html", message="Only Admins can see this page")
+-        )
+-        response.set_cookie(key="token", value=token.decode("utf-8"))
+-    else:
+-        try:
+-            token = base64.b64decode(token)
+-            admin = pickle.loads(
+-                token
+-            )  # Intentionally vulnerable to pickle deserialization
+-            if admin.admin == 1:
+-                response = render_template(
+-                    "lab1.html", message="Welcome Admin, SECRETKEY:ADMIN123"
+-                )
+-        except Exception as e:
+-            response = render_template("lab1.html", error=str(e))
+-
++    from itsdangerous import URLSafeTimedSerializer,BadSignature
++    codec=URLSafeTimedSerializer(app.secret_key,salt='integrity-user')
++    token=request.cookies.get('token')
++    if token:
++        try:codec.loads(token,max_age=3600)
++        except BadSignature:return render_template('lab1.html',error='Invalid token'),400
++    response=make_response(render_template('lab1.html',message='Only Admins can see this page'))
++    response.set_cookie('token',codec.dumps({'admin':False}),httponly=True,samesite='Lax')
+     return response
+ 
+ 
+@@ -88,3 +73,16 @@ if __name__ == '__main__':
+         f.write("This is a fake file that could contain malicious code.")
+ 
+     app.run(host="0.0.0.0", port=5011, debug=True)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/sql_injection_lab/app.py b/dockerized_labs/sql_injection_lab/app.py
+index 62dc9f2..2fd9085 100644
+--- a/dockerized_labs/sql_injection_lab/app.py
++++ b/dockerized_labs/sql_injection_lab/app.py
+@@ -46,15 +46,13 @@ def lab():
+         username = request.form.get("username", "")
+         password = request.form.get("password", "")
+ 
+-        # Vulnerable SQL query construction (intentional)
+-        sql_query = (
+-            f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+-        )
++        # Safe parameterized query construction
++        sql_query = "SELECT * FROM users WHERE username=? AND password=?"
+ 
+         try:
+             conn = sqlite3.connect("database.db")
+             c = conn.cursor()
+-            result = c.execute(sql_query).fetchone()
++            result = c.execute(sql_query, (username, password)).fetchone()
+             conn.close()
+ 
+             if result:
+@@ -63,10 +61,10 @@ def lab():
+                 return render_template(
+                     "lab.html",
+                     error="Invalid username or password",
+-                    sql_query=sql_query,
++                    sql_query=f"SELECT * FROM users WHERE username='{username}' AND password='{password}'",
+                 )
+         except sqlite3.Error as e:
+-            return render_template("lab.html", error=str(e), sql_query=sql_query)
++            return render_template("lab.html", error=str(e), sql_query=f"SELECT * FROM users WHERE username='{username}' AND password='{password}'")
+ 
+     return render_template("lab.html")
+ 
+@@ -76,3 +74,16 @@ if __name__ == "__main__":
+     init_db()
+ 
+     app.run(host="0.0.0.0", port=5012, debug=True)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/ssrf_lab/app.py b/dockerized_labs/ssrf_lab/app.py
+index 45fac06..1565bf1 100644
+--- a/dockerized_labs/ssrf_lab/app.py
++++ b/dockerized_labs/ssrf_lab/app.py
+@@ -33,8 +33,11 @@ def lab1():
+ def lab2():
+     if request.method == "POST":
+         url = request.form.get("url")
++        allowed_urls = ["http://example.com", "https://example.com"]
++        if url not in allowed_urls:
++            return render_template("lab2.html", error="Invalid URL")
+         try:
+-            response = requests.get(url)
++            response = requests.get(url, allow_redirects=False, timeout=5)
+             flash("Successfully fetched URL!", "success")
+             return render_template("lab2.html", response=response.text)
+         except:
+@@ -63,3 +66,16 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=5000)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/ssrf_lab/templates/lab2.html b/dockerized_labs/ssrf_lab/templates/lab2.html
+index c4b995a..9f9b8b8 100644
+--- a/dockerized_labs/ssrf_lab/templates/lab2.html
++++ b/dockerized_labs/ssrf_lab/templates/lab2.html
+@@ -23,7 +23,7 @@
+     </div>
+     
+     {% if response %}
+-        <div style="width:70%;overflow:scroll;background-color:#000">{{response | safe}}</div>
++        <div style="width:70%;overflow:scroll;background-color:#000">{{response }}</div>
+     {% endif %}
+ </div>
+ 
+diff --git a/dockerized_labs/template_injection_lab/app.py b/dockerized_labs/template_injection_lab/app.py
+index c3e843b..0f83c1d 100644
+--- a/dockerized_labs/template_injection_lab/app.py
++++ b/dockerized_labs/template_injection_lab/app.py
+@@ -18,50 +18,25 @@ os.makedirs(BLOG_DIR, exist_ok=True)
+ 
+ 
+ def create_blog_post(title, content):
+-    """Create a new blog post with the given title and content."""
+-    # Generate a unique filename using UUID
+-    filename = f"{uuid.uuid4()}.html"
+-    filepath = os.path.join(BLOG_DIR, filename)
+-
+-    # Create the blog post template
+-    blog_template_content = f"""
+-{{% extends "base.html" %}}
+-{{% block title %}}{ title }{{% endblock %}}
+-{{% block content %}}
+-<div class="box">
+-    <h3>{ title }</h3>
+-    <div class="content">
+-        { content }
+-    </div>
+-</div>
+-{{% endblock %}}
+-"""
+-
+-    # rendered_blog = render_template_string(blog_template_content, title=title, content=content)
+-
+-    # Write the blog post to file
+-    with open(filepath, "w") as f:
+-        f.write(blog_template_content)
+-
++    from markupsafe import escape
++    filename=f'{uuid.uuid4()}.html'
++    # Literal user text is escaped before insertion into the template source;
++    # template delimiters are never evaluated as user-provided Jinja source.
++    import json
++    with open(os.path.join(BLOG_DIR,filename), 'w',encoding='utf-8') as stream:
++        json.dump({'title':title,'content':content},stream)
+     return filename
+ 
+ 
+ def get_blog_posts():
+-    """Get a list of all blog posts."""
+-    posts = []
+-    if os.path.exists(BLOG_DIR):
+-        for filename in os.listdir(BLOG_DIR):
+-            if filename.endswith(".html"):
+-                filepath = os.path.join(BLOG_DIR, filename)
+-                with open(filepath, "r") as f:
+-                    content = f.read()
+-                    # Extract title from the template
+-                    title = (
+-                        content.split("<h3>")[1].split("</h3>")[0]
+-                        if "<h3>" in content
+-                        else "Untitled"
+-                    )
+-                    posts.append({"filename": filename, "title": title})
++    import json
++    posts=[]
++    for filename in os.listdir(BLOG_DIR):
++        if filename.endswith('.html'):
++            try:
++                with open(os.path.join(BLOG_DIR,filename),encoding='utf-8') as stream:data=json.load(stream)
++                posts.append({'filename':filename,'title':data['title']})
++            except (OSError,ValueError,KeyError):continue
+     return posts
+ 
+ @app.route("/")
+@@ -101,16 +76,22 @@ def create_blog():
+         filename = create_blog_post(title, content)
+         return redirect(url_for("view_blog", filename=filename))
+     except Exception as e:
+-        return f"Error: {str(e)}", 400
++        app.logger.exception("Error creating blog post")
++        return "An error occurred while creating the blog post.", 400
+ 
+ 
+-@app.route("/blog/<filename>")
++@app.route('/blog/<filename>')
+ def view_blog(filename):
+-    """View a specific blog post."""
++    import json
++    from pathlib import Path
++    from markupsafe import escape
++    if Path(filename).name!=filename or not filename.endswith('.html'):
++        return 'Not found',404
+     try:
+-        return render_template(f"blogs/{filename}")
+-    except Exception as e:
+-        return f"Blog post not found: {str(e)}", 404
++        data=json.loads((Path(BLOG_DIR)/filename).read_text(encoding='utf-8'))
++    except (OSError,ValueError):
++        return 'Not found',404
++    return '<h3>'+str(escape(data['title']))+'</h3><div>'+str(escape(data['content']))+'</div>'
+ 
+ 
+ 
+@@ -120,4 +101,17 @@ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5015, debug=True)
++    app.run(host='0.0.0.0', port=5015, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/xss_lab/app.py b/dockerized_labs/xss_lab/app.py
+index 8042bf7..2c3bba3 100644
+--- a/dockerized_labs/xss_lab/app.py
++++ b/dockerized_labs/xss_lab/app.py
+@@ -79,11 +79,10 @@ def lab3():
+     return render_template("lab3.html")
+ 
+ 
+-@app.route("/toggle-theme")
++@app.route('/toggle-theme')
+ def toggle_theme():
+-    resp = make_response(redirect(request.referrer or "/"))
+-    current = request.cookies.get("theme", "light")
+-    resp.set_cookie("theme", "dark" if current == "light" else "light")
++    resp=make_response(redirect('/'))
++    resp.set_cookie('theme','dark' if request.cookies.get('theme')=='light' else 'light',httponly=True,samesite='Lax')
+     return resp
+ 
+ @app.route("/health")
+@@ -92,3 +91,16 @@ def health_check():
+ 
+ if __name__ == '__main__':
+     app.run(host='0.0.0.0', port=5006)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response
+diff --git a/dockerized_labs/xss_lab/templates/index.html b/dockerized_labs/xss_lab/templates/index.html
+index 15d285c..5294c71 100644
+--- a/dockerized_labs/xss_lab/templates/index.html
++++ b/dockerized_labs/xss_lab/templates/index.html
+@@ -111,7 +111,7 @@
+                 <br><b>#code in views.py</b><br></bt>
+                 <code>return render(request,'Lab/XSS/xss_lab.html',{'query': q})</code><br>
+                 <br><b>#code in html template</b><br>
+-                <code> &lt;h3&gt; The company '{query|safe}' You searched for is not Part of FAANG &lt;/h3&gt;</code>
++                <code> &lt;h3&gt; The company '{query}' You searched for is not Part of FAANG &lt;/h3&gt;</code>
+             </p>
+ 
+             <p class="bp">In the above code the q variable holds the users input . This input is stored in a variable called
+diff --git a/dockerized_labs/xss_lab/templates/lab1.html b/dockerized_labs/xss_lab/templates/lab1.html
+index 14c4633..f8a5da7 100644
+--- a/dockerized_labs/xss_lab/templates/lab1.html
++++ b/dockerized_labs/xss_lab/templates/lab1.html
+@@ -27,7 +27,7 @@
+             {% elif query %}
+             <div class="search-result">
+                 {# Vulnerable: Reflects unescaped user input #}
+-                <h3>The company '{{ query|safe }}' You searched for is not Part of FAANG</h3>
++                <h3>The company '{{ query }}' You searched for is not Part of FAANG</h3>
+             </div>
+             {% endif %}
+         </div>
+@@ -52,7 +52,7 @@
+                 <h5>Vulnerability Details</h5>
+                 <p class="bp">
+                     The vulnerability exists because user input is being reflected back with the <code>safe</code> filter in the template:
+-                    <pre><code>&lt;h3&gt;The company '{{query|safe}}' You searched for is not Part of FAANG&lt;/h3&gt;</code></pre>
++                    <pre><code>&lt;h3&gt;The company '{{query}}' You searched for is not Part of FAANG&lt;/h3&gt;</code></pre>
+                     This means any HTML or JavaScript in the input will be executed by the browser instead of being escaped.
+                 </p>
+             </div>
+diff --git a/dockerized_labs/xss_lab/templates/lab2.html b/dockerized_labs/xss_lab/templates/lab2.html
+index 9bd0c1e..d4bcc74 100644
+--- a/dockerized_labs/xss_lab/templates/lab2.html
++++ b/dockerized_labs/xss_lab/templates/lab2.html
+@@ -21,7 +21,7 @@
+             <div class="section">
+                 <h4>Latest Comment:</h4>
+                 {# Vulnerable: Simple script tag filter can be bypassed #}
+-                <div class="alert">{{ username|safe }}</div>
++                <div class="alert">{{ username }}</div>
+             </div>
+             {% endif %}
+         </div>
+diff --git a/dockerized_labs/xxe_lab/app.py b/dockerized_labs/xxe_lab/app.py
+index 7b4c8af..8c313df 100644
+--- a/dockerized_labs/xxe_lab/app.py
++++ b/dockerized_labs/xxe_lab/app.py
+@@ -48,48 +48,38 @@ def xxe_see():
+     return render_template("xxe_lab.html")
+ 
+ 
+-@app.route("/parse", methods=["POST"])
++@app.route('/parse',methods=['POST'])
+ def xxe_parse():
+-    """Parse XML input - intentionally vulnerable to XXE"""
+-    if request.method == "POST":
+-        try:
+-            # Create a vulnerable XML parser that allows external entities
+-            parser = make_parser()
+-            parser.setFeature(feature_external_ges, True)
+-
+-            # Parse the XML data
+-            doc = parseString(request.data.decode("utf-8"), parser=parser)
+-
+-            # Extract text from the XML
+-            for event, node in doc:
+-                if event == START_ELEMENT and node.tagName == "text":
+-                    doc.expandNode(node)
+-                    text = node.toxml()
+-                    # Get text between tags
+-                    start_idx = text.find(">")
+-                    end_idx = text.find("<", start_idx)
+-                    text = text[start_idx + 1 : end_idx]
+-
+-                    # Update the comment in database
+-                    comment = Comment.query.first()
+-                    if comment:
+-                        comment.comment = text
+-                    else:
+-                        comment = Comment(comment=text)
+-                        db.session.add(comment)
+-                    db.session.commit()
+-                    break
+-
+-            return render_template("xxe_lab.html")
+-        except Exception as e:
+-            print(f"Error parsing XML: {str(e)}")
+-            return render_template("xxe_lab.html", error="Error processing XML data")
+-
+-    return render_template("xxe_lab.html")
++    from defusedxml import ElementTree
++    try:
++        if len(request.data)>65536:return 'XML too large',413
++        root=ElementTree.fromstring(request.data)
++        node=root.find('.//text') if root.tag!='text' else root
++        text=node.text if node is not None else ''
++        row=Comment.query.first()
++        if row is None:row=Comment(comment=text or '');db.session.add(row)
++        else:row.comment=text or ''
++        db.session.commit()
++        return render_template('xxe_lab.html')
++    except Exception:
++        return render_template('xxe_lab.html',error='Invalid XML'),400
+ 
+ @app.route("/health")
+ def health_check():
+     return "OK", 200
+ 
+ if __name__ == '__main__':
+-    app.run(host='0.0.0.0', port=5010, debug=True)
++    app.run(host='0.0.0.0', port=5010, debug=False)
++
++
++# Defensive follow-up for the isolated hardened clone.
++import secrets as _security_secrets
++app.config.update(DEBUG=False, SECRET_KEY=_security_secrets.token_hex(32),
++                  SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE='Lax',
++                  MAX_CONTENT_LENGTH=1024 * 1024)
++@app.after_request
++def _security_headers(response):
++    response.headers['X-Content-Type-Options'] = 'nosniff'
++    response.headers['Content-Security-Policy'] = "default-src 'self'; frame-ancestors 'none'; object-src 'none'"
++    response.headers['Cache-Control'] = 'no-store'
++    return response

@@ -1,0 +1,107 @@
+{
+  "lesson": "auth_failure_lab",
+  "checks": [
+    {
+      "name": "homepage renders",
+      "passed": true,
+      "category": "functionality",
+      "detail": 200
+    },
+    {
+      "name": "debug disabled",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response nosniff",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "response CSP present",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "unsigned session rejected",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "valid session login works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "OTP has expiry and attempt bound",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "OTP replay rejected",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "login error body/status uniform",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    }
+  ],
+  "passed": false,
+  "routes": [
+    {
+      "path": "/static/<path:filename>",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/",
+      "methods": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/lab1",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab1/verify",
+      "methods": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab2",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/lab3",
+      "methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/health",
+      "methods": [
+        "GET"
+      ]
+    }
+  ]
+}

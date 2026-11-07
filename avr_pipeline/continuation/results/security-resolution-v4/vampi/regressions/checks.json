@@ -1,0 +1,106 @@
+{
+  "kind": "vampi",
+  "checks": [
+    {
+      "name": "both valid accounts log in",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "anonymous profile denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "malformed token denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "owner profile works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "owner reads own book",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "other account cannot read private book",
+      "passed": true,
+      "category": "security",
+      "detail": 404
+    },
+    {
+      "name": "other account cannot change owner password",
+      "passed": true,
+      "category": "security",
+      "detail": 403
+    },
+    {
+      "name": "registration cannot self-assign admin",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "debug does not disclose fixture password",
+      "passed": true,
+      "category": "security",
+      "detail": 404
+    },
+    {
+      "name": "failed login does not enumerate account",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "SQL-shaped username returns no fixture account",
+      "passed": true,
+      "category": "security",
+      "detail": 404
+    },
+    {
+      "name": "other account cannot change owner email",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "owner email change works",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "owner password change works",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "password stored as KDF hash",
+      "passed": true,
+      "category": "security"
+    },
+    {
+      "name": "new password logs in",
+      "passed": true,
+      "category": "functionality"
+    },
+    {
+      "name": "old password no longer works",
+      "passed": true,
+      "category": "security"
+    }
+  ],
+  "security_passed": 11,
+  "security_total": 11,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked.",
+  "passed": true
+}

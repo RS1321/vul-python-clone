@@ -1,0 +1,55 @@
+env:
+  contexts:
+  - name: authenticated-local
+    urls:
+    - http://127.0.0.1:18623
+    includePaths:
+    - ^http://127\.0\.0\.1:18623/.*$
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+jobs:
+- type: requestor
+  requests:
+  - url: http://127.0.0.1:18623/me
+    method: GET
+    headers:
+    - 'Content-Type: application/x-www-form-urlencoded'
+    responseCode: 200
+  - url: http://127.0.0.1:18623/users/v1/avr_scan_fixture
+    method: GET
+    headers:
+    - 'Content-Type: application/x-www-form-urlencoded'
+    responseCode: 200
+  - url: http://127.0.0.1:18623/books/v1/scan_fixture
+    method: GET
+    headers:
+    - 'Content-Type: application/x-www-form-urlencoded'
+    responseCode: 200
+- type: activeScan
+  parameters:
+    context: authenticated-local
+    threadPerHost: 2
+    maxScanDurationInMins: 3
+    maxRuleDurationInMins: 1
+    injectPluginIdInHeader: true
+  policyDefinition:
+    defaultThreshold: 'Off'
+    defaultStrength: Low
+    rules:
+    - id: 40012
+      threshold: Medium
+      strength: Low
+    - id: 40018
+      threshold: Medium
+      strength: Low
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 1
+- type: report
+  parameters:
+    template: traditional-json
+    reportDir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\security-resolution-v6\active-scans\vampi\hardened
+    reportFile: scan.json
+    reportTitle: Authenticated active SQL/XSS scan

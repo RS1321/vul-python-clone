@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-11-07T13:31:32.739228+00:00",
+  "generated_utc": "2026-11-07T14:29:42.477708+00:00",
   "protocol": "Within-model A/B; compact context; review-1 library; one repetition; no seed. Small Qwen v3 has a 1024-token reply cap; others v2 have 8192.",
   "scope": "New free-model cohort; not the original paper models. A minus B combines rules and examples.",
   "five_model_target_complete": true,
