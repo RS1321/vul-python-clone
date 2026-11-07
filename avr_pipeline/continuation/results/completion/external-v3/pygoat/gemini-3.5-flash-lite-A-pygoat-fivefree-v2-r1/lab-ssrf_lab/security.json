@@ -1,0 +1,30 @@
+{
+  "kind": "lab-ssrf_lab",
+  "checks": [
+    {
+      "name": "lesson homepage works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "allowed public URL still fetched",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "private destination blocked before fetch",
+      "passed": true,
+      "category": "security",
+      "detail": {
+        "status": 200,
+        "fetches": 0
+      }
+    }
+  ],
+  "security_passed": 1,
+  "security_total": 1,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked."
+}

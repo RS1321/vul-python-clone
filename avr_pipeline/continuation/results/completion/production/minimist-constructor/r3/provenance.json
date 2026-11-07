@@ -1,0 +1,18 @@
+{
+  "repo": "minimist-cve",
+  "url": "https://github.com/minimistjs/minimist",
+  "baseline": "aeb3e27dae0412de5c0494e9563a5f10c82cc7a9",
+  "fixed": "v1.2.6",
+  "advisory": "https://github.com/advisories/GHSA-xvch-5gv4-984h",
+  "description": "Prevent user-controlled property traversal from modifying inherited constructors or prototypes, including constructor properties reached through positional arrays. Preserve ordinary flags, aliases, nested own properties and defaults.",
+  "repetition": 3,
+  "model": "gemini-3.5-flash-lite",
+  "fragments": [
+    {
+      "path": "index.js",
+      "sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+      "before": "    function setKey (obj, keys, value) {\r\n        var o = obj;\r\n        for (var i = 0; i < keys.length-1; i++) {\r\n            var key = keys[i];\r\n            if (key === '__proto__') return;\r\n            if (o[key] === undefined) o[key] = {};\r\n            if (o[key] === Object.prototype || o[key] === Number.prototype\r\n                || o[key] === String.prototype) o[key] = {};\r\n            if (o[key] === Array.prototype) o[key] = [];\r\n            o = o[key];\r\n        }\r\n\r\n        var key = keys[keys.length - 1];\r\n        if (key === '__proto__') return;\r\n        if (o === Object.prototype || o === Number.prototype\r\n            || o === String.prototype) o = {};\r\n        if (o === Array.prototype) o = [];\r\n        if (o[key] === undefined || flags.bools[key] || typeof o[key] === 'boolean') {\r\n            o[key] = value;\r\n        }\r\n        else if (Array.isArray(o[key])) {\r\n            o[key].push(value);\r\n        }\r\n        else {\r\n            o[key] = [ o[key], value ];\r\n        }\r\n    }"
+    }
+  ],
+  "protocol": "one independent attempt; security tests withheld; strict combined gate; no seed; temperature 0.1; output cap 8192"
+}

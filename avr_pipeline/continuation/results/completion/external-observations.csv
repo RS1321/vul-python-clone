@@ -1,0 +1,10 @@
+dataset,state,security_passed,security_total,functionality_passed
+pygoat,baseline,13,19,True
+pygoat,gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1,17,19,True
+pygoat,gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1,16,19,True
+pygoat,qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1,13,19,True
+vampi,baseline,2,8,True
+vampi,gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1,2,8,True
+vampi,gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1,2,8,True
+vampi,gemma-4-31b-it-A-vampi-fivefree-v2-r1,2,8,True
+vampi,qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1,2,8,True

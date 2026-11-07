@@ -1,0 +1,15 @@
+{
+  "accepted": false,
+  "files": [],
+  "changed_lines": 8,
+  "validation": {
+    "passed": false,
+    "infrastructure_error": true,
+    "returncode": 1
+  },
+  "rolled_back": true,
+  "error": "Project checks rejected the coordinated change",
+  "case": "urllib3-303",
+  "repetition": 1,
+  "seconds": 3.765
+}

@@ -1,0 +1,16 @@
+{
+  "content": "```json\n{\n  \"edits\": [\n    {\n      \"path\": \"requests/sessions.py\",\n      \"before\": \"    def rebuild_proxies(self, prepared_request, proxies):\\r\\n        \\\"\\\"\\\"This method re-evaluates the proxy configuration by considering the\\r\\n        environment variables. If we are redirected to a URL covered by\\r\\n        NO_PROXY, we strip the proxy configuration. Otherwise, we set missing\\r\\n        proxy keys for this URL (in case they were stripped by a previous\\r\\n        redirect).\\r\\n\\r\\n        This method also replaces the Proxy-Authorization header where\\r\\n        necessary.\\r\\n\\r\\n        :rtype: dict\\r\\n        \\\"\\\"\\\"\\r\\n        headers = prepared_request.headers\\r\\n        scheme = urlparse(prepared_request.url).scheme\\r\\n        new_proxies = resolve_proxies(prepared_request, proxies, self.trust_env)\\r\\n\\r\\n        if \\\"Proxy-Authorization\\\" in headers:\\r\\n            del headers[\\\"Proxy-Authorization\\\"]\\r\\n\\r\\n        try:\\r\\n            username, password = get_auth_from_url(new_proxies[scheme])\\r\\n        except KeyError:\\r\\n            username, password = None, None\\r\\n\\r\\n        if username and password:\\r\\n            headers[\\\"Proxy-Authorization\\\"] = _basic_auth_str(username, password)\\r\\n\\r\\n        return new_proxies\",\n      \"after\": \"    def rebuild_proxies(self, prepared_request, proxies):\\r\\n        \\\"\\\"\\\"This method re-evaluates the proxy configuration by considering the\\r\\n        environment variables. If we are redirected to a URL covered by\\r\\n        NO_PROXY, we strip the proxy configuration. Otherwise, we set missing\\r\\n        proxy keys for this URL (in case they were stripped by a previous\\r\\n        redirect).\\r\\n\\r\\n        This method also replaces the Proxy-Authorization header where\\r\\n        necessary.\\r\\n\\r\\n        :rtype: dict\\r\\n        \\\"\\\"\\\"\\r\\n        headers = prepared_request.headers\\r\\n        url = prepared_request.url\\r\\n        scheme = urlparse(url).scheme\\r\\n        new_proxies = resolve_proxies(prepared_request, proxies, self.trust_env)\\r\\n\\r\\n        if \\\"Proxy-Authorization\\\" in headers:\\r\\n            del headers[\\\"Proxy-Authorization\\\"]\\r\\n\\r\\n        redir_location = parse_url(url)\\r\\n        try:\\r\\n            username, password = get_auth_from_url(new_proxies[scheme])\\r\\n        except KeyError:\\r\\n            username, password = None, None\\r\\n\\r\\n        # \n        if username and password and _is_url_auth_allowed(redir_location, url):\\r\\n            headers[\\\"Proxy-Authorization\\\"] = _basic_auth_str(username, password)\\r\\n\\r\\n        return new_proxies\"\n    }\n  ]\n}\n```",
+  "model": "gemini-3.5-flash-lite",
+  "provider": "gemini",
+  "transport_events": [
+    {
+      "http_status": 200,
+      "budget_wait_seconds": 0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 559,
+    "completion_tokens": 747,
+    "total_tokens": 1306
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "accepted": false,
+  "files": [],
+  "changed_lines": 0,
+  "validation": null,
+  "rolled_back": false,
+  "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)",
+  "case": "urllib3-303",
+  "repetition": 1,
+  "attempts": [
+    {
+      "accepted": false,
+      "files": [],
+      "changed_lines": 0,
+      "validation": null,
+      "rolled_back": false,
+      "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+    },
+    {
+      "accepted": false,
+      "files": [],
+      "changed_lines": 0,
+      "validation": null,
+      "rolled_back": false,
+      "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+    },
+    {
+      "accepted": false,
+      "files": [],
+      "changed_lines": 0,
+      "validation": null,
+      "rolled_back": false,
+      "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+    }
+  ],
+  "seconds": 64.125
+}

@@ -1,0 +1,38 @@
+diff --git a/src/urllib3/connectionpool.py b/src/urllib3/connectionpool.py
+index 96844d9..9acaa98 100644
+--- a/src/urllib3/connectionpool.py
++++ b/src/urllib3/connectionpool.py
+@@ -844,6 +844,14 @@ class HTTPConnectionPool(ConnectionPool, RequestMethods):
+         if redirect_location:
+             if response.status == 303:
+                 method = "GET"
++                body = None
++                headers = headers.copy()
++                for header in [
++                    "Content-Length",
++                    "Content-Type",
++                    "Transfer-Encoding",
++                ]:
++                    headers.pop(header, None)
+ 
+             try:
+                 retries = retries.increment(method, url, response=response, _pool=self)
+diff --git a/src/urllib3/poolmanager.py b/src/urllib3/poolmanager.py
+index 14b10da..9ab0ec6 100644
+--- a/src/urllib3/poolmanager.py
++++ b/src/urllib3/poolmanager.py
+@@ -385,6 +385,14 @@ class PoolManager(RequestMethods):
+         # RFC 7231, Section 6.4.4
+         if response.status == 303:
+             method = "GET"
++            kw["body"] = None
++            kw["headers"] = kw["headers"].copy()
++            for header in [
++                "Content-Length",
++                "Content-Type",
++                "Transfer-Encoding",
++            ]:
++                kw["headers"].pop(header, None)
+ 
+         retries = kw.get("retries")
+         if not isinstance(retries, Retry):

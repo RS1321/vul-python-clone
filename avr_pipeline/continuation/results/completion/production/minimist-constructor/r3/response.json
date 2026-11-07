@@ -1,0 +1,16 @@
+{
+  "content": "```json\n{\"edits\":[{\"path\": \"index.js\", \"before\": \"    function setKey (obj, keys, value) {\\r\\n        var o = obj;\\r\\n        for (var i = 0; i < keys.length-1; i++) {\\r\\n            var key = keys[i];\\r\\n            if (key === '__proto__') return;\\r\\n            if (o[key] === undefined) o[key] = {};\\r\\n            if (o[key] === Object.prototype || o[key] === Number.prototype\\r\\n                || o[key] === String.prototype) o[key] = {};\\r\\n            if (o[key] === Array.prototype) o[key] = [];\\r\\n            o = o[key];\\r\\n        }\\r\\n\\r\\n        var key = keys[keys.length - 1];\\r\\n        if (key === '__proto__') return;\\r\\n        if (o === Object.prototype || o === Number.prototype\\r\\n            || o === String.prototype) o = {};\\r\\n        if (o === Array.prototype) o = [];\\r\\n        if (o[key] === undefined || flags.bools[key] || typeof o[key] === 'boolean') {\\r\\n            o[key] = value;\\r\\n        }\\r\\n        else if (Array.isArray(o[key])) {\\r\\n            o[key].push(value);\\r\\n        }\\r\\n        else {\\r\\n            o[key] = [ o[key], value ];\\r\\n        }\\r\\n    }\", \"after\": \"    function setKey (obj, keys, value) {\\r\\n        var o = obj;\\r\\n        for (var i = 0; i < keys.length-1; i++) {\\r\\n            var key = keys[i];\\r\\n            if (key === '__proto__' || key === 'constructor' || key === 'prototype') return;\\r\\n            if (o[key] === undefined) o[key] = {};\\r\\n            if (o[key] === Object.prototype || o[key] === Number.prototype\\r\\n                || o[key] === String.prototype) o[key] = {};\\r\\n            if (o[key] === Array.prototype) o[key] = [];\\r\\n            o = o[key];\\r\\n        }\\r\\n\\r\\n        var key = keys[keys.length - 1];\\r\\n        if (key === '__proto__' || key === 'constructor' || key === 'prototype') return;\\r\\n        if (o === Object.prototype || o === Number.prototype\\r\\n            || o === String.prototype) o = {};\\r\\n        if (o === Array.prototype) o = [];\\r\\n        if (o[key] === undefined || flags.bools[key] || typeof o[key] === 'boolean') {\\r\\n            o[key] = value;\\r\\n        }\\r\\n        else if (Array.isArray(o[key])) {\\r\\n            o[key].push(value);\\r\\n        }\\r\\n        else {\\r\\n            o[key] = [ o[key], value ];\\r\\n        }\\r\\n    }\"}]}\n```",
+  "model": "gemini-3.5-flash-lite",
+  "provider": "gemini",
+  "transport_events": [
+    {
+      "http_status": 200,
+      "budget_wait_seconds": 0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 589,
+    "completion_tokens": 787,
+    "total_tokens": 1376
+  }
+}

@@ -1,0 +1,208 @@
+TAP version 13
+# flag boolean true (default all --args to boolean)
+ok 1 should be equivalent
+ok 2 should be equivalent
+# flag boolean true only affects double hyphen arguments without equals signs
+ok 3 should be equivalent
+ok 4 should be equivalent
+# flag boolean default false
+ok 5 should be equivalent
+ok 6 should be equivalent
+ok 7 should be equivalent
+# boolean groups
+ok 8 should be equivalent
+ok 9 should be equivalent
+ok 10 should be equivalent
+ok 11 should be equivalent
+# boolean and alias with chainable api
+ok 12 should be equivalent
+ok 13 should be equivalent
+# boolean and alias with options hash
+ok 14 should be equivalent
+ok 15 should be equivalent
+# boolean and alias array with options hash
+ok 16 should be equivalent
+ok 17 should be equivalent
+ok 18 should be equivalent
+# boolean and alias using explicit true
+ok 19 should be equivalent
+ok 20 should be equivalent
+# boolean and --x=true
+ok 21 should be equivalent
+ok 22 should be equivalent
+ok 23 should be equivalent
+ok 24 should be equivalent
+# boolean --boool=true
+ok 25 should be equivalent
+# boolean --boool=false
+ok 26 should be equivalent
+# boolean using something similar to true
+ok 27 should be equivalent
+# -
+ok 28 should be equivalent
+ok 29 should be equivalent
+ok 30 should be equivalent
+ok 31 should be equivalent
+ok 32 should be equivalent
+# -a -- b
+ok 33 should be equivalent
+ok 34 should be equivalent
+ok 35 should be equivalent
+# move arguments after the -- into their own `--` array
+ok 36 should be equivalent
+# boolean default true
+ok 37 should be equal
+# boolean default false
+ok 38 should be equal
+# boolean default to null
+ok 39 should be equal
+ok 40 should be equal
+# dotted alias
+ok 41 should be equal
+ok 42 should be equal
+# dotted default
+ok 43 should be equal
+ok 44 should be equal
+# dotted default with no alias
+ok 45 should be equal
+# short -k=v
+ok 46 should be equivalent
+# multi short -k=v
+ok 47 should be equivalent
+# long opts
+ok 48 long boolean
+ok 49 long capture sp
+ok 50 long capture eq
+ok 51 long captures sp
+ok 52 long captures eq
+# nums
+ok 53 should be equivalent
+ok 54 should be equivalent
+ok 55 should be equivalent
+ok 56 should be equivalent
+ok 57 should be equivalent
+ok 58 should be equivalent
+ok 59 should be equivalent
+# already a number
+ok 60 should be equivalent
+ok 61 should be equivalent
+ok 62 should be equivalent
+# parse args
+ok 63 no
+ok 64 multi
+# comprehensive
+ok 65 should be equivalent
+# flag boolean
+ok 66 should be equivalent
+ok 67 should be equivalent
+# flag boolean value
+ok 68 should be equivalent
+ok 69 should be equivalent
+ok 70 should be equivalent
+# newlines in params
+ok 71 should be equivalent
+ok 72 should be equivalent
+# strings
+ok 73 should be equal
+ok 74 should be equal
+ok 75 should be equal
+ok 76 should be equal
+# stringArgs
+ok 77 should be equivalent
+ok 78 should be equivalent
+ok 79 should be equivalent
+ok 80 should be equivalent
+ok 81 should be equivalent
+# empty strings
+ok 82 should be equal
+ok 83 should be equal
+ok 84 should be equal
+ok 85 should be equal
+ok 86 should be equal
+ok 87 should be equal
+ok 88 should be equal
+# string and alias
+ok 89 should be equal
+ok 90 should be equal
+ok 91 should be equal
+ok 92 should be equal
+ok 93 should be equal
+ok 94 should be equal
+ok 95 should be equal
+ok 96 should be equal
+# slashBreak
+ok 97 should be equivalent
+ok 98 should be equivalent
+# alias
+ok 99 should be equal
+ok 100 should be equal
+ok 101 should be equal
+# multiAlias
+ok 102 should be equal
+ok 103 should be equal
+ok 104 should be equal
+ok 105 should be equal
+# nested dotted objects
+ok 106 should be equivalent
+ok 107 should be equivalent
+# parse with modifier functions
+ok 108 should be equivalent
+# proto pollution
+ok 109 should be equal
+ok 110 should be equal
+ok 111 should be equal
+# proto pollution (array)
+ok 112 should be equal
+ok 113 should be equivalent
+ok 114 should be equal
+ok 115 should be equal
+# proto pollution (number)
+ok 116 should be equal
+ok 117 should be equal
+ok 118 should be equal
+ok 119 should be equal
+# proto pollution (string)
+ok 120 should be equal
+ok 121 should be equal
+ok 122 should be equal
+ok 123 should be equal
+# proto pollution (constructor)
+ok 124 should be equal
+ok 125 should be equal
+# numeric short args
+ok 126 should be equivalent
+ok 127 should be equivalent
+# short
+ok 128 short boolean
+ok 129 bare
+ok 130 group
+ok 131 short group next
+ok 132 short capture
+ok 133 short captures
+# mixed short bool and capture
+ok 134 should be equivalent
+# short and long
+ok 135 should be equivalent
+# stops parsing on the first non-option when stopEarly is set
+ok 136 should be equivalent
+# boolean and alias is not unknown
+ok 137 should be equivalent
+# flag boolean true any double hyphen argument is not unknown
+ok 138 should be equivalent
+ok 139 should be equivalent
+# string and alias is not unknown
+ok 140 should be equivalent
+# default and alias is not unknown
+ok 141 should be equivalent
+# value following -- is not unknown
+ok 142 should be equivalent
+ok 143 should be equivalent
+# whitespace should be whitespace
+ok 144 should be equal
+
+1..144
+# tests 144
+# pass  144
+
+# ok
+

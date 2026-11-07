@@ -1,0 +1,66 @@
+{
+  "repo": "urllib3-cve",
+  "url": "https://github.com/urllib3/urllib3",
+  "baseline": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "fixed": "1.26.18",
+  "advisory": "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+  "description": "Default cross-origin redirects must remove Cookie as well as Authorization. Preserve same-origin cookies and custom header policies.",
+  "ref_commit": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "result": {
+    "case": "urllib3-cookie",
+    "checks": [
+      {
+        "name": "clone imported",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "redirect response succeeds False",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "cookie policy cross=False",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "authorization policy cross=False",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "redirect response succeeds True",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "cookie policy cross=True",
+        "passed": false,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "authorization policy cross=True",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "custom redirect policy retained",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      }
+    ],
+    "security_passed": 3,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": false
+  }
+}

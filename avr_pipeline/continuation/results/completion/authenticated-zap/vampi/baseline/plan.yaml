@@ -1,0 +1,43 @@
+env:
+  contexts:
+  - name: fixed-authenticated-routes
+    urls:
+    - http://127.0.0.1:18621
+    includePaths:
+    - ^http://127\.0\.0\.1:18621/.*$
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+jobs:
+- type: requestor
+  requests:
+  - url: http://127.0.0.1:18621/me
+    method: GET
+    headers:
+    - 'Authorization: <EPHEMERAL_FIXTURE_AUTH>'
+    responseCode: 200
+  - url: http://127.0.0.1:18621/users/v1
+    method: GET
+    headers:
+    - 'Authorization: <EPHEMERAL_FIXTURE_AUTH>'
+    responseCode: 200
+  - url: http://127.0.0.1:18621/books/v1
+    method: GET
+    headers:
+    - 'Authorization: <EPHEMERAL_FIXTURE_AUTH>'
+    responseCode: 200
+  - url: http://127.0.0.1:18621/books/v1/scan_fixture
+    method: GET
+    headers:
+    - 'Authorization: <EPHEMERAL_FIXTURE_AUTH>'
+    responseCode: 200
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 1
+- type: report
+  parameters:
+    template: traditional-json
+    reportDir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\baseline
+    reportFile: scan.json
+    reportTitle: Authenticated fixed-route passive scan

@@ -72,6 +72,9 @@ def main():
     upstream = load(OUT / 'production-upstream-tests-v2/summary.json', [])
     startup = load(OUT / 'startup-summary.json', [])
     lines = ['# Code revision: evidence and remaining limits', '',
+      'The expanded follow-up measurements are in [External and production evaluation](completion/EXPANDED_EVALUATION.md). '
+      'That report adds authenticated application checks and passive ZAP measurements, repeated production security trials in Python/JavaScript, and a real two-module repair with rollback/drift controls. '
+      'The historical pilot sections below remain for comparison; their missing measurements are superseded only within the exact follow-up scope.', '',
       'The user deferred manuscript work. No title, claims, references, numbering or paper figures were edited.', '',
       f'Pipeline verification: {len(cases)-failed} passed, {failed} failed/errored. '
       'This includes coordinated two-module contracts, rollback of every file on failed checks, stale-digest rejection, and JavaScript syntax/runtime checks.', '',
@@ -101,7 +104,7 @@ def main():
     lines += ['', f'Completed post-repair application runtime checks recorded: {len(runtime)}. '
               'See external-runtime-summary.json for individual observations and infrastructure failures. '
               'Baseline PyGoat and VAmPI each pass nine normal-use checks. '
-              'These checks are not DAST exploitability measurements. No equivalent authenticated external-application ZAP result is claimed.', '',
+              'These ordinary checks alone are not security measurements. The expanded follow-up separately records authenticated targeted checks and a fixed-route passive ZAP profile.', '',
       '## Multi-file, production and language scope', '',
       'The coordinated edit API accepts digest-bound Python and JavaScript fragments, checks all source syntax before writing, '
       'and requires project checks after all edits. Failed validation restores all pre-edit bytes. This is process rollback, not crash-atomic filesystem persistence.', '',
@@ -142,9 +145,9 @@ def main():
       '## Deferred and unestablished work', '',
       '- Manuscript revisions are deferred at the user’s request.',
       '- Missing or interrupted experiment cells remain unavailable; the tables above are generated from saved observations.',
-      '- Full authenticated external DAST coverage, broad production/language performance, repeated-run uncertainty, and original expert-review provenance are not established by these narrow pilots.', '',
+      '- Exhaustive active DAST coverage, language-wide generalisation, and original expert-review provenance remain unestablished. The follow-up provides bounded production performance and three proposals per selected defect.', '',
       'The Daybreak message reported by the user is a ChatGPT cybersecurity access safeguard. No attempt was made to grant that access or route around blocked content. '
-      'The additional production checks above use normal library behavior and no exploit payloads.', '']
+      'The historical pilot checks above used normal behavior only; the follow-up adds fixture-based security assertions in isolated local environments.', '']
     (OUT / 'CODE_REVIEW_RESPONSE.md').write_text('\n'.join(lines), encoding='utf-8')
     print(json.dumps({'paired_models_complete': len(effects), 'pipeline_checks_passed': len(cases)-failed,
                       'external_runtime_runs': len(runtime)}))

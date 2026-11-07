@@ -1,0 +1,8 @@
+[
+  {
+    "path": "requests/sessions.py",
+    "sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+    "before": "        if username and password:",
+    "after": "        if username and password and scheme != \"https\":"
+  }
+]

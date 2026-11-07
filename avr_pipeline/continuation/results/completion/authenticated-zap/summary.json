@@ -1,0 +1,72 @@
+[
+  {
+    "dataset": "pygoat",
+    "state": "baseline",
+    "status": "complete",
+    "returncode": 0,
+    "anonymous_status": 302,
+    "authenticated_status": 200,
+    "routes": [
+      "/",
+      "/xss",
+      "/sql",
+      "/scoring/scores/",
+      "/scoring/achievements/"
+    ],
+    "authenticated": true,
+    "profile": "fixed-route passive ZAP 2.17.0; no spider or active scan; no Docker labs",
+    "implementation_sha256": "be4560e94f8ac987534d7f85983b335c55057b83100d25fe5eae4c25542f86ca"
+  },
+  {
+    "dataset": "pygoat",
+    "state": "gemini-3.5-flash-lite",
+    "status": "complete",
+    "returncode": 0,
+    "anonymous_status": 302,
+    "authenticated_status": 200,
+    "routes": [
+      "/",
+      "/xss",
+      "/sql",
+      "/scoring/scores/",
+      "/scoring/achievements/"
+    ],
+    "authenticated": true,
+    "profile": "fixed-route passive ZAP 2.17.0; no spider or active scan; no Docker labs",
+    "implementation_sha256": "be4560e94f8ac987534d7f85983b335c55057b83100d25fe5eae4c25542f86ca"
+  },
+  {
+    "dataset": "vampi",
+    "state": "baseline",
+    "status": "complete",
+    "returncode": 0,
+    "anonymous_status": 401,
+    "authenticated_status": 200,
+    "routes": [
+      "/me",
+      "/users/v1",
+      "/books/v1",
+      "/books/v1/scan_fixture"
+    ],
+    "authenticated": true,
+    "profile": "fixed-route passive ZAP 2.17.0; no spider or active scan; no Docker labs",
+    "implementation_sha256": "be4560e94f8ac987534d7f85983b335c55057b83100d25fe5eae4c25542f86ca"
+  },
+  {
+    "dataset": "vampi",
+    "state": "gemini-3.5-flash-lite",
+    "status": "complete",
+    "returncode": 0,
+    "anonymous_status": 401,
+    "authenticated_status": 200,
+    "routes": [
+      "/me",
+      "/users/v1",
+      "/books/v1",
+      "/books/v1/scan_fixture"
+    ],
+    "authenticated": true,
+    "profile": "fixed-route passive ZAP 2.17.0; no spider or active scan; no Docker labs",
+    "implementation_sha256": "be4560e94f8ac987534d7f85983b335c55057b83100d25fe5eae4c25542f86ca"
+  }
+]

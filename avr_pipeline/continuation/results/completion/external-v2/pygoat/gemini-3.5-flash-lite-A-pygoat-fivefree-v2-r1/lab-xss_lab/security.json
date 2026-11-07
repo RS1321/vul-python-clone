@@ -1,0 +1,33 @@
+{
+  "kind": "lab-xss_lab",
+  "checks": [
+    {
+      "name": "lesson homepage works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "untrusted markup escaped /lab1",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    },
+    {
+      "name": "untrusted markup escaped /lab2",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    },
+    {
+      "name": "theme redirect remains local",
+      "passed": true,
+      "category": "security",
+      "detail": 302
+    }
+  ],
+  "security_passed": 1,
+  "security_total": 3,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked."
+}

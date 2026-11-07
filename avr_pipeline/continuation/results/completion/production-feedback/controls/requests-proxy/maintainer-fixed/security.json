@@ -1,0 +1,61 @@
+{
+  "case": "requests-proxy",
+  "checks": [
+    {
+      "name": "clone imported",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "http proxy configuration preserved",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "http credentials only on correct transport",
+      "passed": true,
+      "category": "security",
+      "detail": {
+        "credential_header_present": true
+      }
+    },
+    {
+      "name": "http direct request has no proxy credentials",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "https proxy configuration preserved",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "https credentials only on correct transport",
+      "passed": true,
+      "category": "security",
+      "detail": {
+        "credential_header_present": false
+      }
+    },
+    {
+      "name": "https direct request has no proxy credentials",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "normal prepared request retained",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    }
+  ],
+  "security_passed": 4,
+  "security_total": 4,
+  "functionality_passed": true,
+  "passed": true
+}

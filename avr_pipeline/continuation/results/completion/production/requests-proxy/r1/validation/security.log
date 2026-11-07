@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review\production_security.py", line 120, in <module>
+    result = measure(args.case, args.repo)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review\production_security.py", line 28, in measure
+    result = session.rebuild_proxies(req, proxies)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\production\requests-proxy\r1\source\requests\sessions.py", line 323, in rebuild_proxies
+    bypass_proxy = get_bypass_proxies(url)
+                   ^^^^^^^^^^^^^^^^^^
+NameError: name 'get_bypass_proxies' is not defined. Did you mean: 'should_bypass_proxies'?

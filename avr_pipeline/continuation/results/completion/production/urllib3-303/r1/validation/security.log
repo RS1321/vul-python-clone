@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review\production_security.py", line 120, in <module>
+    result = measure(args.case, args.repo)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\review\production_security.py", line 91, in measure
+    response = pool.urlopen('POST', url, body=b'fixture-private-body',
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\production\urllib3-303\r1\source\src\urllib3\poolmanager.py", line 389, in urlopen
+    kw["headers"] = headers = headers.copy()
+                              ^^^^^^^
+UnboundLocalError: cannot access local variable 'headers' where it is not associated with a value

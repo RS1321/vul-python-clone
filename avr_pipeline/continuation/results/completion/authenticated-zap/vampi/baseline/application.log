@@ -1,0 +1,8 @@
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\baseline\target-state\source\api_views\users.py:162: SyntaxWarning: invalid escape sequence '\.'
+  regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+127.0.0.1 - - [07/Nov/2026 18:46:57] "GET /me HTTP/1.1" 401 119
+127.0.0.1 - - [07/Nov/2026 18:46:57] "GET /me HTTP/1.1" 200 108
+127.0.0.1 - - [07/Nov/2026 18:47:14] "GET /me HTTP/1.1" 200 108
+127.0.0.1 - - [07/Nov/2026 18:47:14] "GET /users/v1 HTTP/1.1" 200 71
+127.0.0.1 - - [07/Nov/2026 18:47:14] "GET /books/v1 HTTP/1.1" 200 68
+127.0.0.1 - - [07/Nov/2026 18:47:14] "GET /books/v1/scan_fixture HTTP/1.1" 200 90

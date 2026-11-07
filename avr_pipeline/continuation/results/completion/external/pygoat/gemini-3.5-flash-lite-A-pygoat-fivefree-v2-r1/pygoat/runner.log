@@ -1,0 +1,7 @@
+{"kind": "pygoat", "security_passed": 12, "security_total": 12, "functionality_passed": true}
+Unauthorized: /challenge/list-labs/
+Forbidden: /auth/verify/
+Forbidden: /auth/verify/
+Bad Request: /auth/verify/
+Forbidden (CSRF cookie not set.): /register
+Unauthorized: /auth/verify/

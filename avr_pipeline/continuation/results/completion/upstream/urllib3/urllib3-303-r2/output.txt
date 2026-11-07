@@ -1,0 +1,9 @@
+................................ssssssssssssssssss.........              [100%]
+============================== warnings summary ===============================
+..\..\..\..\..\..\..\.review-work\production-env\Lib\site-packages\pytest_freezegun.py:17: 118 warnings
+test/test_retry.py: 54 warnings
+  C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\production-env\Lib\site-packages\pytest_freezegun.py:17: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(pytest.__version__) < LooseVersion('3.6.0'):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+41 passed, 18 skipped, 172 warnings in 0.83s

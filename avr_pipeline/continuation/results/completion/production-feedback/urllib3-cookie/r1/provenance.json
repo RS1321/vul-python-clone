@@ -1,0 +1,20 @@
+{
+  "repo": "urllib3-cve",
+  "url": "https://github.com/urllib3/urllib3",
+  "baseline": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "fixed": "1.26.18",
+  "advisory": "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+  "description": "Default cross-origin redirects must remove Cookie as well as Authorization. Preserve same-origin cookies and custom header policies.",
+  "fragments": [
+    {
+      "path": "src/urllib3/util/retry.py",
+      "sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+      "before": "    DEFAULT_REMOVE_HEADERS_ON_REDIRECT = frozenset([\"Authorization\"])",
+      "id": 0,
+      "context": "\n\r\n        By default, backoff is disabled (set to 0).\r\n\r\n    :param bool raise_on_redirect: Whether, if the number of redirects is\r\n        exhausted, to raise a MaxRetryError, or to return a response with a\r\n        response code in the 3xx range.\r\n\r\n    :param bool raise_on_status: Similar meaning to ``raise_on_redirect``:\r\n        whether we should raise an exception, or return a response,\r\n        if status falls in ``status_forcelist`` range and retries have\r\n        been exhausted.\r\n\r\n    :param tuple history: The history of the request encountered during\r\n        each call to :meth:`~Retry.increment`. The list is in the order\r\n        the requests occurred. Each list item is of class :class:`RequestHistory`.\r\n\r\n    :param bool respect_retry_after_header:\r\n        Whether to respect Retry-After header on status codes defined as\r\n        :attr:`Retry.RETRY_AFTER_STATUS_CODES` or not.\r\n\r\n    :param iterable remove_headers_on_redirect:\r\n        Sequence of headers to remove from the request when a response\r\n        indicating a redirect is returned before firing off the redirected\r\n        request.\r\n    \"\"\"\r\n\r\n    #: Default methods to be used for ``allowed_methods``\r\n    DEFAULT_ALLOWED_METHODS = frozenset(\r\n        [\"HEAD\", \"GET\", \"PUT\", \"DELETE\", \"OPTIONS\", \"TRACE\"]\r\n    )\r\n\r\n    #: Default status codes to be used for ``status_forcelist``\r\n    RETRY_AFTER_STATUS_CODES = frozenset([413, 429, 503])\r\n\r\n    #: Default headers to be used for ``remove_headers_on_redirect``\r\n    DEFAULT_REMOVE_HEADERS_ON_REDIRECT = frozenset([\"Authorization\"])\r\n\r\n    #: Maximum backoff time.\r\n    DEFAULT_BACKOFF_MAX = 120\r\n\r\n    def __init__(\r\n        self,\r\n        total=10,\r\n        connect=None,\r\n        read=None,\r\n        redirect=None,\r\n        status=None,\r\n        other=None,\r\n        allowed_methods=_Default,\r\n        status_forcelist=None,\r\n        backoff_factor=0,\r\n        raise_on_redirect=True,\r\n        raise_on_status=True,\r\n        history=None,\r\n        respect_retry_after_header=True,\r\n        remove_headers_on_redirect=_Default,\r\n        # TODO: Deprecated, remove in v2.0\r\n        method_whitelist=_Default,\r\n    ):\r\n\r\n        if method_whitelist is not _Default:\r\n            if allowed_methods is not _Default:\r\n                "
+    }
+  ],
+  "repetition": 1,
+  "model": "gemini-3.5-flash-lite",
+  "protocol": "follow-up-v2; 3 maximum attempts; compact edit IDs; local scope context; strict security/functionality gate; no seed; temperature .1; cap8192"
+}

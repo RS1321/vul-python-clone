@@ -1,0 +1,72 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "src\\urllib3\\util\\retry.py",
+      "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+      "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+    }
+  ],
+  "changed_lines": 2,
+  "validation": {
+    "case": "urllib3-cookie",
+    "checks": [
+      {
+        "name": "clone imported",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "redirect response succeeds False",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "cookie policy cross=False",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "authorization policy cross=False",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "redirect response succeeds True",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "cookie policy cross=True",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "authorization policy cross=True",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "custom redirect policy retained",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      }
+    ],
+    "security_passed": 4,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": true
+  },
+  "rolled_back": false,
+  "case": "urllib3-cookie",
+  "repetition": 3,
+  "seconds": 3.937
+}

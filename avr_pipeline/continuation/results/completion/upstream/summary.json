@@ -1,0 +1,166 @@
+[
+  {
+    "library": "urllib3",
+    "state": "baseline",
+    "tests": 59,
+    "failed": 0,
+    "failures": [],
+    "skipped": 18,
+    "returncode": 0
+  },
+  {
+    "library": "minimist",
+    "state": "baseline",
+    "tests": 144,
+    "failed": 0,
+    "skipped": 0,
+    "returncode": 0,
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "proto.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "scope": "all pinned upstream test files, including proto.js"
+  },
+  {
+    "library": "minimist",
+    "state": "minimist-constructor-r1",
+    "tests": 144,
+    "failed": 0,
+    "skipped": 0,
+    "returncode": 0,
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "proto.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "scope": "all pinned upstream test files, including proto.js"
+  },
+  {
+    "library": "minimist",
+    "state": "minimist-constructor-r2",
+    "tests": 144,
+    "failed": 0,
+    "skipped": 0,
+    "returncode": 0,
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "proto.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "scope": "all pinned upstream test files, including proto.js"
+  },
+  {
+    "library": "minimist",
+    "state": "minimist-constructor-r3",
+    "tests": 144,
+    "failed": 0,
+    "skipped": 0,
+    "returncode": 0,
+    "files": [
+      "all_bool.js",
+      "bool.js",
+      "dash.js",
+      "default_bool.js",
+      "dotted.js",
+      "kv_short.js",
+      "long.js",
+      "num.js",
+      "parse.js",
+      "parse_modified.js",
+      "proto.js",
+      "short.js",
+      "stop_early.js",
+      "unknown.js",
+      "whitespace.js"
+    ],
+    "scope": "all pinned upstream test files, including proto.js"
+  },
+  {
+    "library": "urllib3",
+    "state": "urllib3-303-r2",
+    "tests": 59,
+    "failed": 0,
+    "failures": [],
+    "skipped": 18,
+    "returncode": 0
+  },
+  {
+    "library": "urllib3",
+    "state": "urllib3-303-r3",
+    "tests": 59,
+    "failed": 0,
+    "failures": [],
+    "skipped": 18,
+    "returncode": 0
+  },
+  {
+    "library": "urllib3",
+    "state": "urllib3-cookie-r1",
+    "tests": 59,
+    "failed": 1,
+    "failures": [
+      "test_retry_default_remove_headers_on_redirect"
+    ],
+    "skipped": 18,
+    "returncode": 1
+  },
+  {
+    "library": "urllib3",
+    "state": "urllib3-cookie-r2",
+    "tests": 59,
+    "failed": 1,
+    "failures": [
+      "test_retry_default_remove_headers_on_redirect"
+    ],
+    "skipped": 18,
+    "returncode": 1
+  },
+  {
+    "library": "urllib3",
+    "state": "urllib3-cookie-r3",
+    "tests": 59,
+    "failed": 1,
+    "failures": [
+      "test_retry_default_remove_headers_on_redirect"
+    ],
+    "skipped": 18,
+    "returncode": 1
+  }
+]

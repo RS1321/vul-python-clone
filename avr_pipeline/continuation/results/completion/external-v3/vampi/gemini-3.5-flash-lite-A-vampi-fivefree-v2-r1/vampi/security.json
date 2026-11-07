@@ -1,0 +1,75 @@
+{
+  "kind": "vampi",
+  "checks": [
+    {
+      "name": "both valid accounts log in",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "anonymous profile denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "malformed token denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "owner profile works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "owner reads own book",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "other account cannot read private book",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    },
+    {
+      "name": "other account cannot change owner password",
+      "passed": false,
+      "category": "security",
+      "detail": 204
+    },
+    {
+      "name": "registration cannot self-assign admin",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "debug does not disclose fixture password",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    },
+    {
+      "name": "failed login does not enumerate account",
+      "passed": false,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "SQL-shaped username returns no fixture account",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    }
+  ],
+  "security_passed": 2,
+  "security_total": 8,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked."
+}

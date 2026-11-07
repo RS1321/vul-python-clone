@@ -1,0 +1,142 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "src\\urllib3\\connectionpool.py",
+      "before_sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+      "after_sha256": "31078e4d69bf8c738d8579ccb9c2d2c963a0044df14af3af3f59da10a14ad95c"
+    },
+    {
+      "path": "src\\urllib3\\poolmanager.py",
+      "before_sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+      "after_sha256": "ae1e40e958b779333f740e700f1ca9959201c6c24ed897ea6b0cb3510e314c97"
+    }
+  ],
+  "changed_lines": 16,
+  "validation": {
+    "case": "urllib3-303",
+    "checks": [
+      {
+        "name": "clone imported",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "poolmanager-303 request succeeds",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "poolmanager-303 body removed after GET conversion",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "method": "GET",
+          "body": "",
+          "cookie": null,
+          "authorization": null,
+          "content_type": null,
+          "length": null,
+          "fixture": "keep"
+        }
+      },
+      {
+        "name": "poolmanager-303 body headers removed",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "method": "GET",
+          "body": "",
+          "cookie": null,
+          "authorization": null,
+          "content_type": null,
+          "length": null,
+          "fixture": "keep"
+        }
+      },
+      {
+        "name": "poolmanager-307 request succeeds",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "poolmanager-307 307 preserves method and body",
+        "passed": true,
+        "category": "functionality",
+        "detail": {
+          "method": "POST",
+          "body": "fixture-private-body",
+          "cookie": null,
+          "authorization": null,
+          "content_type": "application/fixture",
+          "length": "20",
+          "fixture": "keep"
+        }
+      },
+      {
+        "name": "connectionpool-303 request succeeds",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "connectionpool-303 body removed after GET conversion",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "method": "GET",
+          "body": "",
+          "cookie": null,
+          "authorization": null,
+          "content_type": null,
+          "length": null,
+          "fixture": "keep"
+        }
+      },
+      {
+        "name": "connectionpool-303 body headers removed",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "method": "GET",
+          "body": "",
+          "cookie": null,
+          "authorization": null,
+          "content_type": null,
+          "length": null,
+          "fixture": "keep"
+        }
+      },
+      {
+        "name": "connectionpool-307 request succeeds",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "connectionpool-307 307 preserves method and body",
+        "passed": true,
+        "category": "functionality",
+        "detail": {
+          "method": "POST",
+          "body": "fixture-private-body",
+          "cookie": null,
+          "authorization": null,
+          "content_type": "application/fixture",
+          "length": "20",
+          "fixture": "keep"
+        }
+      }
+    ],
+    "security_passed": 4,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": true
+  },
+  "rolled_back": false,
+  "label": "both-modules",
+  "unchanged_after_rejection": null
+}

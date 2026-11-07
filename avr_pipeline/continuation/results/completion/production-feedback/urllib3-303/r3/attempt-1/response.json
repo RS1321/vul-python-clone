@@ -1,0 +1,16 @@
+{
+  "content": "```json\n{\"edits\": [{\"id\": 0, \"after_lines\": [\"            if response.status == 303:\", \"                method = \\\"GET\\\"\", \"                body = None\", \"                headers = headers.copy()\", \"                for header in [\", \"                    \\\"Content-Length\\\",\", \"                    \\\"Content-Type\\\",\", \"                    \\\"Transfer-Encoding\\\",\", \"                ]:\", \"                    headers.pop(header, None)\"]}, {\"id\": 1, \"after_lines\": [\"        # RFC 7231, Section 6.4.4\", \"        if response.status == 303:\", \"            method = \\\"GET\\\"\", \"            kw[\\\"body\\\"] = None\", \"            kw[\\\"headers\\\"] = kw[\\\"headers\\\"].copy()\", \"            for header in [\", \"                \\\"Content-Length\\\",\", \"                \\\"Content-Type\\\",\", \"                \\\"Transfer-Encoding\\\",\", \"            ]:\", \"                kw[\\\"headers\\\"].pop(header, None)\"]}]}\n```",
+  "model": "gemini-3.5-flash-lite",
+  "provider": "gemini",
+  "transport_events": [
+    {
+      "http_status": 200,
+      "budget_wait_seconds": 0.016
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1769,
+    "completion_tokens": 226,
+    "total_tokens": 1995
+  }
+}

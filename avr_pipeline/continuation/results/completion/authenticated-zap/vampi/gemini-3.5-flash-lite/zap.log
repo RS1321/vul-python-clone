@@ -1,0 +1,43 @@
+Defaulting ZAP install dir to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.review-work\zap\ZAP_2.17.0
+728 [main] INFO  org.parosproxy.paros.Constant - Copying default configuration to C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\zap-home\config.xml
+866 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\zap-home\session
+868 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\zap-home\dirbuster
+870 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\zap-home\fuzzers
+871 [main] INFO  org.parosproxy.paros.Constant - Creating directory C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\zap-home\plugin
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by io.netty.util.internal.PlatformDependent0$4 (file:/C:/Users/rahul/OneDrive/Documents/CodexCoding1/AVR-System-review/.review-work/zap/ZAP_2.17.0/plugin/network-beta-0.25.0.zap)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$4
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Job requestor set url = http://127.0.0.1:18621/me
+Job requestor set method = GET
+Job requestor set headers = [Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTQwNTc1MDYsImlhdCI6MTc5NDA1NzQ0Niwic3ViIjoiYXZyX3NjYW5fZml4dHVyZSJ9.CTbiIv4Hx3--6BXmNIwYDJIx9G76SvZBPlc-2Ajg1xo]
+Job requestor set responseCode = 200
+Job requestor set url = http://127.0.0.1:18621/users/v1
+Job requestor set method = GET
+Job requestor set headers = [Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTQwNTc1MDYsImlhdCI6MTc5NDA1NzQ0Niwic3ViIjoiYXZyX3NjYW5fZml4dHVyZSJ9.CTbiIv4Hx3--6BXmNIwYDJIx9G76SvZBPlc-2Ajg1xo]
+Job requestor set responseCode = 200
+Job requestor set url = http://127.0.0.1:18621/books/v1
+Job requestor set method = GET
+Job requestor set headers = [Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTQwNTc1MDYsImlhdCI6MTc5NDA1NzQ0Niwic3ViIjoiYXZyX3NjYW5fZml4dHVyZSJ9.CTbiIv4Hx3--6BXmNIwYDJIx9G76SvZBPlc-2Ajg1xo]
+Job requestor set responseCode = 200
+Job requestor set url = http://127.0.0.1:18621/books/v1/scan_fixture
+Job requestor set method = GET
+Job requestor set headers = [Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3OTQwNTc1MDYsImlhdCI6MTc5NDA1NzQ0Niwic3ViIjoiYXZyX3NjYW5fZml4dHVyZSJ9.CTbiIv4Hx3--6BXmNIwYDJIx9G76SvZBPlc-2Ajg1xo]
+Job requestor set responseCode = 200
+Job passiveScan-wait set maxDuration = 1
+Job report set template = traditional-json
+Job report set reportDir = C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite
+Job report set reportFile = scan.json
+Job report set reportTitle = Authenticated fixed-route passive scan
+Job requestor started
+Job requestor requesting URL http://127.0.0.1:18621/me
+Job requestor requesting URL http://127.0.0.1:18621/users/v1
+Job requestor requesting URL http://127.0.0.1:18621/books/v1
+Job requestor requesting URL http://127.0.0.1:18621/books/v1/scan_fixture
+Job requestor finished, time taken: 00:00:00
+Job passiveScan-wait started
+Job passiveScan-wait finished, time taken: 00:00:02
+Job report started
+Job report generated report C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\authenticated-zap\vampi\gemini-3.5-flash-lite\scan.json
+Job report finished, time taken: 00:00:00
+Automation plan succeeded!

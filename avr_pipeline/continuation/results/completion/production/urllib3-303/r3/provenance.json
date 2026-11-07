@@ -1,0 +1,23 @@
+{
+  "repo": "urllib3-cve",
+  "url": "https://github.com/urllib3/urllib3",
+  "baseline": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "fixed": "1.26.18",
+  "advisory": "https://github.com/urllib3/urllib3/security/advisories/GHSA-g4mx-q9vg-27p4",
+  "description": "On 303 conversion from POST to GET, remove request body and body-specific headers, retaining other headers. Both connection-pool and pool-manager redirect paths must comply. Preserve 307 method/body semantics.",
+  "repetition": 3,
+  "model": "gemini-3.5-flash-lite",
+  "fragments": [
+    {
+      "path": "src/urllib3/connectionpool.py",
+      "sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+      "before": "            if response.status == 303:\r\n                method = \"GET\""
+    },
+    {
+      "path": "src/urllib3/poolmanager.py",
+      "sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+      "before": "        # RFC 7231, Section 6.4.4\r\n        if response.status == 303:\r\n            method = \"GET\""
+    }
+  ],
+  "protocol": "one independent attempt; security tests withheld; strict combined gate; no seed; temperature 0.1; output cap 8192"
+}

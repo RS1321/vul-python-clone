@@ -12,7 +12,7 @@ pending=destination.with_suffix('.zip.tmp')
 excluded={'.git','.venv','.review-work','benchmarks','__pycache__','.pytest_cache','codeql-db','zap-home','target-state',
           'source','synthetic-A-checkpoint-source'}
 secrets=[v for k,v in os.environ.items() if k in ('OPENAI_API_KEY','GEMINI_API_KEY','OPENROUTER_API_KEY') and v]
-extensions={'.py','.json','.md','.txt','.log','.xml','.diff','.patch','.yaml','.yml','.sarif','.toml','.ini','.ps1','.csv','.example','.tap'}
+extensions={'.py','.js','.json','.md','.txt','.log','.xml','.diff','.patch','.yaml','.yml','.sarif','.toml','.ini','.ps1','.csv','.example','.tap'}
 redacted=0
 with zipfile.ZipFile(pending,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
     for base,dirs,files in os.walk(package_root):

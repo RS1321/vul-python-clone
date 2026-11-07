@@ -1,0 +1,3 @@
+{"kind": "vampi", "security_passed": 2, "security_total": 8, "functionality_passed": true}
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\continuation\results\completion\external\vampi\gemma-4-31b-it-A-vampi-fivefree-v2-r1\vampi\source\api_views\users.py:164: SyntaxWarning: invalid escape sequence '\.'
+  regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'

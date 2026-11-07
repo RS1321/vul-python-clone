@@ -1,0 +1,33 @@
+{
+  "kind": "lab-sql_injection_lab",
+  "checks": [
+    {
+      "name": "lesson homepage works",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "valid login reaches success view",
+      "passed": true,
+      "category": "functionality",
+      "detail": null
+    },
+    {
+      "name": "wrong password denied",
+      "passed": true,
+      "category": "security",
+      "detail": null
+    },
+    {
+      "name": "quoted username cannot bypass password",
+      "passed": false,
+      "category": "security",
+      "detail": 200
+    }
+  ],
+  "security_passed": 1,
+  "security_total": 2,
+  "functionality_passed": true,
+  "scope": "Local fixture requests; Django authenticated host and embedded lessons separate; outbound URL and process sinks mocked."
+}

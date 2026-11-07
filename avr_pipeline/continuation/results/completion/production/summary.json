@@ -1,0 +1,501 @@
+[
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 1,
+    "seconds": 3.875
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 2,
+    "seconds": 3.782
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 3,
+    "seconds": 3.937
+  },
+  {
+    "accepted": false,
+    "files": [],
+    "changed_lines": 8,
+    "validation": {
+      "passed": false,
+      "infrastructure_error": true,
+      "returncode": 1
+    },
+    "rolled_back": true,
+    "error": "Project checks rejected the coordinated change",
+    "case": "urllib3-303",
+    "repetition": 1,
+    "seconds": 3.765
+  },
+  {
+    "accepted": false,
+    "files": [],
+    "changed_lines": 4,
+    "validation": {
+      "passed": false,
+      "infrastructure_error": true,
+      "returncode": 1
+    },
+    "rolled_back": true,
+    "error": "Project checks rejected the coordinated change",
+    "case": "urllib3-303",
+    "repetition": 2,
+    "seconds": 4.438
+  },
+  {
+    "accepted": false,
+    "files": [],
+    "changed_lines": 4,
+    "validation": {
+      "passed": false,
+      "infrastructure_error": true,
+      "returncode": 1
+    },
+    "rolled_back": true,
+    "error": "Project checks rejected the coordinated change",
+    "case": "urllib3-303",
+    "repetition": 3,
+    "seconds": 3.75
+  },
+  {
+    "accepted": false,
+    "files": [],
+    "changed_lines": 25,
+    "validation": {
+      "passed": false,
+      "infrastructure_error": true,
+      "returncode": 1
+    },
+    "rolled_back": true,
+    "error": "Project checks rejected the coordinated change",
+    "case": "requests-proxy",
+    "repetition": 1,
+    "seconds": 4.203
+  },
+  {
+    "accepted": false,
+    "generation_error": "JSONDecodeError",
+    "error": "Invalid control character at: line 1 column 2282 (char 2281)",
+    "case": "requests-proxy",
+    "repetition": 2,
+    "seconds": 5.641
+  },
+  {
+    "accepted": false,
+    "generation_error": "JSONDecodeError",
+    "error": "Invalid control character at: line 6 column 1106 (char 2352)",
+    "case": "requests-proxy",
+    "repetition": 3,
+    "seconds": 3.672
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 1,
+    "seconds": 4.047
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 2,
+    "seconds": 6.468
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 3,
+    "seconds": 8.75
+  }
+]

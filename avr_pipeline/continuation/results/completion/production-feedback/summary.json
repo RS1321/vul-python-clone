@@ -1,0 +1,1902 @@
+[
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 1,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "src\\urllib3\\util\\retry.py",
+            "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+            "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "urllib3-cookie",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds False",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds True",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "custom redirect policy retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 7.046
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 2,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "src\\urllib3\\util\\retry.py",
+            "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+            "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "urllib3-cookie",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds False",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds True",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "custom redirect policy retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 6.563
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\util\\retry.py",
+        "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+        "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "urllib3-cookie",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds False",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=False",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "redirect response succeeds True",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "cookie policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "authorization policy cross=True",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "custom redirect policy retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-cookie",
+    "repetition": 3,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "src\\urllib3\\util\\retry.py",
+            "before_sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+            "after_sha256": "9584cd2502ab00a32f17b074e9362465475008bd8800da8dcf6e5e5c64bb6a0c"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "urllib3-cookie",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds False",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=False",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "redirect response succeeds True",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "cookie policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "authorization policy cross=True",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "custom redirect policy retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 3.187
+  },
+  {
+    "accepted": false,
+    "files": [],
+    "changed_lines": 0,
+    "validation": null,
+    "rolled_back": false,
+    "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)",
+    "case": "urllib3-303",
+    "repetition": 1,
+    "attempts": [
+      {
+        "accepted": false,
+        "files": [],
+        "changed_lines": 0,
+        "validation": null,
+        "rolled_back": false,
+        "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+      },
+      {
+        "accepted": false,
+        "files": [],
+        "changed_lines": 0,
+        "validation": null,
+        "rolled_back": false,
+        "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+      },
+      {
+        "accepted": false,
+        "files": [],
+        "changed_lines": 0,
+        "validation": null,
+        "rolled_back": false,
+        "error": "expected an indented block after 'if' statement on line 844 (connectionpool.py, line 845)"
+      }
+    ],
+    "seconds": 64.125
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\connectionpool.py",
+        "before_sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+        "after_sha256": "31078e4d69bf8c738d8579ccb9c2d2c963a0044df14af3af3f59da10a14ad95c"
+      },
+      {
+        "path": "src\\urllib3\\poolmanager.py",
+        "before_sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+        "after_sha256": "ae1e40e958b779333f740e700f1ca9959201c6c24ed897ea6b0cb3510e314c97"
+      }
+    ],
+    "changed_lines": 16,
+    "validation": {
+      "case": "urllib3-303",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-303 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-303 body removed after GET conversion",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "poolmanager-303 body headers removed",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "poolmanager-307 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-307 307 preserves method and body",
+          "passed": true,
+          "category": "functionality",
+          "detail": {
+            "method": "POST",
+            "body": "fixture-private-body",
+            "cookie": null,
+            "authorization": null,
+            "content_type": "application/fixture",
+            "length": "20",
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-303 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "connectionpool-303 body removed after GET conversion",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-303 body headers removed",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-307 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "connectionpool-307 307 preserves method and body",
+          "passed": true,
+          "category": "functionality",
+          "detail": {
+            "method": "POST",
+            "body": "fixture-private-body",
+            "cookie": null,
+            "authorization": null,
+            "content_type": "application/fixture",
+            "length": "20",
+            "fixture": "keep"
+          }
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-303",
+    "repetition": 2,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "src\\urllib3\\connectionpool.py",
+            "before_sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+            "after_sha256": "31078e4d69bf8c738d8579ccb9c2d2c963a0044df14af3af3f59da10a14ad95c"
+          },
+          {
+            "path": "src\\urllib3\\poolmanager.py",
+            "before_sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+            "after_sha256": "ae1e40e958b779333f740e700f1ca9959201c6c24ed897ea6b0cb3510e314c97"
+          }
+        ],
+        "changed_lines": 16,
+        "validation": {
+          "case": "urllib3-303",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-303 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-303 body removed after GET conversion",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "poolmanager-303 body headers removed",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "poolmanager-307 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-307 307 preserves method and body",
+              "passed": true,
+              "category": "functionality",
+              "detail": {
+                "method": "POST",
+                "body": "fixture-private-body",
+                "cookie": null,
+                "authorization": null,
+                "content_type": "application/fixture",
+                "length": "20",
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-303 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "connectionpool-303 body removed after GET conversion",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-303 body headers removed",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-307 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "connectionpool-307 307 preserves method and body",
+              "passed": true,
+              "category": "functionality",
+              "detail": {
+                "method": "POST",
+                "body": "fixture-private-body",
+                "cookie": null,
+                "authorization": null,
+                "content_type": "application/fixture",
+                "length": "20",
+                "fixture": "keep"
+              }
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 40.812
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "src\\urllib3\\connectionpool.py",
+        "before_sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+        "after_sha256": "31078e4d69bf8c738d8579ccb9c2d2c963a0044df14af3af3f59da10a14ad95c"
+      },
+      {
+        "path": "src\\urllib3\\poolmanager.py",
+        "before_sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+        "after_sha256": "ae1e40e958b779333f740e700f1ca9959201c6c24ed897ea6b0cb3510e314c97"
+      }
+    ],
+    "changed_lines": 16,
+    "validation": {
+      "case": "urllib3-303",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-303 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-303 body removed after GET conversion",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "poolmanager-303 body headers removed",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "poolmanager-307 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "poolmanager-307 307 preserves method and body",
+          "passed": true,
+          "category": "functionality",
+          "detail": {
+            "method": "POST",
+            "body": "fixture-private-body",
+            "cookie": null,
+            "authorization": null,
+            "content_type": "application/fixture",
+            "length": "20",
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-303 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "connectionpool-303 body removed after GET conversion",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-303 body headers removed",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "method": "GET",
+            "body": "",
+            "cookie": null,
+            "authorization": null,
+            "content_type": null,
+            "length": null,
+            "fixture": "keep"
+          }
+        },
+        {
+          "name": "connectionpool-307 request succeeds",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "connectionpool-307 307 preserves method and body",
+          "passed": true,
+          "category": "functionality",
+          "detail": {
+            "method": "POST",
+            "body": "fixture-private-body",
+            "cookie": null,
+            "authorization": null,
+            "content_type": "application/fixture",
+            "length": "20",
+            "fixture": "keep"
+          }
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "urllib3-303",
+    "repetition": 3,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "src\\urllib3\\connectionpool.py",
+            "before_sha256": "dc8d40983cae6c9e31fb6f1139d2d9cf08ba9ab85d6dd6bc5c07d5c3cc6191ca",
+            "after_sha256": "31078e4d69bf8c738d8579ccb9c2d2c963a0044df14af3af3f59da10a14ad95c"
+          },
+          {
+            "path": "src\\urllib3\\poolmanager.py",
+            "before_sha256": "c015f5cf0016116bb2ca759bf3795ada26a1d88654c28b3a39988a624150a63e",
+            "after_sha256": "ae1e40e958b779333f740e700f1ca9959201c6c24ed897ea6b0cb3510e314c97"
+          }
+        ],
+        "changed_lines": 16,
+        "validation": {
+          "case": "urllib3-303",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-303 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-303 body removed after GET conversion",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "poolmanager-303 body headers removed",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "poolmanager-307 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "poolmanager-307 307 preserves method and body",
+              "passed": true,
+              "category": "functionality",
+              "detail": {
+                "method": "POST",
+                "body": "fixture-private-body",
+                "cookie": null,
+                "authorization": null,
+                "content_type": "application/fixture",
+                "length": "20",
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-303 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "connectionpool-303 body removed after GET conversion",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-303 body headers removed",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "method": "GET",
+                "body": "",
+                "cookie": null,
+                "authorization": null,
+                "content_type": null,
+                "length": null,
+                "fixture": "keep"
+              }
+            },
+            {
+              "name": "connectionpool-307 request succeeds",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "connectionpool-307 307 preserves method and body",
+              "passed": true,
+              "category": "functionality",
+              "detail": {
+                "method": "POST",
+                "body": "fixture-private-body",
+                "cookie": null,
+                "authorization": null,
+                "content_type": "application/fixture",
+                "length": "20",
+                "fixture": "keep"
+              }
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 3.297
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "requests\\sessions.py",
+        "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+        "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "requests-proxy",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": true
+          }
+        },
+        {
+          "name": "http direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "https proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "https credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": false
+          }
+        },
+        {
+          "name": "https direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal prepared request retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "requests-proxy",
+    "repetition": 1,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "requests\\sessions.py",
+            "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+            "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "requests-proxy",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": true
+              }
+            },
+            {
+              "name": "http direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "https proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "https credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": false
+              }
+            },
+            {
+              "name": "https direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "normal prepared request retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 13.453
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "requests\\sessions.py",
+        "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+        "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "requests-proxy",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": true
+          }
+        },
+        {
+          "name": "http direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "https proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "https credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": false
+          }
+        },
+        {
+          "name": "https direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal prepared request retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "requests-proxy",
+    "repetition": 2,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "requests\\sessions.py",
+            "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+            "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "requests-proxy",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": true
+              }
+            },
+            {
+              "name": "http direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "https proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "https credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": false
+              }
+            },
+            {
+              "name": "https direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "normal prepared request retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 1.75
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "requests\\sessions.py",
+        "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+        "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+      }
+    ],
+    "changed_lines": 2,
+    "validation": {
+      "case": "requests-proxy",
+      "checks": [
+        {
+          "name": "clone imported",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "http credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": true
+          }
+        },
+        {
+          "name": "http direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "https proxy configuration preserved",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        },
+        {
+          "name": "https credentials only on correct transport",
+          "passed": true,
+          "category": "security",
+          "detail": {
+            "credential_header_present": false
+          }
+        },
+        {
+          "name": "https direct request has no proxy credentials",
+          "passed": true,
+          "category": "security",
+          "detail": null
+        },
+        {
+          "name": "normal prepared request retained",
+          "passed": true,
+          "category": "functionality",
+          "detail": null
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "requests-proxy",
+    "repetition": 3,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "requests\\sessions.py",
+            "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+            "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+          }
+        ],
+        "changed_lines": 2,
+        "validation": {
+          "case": "requests-proxy",
+          "checks": [
+            {
+              "name": "clone imported",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "http credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": true
+              }
+            },
+            {
+              "name": "http direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "https proxy configuration preserved",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            },
+            {
+              "name": "https credentials only on correct transport",
+              "passed": true,
+              "category": "security",
+              "detail": {
+                "credential_header_present": false
+              }
+            },
+            {
+              "name": "https direct request has no proxy credentials",
+              "passed": true,
+              "category": "security",
+              "detail": null
+            },
+            {
+              "name": "normal prepared request retained",
+              "passed": true,
+              "category": "functionality",
+              "detail": null
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 36.656
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 1,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "index.js",
+            "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+            "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+          }
+        ],
+        "changed_lines": 4,
+        "validation": {
+          "case": "minimist-constructor",
+          "checks": [
+            {
+              "name": "Object constructor not exposed by parse",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Object prototype unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor not modified",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor property unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "nested normal property works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "numeric normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "boolean normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "alias works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "prototype fixture cleaned",
+              "passed": true,
+              "category": "functionality"
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 5.75
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 2,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "index.js",
+            "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+            "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+          }
+        ],
+        "changed_lines": 4,
+        "validation": {
+          "case": "minimist-constructor",
+          "checks": [
+            {
+              "name": "Object constructor not exposed by parse",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Object prototype unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor not modified",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor property unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "nested normal property works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "numeric normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "boolean normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "alias works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "prototype fixture cleaned",
+              "passed": true,
+              "category": "functionality"
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 4.063
+  },
+  {
+    "accepted": true,
+    "files": [
+      {
+        "path": "index.js",
+        "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+        "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+      }
+    ],
+    "changed_lines": 4,
+    "validation": {
+      "case": "minimist-constructor",
+      "checks": [
+        {
+          "name": "Object constructor not exposed by parse",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Object prototype unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor not modified",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "Array constructor property unchanged",
+          "passed": true,
+          "category": "security"
+        },
+        {
+          "name": "nested normal property works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "numeric normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "boolean normal argument works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "alias works",
+          "passed": true,
+          "category": "functionality"
+        },
+        {
+          "name": "prototype fixture cleaned",
+          "passed": true,
+          "category": "functionality"
+        }
+      ],
+      "security_passed": 4,
+      "security_total": 4,
+      "functionality_passed": true,
+      "passed": true
+    },
+    "rolled_back": false,
+    "case": "minimist-constructor",
+    "repetition": 3,
+    "attempts": [
+      {
+        "accepted": true,
+        "files": [
+          {
+            "path": "index.js",
+            "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+            "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+          }
+        ],
+        "changed_lines": 4,
+        "validation": {
+          "case": "minimist-constructor",
+          "checks": [
+            {
+              "name": "Object constructor not exposed by parse",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Object prototype unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor not modified",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "Array constructor property unchanged",
+              "passed": true,
+              "category": "security"
+            },
+            {
+              "name": "nested normal property works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "numeric normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "boolean normal argument works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "alias works",
+              "passed": true,
+              "category": "functionality"
+            },
+            {
+              "name": "prototype fixture cleaned",
+              "passed": true,
+              "category": "functionality"
+            }
+          ],
+          "security_passed": 4,
+          "security_total": 4,
+          "functionality_passed": true,
+          "passed": true
+        },
+        "rolled_back": false
+      }
+    ],
+    "seconds": 14.656
+  }
+]

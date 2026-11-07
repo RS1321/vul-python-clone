@@ -1,0 +1,16 @@
+{
+  "content": "```json\n{\"edits\":[{\"path\": \"src/urllib3/util/retry.py\", \"sha256\": \"f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16\", \"before\": \"    DEFAULT_REMOVE_HEADERS_ON_REDIRECT = frozenset([\\\"Authorization\\\"])\", \"after\": \"    DEFAULT_REMOVE_HEADERS_ON_REDIRECT = frozenset([\\\"Authorization\\\", \\\"Cookie\\\"])\"}]}\n```",
+  "model": "gemini-3.5-flash-lite",
+  "provider": "gemini",
+  "transport_events": [
+    {
+      "http_status": 200,
+      "budget_wait_seconds": 0
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 243,
+    "completion_tokens": 142,
+    "total_tokens": 385
+  }
+}

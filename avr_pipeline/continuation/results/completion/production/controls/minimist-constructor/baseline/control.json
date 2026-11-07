@@ -1,0 +1,63 @@
+{
+  "repo": "minimist-cve",
+  "url": "https://github.com/minimistjs/minimist",
+  "baseline": "aeb3e27dae0412de5c0494e9563a5f10c82cc7a9",
+  "fixed": "v1.2.6",
+  "advisory": "https://github.com/advisories/GHSA-xvch-5gv4-984h",
+  "description": "Prevent user-controlled property traversal from modifying inherited constructors or prototypes, including constructor properties reached through positional arrays. Preserve ordinary flags, aliases, nested own properties and defaults.",
+  "ref_commit": "aeb3e27dae0412de5c0494e9563a5f10c82cc7a9",
+  "result": {
+    "case": "minimist-constructor",
+    "checks": [
+      {
+        "name": "Object constructor not exposed by parse",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Object prototype unchanged",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Array constructor not modified",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Array constructor property unchanged",
+        "passed": false,
+        "category": "security"
+      },
+      {
+        "name": "nested normal property works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "numeric normal argument works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "boolean normal argument works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "alias works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "prototype fixture cleaned",
+        "passed": true,
+        "category": "functionality"
+      }
+    ],
+    "security_passed": 3,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": false
+  }
+}

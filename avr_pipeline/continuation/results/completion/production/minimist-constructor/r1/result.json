@@ -1,0 +1,69 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "index.js",
+      "before_sha256": "3df9e0539ec32aedf474bfdf6310d0a1ea53052f3dbcfe55c885abf85922dc98",
+      "after_sha256": "5cf6035e5292db61f367d22f2b6cc92c3bb3b2e9f8f55ed6aa10202cb8d0b10e"
+    }
+  ],
+  "changed_lines": 4,
+  "validation": {
+    "case": "minimist-constructor",
+    "checks": [
+      {
+        "name": "Object constructor not exposed by parse",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Object prototype unchanged",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Array constructor not modified",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "Array constructor property unchanged",
+        "passed": true,
+        "category": "security"
+      },
+      {
+        "name": "nested normal property works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "numeric normal argument works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "boolean normal argument works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "alias works",
+        "passed": true,
+        "category": "functionality"
+      },
+      {
+        "name": "prototype fixture cleaned",
+        "passed": true,
+        "category": "functionality"
+      }
+    ],
+    "security_passed": 4,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": true
+  },
+  "rolled_back": false,
+  "case": "minimist-constructor",
+  "repetition": 1,
+  "seconds": 4.047
+}

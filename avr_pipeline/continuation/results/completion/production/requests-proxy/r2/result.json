@@ -1,0 +1,8 @@
+{
+  "accepted": false,
+  "generation_error": "JSONDecodeError",
+  "error": "Invalid control character at: line 1 column 2282 (char 2281)",
+  "case": "requests-proxy",
+  "repetition": 2,
+  "seconds": 5.641
+}

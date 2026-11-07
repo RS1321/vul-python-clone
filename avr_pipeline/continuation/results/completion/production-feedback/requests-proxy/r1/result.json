@@ -1,0 +1,151 @@
+{
+  "accepted": true,
+  "files": [
+    {
+      "path": "requests\\sessions.py",
+      "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+      "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+    }
+  ],
+  "changed_lines": 2,
+  "validation": {
+    "case": "requests-proxy",
+    "checks": [
+      {
+        "name": "clone imported",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "http proxy configuration preserved",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "http credentials only on correct transport",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "credential_header_present": true
+        }
+      },
+      {
+        "name": "http direct request has no proxy credentials",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "https proxy configuration preserved",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      },
+      {
+        "name": "https credentials only on correct transport",
+        "passed": true,
+        "category": "security",
+        "detail": {
+          "credential_header_present": false
+        }
+      },
+      {
+        "name": "https direct request has no proxy credentials",
+        "passed": true,
+        "category": "security",
+        "detail": null
+      },
+      {
+        "name": "normal prepared request retained",
+        "passed": true,
+        "category": "functionality",
+        "detail": null
+      }
+    ],
+    "security_passed": 4,
+    "security_total": 4,
+    "functionality_passed": true,
+    "passed": true
+  },
+  "rolled_back": false,
+  "case": "requests-proxy",
+  "repetition": 1,
+  "attempts": [
+    {
+      "accepted": true,
+      "files": [
+        {
+          "path": "requests\\sessions.py",
+          "before_sha256": "914e3ad81573e3dff5444b2056fe1a91640935ccbbc028dd912a90b8787c9224",
+          "after_sha256": "13e935def2e8ab238f7094ee00019104680fac0386c754f98f416baa2f7d5b90"
+        }
+      ],
+      "changed_lines": 2,
+      "validation": {
+        "case": "requests-proxy",
+        "checks": [
+          {
+            "name": "clone imported",
+            "passed": true,
+            "category": "functionality",
+            "detail": null
+          },
+          {
+            "name": "http proxy configuration preserved",
+            "passed": true,
+            "category": "functionality",
+            "detail": null
+          },
+          {
+            "name": "http credentials only on correct transport",
+            "passed": true,
+            "category": "security",
+            "detail": {
+              "credential_header_present": true
+            }
+          },
+          {
+            "name": "http direct request has no proxy credentials",
+            "passed": true,
+            "category": "security",
+            "detail": null
+          },
+          {
+            "name": "https proxy configuration preserved",
+            "passed": true,
+            "category": "functionality",
+            "detail": null
+          },
+          {
+            "name": "https credentials only on correct transport",
+            "passed": true,
+            "category": "security",
+            "detail": {
+              "credential_header_present": false
+            }
+          },
+          {
+            "name": "https direct request has no proxy credentials",
+            "passed": true,
+            "category": "security",
+            "detail": null
+          },
+          {
+            "name": "normal prepared request retained",
+            "passed": true,
+            "category": "functionality",
+            "detail": null
+          }
+        ],
+        "security_passed": 4,
+        "security_total": 4,
+        "functionality_passed": true,
+        "passed": true
+      },
+      "rolled_back": false
+    }
+  ],
+  "seconds": 13.453
+}

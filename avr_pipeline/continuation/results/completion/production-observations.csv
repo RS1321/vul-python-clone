@@ -1,0 +1,5 @@
+case,language,original_accepted,original_trials,feedback_accepted,feedback_trials
+urllib3-cookie,Python,3,3,3,3
+urllib3-303,Python,0,3,2,3
+requests-proxy,Python,0,3,3,3
+minimist-constructor,JavaScript,3,3,3,3

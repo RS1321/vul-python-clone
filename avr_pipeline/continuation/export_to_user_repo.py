@@ -18,7 +18,7 @@ EXCLUDED = {'.git', '.venv', '.review-work', 'benchmarks', '__pycache__', '.pyte
             'source', 'codeql-db', 'zap-home', 'target-state', 'tests', 'synthetic-A-checkpoint-source'}
 TOP = {'llm', 'context_builder', 'review', 'review_tests', 'review_results', 'continuation'}
 FILES = {'README.md', 'requirements-review.txt', '.gitignore', '.env.example'}
-EXTENSIONS = {'.py', '.json', '.md', '.txt', '.log', '.xml', '.diff', '.patch', '.yaml', '.yml',
+EXTENSIONS = {'.py', '.js', '.json', '.md', '.txt', '.log', '.xml', '.diff', '.patch', '.yaml', '.yml',
               '.sarif', '.toml', '.ini', '.ps1', '.csv', '.example', '.tap'}
 KEY_PATTERN = r'AIza[0-9A-Za-z_-]{30,}|sk-(?:proj-|or-v1-)?[0-9A-Za-z_-]{30,}|AKIA[0-9A-Z]{16}'
 
@@ -54,7 +54,7 @@ def main():
         for name in sorted(files):
             source = parent / name
             relative = source.relative_to(ROOT)
-            if (not relative_dir.parts and name not in FILES) or name == '.env' or name.startswith('.coverage'):
+            if (not relative_dir.parts and name not in FILES) or name in ('.env', 'delivery-verification.json') or name.startswith('.coverage'):
                 continue
             if source.suffix not in EXTENSIONS and name not in FILES:
                 continue

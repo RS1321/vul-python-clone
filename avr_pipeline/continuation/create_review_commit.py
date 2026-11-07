@@ -56,12 +56,12 @@ def main():
     if tree == git('rev-parse', parent + '^{tree}').stdout.strip():
         print('No new export changes'); return
     message = ROOT / '.review-work/review-commit-message.txt'
-    message.write_text('Add reproducible repair pipeline and reviewer evaluation evidence\n\n'
-        'Include transactional patching, strict adoption test policy, credential guards, '
-        'coordinated Python/JavaScript edits and pinned benchmark setup.\n\n'
-        'Record measured comparisons, ordinary application checks and bounded production '
-        'pilots; incomplete experiments and unestablished expert provenance remain explicit. '
-        'Manuscript revisions are deferred.\n', encoding='utf-8')
+    message.write_text('Extend external security and cross-language production evaluations\n\n'
+        'Add fixture-based authenticated application checks, fixed-route passive ZAP measurements, '
+        'and repeated production repair trials with vulnerable/maintainer-fixed controls.\n\n'
+        'Verify a real two-module urllib3 security repair, partial-change rollback and source drift; '
+        'preserve failed proposals and report the exact coverage and remaining vulnerabilities. '
+        'Manuscript revisions remain deferred.\n', encoding='utf-8')
     commit = git('commit-tree', tree, '-p', parent, '-F', str(message), env=env).stdout.strip()
     git('update-ref', BRANCH, commit, previous or '0' * 40)
     if git('rev-parse', 'HEAD').stdout.strip() != head:

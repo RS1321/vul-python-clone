@@ -1,0 +1,18 @@
+{
+  "repo": "urllib3-cve",
+  "url": "https://github.com/urllib3/urllib3",
+  "baseline": "d94029b7e2193ff47b627906a70e06377a09aae8",
+  "fixed": "1.26.18",
+  "advisory": "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+  "description": "Default cross-origin redirects must remove Cookie as well as Authorization. Preserve same-origin cookies and custom header policies.",
+  "repetition": 3,
+  "model": "gemini-3.5-flash-lite",
+  "fragments": [
+    {
+      "path": "src/urllib3/util/retry.py",
+      "sha256": "f98612b90902b69cabae412ba74e36566f10557a88a7f5305b9317690fa9ba16",
+      "before": "    DEFAULT_REMOVE_HEADERS_ON_REDIRECT = frozenset([\"Authorization\"])"
+    }
+  ],
+  "protocol": "one independent attempt; security tests withheld; strict combined gate; no seed; temperature 0.1; output cap 8192"
+}
