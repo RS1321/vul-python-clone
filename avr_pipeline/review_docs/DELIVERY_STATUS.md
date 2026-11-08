@@ -28,7 +28,7 @@ The full plan has 420 cells. With 101 baseline findings across the four subjects
 | 18. Independent sign-off | Explicit pending record for every entry | A real independent reviewer and original expert-review provenance are unavailable |
 | 19. Coverage | Dataset/CWE coverage exported, including unsupported CWE-1333 | No unreviewed new entry was added to the frozen library |
 | 20. Legacy hygiene | Legacy repair/prompts and destructive workflow archived; oracle results relocated | Historical evidence remains available |
-| 21. Linux/CI | Platform tool paths, local-runtime path support, Ubuntu/Windows CI and offline smoke | Linux/container execution is not claimed until those checks actually run |
+| 21. Linux/CI | Platform tool paths, local-runtime path support, Ubuntu/Windows CI and offline smoke | Ubuntu and Windows core CI passed; Docker/scanner execution on Linux remains unverified |
 | 22. Dependencies/container | Exact-version transitive snapshots and scanner/pipeline Dockerfile; official Linux scanner checksum pinned | Docker build not executed on this host; OS package/image reproducibility is limited to the provided definition |
 | 23. Version/DOI | Versioned code/citation metadata and checksummed archive helper | Zenodo connection, author-approved archive metadata and an actual minted DOI |
 | 24. Oracle separation | `oracle_validation/security-resolution-v6` | Agent-authored hardening is never pooled with model results |

@@ -1,6 +1,6 @@
 # Local vulnerability repair replication
 
-This revision addresses implementation and execution concerns in the supplied reviewer comments. Earlier changes were published on main; new manuscript evaluation work is maintained on its own branch. Upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
+This revision addresses implementation and execution concerns in the supplied reviewer comments. Earlier improvements and the manuscript evaluation follow-up are versioned in this repository. Upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
 
 The latest [security-resolution report](oracle_validation/security-resolution-v6/SECURITY_RESOLUTION.md) records separate hardened VAmPI/PyGoat clones, all 21 lesson suites, authenticated active scans and final static rescans. These explicit agent-authored repairs are separate from the earlier measured free-model cohort.
 

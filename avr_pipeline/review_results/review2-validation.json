@@ -54,5 +54,22 @@
     "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
     "review\\target_environment.py": "5f36b3a51488d909769cacf67af6d3c2d3fc6c60e0ff0bc04e909c51bc6515ab"
   },
-  "publication_candidates_scanned": 9247
+  "publication_candidates_scanned": 9247,
+  "remote_ci": {
+    "run_url": "https://github.com/RS1321/vul-python-clone/actions/runs/42495877578",
+    "code_commit": "376ad3c89e1de540b96bc58ee8e4d6e6d4c70e69",
+    "jobs": [
+      {
+        "name": "verify (windows-latest)",
+        "conclusion": "success",
+        "html_url": "https://github.com/RS1321/vul-python-clone/actions/runs/42495877578/job/128778005306"
+      },
+      {
+        "name": "verify (ubuntu-latest)",
+        "conclusion": "success",
+        "html_url": "https://github.com/RS1321/vul-python-clone/actions/runs/42495877578/job/128778005620"
+      }
+    ],
+    "scope": "Core review_tests and offline smoke; no model calls, CodeQL scans or Docker build in CI"
+  }
 }
