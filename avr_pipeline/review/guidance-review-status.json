@@ -1,0 +1,116 @@
+{
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "original_review_provenance": "not established",
+  "independent_human_review": "pending; no sign-off claimed",
+  "entries": [
+    {
+      "cwe": "CWE-078",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-089",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-079",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-074",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-022",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-215",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-209",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-601",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-352",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-020",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-327",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-502",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-918",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-611",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-776",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-284",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-400",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    },
+    {
+      "cwe": "CWE-330",
+      "reviewer": null,
+      "date": null,
+      "decision": "pending"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "dataset": "flask-webgoat",
+  "source_url": "https://github.com/ShiftLeftSecurity/flask-webgoat.git",
+  "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+  "findings": 7,
+  "affected_files": 5,
+  "cwes": {
+    "CWE-089": 1,
+    "CWE-502": 1,
+    "CWE-078": 1,
+    "CWE-022": 1,
+    "CWE-601": 1,
+    "CWE-209": 1,
+    "CWE-215": 1
+  },
+  "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1"
+}

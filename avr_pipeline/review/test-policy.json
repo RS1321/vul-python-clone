@@ -1,0 +1,11 @@
+{
+  "version": "review-2-conservative-1",
+  "rule": "Only an exact test ID listed below may be classified as checking old vulnerable behavior. Every unlisted new failure counts as a regression. Test collection/runtime failure is unmeasured. A_strict blocks every new failure regardless of classification.",
+  "vulnerable_behavior_tests": {
+    "tests.test_vulnerable_app::test_init_database_admin_password_is_md5": "Requires the obsolete MD5 password representation; replacing it with a password hash changes this exact expectation.",
+    "tests.test_vulnerable_app::test_load_object_with_data": "Requires an unauthenticated endpoint to accept and deserialize arbitrary client-supplied pickle bytes.",
+    "tests.test_vulnerable_app::test_load_object_simple_string": "Requires acceptance of client-supplied pickle serialization on an unauthenticated endpoint.",
+    "tests.test_vulnerable_app::test_ping_with_special_chars": "Requires HTTP 200 for shell metacharacters in a command argument; a controlled security rejection is acceptable."
+  },
+  "review_status": "Prospective conservative source-based classification by coding agent, not independent human review. All other failures remain regressions."
+}

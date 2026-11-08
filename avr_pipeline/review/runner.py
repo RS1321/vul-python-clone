@@ -29,6 +29,9 @@ from factorial_prompts import PromptBuilder, SYSTEM_PROMPT, LIBRARY
 from minimality_validator import validate_fix_minimality
 from llm_client import LLMClient, GenerationLimitError
 from egress_guard import sanitise
+sys.path.insert(0, str(ROOT))
+from review.project_paths import tool_path, query_pack_root
+from review.outcomes import export_run
 
 CONDITIONS = {
     'A': dict(guidance=True, examples=True, gates=True, attempts=3, tests='monitor'),
@@ -73,7 +76,7 @@ def scan(repo, out, codeql=None):
     if out.is_relative_to(repo):
         raise ValueError('Scanner output must be outside the source tree')
     out.mkdir(parents=True, exist_ok=True)
-    executable = codeql or str(ROOT / '.review-work/codeql-cli/codeql/codeql.exe')
+    executable = codeql or tool_path('codeql')
     if not Path(executable).exists() and not shutil.which(executable):
         raise RuntimeError('CodeQL unavailable; cannot report SAST resolution')
     database = out / 'codeql-db'
@@ -87,7 +90,7 @@ def scan(repo, out, codeql=None):
              f'--source-root={repo}', '--overwrite', '--threads=2', '--ram=2048'],
             [executable, 'database', 'analyze', database,
              'codeql/python-queries:codeql-suites/python-security-extended.qls',
-             '--search-path=' + os.pathsep.join(str(p.parent) for p in (ROOT / '.review-work/packs').rglob('qlpack.yml')),
+             '--search-path=' + os.pathsep.join(str(p.parent) for p in query_pack_root().rglob('qlpack.yml')),
              '--format=sarif-latest', f'--output={out / "scan.sarif"}', '--threads=2', '--ram=2048']]
         for i, args in enumerate(steps):
             result = command(args, cwd=repo, timeout=1800)
@@ -222,17 +225,20 @@ def test_run(repo, args, out):
     out.mkdir(parents=True, exist_ok=True)
     junit = out / 'pytest.xml'
     try:
-        result = command([sys.executable, '-m', 'pytest', *args, f'--junitxml={junit}'], repo, 300)
+        result = command([sys.executable, '-m', 'pytest', *args, f'--junitxml={junit}',
+                          f'--basetemp={out.resolve()/"pytest-tmp"}'], repo, 300)
         (out / 'pytest.log').write_text(result.stdout + result.stderr, encoding='utf-8')
         failures = []
         if junit.exists():
             for case in ET.parse(junit).iter('testcase'):
                 if case.find('failure') is not None or case.find('error') is not None:
                     failures.append(case.get('classname', '') + '::' + case.get('name', ''))
-        count = sum(1 for _ in ET.parse(junit).iter('testcase')) if junit.exists() else 0
+        cases = list(ET.parse(junit).iter('testcase')) if junit.exists() else []
+        count = len(cases)
+        errors = sum(case.find('error') is not None for case in cases)
         return {'status': 'passed' if result.returncode == 0 and count else 'failed',
                 'returncode': result.returncode, 'tests': count, 'failures': failures,
-                'infrastructure_error': result.returncode not in (0, 1) or count == 0}
+                'errors': errors, 'infrastructure_error': result.returncode not in (0, 1) or count == 0 or errors > 0}
     except subprocess.TimeoutExpired:
         return {'status': 'timeout', 'passed': False, 'failures': None, 'infrastructure_error': True}
 
@@ -395,11 +401,26 @@ def compare(before, after):
             'new_groups': [{'key': list(k), 'count': v} for k, v in added.items()]}
 
 
+def behavioral_oracle(source):
+    if (source/'vulnerable_app.py').is_file():
+        return ROOT/'review/behavioral/test_synthetic.py'
+    if (source/'flask_webgoat').is_dir():
+        return ROOT/'review/behavioral/test_flask_webgoat.py'
+    if (source/'openapi_specs/openapi3.yml').is_file():
+        return ROOT/'review/behavioral/test_vampi.py'
+    if (source/'pygoat/settings.py').is_file():
+        return ROOT/'review/behavioral/test_pygoat.py'
+    return None
+
+
 def run(args):
     config = CONDITIONS[args.condition]
     source = Path(args.repo).resolve()
+    behavioral_path = behavioral_oracle(source)
     if not args.pytest_args and (source / 'tests').is_dir():
         args.pytest_args = ['tests', '-m', 'not network']
+    if not args.pytest_args and behavioral_path:
+        args.pytest_args = [str(behavioral_path)]
     out = Path(args.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     workspace = out / 'source'
@@ -432,13 +453,18 @@ def run(args):
                      ROOT/'llm/factorial_prompts.py', ROOT/'llm/minimality_validator.py',
                      ROOT/'llm/egress_guard.py', ROOT/'llm/request_budget.py',
                      ROOT/'context_builder/parsers/ast_utils.py', ROOT/'context_builder/parsers/code_fetcher.py',
-                     ROOT/'llm/codePatcherAST.py']},
+                     ROOT/'llm/codePatcherAST.py', ROOT/'review/outcomes.py', ROOT/'review/project_paths.py',
+                     ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
+                     ROOT/'review/behavioral/conftest.py']},
                 'baseline_sarif': str(Path(args.sarif).resolve()), 'sarif_sha256': digest(args.sarif),
                 'zap_sha256': digest(args.zap) if args.zap else None,
                 'context_profile': args.context_profile, 'cross_file_only': args.cross_file_only,
                 'transport_policy':{k:os.getenv(k) for k in ('AVR_INPUT_BUDGET_PER_MINUTE','AVR_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES')},
                 'library_sha256': hashlib.sha256(library_bytes).hexdigest(),
                 'library_version': prompt_library['version'],
+                'minimality_policy': 'applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)',
+                'test_policy_sha256': digest(ROOT/'review/test-policy.json'),
+                'behavioral_test_sha256': digest(behavioral_path) if behavioral_path else None,
                 'python': sys.version, 'pytest_args': args.pytest_args, 'seed': None,
                 'repetition': args.repetition, 'eligible_findings': all_findings, 'selected_findings': len(findings),
                 'utc': datetime.now(timezone.utc).isoformat(), 'status': 'running',
@@ -474,6 +500,8 @@ def run(args):
     baseline_path = out / 'baseline-tests.json'
     baseline_tests = json.loads(baseline_path.read_text()) if args.resume and baseline_path.exists() else test_run(workspace, args.pytest_args, out / 'baseline-tests')
     dump(out / 'baseline-tests.json', baseline_tests)
+    if behavioral_path:
+        dump(out/'baseline-behavioral-tests.json', test_run(workspace, [str(behavioral_path)], out/'baseline-behavioral-tests'))
     client = LLMClient(args.provider, args.model, temperature=0.1, max_tokens=args.max_tokens)
     results = prior_results
     started = time.monotonic()
@@ -496,6 +524,8 @@ def run(args):
     manifest['accepted_patches'] = sum(r['accepted'] for r in results)
     manifest['processed_findings'] = len(results)
     manifest['post_tests'] = test_run(workspace, args.pytest_args, out / 'post-tests')
+    if behavioral_path:
+        manifest['behavioral_tests'] = test_run(workspace, [str(behavioral_path)], out/'behavioral-tests')
     if args.rescan and (manifest['status'] == 'patching_complete' or getattr(args, 'checkpoint_rescan', False)):
         try:
             # Batch measurement integrity applies even when C disabled inline
@@ -507,6 +537,8 @@ def run(args):
         except Exception as exc:
             manifest['rescan_error'] = str(exc)
     dump(out / 'manifest.json', manifest)
+    policy = json.loads((ROOT/'review/test-policy.json').read_text(encoding='utf-8'))
+    export_run(out, policy)
     print(json.dumps({k: manifest[k] for k in ('status','processed_findings','accepted_patches','elapsed_seconds')}, indent=2))
 
 

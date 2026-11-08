@@ -1,0 +1,22 @@
+[
+  {
+    "provider": "gemini",
+    "model": "gemma-4-26b-a4b-it"
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite"
+  },
+  {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite"
+  },
+  {
+    "provider": "local",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km"
+  },
+  {
+    "provider": "local",
+    "model": "qwen2.5-coder-0.5b-instruct-q4km"
+  }
+]

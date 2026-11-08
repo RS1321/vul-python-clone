@@ -26,7 +26,7 @@ class GenerationLimitError(ValueError):
 class LLMClient:
     """Unified LLM client for multiple providers"""
     
-    def __init__(self, provider: str = "openrouter", model: str = "openai/gpt-4o", temperature: float = 0.1, max_tokens: int = 4000, conversation_logger=None):
+    def __init__(self, provider: str = "openrouter", model: str = "openai/gpt-4o", temperature: float = 0.1, max_tokens: int = 4000, conversation_logger=None, json_mode=False):
         """
         Initialize LLM client
         
@@ -42,6 +42,7 @@ class LLMClient:
         self.temperature = temperature
         self.max_tokens = max_tokens
         self.conversation_logger = conversation_logger
+        self.json_mode = json_mode
         
         # Get API keys from environment
         self.openrouter_key = os.getenv("OPENROUTER_API_KEY")
@@ -206,6 +207,8 @@ class LLMClient:
         payload = {"contents": contents,
                    "generationConfig": {"temperature": self.temperature,
                                         "maxOutputTokens": self.max_tokens}}
+        if self.json_mode:
+            payload['generationConfig']['responseMimeType'] = 'application/json'
         if systems:
             payload['systemInstruction'] = {'parts': [{'text': '\n\n'.join(systems)}]}
         if self.model.startswith('gemma-4-'):
