@@ -12,7 +12,8 @@
     "CWE-1333",
     "CWE-117",
     "CWE-1004",
-    "CWE-614"
+    "CWE-614",
+    "CWE-094"
   ],
   "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
   "primary_implementation_sha256": {
@@ -32,5 +33,8 @@
     "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
     "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055"
   },
-  "implementation_selection_note": "Final corrected harness, selected by code identity rather than outcome. Earlier warm-up implementations are retained and analyzed separately. This record is not an independent preregistration."
+  "implementation_selection_note": "Final corrected harness, selected by code identity rather than outcome. Earlier warm-up implementations are retained and analyzed separately. This record is not an independent preregistration.",
+  "cohort_selection": "The new free plan uses Gemini-3.6-flash alongside 3.1/3.5 Flash Lite and the two local Qwen models. Gemma-26B returned HTTP 500; Gemma-31B completed one pilot then returned repeated HTTP 500/503. Flash 3.6 completed three cells before its observed 20-requests-per-day free quota was exhausted. Access failures are not model repair failures.",
+  "controlled_code_commit": "12f7847",
+  "latest_code_note": "The target-environment validator correction is a separate implementation, audited on a saved candidate. Keep its future runs under new tags and separate implementation hashes."
 }

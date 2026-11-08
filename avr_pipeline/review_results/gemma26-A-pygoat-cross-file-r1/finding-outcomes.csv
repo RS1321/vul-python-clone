@@ -1,0 +1,3 @@
+finding,cwe,rule,file,function,accepted,resolved,resolution_identity,attempts,agent_turns,test_measurement_status,new_test_failures,regressions,old_behavior_failures,joint_security
+py/path-injection:challenge/management/commands/startuplabs.py:51:7,CWE-022,py/path-injection,challenge/management/commands/startuplabs.py,Command.handle,False,False,group_all_or_none,3,,unmeasured,null,,,False
+py/path-injection:challenge/views.py:244:8,CWE-022,py/path-injection,challenge/views.py,_resolve_build_path,True,False,group_all_or_none,2,,unmeasured,null,,,False

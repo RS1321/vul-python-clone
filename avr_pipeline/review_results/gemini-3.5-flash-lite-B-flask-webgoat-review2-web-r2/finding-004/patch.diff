@@ -1,0 +1,27 @@
+--- 
++++ 
+@@ -10,6 +10,7 @@
+ 
+ @bp.route("/message", methods=["POST"])
+ def log_entry():
++    import os
+     user_info = session.get("user_info", None)
+     if user_info is None:
+         return jsonify({"error": "no user_info found in session"})
+@@ -27,11 +28,12 @@
+     user_dir = "data/" + str(user_id)
+     user_dir_path = Path(user_dir)
+     if not user_dir_path.exists():
+-        user_dir_path.mkdir()
++        user_dir_path.mkdir(parents=True, exist_ok=True)
+ 
+-    filename = filename_param + ".txt"
+-    path = Path(user_dir + "/" + filename)
+-    # vulnerability: Directory Traversal
++    safe_filename = os.path.basename(filename_param) + ".txt"
++    path = user_dir_path / safe_filename
++    if not path.resolve().is_relative_to(user_dir_path.resolve()):
++        return jsonify({"error": "invalid filename"})
+     with path.open("w", encoding="utf-8") as open_file:
+         open_file.write(text_param)
+     return jsonify({"success": True})

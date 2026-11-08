@@ -1,0 +1,4 @@
+{
+  "turn": 11,
+  "infrastructure_error": "Gemini returned incomplete/blocked output: STOP"
+}

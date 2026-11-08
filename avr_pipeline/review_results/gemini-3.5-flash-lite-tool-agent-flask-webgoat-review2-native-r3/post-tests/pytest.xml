@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="0.446" timestamp="2026-11-08T19:08:40.933563+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.144" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.018" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.015" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.015" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.014"><failure message="TypeError: a bytes-like object is required, not 'str'">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000002B9CA4181A0&gt;
+
+    def test_command_input_does_not_reach_shell(client, monkeypatch):
+        calls = []
+        def spy(*args, **kwargs):
+            calls.append(kwargs.get('shell', False))
+            return subprocess.CompletedProcess([], 0, stdout=b'probe')
+        monkeypatch.setattr(subprocess, 'run', spy)
+&gt;       response = client.get('/grep_processes', query_string={'name': 'probe;echo probe'})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:45: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1166: in get
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    @bp.route("/grep_processes")
+    def grep_processes():
+        name = request.args.get("name")
+        if name is None:
+            return jsonify({"error": "name parameter is required"}), 400
+        # vulnerability: Remote Code Execution
+        res = subprocess.run(
+            ["ps", "aux"],
+            capture_output=True,
+            text=True,
+        )
+        if res.stdout is None:
+            return jsonify({"error": "no stdout returned"})
+        names = []
+&gt;       for line in res.stdout.split("\n"):
+                    ^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: a bytes-like object is required, not 'str'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r3\source\flask_webgoat\actions.py:54: TypeError</failure></testcase></testsuite></testsuites>

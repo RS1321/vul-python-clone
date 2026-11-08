@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -158,7 +158,7 @@
+                 return Response(error_message_helper("Please Provide a valid email address."), 400,
+                                 mimetype="application/json")
+         else:
+-            regex = r'^[a-z0-9]+[\._]?[a-z0-9]+@\w+\.\w{2,3}$'
++            regex = r'^[a-z0-9]+(?:[\._][a-z0-9]+)*@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,3}$'
+             if (re.search(regex, email_val)):
+                 user.email = email_val
+                 db.session.commit()

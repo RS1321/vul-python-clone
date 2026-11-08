@@ -1,0 +1,86 @@
+{
+  "CWE-022": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-074": {
+    "accepted": 0,
+    "resolved": 1,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-078": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-079": {
+    "accepted": 4,
+    "resolved": 4,
+    "joint_security": 0,
+    "findings": 7,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-089": {
+    "accepted": 2,
+    "resolved": 3,
+    "joint_security": 0,
+    "findings": 5,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-209": {
+    "accepted": 1,
+    "resolved": 1,
+    "joint_security": 0,
+    "findings": 6,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-215": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-327": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-502": {
+    "accepted": 1,
+    "resolved": 1,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-601": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-776": {
+    "accepted": 1,
+    "resolved": 1,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-918": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  }
+}

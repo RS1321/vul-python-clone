@@ -6,7 +6,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'continuation/results/security-resolution-v6'
+OUT=ROOT/'oracle_validation/security-resolution-v6'
 
 
 def read(path):return json.loads((OUT/path).read_text(encoding='utf-8-sig'))

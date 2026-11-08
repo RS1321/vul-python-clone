@@ -1,0 +1,10 @@
+--- 
++++ 
+@@ -44,4 +44,6 @@
+         query_db(query, [], False, True)
+         return jsonify({"success": True})
+     except sqlite3.Error as err:
+-        return jsonify({"error": "could not create user:" + err})
++        import logging
++        logging.error("Database error while creating user: %s", err)
++        return jsonify({"error": "could not create user"})

@@ -1,0 +1,177 @@
+[
+  {
+    "finding": "py/sql-injection:flask_webgoat/__init__.py:14:2",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "flask_webgoat/__init__.py",
+    "function": "query_db",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/unsafe-deserialization:flask_webgoat/actions.py:61:5",
+    "cwe": "CWE-502",
+    "all_cwes": [
+      "CWE-502"
+    ],
+    "rule": "py/unsafe-deserialization",
+    "file": "flask_webgoat/actions.py",
+    "function": "deserialized_descr",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/command-line-injection:flask_webgoat/actions.py:45:1",
+    "cwe": "CWE-078",
+    "all_cwes": [
+      "CWE-078",
+      "CWE-088"
+    ],
+    "rule": "py/command-line-injection",
+    "file": "flask_webgoat/actions.py",
+    "function": "grep_processes",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:flask_webgoat/actions.py:35:0",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "flask_webgoat/actions.py",
+    "function": "log_entry",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/url-redirection:flask_webgoat/auth.py:46:6",
+    "cwe": "CWE-601",
+    "all_cwes": [
+      "CWE-601"
+    ],
+    "rule": "py/url-redirection",
+    "file": "flask_webgoat/auth.py",
+    "function": "login_and_redirect",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:flask_webgoat/users.py:47:3",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "flask_webgoat/users.py",
+    "function": "create_user",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:run.py:15:4",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "run.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

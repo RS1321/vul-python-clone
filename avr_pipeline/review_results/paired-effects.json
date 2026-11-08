@@ -1,35 +1,10 @@
 [
   {
+    "model": "gemini-3.1-flash-lite",
     "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
-    "model": "gemma-4-26b-a4b-it",
-    "thinking_level": "minimal",
     "repetition": 1,
     "completed_conditions": [
-      "B",
-      "C",
-      "no_examples",
-      "no_guidance",
-      "simple",
       "A"
-    ],
-    "missing_factorial_conditions": [],
-    "ambiguous_duplicate_conditions": [],
-    "guidance_plus_examples_pp": 6.896551724137934,
-    "isolated_guidance_effect_pp": 3.448275862068967,
-    "guidance_given_examples_pp": 6.896551724137934,
-    "examples_given_guidance_pp": 6.896551724137934,
-    "isolated_example_effect_pp": 3.448275862068967,
-    "interaction_pp": 6.896551724137934,
-    "A_minus_C_security_pp": -37.93103448275862
-  },
-  {
-    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
-    "model": "gemma-4-26b-a4b-it",
-    "thinking_level": "minimal",
-    "repetition": 1,
-    "completed_conditions": [
-      "A",
-      "simple"
     ],
     "missing_factorial_conditions": [
       "B",
@@ -38,17 +13,148 @@
     ],
     "ambiguous_duplicate_conditions": [],
     "guidance_plus_examples_pp": null,
-    "isolated_guidance_effect_pp": null,
     "guidance_given_examples_pp": null,
     "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
     "isolated_example_effect_pp": null,
     "interaction_pp": null,
     "A_minus_C_security_pp": null
   },
   {
-    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
-    "model": "gemma-4-31b-it",
-    "thinking_level": "minimal",
+    "model": "gemini-3.1-flash-lite",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": -28.57142857142857,
+    "guidance_given_examples_pp": -28.57142857142857,
+    "examples_given_guidance_pp": 0.0,
+    "isolated_guidance_effect_pp": -28.57142857142857,
+    "isolated_example_effect_pp": 0.0,
+    "interaction_pp": 0.0,
+    "A_minus_C_security_pp": -14.285714285714285
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": -14.285714285714285,
+    "guidance_given_examples_pp": -14.285714285714285,
+    "examples_given_guidance_pp": 0.0,
+    "isolated_guidance_effect_pp": -14.285714285714285,
+    "isolated_example_effect_pp": 0.0,
+    "interaction_pp": 0.0,
+    "A_minus_C_security_pp": -14.285714285714285
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": -14.285714285714285,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 3,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": -42.857142857142854,
+    "guidance_given_examples_pp": -42.857142857142854,
+    "examples_given_guidance_pp": -14.285714285714285,
+    "isolated_guidance_effect_pp": -35.71428571428571,
+    "isolated_example_effect_pp": -7.142857142857142,
+    "interaction_pp": -14.28571428571428,
+    "A_minus_C_security_pp": -14.285714285714285
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
     "repetition": 1,
     "completed_conditions": [
       "A"
@@ -60,9 +166,610 @@
     ],
     "ambiguous_duplicate_conditions": [],
     "guidance_plus_examples_pp": null,
-    "isolated_guidance_effect_pp": null,
     "guidance_given_examples_pp": null,
     "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 0.0,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 33.333333333333336,
+    "guidance_given_examples_pp": 33.333333333333336,
+    "examples_given_guidance_pp": 0.0,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": 0.0
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 2,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 0.0,
+    "guidance_given_examples_pp": -33.333333333333336,
+    "examples_given_guidance_pp": 0.0,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": -33.333333333333336
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 3,
+    "completed_conditions": [
+      "A",
+      "A_strict",
+      "B",
+      "C",
+      "no_examples",
+      "no_guidance",
+      "simple"
+    ],
+    "missing_factorial_conditions": [],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 33.333333333333336,
+    "guidance_given_examples_pp": 33.333333333333336,
+    "examples_given_guidance_pp": 0.0,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": 0.0
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "completed_conditions": [
+      "A_strict"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "completed_conditions": [
+      "tool_agent"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 3,
+    "completed_conditions": [
+      "tool_agent"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "completed_conditions": [
+      "tool_agent"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.6-flash",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 0.0,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemini-3.6-flash",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 2,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "B",
+      "no_guidance"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "C",
+      "no_examples",
+      "simple"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "simple"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "completed_conditions": [
+      "A",
+      "B"
+    ],
+    "missing_factorial_conditions": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": 6.896551724137932,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
+    "isolated_example_effect_pp": null,
+    "interaction_pp": null,
+    "A_minus_C_security_pp": null
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "completed_conditions": [
+      "A"
+    ],
+    "missing_factorial_conditions": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous_duplicate_conditions": [],
+    "guidance_plus_examples_pp": null,
+    "guidance_given_examples_pp": null,
+    "examples_given_guidance_pp": null,
+    "isolated_guidance_effect_pp": null,
     "isolated_example_effect_pp": null,
     "interaction_pp": null,
     "A_minus_C_security_pp": null

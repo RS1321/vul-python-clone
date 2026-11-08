@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="0.355" timestamp="2026-11-08T19:12:07.132342+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.125" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.014" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.014"><failure message="AssertionError: assert not True&#10; +  where True = &lt;built-in method get of dict object at 0x000001E292B68900&gt;('success')&#10; +    where &lt;built-in method get of dict object at 0x000001E292B68900&gt; = ({'success': True}).get&#10; +      where {'success': True} = &lt;WrapperTestResponse 17 bytes [200 OK]&gt;.json">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+
+    def test_sql_authentication_bypass_rejected(client):
+        response = client.post('/login', data={'username': "' OR 1=1 -- ", 'password': 'wrong'})
+&gt;       assert not (response.json or {}).get('success')
+E       AssertionError: assert not True
+E        +  where True = &lt;built-in method get of dict object at 0x000001E292B68900&gt;('success')
+E        +    where &lt;built-in method get of dict object at 0x000001E292B68900&gt; = ({'success': True}).get
+E        +      where {'success': True} = &lt;WrapperTestResponse 17 bytes [200 OK]&gt;.json
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:30: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.019" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.013" /></testsuite></testsuites>

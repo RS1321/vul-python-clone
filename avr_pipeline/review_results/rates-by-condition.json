@@ -1,0 +1,1940 @@
+[
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.1-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.1724137931034483,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.1-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.27586206896551724,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.23809523809523805,
+    "repetition_cluster_ci95": [
+      0.14285714285714285,
+      0.2857142857142857
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A_strict",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.2857142857142857,
+    "repetition_cluster_ci95": [
+      0.14285714285714285,
+      0.42857142857142855
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.5238095238095238,
+    "repetition_cluster_ci95": [
+      0.42857142857142855,
+      0.5714285714285714
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "C",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.38095238095238093,
+    "repetition_cluster_ci95": [
+      0.2857142857142857,
+      0.42857142857142855
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_examples",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.2857142857142857,
+    "repetition_cluster_ci95": [
+      0.2857142857142857,
+      0.2857142857142857
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_guidance",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.5238095238095238,
+    "repetition_cluster_ci95": [
+      0.42857142857142855,
+      0.5714285714285714
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "simple",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.14285714285714285,
+    "repetition_cluster_ci95": [
+      0.14285714285714285,
+      0.14285714285714285
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "53726d359c079edd438722d56bc036b9faa3ce103c6088d75a67d4f0c880e430"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.2857142857142857,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "53726d359c079edd438722d56bc036b9faa3ce103c6088d75a67d4f0c880e430"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.42857142857142855,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "10523c1aaee527f152215522bf508838b540e7b5cbaf7cfa1fc06f858ab04c12"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      2
+    ],
+    "mean_resolution_rate": 0.2857142857142857,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+      "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6290322580645161,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.4827586206896552,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.4827586206896552,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.8888888888888888,
+    "repetition_cluster_ci95": [
+      0.6666666666666666,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A_strict",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.7777777777777777,
+    "repetition_cluster_ci95": [
+      0.6666666666666666,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.6666666666666666,
+    "repetition_cluster_ci95": [
+      0.6666666666666666,
+      0.6666666666666666
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "C",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_examples",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.8888888888888888,
+    "repetition_cluster_ci95": [
+      0.6666666666666666,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_guidance",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.7777777777777777,
+    "repetition_cluster_ci95": [
+      0.6666666666666666,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "simple",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": [
+      1.0,
+      1.0
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "10523c1aaee527f152215522bf508838b540e7b5cbaf7cfa1fc06f858ab04c12"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A_strict",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.42857142857142855,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "context_profile": "tool-selected",
+      "implementation_sha256": {
+        "review/agent_baseline.py": "df6d304257ccebb46c41af6cae834a84a6ce4d1530aca6c8875e734869323c42",
+        "review/runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482",
+        "review/tool_client.py": "04b005bb71822d2cf397d703911fe28e4611a915b6b4da0315cc0c5d30681662"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "tool_agent",
+    "repetitions": [
+      1,
+      3,
+      2
+    ],
+    "mean_resolution_rate": 0.19047619047619047,
+    "repetition_cluster_ci95": [
+      0.0,
+      0.42857142857142855
+    ]
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1,
+      2
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+      "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6129032258064516,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3793103448275862,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "1c24c28b8f046906625565301d902bf6049cdaf3a4e11c6682dcd2257da4a987",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3793103448275862,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": null,
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "c54f30796b0670844ba7b58e03a99f12ea64481eb6ddc45a25faf6f2c61f6bf9"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3793103448275862,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": null,
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "c54f30796b0670844ba7b58e03a99f12ea64481eb6ddc45a25faf6f2c61f6bf9"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_guidance",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3793103448275862,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "full",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "a98e947eb9a58ec8a6b3c43a448fc4e247a97817dc5c218681a88410099f2683"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "C",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.8275862068965517,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "full",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "a98e947eb9a58ec8a6b3c43a448fc4e247a97817dc5c218681a88410099f2683"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "no_examples",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3793103448275862,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "full",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "a98e947eb9a58ec8a6b3c43a448fc4e247a97817dc5c218681a88410099f2683"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "simple",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.7931034482758621,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6666666666666666,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+        "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+        "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+        "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482"
+      },
+      "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6666666666666666,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "full",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "660e5ac28468bd41b10e7c8f23f750c5728d9543ec169cbf914602dfb13ca738"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.4482758620689655,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": null,
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d5c22a33a88f074036d2b11b6963051187a513d337387191ef4a1e9dff0a3a",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "8711848d9455ffc0acdb6357ae80cfc6c40a8cadfc47d2063ae2d42143b35e85"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6666666666666666,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": null,
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "c54f30796b0670844ba7b58e03a99f12ea64481eb6ddc45a25faf6f2c61f6bf9"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-26b-a4b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "simple",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 1.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": null,
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "76a6331c1c3d99333be329d9bd22236939cfda25fd8787398a6617b13101ca79",
+        "llm\\review_patcher.py": "65219ee4d62a9ad60a15f48917475c6d98782cb7de36529fc804f6c8583d5f50",
+        "review\\runner.py": "c54f30796b0670844ba7b58e03a99f12ea64481eb6ddc45a25faf6f2c61f6bf9"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": "minimal",
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.6666666666666666,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "f0da334c7bbf5aebb3b90e3cc1d716d115dbc75810d5a114d7d5788383ad6cd5"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 1024,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 1024,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.0,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [],
+      "sarif_sha256": "f78d5f6e5fb95c78470b0856cc3867f32265f5a0388bcc4ac1af091203717de4",
+      "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3225806451612903,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.1724137931034483,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "6bfe9e67a35e2e9c41e910612b581cb91d8bec068c29e3d37208c69a7c17000b",
+        "llm\\llm_client.py": "48d09e78dddc193f509aeb482eb649d5488f31fa11b248101613c94bf40e82b2",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "10ad1b7db444c8902d7a3d6f043a4eafe32e5bf001af7fe45d7264cca373bddf"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [
+        "tests",
+        "-m",
+        "not network"
+      ],
+      "sarif_sha256": "ab0f18d24231a5f302095fd82aeb1e16e14e55852be11aa6814f376ba481e809",
+      "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "B",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.10344827586206896,
+    "repetition_cluster_ci95": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": null,
+      "context_profile": "compact",
+      "implementation_sha256": {
+        "llm\\factorial_prompts.py": "a40e72ebf08b8bd68122a93bbc0f8fb172a8fc1f63931e2964aaa12d0c391a81",
+        "llm\\llm_client.py": "fd953efae100a8c8f332eaec3faa8b7d67e61be5cb9127f4a7a646ab7ef02bbd",
+        "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "review\\runner.py": "8af38369ddd02867020be09eee2ca1cb63b2018683055614ea65856400d05913"
+      },
+      "library_sha256": "db17076967471418258a4434e53e2f16e5b9853c445c3f24009cb04ea3ff766c",
+      "lint_environment_sha256": null,
+      "max_tokens": 8192,
+      "minimality_policy": null,
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "provider": "local",
+      "pytest_args": [],
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": null,
+      "thinking_level": null,
+      "validation_environment": null,
+      "zap_sha256": null
+    },
+    "condition": "A",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.0,
+    "repetition_cluster_ci95": null
+  }
+]

@@ -1,0 +1,1484 @@
+[
+  {
+    "finding": "py/flask-debug:challenge/labs/bopla_lab/app.py:152:41",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "challenge/labs/bopla_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:challenge/labs/business_logic_lab/app.py:200:45",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "challenge/labs/business_logic_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:challenge/labs/security_headers_lab/app.py:233:35",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "challenge/labs/security_headers_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/url-redirection:challenge/labs/security_headers_lab/app.py:189:54",
+    "cwe": "CWE-601",
+    "all_cwes": [
+      "CWE-601"
+    ],
+    "rule": "py/url-redirection",
+    "file": "challenge/labs/security_headers_lab/app.py",
+    "function": "toggle_secure_mode",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "challenge/management/commands/startuplabs.py",
+    "function": "Command.handle",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:675:27",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "delete_custom_lab",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:654:26",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "update_custom_lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:625:25",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "update_custom_lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:597:24",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "create_custom_lab",
+    "accepted": true,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:572:23",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "create_custom_lab",
+    "accepted": false,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:533:22",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "stop_lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:507:21",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "list_user_labs",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:485:20",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "stop_user_labs",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:408:19",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "start_lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:374:18",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "start_lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:challenge/views.py:244:8",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "challenge/views.py",
+    "function": "_resolve_build_path",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:147:17",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "DoItFast.delete",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:challenge/views.py:110:16",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "challenge/views.py",
+    "function": "DoItFast.post",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/a9_uckv_lab/app.py:124:31",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/a9_uckv_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/log-injection:dockerized_labs/a9_uckv_lab/app.py:115:61",
+    "cwe": "CWE-117",
+    "all_cwes": [
+      "CWE-117"
+    ],
+    "rule": "py/log-injection",
+    "file": "dockerized_labs/a9_uckv_lab/app.py",
+    "function": "process_image",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/log-injection:dockerized_labs/a9_uckv_lab/app.py:66:60",
+    "cwe": "CWE-117",
+    "all_cwes": [
+      "CWE-117"
+    ],
+    "rule": "py/log-injection",
+    "file": "dockerized_labs/a9_uckv_lab/app.py",
+    "function": "upload_yaml",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/unsafe-deserialization:dockerized_labs/a9_uckv_lab/app.py:62:50",
+    "cwe": "CWE-502",
+    "all_cwes": [
+      "CWE-502"
+    ],
+    "rule": "py/unsafe-deserialization",
+    "file": "dockerized_labs/a9_uckv_lab/app.py",
+    "function": "upload_yaml",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/auth_failure_lab/app.py:238:34",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:227:2",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:227:13",
+    "cwe": "CWE-1004",
+    "all_cwes": [
+      "CWE-1004"
+    ],
+    "rule": "py/client-exposed-cookie",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": true,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:227:57",
+    "cwe": "CWE-614",
+    "all_cwes": [
+      "CWE-614"
+    ],
+    "rule": "py/insecure-cookie",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": true,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/weak-sensitive-data-hashing:dockerized_labs/auth_failure_lab/app.py:213:47",
+    "cwe": "CWE-327",
+    "all_cwes": [
+      "CWE-327",
+      "CWE-328",
+      "CWE-916"
+    ],
+    "rule": "py/weak-sensitive-data-hashing",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/client-exposed-cookie:dockerized_labs/auth_failure_lab/app.py:208:12",
+    "cwe": "CWE-1004",
+    "all_cwes": [
+      "CWE-1004"
+    ],
+    "rule": "py/client-exposed-cookie",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": false,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/insecure-cookie:dockerized_labs/auth_failure_lab/app.py:208:56",
+    "cwe": "CWE-614",
+    "all_cwes": [
+      "CWE-614"
+    ],
+    "rule": "py/insecure-cookie",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": false,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:112:1",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab1",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/auth_failure_lab/app.py:105:0",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/auth_failure_lab/app.py",
+    "function": "lab1",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/broken_access_lab/main.py:70:46",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/broken_access_lab/main.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/broken_auth_lab/app.py:147:37",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/broken_auth_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:66:4",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/broken_auth_lab/app.py",
+    "function": "login",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/broken_auth_lab/app.py:64:3",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/broken_auth_lab/app.py",
+    "function": "login",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/command_injection_lab/app.py:60:28",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/command_injection_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11",
+    "cwe": "CWE-094",
+    "all_cwes": [
+      "CWE-094",
+      "CWE-095",
+      "CWE-116"
+    ],
+    "rule": "py/code-injection",
+    "file": "dockerized_labs/command_injection_lab/app.py",
+    "function": "lab2",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/command-line-injection:dockerized_labs/command_injection_lab/app.py:30:9",
+    "cwe": "CWE-078",
+    "all_cwes": [
+      "CWE-078",
+      "CWE-088"
+    ],
+    "rule": "py/command-line-injection",
+    "file": "dockerized_labs/command_injection_lab/app.py",
+    "function": "lab1",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/cookie-injection:dockerized_labs/crypto_failure_lab/app.py:101:5",
+    "cwe": "CWE-020",
+    "all_cwes": [
+      "CWE-020"
+    ],
+    "rule": "py/cookie-injection",
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "function": "lab3",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49",
+    "cwe": "CWE-327",
+    "all_cwes": [
+      "CWE-327",
+      "CWE-328",
+      "CWE-916"
+    ],
+    "rule": "py/weak-sensitive-data-hashing",
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "function": "lab1",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:25:48",
+    "cwe": "CWE-327",
+    "all_cwes": [
+      "CWE-327",
+      "CWE-328",
+      "CWE-916"
+    ],
+    "rule": "py/weak-sensitive-data-hashing",
+    "file": "dockerized_labs/crypto_failure_lab/app.py",
+    "function": "custom_hash",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/dependency_attack_lab/app.py:198:42",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/dependency_attack_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/unsafe-deserialization:dockerized_labs/insec_des_lab/main.py:40:52",
+    "cwe": "CWE-502",
+    "all_cwes": [
+      "CWE-502"
+    ],
+    "rule": "py/unsafe-deserialization",
+    "file": "dockerized_labs/insec_des_lab/main.py",
+    "function": "deserialize_data",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/insecure_design_lab/app.py:153:40",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/insecure_design_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/insufficient_logging_lab/app.py:96:39",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/insufficient_logging_lab/app.py",
+    "function": "<module>",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/open_source_library_attack_lab/app.py:259:30",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/open_source_library_attack_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/package_injection_lab/app.py:260:33",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/package_injection_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/sde/app.py:49:29",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/sde/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/sec_misconfig/app.py:135:44",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/sec_misconfig/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/software_integrity_lab/app.py:90:32",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/software_integrity_lab/app.py",
+    "function": "<module>",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/unsafe-deserialization:dockerized_labs/software_integrity_lab/app.py:45:51",
+    "cwe": "CWE-502",
+    "all_cwes": [
+      "CWE-502"
+    ],
+    "rule": "py/unsafe-deserialization",
+    "file": "dockerized_labs/software_integrity_lab/app.py",
+    "function": "lab1",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/sql_injection_lab/app.py",
+    "function": "<module>",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:dockerized_labs/sql_injection_lab/app.py:57:10",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "dockerized_labs/sql_injection_lab/app.py",
+    "function": "lab",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/full-ssrf:dockerized_labs/ssrf_lab/app.py:37:59",
+    "cwe": "CWE-918",
+    "all_cwes": [
+      "CWE-918"
+    ],
+    "rule": "py/full-ssrf",
+    "file": "dockerized_labs/ssrf_lab/app.py",
+    "function": "lab2",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:dockerized_labs/ssrf_lab/app.py:22:6",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "dockerized_labs/ssrf_lab/app.py",
+    "function": "lab1",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/template_injection_lab/app.py:123:38",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/template_injection_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:113:15",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "dockerized_labs/template_injection_lab/app.py",
+    "function": "view_blog",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:dockerized_labs/template_injection_lab/app.py:104:14",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "dockerized_labs/template_injection_lab/app.py",
+    "function": "create_blog",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/url-redirection:dockerized_labs/xss_lab/app.py:84:53",
+    "cwe": "CWE-601",
+    "all_cwes": [
+      "CWE-601"
+    ],
+    "rule": "py/url-redirection",
+    "file": "dockerized_labs/xss_lab/app.py",
+    "function": "toggle_theme",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/flask-debug:dockerized_labs/xxe_lab/app.py:95:43",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "dockerized_labs/xxe_lab/app.py",
+    "function": "<module>",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/xxe:dockerized_labs/xxe_lab/app.py:61:55",
+    "cwe": "CWE-611",
+    "all_cwes": [
+      "CWE-611",
+      "CWE-827"
+    ],
+    "rule": "py/xxe",
+    "file": "dockerized_labs/xxe_lab/app.py",
+    "function": "xxe_parse",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/xml-bomb:dockerized_labs/xxe_lab/app.py:61:58",
+    "cwe": "CWE-776",
+    "all_cwes": [
+      "CWE-776",
+      "CWE-400"
+    ],
+    "rule": "py/xml-bomb",
+    "file": "dockerized_labs/xxe_lab/app.py",
+    "function": "xxe_parse",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

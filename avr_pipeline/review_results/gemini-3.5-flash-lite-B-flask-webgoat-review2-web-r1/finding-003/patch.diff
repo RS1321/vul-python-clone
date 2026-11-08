@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -43,7 +43,7 @@
+     # vulnerability: Remote Code Execution
+     res = subprocess.run(
+         ["ps aux | grep " + name + " | awk '{print $11}'"],
+-        shell=True,
++        shell=False,
+         capture_output=True,
+     )
+     if res.stdout is None:

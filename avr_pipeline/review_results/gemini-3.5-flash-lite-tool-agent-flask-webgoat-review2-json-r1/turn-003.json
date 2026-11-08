@@ -1,0 +1,4 @@
+{
+  "turn": 3,
+  "infrastructure_error": "Gemini returned incomplete/blocked output: MALFORMED_FUNCTION_CALL"
+}

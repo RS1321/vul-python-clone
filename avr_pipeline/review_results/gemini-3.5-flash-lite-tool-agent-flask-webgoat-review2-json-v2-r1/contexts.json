@@ -1,0 +1,2387 @@
+[
+  {
+    "finding_number": "FINDING 003",
+    "finding_id": "py/sql-injection:flask_webgoat/__init__.py:14:2",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/sql-injection",
+      "cwe": "CWE-089",
+      "all_cwes": [
+        "CWE-089"
+      ],
+      "description": "This SQL query depends on a [user-provided value](1).\nThis SQL query depends on a [user-provided value](2).",
+      "location": {
+        "file_path": "flask_webgoat/__init__.py",
+        "start_line": 14,
+        "end_line": 14,
+        "function": "query_db"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 9,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 9,
+                        "startColumn": 16,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 9,
+                        "startColumn": 16,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 9,
+                        "startColumn": 5,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for username"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 12,
+                        "endColumn": 20
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for username"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 12,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Tuple [Tuple element at index 0]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 9,
+                        "endLine": 20,
+                        "endColumn": 31
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 18,
+                        "startColumn": 5,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 22,
+                        "startColumn": 23,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 14,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 14,
+                        "startColumn": 37,
+                        "endColumn": 42
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 16,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 16,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 5,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for password"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 22,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for password"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 12,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Tuple [Tuple element at index 1]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 9,
+                        "endLine": 20,
+                        "endColumn": 31
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 18,
+                        "startColumn": 5,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 22,
+                        "startColumn": 23,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 14,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 14,
+                        "startColumn": 37,
+                        "endColumn": 42
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 3,
+                        "startColumn": 48,
+                        "endColumn": 55
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 3,
+                        "startColumn": 48,
+                        "endColumn": 55
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 16,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 16,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 5,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for username"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 40,
+                        "startColumn": 12,
+                        "endColumn": 20
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for username"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 40,
+                        "startColumn": 12,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Tuple [Tuple element at index 0]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 39,
+                        "startColumn": 9,
+                        "endLine": 40,
+                        "endColumn": 50
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 38,
+                        "startColumn": 5,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 44,
+                        "startColumn": 18,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 14,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 14,
+                        "startColumn": 37,
+                        "endColumn": 42
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 3,
+                        "startColumn": 48,
+                        "endColumn": 55
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 3,
+                        "startColumn": 48,
+                        "endColumn": 55
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 16,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 16,
+                        "endColumn": 44
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 20,
+                        "startColumn": 5,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for password"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 40,
+                        "startColumn": 22,
+                        "endColumn": 30
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for password"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 40,
+                        "startColumn": 12,
+                        "endColumn": 49
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Tuple [Tuple element at index 1]"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 39,
+                        "startColumn": 9,
+                        "endLine": 40,
+                        "endColumn": 50
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 38,
+                        "startColumn": 5,
+                        "endColumn": 10
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 44,
+                        "startColumn": 18,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 10,
+                        "startColumn": 14,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/__init__.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 1
+                      },
+                      "region": {
+                        "startLine": 14,
+                        "startColumn": 37,
+                        "endColumn": 42
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for query"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "d0e7f9bd0c50e3e6:1",
+      "primaryLocationStartColumnFingerprint": "28"
+    }
+  },
+  {
+    "finding_number": "FINDING 006",
+    "finding_id": "py/unsafe-deserialization:flask_webgoat/actions.py:61:5",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/unsafe-deserialization",
+      "cwe": "CWE-502",
+      "all_cwes": [
+        "CWE-502"
+      ],
+      "description": "Unsafe deserialization depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "flask_webgoat/actions.py",
+        "start_line": 61,
+        "end_line": 61,
+        "function": "deserialized_descr"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 58,
+                        "startColumn": 15,
+                        "endColumn": 22
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 58,
+                        "startColumn": 15,
+                        "endColumn": 27
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 58,
+                        "startColumn": 15,
+                        "endColumn": 42
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 58,
+                        "startColumn": 5,
+                        "endColumn": 12
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for pickled"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 59,
+                        "startColumn": 5,
+                        "endColumn": 9
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "Decoding-Base64",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 61,
+                        "startColumn": 33,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for data"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "688fdab04f2d6a28:1",
+      "primaryLocationStartColumnFingerprint": "28"
+    }
+  },
+  {
+    "finding_number": "FINDING 002",
+    "finding_id": "py/command-line-injection:flask_webgoat/actions.py:45:1",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/command-line-injection",
+      "cwe": "CWE-078",
+      "all_cwes": [
+        "CWE-078",
+        "CWE-088"
+      ],
+      "description": "This command line depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "flask_webgoat/actions.py",
+        "start_line": 45,
+        "end_line": 45,
+        "function": "grep_processes"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 42,
+                        "startColumn": 12,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 42,
+                        "startColumn": 12,
+                        "endColumn": 24
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 42,
+                        "startColumn": 12,
+                        "endColumn": 36
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 42,
+                        "startColumn": 5,
+                        "endColumn": 9
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for name"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 45,
+                        "startColumn": 10,
+                        "endColumn": 58
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "8a7c0b3030cedf51:1",
+      "primaryLocationStartColumnFingerprint": "1"
+    }
+  },
+  {
+    "finding_number": "FINDING 001",
+    "finding_id": "py/path-injection:flask_webgoat/actions.py:35:0",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/path-injection",
+      "cwe": "CWE-022",
+      "all_cwes": [
+        "CWE-022",
+        "CWE-023",
+        "CWE-036",
+        "CWE-073",
+        "CWE-099"
+      ],
+      "description": "This path depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "flask_webgoat/actions.py",
+        "start_line": 35,
+        "end_line": 35,
+        "function": "log_entry"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 6,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 22,
+                        "endColumn": 29
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 22,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 22,
+                        "endColumn": 50
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 19,
+                        "startColumn": 5,
+                        "endColumn": 19
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for filename_param"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 32,
+                        "startColumn": 5,
+                        "endColumn": 13
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for filename"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 5,
+                        "endColumn": 9
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for path"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/actions.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 35,
+                        "startColumn": 10,
+                        "endColumn": 14
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for path"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "40ddae6e187f25f6:1",
+      "primaryLocationStartColumnFingerprint": "5"
+    }
+  },
+  {
+    "finding_number": "FINDING 007",
+    "finding_id": "py/url-redirection:flask_webgoat/auth.py:46:6",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/url-redirection",
+      "cwe": "CWE-601",
+      "all_cwes": [
+        "CWE-601"
+      ],
+      "description": "Untrusted URL redirection depends on a [user-provided value](1).",
+      "location": {
+        "file_path": "flask_webgoat/auth.py",
+        "start_line": 46,
+        "end_line": 46,
+        "function": "login_and_redirect"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 31,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 5,
+                        "endColumn": 8
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 46,
+                        "startColumn": 25,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 32,
+                        "startColumn": 16,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 5,
+                        "endColumn": 8
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 46,
+                        "startColumn": 25,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 1,
+                        "startColumn": 30,
+                        "endColumn": 37
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 18
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 23
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 11,
+                        "endColumn": 34
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 33,
+                        "startColumn": 5,
+                        "endColumn": 8
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/auth.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 2
+                      },
+                      "region": {
+                        "startLine": 46,
+                        "startColumn": 25,
+                        "endColumn": 28
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for url"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "b0ba9af550b4bea0:1",
+      "primaryLocationStartColumnFingerprint": "16"
+    }
+  },
+  {
+    "finding_number": "FINDING 004",
+    "finding_id": "py/stack-trace-exposure:flask_webgoat/users.py:47:3",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/stack-trace-exposure",
+      "cwe": "CWE-209",
+      "all_cwes": [
+        "CWE-209",
+        "CWE-497"
+      ],
+      "description": "[Stack trace information](1) flows to this location and may be exposed to an external user.",
+      "location": {
+        "file_path": "flask_webgoat/users.py",
+        "start_line": 47,
+        "end_line": 47,
+        "function": "create_user"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 46,
+                        "startColumn": 29,
+                        "endColumn": 32
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for err"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 47,
+                        "startColumn": 34,
+                        "endColumn": 64
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for BinaryExpr"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "flask_webgoat/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 3
+                      },
+                      "region": {
+                        "startLine": 47,
+                        "startColumn": 24,
+                        "endColumn": 65
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Dict"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "e9c4ef6e3b88a541:1",
+      "primaryLocationStartColumnFingerprint": "15"
+    }
+  },
+  {
+    "finding_number": "FINDING 005",
+    "finding_id": "py/flask-debug:run.py:15:4",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/flask-debug",
+      "cwe": "CWE-215",
+      "all_cwes": [
+        "CWE-215",
+        "CWE-489"
+      ],
+      "description": "A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.",
+      "location": {
+        "file_path": "run.py",
+        "start_line": 13,
+        "end_line": 15,
+        "function": null
+      },
+      "data_flow": []
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "592eb5113a7053ce:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    },
+    "module_snapshot": "if __name__ == '__main__':\n    # vulnerability: Security Misconfiguration\n    app.run(debug=True)"
+  }
+]

@@ -1,5 +1,7 @@
 # AVR: vulnerability repair and evaluation
 
+Latest manuscript follow-up: [measured results](avr_pipeline/review_docs/MEASURED_RESULTS.md) and [delivery status](avr_pipeline/review_docs/DELIVERY_STATUS.md). The five-model study is incomplete; the reports distinguish completed model runs, access failures and agent-authored validation.
+
 This repository contains the original deliberately vulnerable Flask benchmark and an automated vulnerability remediation (AVR) pipeline, with recorded experiments, defensive repairs and reproducible validation scripts.
 
 **The root `vulnerable_app.py` remains the vulnerable baseline.** Hardened PyGoat and VAmPI applications are generated in separate clones. Run the benchmark and security checks in an isolated local environment.
@@ -8,7 +10,7 @@ This repository contains the original deliberately vulnerable Flask benchmark an
 
 | What you need | Where to look |
 |---|---|
-| Latest repairs, security checks and active scans | [Security resolution report](avr_pipeline/continuation/results/security-resolution-v6/SECURITY_RESOLUTION.md) |
+| Latest repairs, security checks and active scans | [Security resolution report](avr_pipeline/oracle_validation/security-resolution-v6/SECURITY_RESOLUTION.md) |
 | Five-model comparison and reviewer response | [Code review response](avr_pipeline/continuation/results/CODE_REVIEW_RESPONSE.md) |
 | Production, multi-file and JavaScript measurements | [Expanded evaluation](avr_pipeline/continuation/results/completion/EXPANDED_EVALUATION.md) |
 | Production experiment setup | [Reproduction guide](avr_pipeline/continuation/results/completion/REPRODUCE.md) |
@@ -109,8 +111,8 @@ Run from `avr_pipeline`. Git downloads separate public inputs at the recorded co
 The complete repaired applications appear in:
 
 ```text
-avr_pipeline/continuation/results/security-resolution-v6/vampi/source/
-avr_pipeline/continuation/results/security-resolution-v6/pygoat/source/
+avr_pipeline/oracle_validation/security-resolution-v6/vampi/source/
+avr_pipeline/oracle_validation/security-resolution-v6/pygoat/source/
 ```
 
 The deterministic follow-up applies explicit repair logic; it makes no new model requests. PyGoat first receives the saved Gemini patch and then the agent-authored changes. Existing repair clones are preserved: use a fresh repository checkout to replay the documented `v6` sequence again.
@@ -165,7 +167,7 @@ avr_pipeline/.review-work/zap/     Extracted official ZAP distribution
 
 The active profile binds disposable servers to loopback, verifies anonymous denial and authenticated access, and runs reflected-XSS rule `40012` and SQL-injection rule `40018`. CSRF remains enabled and valid form sessions are supplied. The PyGoat gateway exposes its SQL/XSS lessons behind real Django-session verification. It does not start Docker labs or scan external targets.
 
-Raw plans, traffic counts, logs, SARIF/JSON reports and source manifests are under [the latest results](avr_pipeline/continuation/results/security-resolution-v6/). Remaining WSGI server-version and informational observations are explained in the report.
+Raw plans, traffic counts, logs, SARIF/JSON reports and source manifests are under [the latest results](avr_pipeline/oracle_validation/security-resolution-v6/). Remaining WSGI server-version and informational observations are explained in the report.
 
 ## Configure and run new model experiments
 
@@ -213,7 +215,7 @@ The project owner defines the validation command. Generated code does not select
 
 [AVR pipeline checks](.github/workflows/avr-pipeline-checks.yml) supports manual dispatch and matching pull requests. It installs pipeline requirements on Windows/Python 3.12 and runs `review_tests`. It does not run the full model or scanner study on every push.
 
-Experiment runners work on separate clones and do not automatically push changes. The legacy pipeline defaults to `repository.publish=false`. The old branch/PR cleanup workflow is unrelated to normal verification and deletes branches/closes PRs when explicitly triggered; do not use it as a test command.
+Experiment runners work on separate clones and do not automatically push changes. The legacy pipeline defaults to `repository.publish=false`. The old branch/PR cleanup workflow is archived outside `.github/workflows` and cannot be triggered as a workflow.
 
 ## Scope, provenance and sources
 
@@ -222,3 +224,8 @@ Earlier experiments and failed attempts are retained as evidence. The latest def
 Manuscript revisions were deferred. Original human reviewer identities, qualifications and signoffs for the guidance/examples were not established. Automated checks, model critique and Git authorship records do not replace independent human expert review.
 
 Sources: [original vulnerable application](https://github.com/Deep-Jiwan/vul-python-app), [original AVR pipeline](https://github.com/Deep-Jiwan/AVR-System), [PyGoat](https://github.com/adeyosemanputra/pygoat), and [VAmPI](https://github.com/erev0s/VAmPI). Production advisory references, input commits, environment records and implementation hashes are linked from the evaluation reports. Upstream source and licensing remain attributable to their respective projects.
+
+
+The manuscript follow-up is on the `codex/manuscript-evaluation` branch. Read [the manuscript comparison](avr_pipeline/review_docs/MANUSCRIPT_CORRELATION.md) and [the review-2 reproduction guide](avr_pipeline/review_docs/REPRODUCING_REVIEW2.md). New model results remain separate from [agent-authored oracle validation](avr_pipeline/oracle_validation/README.md).
+
+Current follow-up evidence: [measured results](avr_pipeline/review_docs/MEASURED_RESULTS.md), [delivery status and remaining work](avr_pipeline/review_docs/DELIVERY_STATUS.md), and [factorial figure](avr_pipeline/review_docs/figures/factorial-review2.png). The full 420-cell five-model study remains incomplete; see the status report for exact coverage.

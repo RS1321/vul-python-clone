@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -9,6 +9,7 @@
+ 
+ @bp.route("/create_user", methods=["POST"])
+ def create_user():
++    from flask import current_app
+     user_info = session.get("user_info", None)
+     if user_info is None:
+         return jsonify({"error": "no user_info found in session"})
+@@ -44,4 +45,5 @@
+         query_db(query, [], False, True)
+         return jsonify({"success": True})
+     except sqlite3.Error as err:
+-        return jsonify({"error": "could not create user:" + err})
++        current_app.logger.exception("Could not create user")
++        return jsonify({"error": "could not create user"}), 500

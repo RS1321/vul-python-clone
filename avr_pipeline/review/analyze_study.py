@@ -9,7 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from review.outcomes import export_run, configuration
+from review.outcomes import export_run, configuration, write_rows
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
 
 COMPARISONS = [('A', 'B'), ('A', 'no_guidance'), ('A', 'no_examples'), ('A', 'C'), ('A', 'simple'), ('A_strict', 'A')]
@@ -18,13 +18,14 @@ COMPARISONS = [('A', 'B'), ('A', 'no_guidance'), ('A', 'no_examples'), ('A', 'C'
 def identity(m):
     keys = ('source_commit', 'provider', 'model', 'sarif_sha256', 'library_sha256', 'max_tokens',
             'temperature', 'thinking_level', 'context_profile', 'zap_sha256', 'pytest_args',
-            'test_policy_sha256', 'behavioral_test_sha256', 'implementation_sha256', 'minimality_policy')
+            'test_policy_sha256', 'behavioral_test_sha256', 'implementation_sha256', 'minimality_policy',
+            'lint_environment_sha256', 'validation_environment')
     return json.dumps({k: m.get(k) for k in keys}, sort_keys=True)
 
 
 def analyze(root):
     groups = defaultdict(lambda: defaultdict(list))
-    configurations, inventory, baseline_cells = [], [], defaultdict(lambda: defaultdict(list))
+    configurations, inventory, baseline_cells, strict_audits = [], [], defaultdict(lambda: defaultdict(list)), []
     protocol = json.loads((ROOT/'review/study-protocol.json').read_text())
     ids = {int(e['cwe'].split('-')[1]) for e in json.loads((ROOT/'llm/guidance_library.review-2.json').read_text())['entries']}
     condition_rates = defaultdict(list)
@@ -37,16 +38,13 @@ def analyze(root):
             continue
         rows = export_run(path.parent, policy)
         if m.get('condition') == 'tool_agent':
-            records = json.loads((path.parent/'results.json').read_text())
+            result_path = path.parent/'results.json'
+            records = json.loads(result_path.read_text()) if result_path.exists() else []
             turns = {r['finding_id']:r.get('agent_turns') for r in records}
             for r in rows:
                 r['attempts'] = None
                 r['agent_turns'] = turns.get(r['finding'])
-            (path.parent/'finding-outcomes.json').write_text(json.dumps(rows, indent=2), encoding='utf-8')
-            with (path.parent/'finding-outcomes.csv').open('w', encoding='utf-8', newline='') as stream:
-                fields = ['finding','cwe','rule','file','function','accepted','resolved','attempts','agent_turns','joint_security']
-                writer = csv.DictWriter(stream, fieldnames=fields, extrasaction='ignore')
-                writer.writeheader(); writer.writerows(rows)
+            write_rows(path.parent,rows)
         configurations.append(dict(run=path.parent.name, **configuration(m),
              transport_policy=m.get('transport_policy'),
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
@@ -61,6 +59,16 @@ def analyze(root):
         if complete:
             groups[(identity(m), m.get('repetition', 1))][m['condition']].append((path.parent.name, m, rows))
             is_primary = m.get('implementation_sha256') == protocol.get('primary_implementation_sha256')
+            if is_primary and m['condition'] == 'A_strict':
+                raw = json.loads((path.parent/'results.json').read_text())
+                blocked = [{'finding':r['finding_id'],'attempt':a['attempt'],'new_failures':a['validation']['new_test_failures']}
+                           for r in raw for a in r.get('attempts',[]) if not a.get('accepted') and a.get('validation',{}).get('new_test_failures')]
+                strict_audits.append({'run':path.parent.name,'model':m['model'],'source_commit':m['source_commit'],
+                    'repetition':m['repetition'],'resolved':m['sast']['resolved_findings'],'new_alerts':m['sast']['new_findings'],
+                    'blocked_candidates':blocked,'blocked_candidate_count':len(blocked),
+                    'distinct_findings_with_blocked_candidates':len({b['finding'] for b in blocked}),
+                    'final_test_change':rows[0]['test_change'] if rows else None,
+                    'interpretation':'Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior.'})
             if m.get('condition') == 'tool_agent' or (m.get('condition') == 'A' and is_primary):
                 keys = ('source_commit','provider','model','sarif_sha256','max_tokens','temperature',
                         'repetition','pytest_args','test_policy_sha256','behavioral_test_sha256')
@@ -141,14 +149,23 @@ def analyze(root):
                      repetition_cluster_ci95=repeated_cluster_ci([v for r,v in values]))
                  for (ident,c),values in condition_rates.items()]
     outputs = {'paired-effects.json': legacy_effects, 'matched-statistics.json': effects, 'factorial-effects.json': factorial,
-               'external-baseline-effects.json':baseline_effects, 'rates-by-condition.json':rate_rows,
+               'external-baseline-effects.json':baseline_effects, 'rates-by-condition.json':rate_rows,'strict-gate-audit.json':strict_audits,
                'repeat-effects.json': repeat_effects, 'configuration-as-run.json': configurations,
                'outcome-inventory.json': inventory}
     for name, data in outputs.items():
         (root / name).write_text(json.dumps(data, indent=2), encoding='utf-8')
+    fields = ['run','model','provider','source_commit','condition','repetition','gates','test_policy','pytest_args',
+              'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
+              'lint_environment_sha256','implementation_sha256','transport_policy','agent_turn_cap','status']
+    flat = [dict(r,gates=(r.get('settings') or {}).get('gates'),test_policy=(r.get('settings') or {}).get('tests')) for r in configurations]
+    with (root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
+        writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')
+        writer.writeheader()
+        writer.writerows({k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in flat)
     (root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
         'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
+        'junit_normalization':'Retained JUnit setup/collection errors override early summaries in derived tables only; original manifests are unchanged.',
         'unknowns': 'No imputation of missing conditions, behavior tests, interrupted runs, or partial duplicate-group identities.',
         'statistics': 'Wilson descriptive per-run intervals; exact conditional McNemar; matched risk difference and odds ratio; Holm across reported tests; repetition-cluster bootstrap only with >=3 repetitions. Finding-level McNemar assumes independent discordances; shared functions can violate this, so these are exploratory fixed-subject comparisons.'}, indent=2))
     return {'runs': len(inventory), 'full_runs': sum(r['full_run'] for r in inventory),

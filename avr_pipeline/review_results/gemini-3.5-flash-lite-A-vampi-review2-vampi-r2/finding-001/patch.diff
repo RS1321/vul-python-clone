@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -140,10 +140,11 @@
+         return Response(error_message_helper(resp), 401, mimetype="application/json")
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+-        if vuln:  # Regex DoS
++        email_str = str(request_data.get('email'))
++        if vuln:  # Regex DoS fixed with atomic-like grouping or simpler pattern
+             match = re.search(
+-                r"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@{1}([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$",
+-                str(request_data.get('email')))
++                r"^[0-9a-zA-Z](?:[-.\w]*[0-9a-zA-Z])?@(?:[0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$",
++                email_str)
+             if match:
+                 user.email = request_data.get('email')
+                 db.session.commit()

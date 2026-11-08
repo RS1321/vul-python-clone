@@ -1,0 +1,25 @@
+{
+  "dataset": "synthetic",
+  "model_run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "model_manifest_sha256": "7e36e0d1401de3cfa5b7c39974bb39f89140f4ac613f63ec0cfd2888c0a14f1e",
+  "status": "incomplete",
+  "baseline": {
+    "status": "failed",
+    "dataset": "synthetic",
+    "profile": "authenticated fixed-route active SQL/XSS",
+    "native_authorization_claim": false,
+    "model_patch_only": true,
+    "error": "Target startup/login failed; see application.log"
+  },
+  "model": {
+    "status": "failed",
+    "dataset": "synthetic",
+    "profile": "authenticated fixed-route active SQL/XSS",
+    "native_authorization_claim": false,
+    "model_patch_only": true,
+    "error": "Target startup/login failed; see application.log"
+  },
+  "new_alert_types": null,
+  "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof."
+}

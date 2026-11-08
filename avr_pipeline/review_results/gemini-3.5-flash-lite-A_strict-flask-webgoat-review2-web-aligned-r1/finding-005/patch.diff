@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -42,7 +42,10 @@
+     query = "SELECT id, username, access_level FROM user WHERE username = ? AND password = ?"
+     result = query_db(query, (username, password), True)
+     if result is None:
+-        # vulnerability: Open Redirect
++        from urllib.parse import urlparse
++        parsed = urlparse(url)
++        if parsed.netloc or not url.startswith("/") or url.startswith("//"):
++            url = "/"
+         return redirect(url)
+     session["user_info"] = (result[0], result[1], result[2])
+     return jsonify({"success": True})

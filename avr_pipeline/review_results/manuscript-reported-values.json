@@ -1,0 +1,82 @@
+{
+  "source": "User-supplied 1-2.pdf",
+  "sha256": "5a301454e57293fcd001bd8d0fd3f770e93baed00f3d9697f916f674f81f5501",
+  "pages": 44,
+  "tables": "9 and 10, page 19; visually verified",
+  "evidence_type": "Manually transcribed reported manuscript values, not independently reproduced runs",
+  "reported_run_A": [
+    {
+      "model": "Qwen 3.5 Flash",
+      "sast_resolved": 29,
+      "sast_baseline": 29,
+      "new_sast": 0,
+      "dast_validated": 16,
+      "dast_correlated": 23,
+      "dast_types_before": 22,
+      "dast_types_after": 13,
+      "dast_instances_before": 68,
+      "dast_instances_after": 44,
+      "new_dast_types": 1
+    },
+    {
+      "model": "Kimi K2.5",
+      "sast_resolved": 29,
+      "sast_baseline": 29,
+      "new_sast": 0,
+      "dast_validated": 11,
+      "dast_correlated": 23,
+      "dast_types_before": 22,
+      "dast_types_after": 14,
+      "dast_instances_before": 68,
+      "dast_instances_after": 41,
+      "new_dast_types": 1
+    },
+    {
+      "model": "Minimax M2.5",
+      "sast_resolved": 29,
+      "sast_baseline": 29,
+      "new_sast": 0,
+      "dast_validated": 21,
+      "dast_correlated": 23,
+      "dast_types_before": 22,
+      "dast_types_after": 13,
+      "dast_instances_before": 68,
+      "dast_instances_after": 41,
+      "new_dast_types": 2
+    },
+    {
+      "model": "DeepSeek V3.2",
+      "sast_resolved": 29,
+      "sast_baseline": 29,
+      "new_sast": 0,
+      "dast_validated": 16,
+      "dast_correlated": 23,
+      "dast_types_before": 22,
+      "dast_types_after": 14,
+      "dast_instances_before": 68,
+      "dast_instances_after": 39,
+      "new_dast_types": 2
+    },
+    {
+      "model": "GLM-5",
+      "sast_resolved": 28,
+      "sast_baseline": 29,
+      "new_sast": 0,
+      "dast_validated": 13,
+      "dast_correlated": 23,
+      "dast_types_before": 22,
+      "dast_types_after": 13,
+      "dast_instances_before": 68,
+      "dast_instances_after": 39,
+      "new_dast_types": 1
+    }
+  ],
+  "reported_deepseek_ablation": {
+    "table": 17,
+    "page": 30,
+    "A_resolved": 29,
+    "B_resolved": 22,
+    "baseline": 29,
+    "combined_guidance_examples_difference_pp": 24.137931034482758
+  }
+}

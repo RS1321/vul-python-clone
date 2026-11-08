@@ -1,0 +1,9 @@
+{
+  "CWE-1333": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 3,
+    "ambiguous_or_unmeasured": 3
+  }
+}

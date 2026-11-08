@@ -1,0 +1,8 @@
+finding,cwe,rule,file,function,accepted,resolved,resolution_identity,attempts,agent_turns,test_measurement_status,new_test_failures,regressions,old_behavior_failures,joint_security
+py/sql-injection:flask_webgoat/__init__.py:14:2,CWE-089,py/sql-injection,flask_webgoat/__init__.py,query_db,True,False,group_all_or_none,3,,measured,[],0,0,False
+py/unsafe-deserialization:flask_webgoat/actions.py:61:5,CWE-502,py/unsafe-deserialization,flask_webgoat/actions.py,deserialized_descr,True,True,group_all_or_none,1,,measured,[],0,0,False
+py/command-line-injection:flask_webgoat/actions.py:45:1,CWE-078,py/command-line-injection,flask_webgoat/actions.py,grep_processes,False,False,group_all_or_none,3,,measured,[],0,0,False
+py/path-injection:flask_webgoat/actions.py:35:0,CWE-022,py/path-injection,flask_webgoat/actions.py,log_entry,True,False,group_all_or_none,1,,measured,[],0,0,False
+py/url-redirection:flask_webgoat/auth.py:46:6,CWE-601,py/url-redirection,flask_webgoat/auth.py,login_and_redirect,True,False,group_all_or_none,1,,measured,[],0,0,False
+py/stack-trace-exposure:flask_webgoat/users.py:47:3,CWE-209,py/stack-trace-exposure,flask_webgoat/users.py,create_user,True,True,group_all_or_none,2,,measured,[],0,0,False
+py/flask-debug:run.py:15:4,CWE-215,py/flask-debug,run.py,<module>,True,True,group_all_or_none,1,,measured,[],0,0,False

@@ -1,0 +1,4 @@
+finding,cwe,rule,file,function,accepted,resolved,resolution_identity,attempts,agent_turns,test_measurement_status,new_test_failures,regressions,old_behavior_failures,joint_security
+py/polynomial-redos:api_views/users.py:163:1,CWE-1333,py/polynomial-redos,api_views/users.py,update_email,False,False,group_all_or_none,3,,unmeasured,null,,,False
+py/polynomial-redos:api_views/users.py:146:0,CWE-1333,py/polynomial-redos,api_views/users.py,update_email,True,False,group_all_or_none,2,,unmeasured,null,,,False
+py/redos:api_views/users.py:145:2,CWE-1333,py/redos,api_views/users.py,update_email,True,False,group_all_or_none,2,,unmeasured,null,,,False

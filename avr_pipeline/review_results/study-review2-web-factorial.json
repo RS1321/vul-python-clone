@@ -1,0 +1,191 @@
+{
+  "schema": 2,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "max_tokens": 8192,
+  "context_profile": "compact",
+  "temperature": 0.1,
+  "spending": "free/local only",
+  "limit": null,
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "conditions": {
+    "no_guidance": {
+      "guidance": false,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "no_examples": {
+      "guidance": true,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "C": {
+      "guidance": true,
+      "examples": true,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor"
+    },
+    "simple": {
+      "guidance": false,
+      "examples": false,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor",
+      "simple": true
+    }
+  },
+  "measurement": "Post-batch CodeQL multiset resolution. Partial duplicate groups stay ambiguous. Joint security requires resolved, no new alerts, no new ordinary test failures, passing behavioral assertions. Missing evidence is null.",
+  "cells": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "already_complete"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "already_complete"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "already_complete"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "already_running"
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    }
+  ],
+  "plan_sha256": "46e030c06ef44444ca0faafb7dc6945cb4700b9586e23efb4ef5b961fd63fe55",
+  "executed": true
+}

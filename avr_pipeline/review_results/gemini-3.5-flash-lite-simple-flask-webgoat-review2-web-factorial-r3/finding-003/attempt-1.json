@@ -1,0 +1,30 @@
+{
+  "attempt": 1,
+  "accepted": false,
+  "duration_seconds": 1.8119999999998981,
+  "response": {
+    "content": "SCOPE: grep_processes\nEXPLANATION: Avoid shell execution by using a safe Python-based process listing and filtering mechanism instead of passing user input to a shell command.\n```python\n@bp.route(\"/grep_processes\")\ndef grep_processes():\n    name = request.args.get(\"name\", \"\")\n    import psutil\n    names = []\n    for p in psutil.process_iter(['name', 'cmdline']):\n        try:\n            cmd = \" \".join(p.info['cmdline'] or [])\n            proc_name = p.info['name'] or \"\"\n            if name in proc_name or name in cmd:\n                if p.info['cmdline']:\n                    names.append(p.info['cmdline'][0])\n                else:\n                    names.append(proc_name)\n        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):\n            pass\n    return jsonify({\"success\": True, \"names\": names})\n```",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0.0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 355,
+      "completion_tokens": 223,
+      "total_tokens": 578
+    }
+  },
+  "prompt": "Repair the reported vulnerability in flask_webgoat/actions.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/command-line-injection\",\n  \"cwe\": \"CWE-078\",\n  \"description\": \"This command line depends on a [user-provided value](1).\"\n}\n\n\n\nCurrent source snapshot\n```python\n@bp.route(\"/grep_processes\")\ndef grep_processes():\n    name = request.args.get(\"name\")\n    # vulnerability: Remote Code Execution\n    res = subprocess.run(\n        [\"ps aux | grep \" + name + \" | awk '{print $11}'\"],\n        shell=True,\n        capture_output=True,\n    )\n    if res.stdout is None:\n        return jsonify({\"error\": \"no stdout returned\"})\n    out = res.stdout.decode(\"utf-8\")\n    names = out.split(\"\\n\")\n    return jsonify({\"success\": True, \"names\": names})\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "flask_webgoat/actions.py",
+    "scope": "grep_processes",
+    "route": "rejected",
+    "success": false,
+    "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+  },
+  "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+}

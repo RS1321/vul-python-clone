@@ -1,3 +1,0 @@
-{"lesson": "a9_uckv_lab", "passed": false, "checks": 8}
-INFO:avr_lesson:Accessing index page
-ERROR:avr_lesson:Error processing image file sample.png: module 'PIL.ImageMath' has no attribute 'eval'

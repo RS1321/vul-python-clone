@@ -1,0 +1,72 @@
+{
+  "status": "complete",
+  "dataset": "flask-webgoat",
+  "profile": "authenticated fixed-route active SQL/XSS",
+  "native_authorization_claim": false,
+  "model_patch_only": true,
+  "returncode": 0,
+  "anonymous_status": 401,
+  "authenticated_status": 200,
+  "traffic": {
+    "requests": 79,
+    "authenticated_requests": 78,
+    "active_rules": {
+      "40012": 40,
+      "40018": 32
+    },
+    "active_authenticated_rules": {
+      "40012": 40,
+      "40018": 32
+    },
+    "statuses": {
+      "401 Unauthorized": 1,
+      "200 OK": 33,
+      "403 Forbidden": 13,
+      "400 BAD REQUEST": 6,
+      "500 INTERNAL SERVER ERROR": 8,
+      "302 FOUND": 18
+    }
+  },
+  "alerts_by_plugin": {
+    "40018": 2,
+    "10054": 2,
+    "10036": 2,
+    "10021": 2,
+    "10111": 2,
+    "10024": 2,
+    "10112": 2
+  },
+  "alert_types": 7,
+  "alert_instances": 14,
+  "seeds": [
+    {
+      "path": "/login",
+      "method": "POST",
+      "body": "username=admin&password=admin"
+    },
+    {
+      "path": "/login_and_redirect?username=admin&password=admin&url=%2Fstatus"
+    }
+  ],
+  "policy": {
+    "defaultThreshold": "Off",
+    "defaultStrength": "Low",
+    "rules": [
+      {
+        "id": 40012,
+        "threshold": "Medium",
+        "strength": "Low"
+      },
+      {
+        "id": 40018,
+        "threshold": "Medium",
+        "strength": "Low"
+      }
+    ]
+  },
+  "zap_jar_sha256": "015dda4709b5ef79736086bb41e8e2a4e95b04cf6625f14d6bcc02b197c99c0c",
+  "implementation_sha256": {
+    "review\\model_dast.py": "759764df8f7afeea55f5d7004273d5a4a2b48f26bb1501b07ab83f3a623c4337",
+    "review\\serve_manuscript_scan.py": "9f6fb42638f647d3d4d0d405fb89e328b66c08454f9bf31e01c218e0f32da6a1"
+  }
+}

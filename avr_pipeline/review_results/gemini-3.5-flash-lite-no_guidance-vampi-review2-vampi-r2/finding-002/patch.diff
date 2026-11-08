@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -144,7 +144,7 @@
+         if len(email) > 254:
+             return Response(error_message_helper("Please Provide a valid email address."), 400, mimetype="application/json")
+         if vuln:  # Regex DoS mitigation
+-            match = re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email)
++            match = re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$", email)
+             if match:
+                 user.email = email
+                 db.session.commit()

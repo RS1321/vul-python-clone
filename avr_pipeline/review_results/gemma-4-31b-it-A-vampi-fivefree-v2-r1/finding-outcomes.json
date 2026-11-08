@@ -1,0 +1,74 @@
+[
+  {
+    "finding": "py/polynomial-redos:api_views/users.py:163:1",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/polynomial-redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": true,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/polynomial-redos:api_views/users.py:146:0",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/polynomial-redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": true,
+    "resolved": null,
+    "resolution_identity": "ambiguous_partial_duplicate_group",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/redos:api_views/users.py:145:2",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": null,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

@@ -1,0 +1,34 @@
+--- 
++++ 
+@@ -10,6 +10,7 @@
+ 
+ @bp.route("/message", methods=["POST"])
+ def log_entry():
++    from pathlib import Path
+     user_info = session.get("user_info", None)
+     if user_info is None:
+         return jsonify({"error": "no user_info found in session"})
+@@ -24,15 +25,16 @@
+         return jsonify({"error": "text parameter is required"})
+ 
+     user_id = user_info[0]
+-    user_dir = "data/" + str(user_id)
+-    user_dir_path = Path(user_dir)
+-    if not user_dir_path.exists():
+-        user_dir_path.mkdir()
++    user_dir = Path("data") / str(user_id)
++    if not user_dir.exists():
++        user_dir.mkdir(parents=True, exist_ok=True)
+ 
+     filename = filename_param + ".txt"
+-    path = Path(user_dir + "/" + filename)
+-    # vulnerability: Directory Traversal
+-    with path.open("w", encoding="utf-8") as open_file:
++    candidate = (user_dir / filename).resolve()
++    if not candidate.is_relative_to(user_dir.resolve()):
++        return jsonify({"error": "invalid filename"})
++
++    with candidate.open("w", encoding="utf-8") as open_file:
+         open_file.write(text_param)
+     return jsonify({"success": True})
+ 

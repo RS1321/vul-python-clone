@@ -27,11 +27,14 @@ def release(handle):
 
 def reserve(model, contents):
     capacity=int(os.getenv('AVR_INPUT_BUDGET_PER_MINUTE','0'))
-    if not capacity: return 0
+    requests_per_minute=int(os.getenv('AVR_REQUEST_BUDGET_PER_MINUTE','0'))
+    if not capacity and not requests_per_minute: return 0
+    if capacity < 0 or requests_per_minute < 0:
+        raise ValueError('Request budgets cannot be negative')
     tokens=math.ceil(len(json.dumps(contents,ensure_ascii=False))/2)+128
-    if tokens>capacity:
+    if capacity and tokens>capacity:
         raise RuntimeError(f'Gemini input budget exceeded before request: estimated {tokens}, allowed {capacity}; use compact context')
-    root=Path(__file__).resolve().parents[1]/'.review-work/request-budget'
+    root=Path(os.getenv('AVR_REQUEST_LEDGER_DIR',str(Path(__file__).resolve().parents[1]/'.review-work/request-budget')))
     root.mkdir(parents=True,exist_ok=True)
     stem=hashlib.sha256(model.encode()).hexdigest()[:16]
     ledger=root/(stem+'.json');lock=root/(stem+'.lock')
@@ -44,7 +47,7 @@ def reserve(model, contents):
                 now=time.time()
                 rows=json.loads(ledger.read_text()) if ledger.exists() else []
                 rows=[r for r in rows if now-r['time']<61]
-                if sum(r['tokens'] for r in rows)+tokens<=capacity:
+                if (not capacity or sum(r['tokens'] for r in rows)+tokens<=capacity) and (not requests_per_minute or len(rows)<requests_per_minute):
                     rows.append({'time':now,'tokens':tokens})
                     ledger.write_text(json.dumps(rows),encoding='utf-8')
                     return round(time.monotonic()-start,3)

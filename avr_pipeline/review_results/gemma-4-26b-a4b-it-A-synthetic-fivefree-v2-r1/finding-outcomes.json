@@ -1,0 +1,1186 @@
+[
+  {
+    "finding": "py/flask-debug:vulnerable_app.py:508:23",
+    "cwe": "CWE-215",
+    "all_cwes": [
+      "CWE-215",
+      "CWE-489"
+    ],
+    "rule": "py/flask-debug",
+    "file": "vulnerable_app.py",
+    "function": "main",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:433:22",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "xxe_vulnerability",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/xml-bomb:vulnerable_app.py:429:27",
+    "cwe": "CWE-776",
+    "all_cwes": [
+      "CWE-776",
+      "CWE-400"
+    ],
+    "rule": "py/xml-bomb",
+    "file": "vulnerable_app.py",
+    "function": "xxe_vulnerability",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:415:21",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "command_injection",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/command-line-injection:vulnerable_app.py:412:4",
+    "cwe": "CWE-078",
+    "all_cwes": [
+      "CWE-078",
+      "CWE-088"
+    ],
+    "rule": "py/command-line-injection",
+    "file": "vulnerable_app.py",
+    "function": "command_injection",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:393:20",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "insecure_deserialization",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:391:11",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "insecure_deserialization",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/unsafe-deserialization:vulnerable_app.py:390:25",
+    "cwe": "CWE-502",
+    "all_cwes": [
+      "CWE-502"
+    ],
+    "rule": "py/unsafe-deserialization",
+    "file": "vulnerable_app.py",
+    "function": "insecure_deserialization",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:vulnerable_app.py:369:16",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "vulnerable_app.py",
+    "function": "idor_vulnerability",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:355:19",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "ssrf_vulnerability",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/full-ssrf:vulnerable_app.py:351:28",
+    "cwe": "CWE-918",
+    "all_cwes": [
+      "CWE-918"
+    ],
+    "rule": "py/full-ssrf",
+    "file": "vulnerable_app.py",
+    "function": "ssrf_vulnerability",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:327:10",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "csrf_vulnerability",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:vulnerable_app.py:323:15",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "vulnerable_app.py",
+    "function": "csrf_vulnerability",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:vulnerable_app.py:322:14",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "vulnerable_app.py",
+    "function": "csrf_vulnerability",
+    "accepted": false,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:vulnerable_app.py:299:1",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "vulnerable_app.py",
+    "function": "resource_leak",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:vulnerable_app.py:282:13",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "vulnerable_app.py",
+    "function": "sql_injection_orm",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:259:9",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "session_fixation",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:241:18",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "directory_traversal",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:vulnerable_app.py:237:0",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "vulnerable_app.py",
+    "function": "directory_traversal",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:223:8",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "trust_boundary",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/weak-cryptographic-algorithm:vulnerable_app.py:187:24",
+    "cwe": "CWE-327",
+    "all_cwes": [
+      "CWE-327"
+    ],
+    "rule": "py/weak-cryptographic-algorithm",
+    "file": "vulnerable_app.py",
+    "function": "encrypt_data",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/url-redirection:vulnerable_app.py:169:26",
+    "cwe": "CWE-601",
+    "all_cwes": [
+      "CWE-601"
+    ],
+    "rule": "py/url-redirection",
+    "file": "vulnerable_app.py",
+    "function": "open_redirect",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/template-injection:vulnerable_app.py:156:3",
+    "cwe": "CWE-074",
+    "all_cwes": [
+      "CWE-074"
+    ],
+    "rule": "py/template-injection",
+    "file": "vulnerable_app.py",
+    "function": "frame_content",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:156:7",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "frame_content",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/template-injection:vulnerable_app.py:139:2",
+    "cwe": "CWE-074",
+    "all_cwes": [
+      "CWE-074"
+    ],
+    "rule": "py/template-injection",
+    "file": "vulnerable_app.py",
+    "function": "profile",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:139:6",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "profile",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/stack-trace-exposure:vulnerable_app.py:116:17",
+    "cwe": "CWE-209",
+    "all_cwes": [
+      "CWE-209",
+      "CWE-497"
+    ],
+    "rule": "py/stack-trace-exposure",
+    "file": "vulnerable_app.py",
+    "function": "login",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/reflective-xss:vulnerable_app.py:112:5",
+    "cwe": "CWE-079",
+    "all_cwes": [
+      "CWE-079",
+      "CWE-116"
+    ],
+    "rule": "py/reflective-xss",
+    "file": "vulnerable_app.py",
+    "function": "login",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/sql-injection:vulnerable_app.py:102:12",
+    "cwe": "CWE-089",
+    "all_cwes": [
+      "CWE-089"
+    ],
+    "rule": "py/sql-injection",
+    "file": "vulnerable_app.py",
+    "function": "login",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_invalid_url",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_fetch_url_with_param",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        },
+        {
+          "test": "tests.test_vulnerable_app::test_parse_xml_malformed",
+          "classification": "regression",
+          "reason": "Unlisted failure: conservatively treated as regression"
+        }
+      ],
+      "regressions": 3,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

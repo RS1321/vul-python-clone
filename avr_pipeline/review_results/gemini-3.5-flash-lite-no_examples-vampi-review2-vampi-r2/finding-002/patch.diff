@@ -1,0 +1,14 @@
+--- 
++++ 
+@@ -141,8 +141,10 @@
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+         email_str = str(request_data.get('email', ''))
++        if len(email_str) > 254:
++            return Response(error_message_helper("Please Provide a valid email address."), 400, mimetype="application/json")
+         if vuln:  # Regex DoS
+-            match = None if len(email_str) > 254 else re.search(
++            match = re.search(
+                 r"^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@{1}([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$",
+                 email_str)
+             if match:

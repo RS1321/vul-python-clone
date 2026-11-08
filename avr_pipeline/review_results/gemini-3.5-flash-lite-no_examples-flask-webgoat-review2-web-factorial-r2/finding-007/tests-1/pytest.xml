@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="0.336" timestamp="2026-11-08T19:06:32.761501+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.115" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.014" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.014"><failure message="AssertionError: assert not True&#10; +  where True = &lt;built-in method get of dict object at 0x0000022A50918980&gt;('success')&#10; +    where &lt;built-in method get of dict object at 0x0000022A50918980&gt; = ({'success': True}).get&#10; +      where {'success': True} = &lt;WrapperTestResponse 17 bytes [200 OK]&gt;.json">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+
+    def test_sql_authentication_bypass_rejected(client):
+        response = client.post('/login', data={'username': "' OR 1=1 -- ", 'password': 'wrong'})
+&gt;       assert not (response.json or {}).get('success')
+E       AssertionError: assert not True
+E        +  where True = &lt;built-in method get of dict object at 0x0000022A50918980&gt;('success')
+E        +    where &lt;built-in method get of dict object at 0x0000022A50918980&gt; = ({'success': True}).get
+E        +      where {'success': True} = &lt;WrapperTestResponse 17 bytes [200 OK]&gt;.json
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:30: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.013" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.012"><failure message="assert not True&#10; +  where True = any([True])">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000022A509504A0&gt;
+
+    def test_command_input_does_not_reach_shell(client, monkeypatch):
+        calls = []
+        def spy(*args, **kwargs):
+            calls.append(kwargs.get('shell', False))
+            return subprocess.CompletedProcess([], 0, stdout=b'probe')
+        monkeypatch.setattr(subprocess, 'run', spy)
+        response = client.get('/grep_processes', query_string={'name': 'probe;echo probe'})
+        assert response.status_code &lt; 500
+&gt;       assert not any(calls)
+E       assert not True
+E        +  where True = any([True])
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:47: AssertionError</failure></testcase></testsuite></testsuites>

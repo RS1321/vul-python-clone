@@ -1,0 +1,12 @@
+{
+  "policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+  "implementation_sha256": {
+    "analyze_study.py": "022bfb8b6d5fd07a6c8e9e2d72c4decc8edbdc1281e712a5a5bb4d43fa4280a4",
+    "outcomes.py": "c039d7aff8d977a7299047a29ba0a91d4659239f685fcb799f22e4efeab0910e",
+    "study_statistics.py": "fa90a94d1b63b6e1f7d17714838b9682cad33852461196f1e527d81902ad7509"
+  },
+  "policy_application": "Historical exports are retrospective; runner records frozen policy prospectively for new runs.",
+  "junit_normalization": "Retained JUnit setup/collection errors override early summaries in derived tables only; original manifests are unchanged.",
+  "unknowns": "No imputation of missing conditions, behavior tests, interrupted runs, or partial duplicate-group identities.",
+  "statistics": "Wilson descriptive per-run intervals; exact conditional McNemar; matched risk difference and odds ratio; Holm across reported tests; repetition-cluster bootstrap only with >=3 repetitions. Finding-level McNemar assumes independent discordances; shared functions can violate this, so these are exploratory fixed-subject comparisons."
+}

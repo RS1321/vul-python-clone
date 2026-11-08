@@ -1,8 +1,8 @@
 # Local vulnerability repair replication
 
-This revision addresses implementation and execution concerns in the supplied reviewer comments. Changes are published on main; upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
+This revision addresses implementation and execution concerns in the supplied reviewer comments. Earlier changes were published on main; new manuscript evaluation work is maintained on its own branch. Upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
 
-The latest [security-resolution report](continuation/results/security-resolution-v6/SECURITY_RESOLUTION.md) records separate hardened VAmPI/PyGoat clones, all 21 lesson suites, authenticated active scans and final static rescans. These explicit agent-authored repairs are separate from the earlier measured free-model cohort.
+The latest [security-resolution report](oracle_validation/security-resolution-v6/SECURITY_RESOLUTION.md) records separate hardened VAmPI/PyGoat clones, all 21 lesson suites, authenticated active scans and final static rescans. These explicit agent-authored repairs are separate from the earlier measured free-model cohort.
 
 Read `continuation/results/CODE_REVIEW_RESPONSE.md` for the continued code-only work and current comparison status. `review_results/REVIEW_RESPONSE.md` retains the earlier study and comment-by-comment status. The user deferred manuscript work. The original deliberately vulnerable application remains the baseline. Each repair run makes another disposable clone and writes its patches there.
 
@@ -134,3 +134,6 @@ This revision keeps the 18 identifiers in the released library so the coverage c
 ## Local publication policy
 
 The recommended runner contains no remote-writing operation. The legacy pipeline is retained for compatibility and has `repository.publish=false` by default. Its remote workflow and PR integrations require an explicit publishing configuration and are outside this local evaluation. Never run the old cleanup workflow as part of these experiments.
+
+
+See [manuscript correlation](review_docs/MANUSCRIPT_CORRELATION.md), [new study instructions](review_docs/REPRODUCING_REVIEW2.md), and [actual study status](review_results/manuscript-study-status.json). The legacy repair entry point and branch cleanup workflow are archived under `legacy`.

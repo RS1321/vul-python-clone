@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="11" time="1.518" timestamp="2026-11-08T19:49:00.842220+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[both valid accounts log in]" time="0.001" /><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[anonymous profile denied]" time="0.000" /><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[malformed token denied]" time="0.000" /><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[owner profile works]" time="0.000" /><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[owner reads own book]" time="0.000" /><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[other account cannot read private book]" time="0.001"><failure message="AssertionError: {'name': 'other account cannot read private book', 'passed': False, 'category': 'security', 'detail': 200}&#10;assert False">check = {'name': 'other account cannot read private book', 'passed': False, 'category': 'security', 'detail': 200}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'other account cannot read private book', 'passed': False, 'category': 'security', 'detail': 200}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[other account cannot change owner password]" time="0.001"><failure message="AssertionError: {'name': 'other account cannot change owner password', 'passed': False, 'category': 'security', 'detail': 204}&#10;assert False">check = {'name': 'other account cannot change owner password', 'passed': False, 'category': 'security', 'detail': 204}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'other account cannot change owner password', 'passed': False, 'category': 'security', 'detail': 204}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[registration cannot self-assign admin]" time="0.001"><failure message="AssertionError: {'name': 'registration cannot self-assign admin', 'passed': False, 'category': 'security', 'detail': None}&#10;assert False">check = {'name': 'registration cannot self-assign admin', 'passed': False, 'category': 'security', 'detail': None}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'registration cannot self-assign admin', 'passed': False, 'category': 'security', 'detail': None}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[debug does not disclose fixture password]" time="0.000"><failure message="AssertionError: {'name': 'debug does not disclose fixture password', 'passed': False, 'category': 'security', 'detail': 200}&#10;assert False">check = {'name': 'debug does not disclose fixture password', 'passed': False, 'category': 'security', 'detail': 200}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'debug does not disclose fixture password', 'passed': False, 'category': 'security', 'detail': 200}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[failed login does not enumerate account]" time="0.000"><failure message="AssertionError: {'name': 'failed login does not enumerate account', 'passed': False, 'category': 'security', 'detail': None}&#10;assert False">check = {'name': 'failed login does not enumerate account', 'passed': False, 'category': 'security', 'detail': None}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'failed login does not enumerate account', 'passed': False, 'category': 'security', 'detail': None}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_vampi" name="test_behavioral_assertion[SQL-shaped username returns no fixture account]" time="0.000"><failure message="AssertionError: {'name': 'SQL-shaped username returns no fixture account', 'passed': False, 'category': 'security', 'detail': 200}&#10;assert False">check = {'name': 'SQL-shaped username returns no fixture account', 'passed': False, 'category': 'security', 'detail': 200}
+
+    @pytest.mark.parametrize('check', CHECKS, ids=[c['name'] for c in CHECKS])
+    def test_behavioral_assertion(check):
+&gt;       assert check['passed'], check
+E       AssertionError: {'name': 'SQL-shaped username returns no fixture account', 'passed': False, 'category': 'security', 'detail': 200}
+E       assert False
+
+..\..\..\review\behavioral\test_vampi.py:9: AssertionError</failure></testcase></testsuite></testsuites>

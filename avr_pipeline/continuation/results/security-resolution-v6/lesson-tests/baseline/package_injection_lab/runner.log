@@ -1,3 +1,0 @@
-[WARNING] Typosquatting package 'requets' loaded! ([typo]should be 'requests')
-[MALICIOUS] Package 'requets' initialized - executing malicious code...
-{"lesson": "package_injection_lab", "passed": false, "checks": 5}

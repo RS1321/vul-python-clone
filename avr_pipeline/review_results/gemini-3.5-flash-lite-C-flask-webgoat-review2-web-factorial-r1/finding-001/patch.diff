@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -9,9 +9,12 @@
+ 
+ def query_db(query, args=(), one=False, commit=False):
+     with sqlite3.connect(DB_FILENAME) as conn:
+-        # vulnerability: Sensitive Data Exposure
+         conn.set_trace_callback(print)
+-        cur = conn.cursor().execute(query, args)
++        cur = conn.cursor()
++        if isinstance(args, tuple) and len(args) > 0:
++            cur.execute(query, args)
++        else:
++            cur.execute(query, (args,) if args else ())
+         if commit:
+             conn.commit()
+         return cur.fetchone() if one else cur.fetchall()

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="0.498" timestamp="2026-11-08T18:50:52.649764+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.164" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.015"><failure message="sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+
+    def test_legitimate_login(client):
+&gt;       assert client.post('/login', data={'username': 'admin', 'password': 'admin'}).json.get('success') is True
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1171: in post
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1\source\flask_webgoat\auth.py:22: in login
+    result = query_db(query, [], True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+query = "SELECT id, username, access_level FROM user WHERE username = 'admin' AND password = 'admin'"
+args = [], one = True, commit = False
+
+    def query_db(query, args=(), one=False, commit=False):
+        with sqlite3.connect(DB_FILENAME) as conn:
+            # vulnerability: Sensitive Data Exposure
+            conn.set_trace_callback(print)
+&gt;           cur = conn.cursor().execute(query, args if isinstance(args, tuple) else (args,))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1\source\flask_webgoat\__init__.py:14: ProgrammingError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.014"><failure message="sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.">client = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+
+    def test_sql_authentication_bypass_rejected(client):
+&gt;       response = client.post('/login', data={'username': "' OR 1=1 -- ", 'password': 'wrong'})
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1171: in post
+    return self.open(*args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:229: in open
+    response = super().open(
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1120: in open
+    response_parts = self.run_wsgi_app(request.environ, buffered=buffered)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:992: in run_wsgi_app
+    rv = run_wsgi_app(self.application, environ, buffered=buffered)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\werkzeug\test.py:1268: in run_wsgi_app
+    app_rv = app(environ, start_response)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2213: in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2193: in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:2190: in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1486: in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1484: in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:1469: in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1\source\flask_webgoat\auth.py:22: in login
+    result = query_db(query, [], True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+query = "SELECT id, username, access_level FROM user WHERE username = '' OR 1=1 -- ' AND password = 'wrong'"
+args = [], one = True, commit = False
+
+    def query_db(query, args=(), one=False, commit=False):
+        with sqlite3.connect(DB_FILENAME) as conn:
+            # vulnerability: Sensitive Data Exposure
+            conn.set_trace_callback(print)
+&gt;           cur = conn.cursor().execute(query, args if isinstance(args, tuple) else (args,))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           sqlite3.ProgrammingError: Incorrect number of bindings supplied. The current statement uses 0, and there are 1 supplied.
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1\source\flask_webgoat\__init__.py:14: ProgrammingError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.014" /><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.013" /></testsuite></testsuites>

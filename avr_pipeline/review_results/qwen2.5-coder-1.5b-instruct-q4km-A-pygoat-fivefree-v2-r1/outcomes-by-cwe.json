@@ -1,0 +1,114 @@
+{
+  "CWE-020": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 6,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-022": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 3,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-078": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-089": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-094": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-1004": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-117": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-209": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 14,
+    "ambiguous_or_unmeasured": 2
+  },
+  "CWE-215": {
+    "accepted": 19,
+    "resolved": 19,
+    "joint_security": 0,
+    "findings": 19,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-327": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 3,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-502": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 3,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-601": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-611": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-614": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-776": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  },
+  "CWE-918": {
+    "accepted": 0,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 1,
+    "ambiguous_or_unmeasured": 0
+  }
+}

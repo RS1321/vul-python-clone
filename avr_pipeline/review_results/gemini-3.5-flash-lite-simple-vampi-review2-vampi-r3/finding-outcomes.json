@@ -1,0 +1,77 @@
+[
+  {
+    "finding": "py/polynomial-redos:api_views/users.py:163:1",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/polynomial-redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/polynomial-redos:api_views/users.py:146:0",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/polynomial-redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": true,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/redos:api_views/users.py:145:2",
+    "cwe": "CWE-1333",
+    "all_cwes": [
+      "CWE-1333",
+      "CWE-400"
+    ],
+    "rule": "py/redos",
+    "file": "api_views/users.py",
+    "function": "update_email",
+    "accepted": false,
+    "resolved": true,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 1,
+    "agent_turns": null,
+    "test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "behavioral_assertions_pass": false,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

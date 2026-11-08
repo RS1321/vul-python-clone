@@ -105,3 +105,117 @@ def test_native_tool_turn_preserves_provider_signature(monkeypatch):
     assert calls[1]['contents'][1]['parts'][0]['thoughtSignature'] == 'signature-fixture'
     assert calls[1]['contents'][2]['parts'][0]['functionResponse']['name'] == 'repository_action'
     assert calls[1]['generationConfig']['maxOutputTokens'] == 8192
+
+
+def test_analysis_keeps_unfinished_agent_unmeasured(tmp_path):
+    from review.analyze_study import analyze
+    out = tmp_path/'active-agent'
+    out.mkdir()
+    (out/'manifest.json').write_text(json.dumps({'status':'running','condition':'tool_agent','model':'fixture'}))
+    (out/'contexts.json').write_text(json.dumps([f('one')]))
+    result = analyze(tmp_path)
+    assert result['full_runs'] == 0
+    rows = json.loads((out/'finding-outcomes.json').read_text())
+    assert rows[0]['resolved'] is None and rows[0]['attempts'] is None
+
+
+def test_behavioral_infrastructure_error_never_becomes_security_evidence():
+    m = {'status':'complete','sast':{'resolved_groups':[{'key':['r','app.py','f'],'count':1}], 'new_findings':0},
+         'post_tests':{'status':'passed','failures':[]},
+         'behavioral_tests':{'status':'failed','tests':1,'infrastructure_error':True}}
+    row = make_rows([f('one')],[],m,{'status':'passed','failures':[]})[0]
+    assert row['resolved'] is True and row['behavioral_assertions_pass'] is None and row['joint_security'] is None
+
+
+def test_target_probe_is_isolated_from_repository_modules(tmp_path, monkeypatch):
+    import sys
+    from review.target_environment import describe
+    (tmp_path/'json.py').write_text('raise RuntimeError("Repository code must not execute during environment probing")')
+    monkeypatch.chdir(tmp_path)
+    info = describe(sys.executable)
+    assert info['site_packages'] and len(info['distribution_sha256']) == 64
+
+
+def test_matrix_does_not_reuse_different_implementation(tmp_path):
+    from review.matrix_study import execute
+    args = parser().parse_args(['--dataset','vampi','--model','fixture','--provider','local','--tag','r2','--results',str(tmp_path)])
+    plan = build_plan(args)
+    out = tmp_path/plan['cells'][0]['run']
+    out.mkdir()
+    (out/'manifest.json').write_text(json.dumps({'implementation_sha256':{'old':'hash'},'status':'complete'}))
+    with pytest.raises(ValueError,match='Implementation changed'):
+        execute(plan['cells'][0],args,plan)
+
+
+def test_daily_quota_defers_only_affected_model():
+    from review.matrix_study import AccessState
+    state = AccessState()
+    a = {'provider':'gemini','model':'one'}
+    b = {'provider':'gemini','model':'two'}
+    state.observe(a,['HTTP 429: Generate content requests per day limit exceeded'])
+    assert state.reason(a) == 'daily_quota' and state.reason(b) is None
+    for i in range(3):
+        state.observe(b,['Gemini HTTP 503 unavailable'])
+    assert state.reason(b) == 'provider_unavailable'
+
+
+def test_request_count_budget_works_without_token_budget(tmp_path, monkeypatch):
+    import request_budget as budget
+    class Clock:
+        now = 1000
+        def time(self): return self.now
+        def monotonic(self): return self.now
+        def sleep(self,seconds): self.now += seconds
+    clock = Clock()
+    monkeypatch.setattr(budget,'time',clock)
+    monkeypatch.setenv('AVR_INPUT_BUDGET_PER_MINUTE','0')
+    monkeypatch.setenv('AVR_REQUEST_BUDGET_PER_MINUTE','1')
+    monkeypatch.setenv('AVR_REQUEST_LEDGER_DIR',str(tmp_path))
+    assert budget.reserve('fixture',{}) == 0
+    assert budget.reserve('fixture',{}) >= 61
+
+
+def test_acknowledged_malformed_generation_is_not_an_api_outage(monkeypatch):
+    import llm_client as module
+    import request_budget
+    monkeypatch.setenv('GEMINI_API_KEY','fixture-key-not-networked')
+    monkeypatch.setattr(request_budget,'reserve',lambda *args:0)
+    body = {'modelVersion':'fixture','candidates':[{'finishReason':'MALFORMED_FUNCTION_CALL','content':{'parts':[]}}]}
+    response = type('Response',(),{'status_code':200,'json':lambda self:body})()
+    monkeypatch.setattr(module.requests,'post',lambda *args,**kwargs:response)
+    client = module.LLMClient('gemini','fixture')
+    with pytest.raises(module.ModelOutputError) as error:
+        client.chat_completion([{'role':'user','content':'Repair the local fixture.'}])
+    assert error.value.response['finish_reason'] == 'MALFORMED_FUNCTION_CALL'
+
+
+def test_unconfigured_local_model_fails_before_generation():
+    from llm_client import LLMClient
+    with pytest.raises(ValueError,match='loopback'):
+        LLMClient('local','unconfigured-model')
+
+
+def test_interrupted_runner_has_failure_exit_status(monkeypatch):
+    import sys
+    import review.runner as module
+    monkeypatch.setattr(sys,'argv',['runner','run','--repo','unused','--sarif','unused','--out','unused','--model','fixture','--rescan'])
+    monkeypatch.setattr(module,'run',lambda args:{'status':'interrupted_api_error'})
+    with pytest.raises(SystemExit) as error:
+        module.main()
+    assert error.value.code == 2
+
+
+@pytest.mark.parametrize('tamper', ['source','sarif'])
+def test_registered_input_rejects_wrong_source_or_scan(tmp_path,tamper):
+    import hashlib
+    from review.project_paths import verify_input
+    sarif = tmp_path/'scan.sarif'
+    sarif.write_text('{}')
+    record = {'dataset':'fixture','source_commit':'pinned','sarif_sha256':hashlib.sha256(sarif.read_bytes()).hexdigest()}
+    (tmp_path/'dataset-manifest.json').write_text(json.dumps(record))
+    if tamper == 'sarif':
+        sarif.write_text('{"changed":true}')
+    def git_read(args,cwd):
+        return 'different' if tamper == 'source' and 'rev-parse' in args else 'pinned' if 'rev-parse' in args else ''
+    with pytest.raises(ValueError,match='Source differs|SARIF hash differs'):
+        verify_input(tmp_path,sarif,git_read,'fixture')

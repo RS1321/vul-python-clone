@@ -1,0 +1,37 @@
+[
+  {
+    "dataset": "synthetic",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "total": 29,
+    "supported": 29,
+    "unsupported_cwes": {}
+  },
+  {
+    "dataset": "pygoat",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "total": 62,
+    "supported": 55,
+    "unsupported_cwes": {
+      "CWE-117": 2,
+      "CWE-1004": 2,
+      "CWE-614": 2,
+      "CWE-094": 1
+    }
+  },
+  {
+    "dataset": "vampi",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "total": 3,
+    "supported": 0,
+    "unsupported_cwes": {
+      "CWE-1333": 3
+    }
+  },
+  {
+    "dataset": "flask-webgoat",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "total": 7,
+    "supported": 7,
+    "unsupported_cwes": {}
+  }
+]

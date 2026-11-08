@@ -1,0 +1,137 @@
+{
+  "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+  "source_url": "https://github.com/ShiftLeftSecurity/flask-webgoat.git",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "condition": "no_guidance",
+  "settings": {
+    "guidance": false,
+    "examples": true,
+    "gates": true,
+    "attempts": 3,
+    "tests": "monitor"
+  },
+  "temperature": 0.1,
+  "max_tokens": 8192,
+  "thinking_level": null,
+  "implementation_sha256": {
+    "review\\runner.py": "f34ba1efdb0e0aab0c7a3a368f26bbec1ab5a5b27b82263816b1ecb51c582482",
+    "llm\\llm_client.py": "9a65b4d6c48efc4e96805efe5899fe211e8ee292b96e4b598db0b3bed0e32997",
+    "llm\\review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm\\factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+    "llm\\minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+    "llm\\egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+    "llm\\request_budget.py": "ddfd9ba7f7044bae47129a0961461b28d557424d52b3abd7135dd8385b33bb11",
+    "context_builder\\parsers\\ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+    "context_builder\\parsers\\code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+    "llm\\codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+    "review\\outcomes.py": "30f5da80c2158de8795ec0e59b34000d4c847c284ab23c316897ae145df94535",
+    "review\\project_paths.py": "7da32bc29f172d9ca08ce6dc512d6f65367be782dd5a5fdc002dbdf9e5323a44",
+    "review\\external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+    "review\\behavioral\\external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+    "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055"
+  },
+  "baseline_sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+  "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+  "zap_sha256": null,
+  "context_profile": "compact",
+  "cross_file_only": false,
+  "transport_policy": {
+    "AVR_INPUT_BUDGET_PER_MINUTE": "120000",
+    "AVR_REQUEST_TIMEOUT": "60",
+    "AVR_TRANSPORT_RETRIES": "4"
+  },
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "library_version": "review-2",
+  "minimality_policy": "applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)",
+  "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+  "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "pytest_args": [
+    "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+  ],
+  "seed": null,
+  "repetition": 3,
+  "eligible_findings": 7,
+  "selected_findings": 7,
+  "utc": "2026-11-08T13:39:55.504224+00:00",
+  "status": "complete",
+  "scope": "new revision; not a reproduction of original paper prompts or models",
+  "dast_status": "not_run",
+  "sampling": "all findings",
+  "elapsed_seconds": 127.82799999999952,
+  "accepted_patches": 7,
+  "processed_findings": 7,
+  "post_tests": {
+    "status": "failed",
+    "returncode": 1,
+    "tests": 5,
+    "failures": [
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected"
+    ],
+    "errors": 0,
+    "infrastructure_error": false
+  },
+  "behavioral_tests": {
+    "status": "failed",
+    "returncode": 1,
+    "tests": 5,
+    "failures": [
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected"
+    ],
+    "errors": 0,
+    "infrastructure_error": false
+  },
+  "sast": {
+    "baseline_findings": 7,
+    "remaining_baseline_findings": 3,
+    "resolved_findings": 4,
+    "new_findings": 1,
+    "resolution_rate": 0.5714285714285714,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/unsafe-deserialization",
+          "flask_webgoat/actions.py",
+          "deserialized_descr"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/command-line-injection",
+          "flask_webgoat/actions.py",
+          "grep_processes"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/stack-trace-exposure",
+          "flask_webgoat/users.py",
+          "create_user"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/flask-debug",
+          "run.py",
+          "<module>"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": [
+      {
+        "key": [
+          "py/path-injection",
+          "flask_webgoat/actions.py",
+          "log_entry"
+        ],
+        "count": 1
+      }
+    ]
+  }
+}

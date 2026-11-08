@@ -8,8 +8,8 @@ import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'continuation/results/security-resolution-v6/lesson-tests-final2'
-REPAIRED=ROOT/'continuation/results/security-resolution-v6/pygoat/source'
+OUT=ROOT/'oracle_validation/security-resolution-v6/lesson-tests-final2'
+REPAIRED=ROOT/'oracle_validation/security-resolution-v6/pygoat/source'
 
 
 def main():

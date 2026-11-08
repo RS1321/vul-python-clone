@@ -1,0 +1,380 @@
+[
+  {
+    "subject": "vampi",
+    "condition": "A",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r1",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "A",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r2",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "A",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r3",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "B",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r1",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "B",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r2",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "B",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r3",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_guidance",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r1",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_guidance",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r2",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_guidance",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r3",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_examples",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r1",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_examples",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r2",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "no_examples",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r3",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "C",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r1",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "C",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r2",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "C",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r3",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "simple",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r1",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "simple",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r2",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "simple",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r3",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "A_strict",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r1",
+    "resolved": 3,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "A_strict",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r2",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "vampi",
+    "condition": "A_strict",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r3",
+    "resolved": 2,
+    "baseline": 3,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r1",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r2",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3",
+    "resolved": 1,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "B",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-aligned-r1",
+    "resolved": 4,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "B",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r2",
+    "resolved": 3,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "B",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r3",
+    "resolved": 4,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_guidance",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1",
+    "resolved": 4,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_guidance",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r2",
+    "resolved": 3,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_guidance",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r3",
+    "resolved": 4,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_examples",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r1",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_examples",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r2",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "no_examples",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r3",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "C",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r1",
+    "resolved": 3,
+    "baseline": 7,
+    "new_alerts": 2
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "C",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r2",
+    "resolved": 3,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "C",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r3",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "simple",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r1",
+    "resolved": 1,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "simple",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r2",
+    "resolved": 1,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "simple",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r3",
+    "resolved": 1,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A_strict",
+    "repetition": 1,
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-aligned-r1",
+    "resolved": 1,
+    "baseline": 7,
+    "new_alerts": 0
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A_strict",
+    "repetition": 2,
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r2",
+    "resolved": 3,
+    "baseline": 7,
+    "new_alerts": 1
+  },
+  {
+    "subject": "flask-webgoat",
+    "condition": "A_strict",
+    "repetition": 3,
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r3",
+    "resolved": 2,
+    "baseline": 7,
+    "new_alerts": 0
+  }
+]

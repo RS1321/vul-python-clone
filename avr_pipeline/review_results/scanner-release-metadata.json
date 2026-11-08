@@ -1,0 +1,6 @@
+{
+  "status": 200,
+  "name": "codeql-linux64.zip",
+  "url": "https://github.com/github/codeql-cli-binaries/releases/download/v2.27.4/codeql-linux64.zip",
+  "digest": "sha256:393bf92b66596141ec93baf9b483f4a350f3749916c922fed0dd63c67706047d"
+}

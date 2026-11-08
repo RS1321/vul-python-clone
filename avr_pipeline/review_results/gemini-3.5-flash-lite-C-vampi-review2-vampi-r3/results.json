@@ -1,0 +1,140 @@
+[
+  {
+    "finding_id": "py/polynomial-redos:api_views/users.py:163:1",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 2.4529999999999745,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Replaced the vulnerable regex with a safer pattern or check to prevent polynomial ReDoS.\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        if vuln:  # Regex DoS\n            match = re.search(\n                r\"^[0-9a-zA-Z][-.\\w]*[0-9a-zA-Z]@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9}$\",\n                str(request_data.get('email')))\n            if match:\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n        else:\n            regex = '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'\n            if (re.search(regex, request_data.get('email'))):\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n```",
+          "model": "gemini-3.5-flash-lite",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1347,
+            "completion_tokens": 582,
+            "total_tokens": 1929
+          }
+        },
+        "prompt": "Repair the reported vulnerability in api_views/users.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 002\",\n  \"finding_id\": \"py/polynomial-redos:api_views/users.py:163:1\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/polynomial-redos\",\n    \"cwe\": \"CWE-1333\",\n    \"all_cwes\": [\n      \"CWE-1333\",\n      \"CWE-400\"\n    ],\n    \"description\": \"This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '00'.\",\n    \"location\": {\n      \"file_path\": \"api_views/users.py\",\n      \"start_line\": 163,\n      \"end_line\": 163,\n      \"function\": \"update_email\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 133,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 133,\n              \"node\": \"ControlFlowNode for request_data\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 163,\n              \"node\": \"ControlFlowNode for request_data\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 163,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"2929bc1eac184303:1\",\n    \"primaryLocationStartColumnFingerprint\": \"21\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        if vuln:  # Regex DoS\n            match = re.search(\n                r\"^([0-9a-zA-Z]([-.\\w]*[0-9a-zA-Z])*@{1}([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$\",\n                str(request_data.get('email')))\n            if match:\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n        else:\n            regex = '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'\n            if (re.search(regex, request_data.get('email'))):\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "api_views/users.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "update_email"
+        },
+        "validation": {
+          "status": "disabled_by_condition"
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 1,
+    "lines_removed": 1
+  },
+  {
+    "finding_id": "py/polynomial-redos:api_views/users.py:146:0",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 2.8899999999998727,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Remove the vulnerable regex path and use jsonschema or safe validation to prevent ReDoS.\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        email_val = str(request_data.get('email', ''))\n        regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'\n        if re.match(regex, email_val):\n            user.email = email_val\n            db.session.commit()\n            responseObject = {\n                'status': 'success',\n                'data': {\n                    'username': user.username,\n                    'email': user.email\n                }\n            }\n            return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n        else:\n            return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                            mimetype=\"application/json\")\n```",
+          "model": "gemini-3.5-flash-lite",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 1383,
+            "completion_tokens": 371,
+            "total_tokens": 1754
+          }
+        },
+        "prompt": "Repair the reported vulnerability in api_views/users.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 001\",\n  \"finding_id\": \"py/polynomial-redos:api_views/users.py:146:0\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/polynomial-redos\",\n    \"cwe\": \"CWE-1333\",\n    \"all_cwes\": [\n      \"CWE-1333\",\n      \"CWE-400\"\n    ],\n    \"description\": \"This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '0'.\",\n    \"location\": {\n      \"file_path\": \"api_views/users.py\",\n      \"start_line\": 146,\n      \"end_line\": 146,\n      \"function\": \"update_email\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [\n        {\n          \"steps\": [\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for ImportMember\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 7,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 133,\n              \"node\": \"ControlFlowNode for request\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 133,\n              \"node\": \"ControlFlowNode for request_data\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 146,\n              \"node\": \"ControlFlowNode for request_data\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 146,\n              \"node\": \"ControlFlowNode for Attribute()\"\n            },\n            {\n              \"file\": \"api_views/users.py\",\n              \"line\": 146,\n              \"node\": \"ControlFlowNode for str()\"\n            }\n          ],\n          \"omitted_steps\": 0\n        }\n      ],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"dc2397899085ed54:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        if vuln:  # Regex DoS\n            match = re.search(\n                r\"^[0-9a-zA-Z][-.\\w]*[0-9a-zA-Z]@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9}$\",\n                str(request_data.get('email')))\n            if match:\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n        else:\n            regex = '^[a-z0-9]+[\\._]?[a-z0-9]+[@]\\w+[.]\\w{2,3}$'\n            if (re.search(regex, request_data.get('email'))):\n                user.email = request_data.get('email')\n                db.session.commit()\n                responseObject = {\n                    'status': 'success',\n                    'data': {\n                        'username': user.username,\n                        'email': user.email\n                    }\n                }\n                return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n            else:\n                return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                                mimetype=\"application/json\")\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "api_views/users.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "update_email"
+        },
+        "validation": {
+          "status": "disabled_by_condition"
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 15,
+    "lines_removed": 33
+  },
+  {
+    "finding_id": "py/redos:api_views/users.py:145:2",
+    "accepted": true,
+    "security_status": "pending_batch_rescan",
+    "attempts": [
+      {
+        "attempt": 1,
+        "accepted": true,
+        "duration_seconds": 2.0470000000000255,
+        "response": {
+          "content": "SCOPE: function\nEXPLANATION: Replaced the vulnerable regex with a safer pattern and length check to prevent ReDoS.\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        email_val = str(request_data.get('email', ''))\n        regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+$'\n        if len(email_val) <= 254 and re.match(regex, email_val):\n            user.email = email_val\n            db.session.commit()\n            responseObject = {\n                'status': 'success',\n                'data': {\n                    'username': user.username,\n                    'email': user.email\n                }\n            }\n            return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n        else:\n            return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                            mimetype=\"application/json\")\n```",
+          "model": "gemini-3.5-flash-lite",
+          "provider": "gemini",
+          "transport_events": [
+            {
+              "http_status": 200,
+              "budget_wait_seconds": 0
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 841,
+            "completion_tokens": 381,
+            "total_tokens": 1222
+          }
+        },
+        "prompt": "Repair the reported vulnerability in api_views/users.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 003\",\n  \"finding_id\": \"py/redos:api_views/users.py:145:2\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/redos\",\n    \"cwe\": \"CWE-1333\",\n    \"all_cwes\": [\n      \"CWE-1333\",\n      \"CWE-400\"\n    ],\n    \"description\": \"This part of the regular expression may cause exponential backtracking on strings starting with '0' and containing many repetitions of '0'.\",\n    \"location\": {\n      \"file_path\": \"api_views/users.py\",\n      \"start_line\": 145,\n      \"end_line\": 145,\n      \"function\": \"update_email\"\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"80b5cddf61b80f85:1\",\n    \"primaryLocationStartColumnFingerprint\": \"16\"\n  }\n}\n\n\n\nCurrent source snapshot\n```python\ndef update_email(username):\n    request_data = request.get_json()\n    try:\n        jsonschema.validate(request_data, update_email_schema)\n    except:\n        return Response(error_message_helper(\"Please provide a proper JSON body.\"), 400, mimetype=\"application/json\")\n    resp = token_validator(request.headers.get('Authorization'))\n    if \"error\" in resp:\n        return Response(error_message_helper(resp), 401, mimetype=\"application/json\")\n    else:\n        user = User.query.filter_by(username=resp['sub']).first()\n        email_val = str(request_data.get('email', ''))\n        regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'\n        if re.match(regex, email_val):\n            user.email = email_val\n            db.session.commit()\n            responseObject = {\n                'status': 'success',\n                'data': {\n                    'username': user.username,\n                    'email': user.email\n                }\n            }\n            return Response(json.dumps(responseObject), 204, mimetype=\"application/json\")\n        else:\n            return Response(error_message_helper(\"Please Provide a valid email address.\"), 400,\n                            mimetype=\"application/json\")\n```\nReturn the minimal patch using the required format.",
+        "application": {
+          "file": "api_views/users.py",
+          "scope": "function",
+          "route": "ast_name",
+          "success": true,
+          "target": "update_email"
+        },
+        "validation": {
+          "status": "disabled_by_condition"
+        }
+      }
+    ],
+    "application_counts": {
+      "attempts": 1,
+      "success": 1,
+      "ast_name": 1
+    },
+    "lines_added": 2,
+    "lines_removed": 2
+  }
+]

@@ -1,0 +1,151 @@
+{
+  "schema": 2,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "max_tokens": 8192,
+  "context_profile": "compact",
+  "temperature": 0.1,
+  "spending": "free/local only",
+  "limit": null,
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "conditions": {
+    "A": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "B": {
+      "guidance": false,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "A_strict": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "block"
+    }
+  },
+  "measurement": "Post-batch CodeQL multiset resolution. Partial duplicate groups stay ambiguous. Joint security requires resolved, no new alerts, no new ordinary test failures, passing behavioral assertions. Missing evidence is null.",
+  "cells": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\flask-webgoat",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-flask-webgoat\\scan.sarif",
+      "status": "interrupted_api_error",
+      "returncode": 0
+    }
+  ],
+  "plan_sha256": "45dccac47115805b8a330a3f23625bfd920f2833f5682510f8afe14949462fe4",
+  "executed": true
+}

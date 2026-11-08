@@ -1,0 +1,15 @@
+--- 
++++ 
+@@ -142,9 +142,10 @@
+         user = User.query.filter_by(username=resp['sub']).first()
+         email = str(request_data.get('email', ''))
+         try:
+-            jsonschema.validate({"email": email}, {"type": "object", "properties": {"email": {"type": "string", "format": "email"}}, "required": ["email"]})
++            from email_validator import validate_email, EmailNotValidError
++            validate_email(email, check_deliverability=False)
+             match = True
+-        except jsonschema.ValidationError:
++        except (ImportError, EmailNotValidError):
+             match = False
+ 
+         if match:

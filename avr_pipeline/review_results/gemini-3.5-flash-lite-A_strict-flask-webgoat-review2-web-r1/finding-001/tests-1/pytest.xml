@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="5" failures="0" skipped="0" tests="5" time="0.531" timestamp="2026-11-08T18:26:26.103175+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.184"><error message="failed on setup with &quot;AttributeError: module 'werkzeug' has no attribute '__version__'&quot;">tmp_path = WindowsPath('C:/Users/rahul/AppData/Local/Temp/pytest-of-rahul/pytest-44/test_status_contract0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001381291FEF0&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+        import flask_webgoat
+        app = flask_webgoat.create_app()
+        app.config.update(TESTING=True)
+&gt;       return app.test_client()
+               ^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:950: in test_client
+    return cls(  # type: ignore
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+args = (&lt;Flask 'flask_webgoat'&gt;, &lt;class 'flask.wrappers.Response'&gt;)
+kwargs = {'use_cookies': True}
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.preserve_context = False
+        self._new_contexts: list[t.ContextManager[t.Any]] = []
+        self._context_stack = ExitStack()
+        self.environ_base = {
+            "REMOTE_ADDR": "127.0.0.1",
+&gt;           "HTTP_USER_AGENT": f"werkzeug/{werkzeug.__version__}",
+                                           ^^^^^^^^^^^^^^^^^^^^
+        }
+E       AttributeError: module 'werkzeug' has no attribute '__version__'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:118: AttributeError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.010"><error message="failed on setup with &quot;AttributeError: module 'werkzeug' has no attribute '__version__'&quot;">tmp_path = WindowsPath('C:/Users/rahul/AppData/Local/Temp/pytest-of-rahul/pytest-44/test_legitimate_login0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000013813679820&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+        import flask_webgoat
+        app = flask_webgoat.create_app()
+        app.config.update(TESTING=True)
+&gt;       return app.test_client()
+               ^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:950: in test_client
+    return cls(  # type: ignore
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+args = (&lt;Flask 'flask_webgoat'&gt;, &lt;class 'flask.wrappers.Response'&gt;)
+kwargs = {'use_cookies': True}
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.preserve_context = False
+        self._new_contexts: list[t.ContextManager[t.Any]] = []
+        self._context_stack = ExitStack()
+        self.environ_base = {
+            "REMOTE_ADDR": "127.0.0.1",
+&gt;           "HTTP_USER_AGENT": f"werkzeug/{werkzeug.__version__}",
+                                           ^^^^^^^^^^^^^^^^^^^^
+        }
+E       AttributeError: module 'werkzeug' has no attribute '__version__'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:118: AttributeError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.010"><error message="failed on setup with &quot;AttributeError: module 'werkzeug' has no attribute '__version__'&quot;">tmp_path = WindowsPath('C:/Users/rahul/AppData/Local/Temp/pytest-of-rahul/pytest-44/test_sql_authentication_bypass0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001381367B9B0&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+        import flask_webgoat
+        app = flask_webgoat.create_app()
+        app.config.update(TESTING=True)
+&gt;       return app.test_client()
+               ^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:950: in test_client
+    return cls(  # type: ignore
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+args = (&lt;Flask 'flask_webgoat'&gt;, &lt;class 'flask.wrappers.Response'&gt;)
+kwargs = {'use_cookies': True}
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.preserve_context = False
+        self._new_contexts: list[t.ContextManager[t.Any]] = []
+        self._context_stack = ExitStack()
+        self.environ_base = {
+            "REMOTE_ADDR": "127.0.0.1",
+&gt;           "HTTP_USER_AGENT": f"werkzeug/{werkzeug.__version__}",
+                                           ^^^^^^^^^^^^^^^^^^^^
+        }
+E       AttributeError: module 'werkzeug' has no attribute '__version__'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:118: AttributeError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.011"><error message="failed on setup with &quot;AttributeError: module 'werkzeug' has no attribute '__version__'&quot;">tmp_path = WindowsPath('C:/Users/rahul/AppData/Local/Temp/pytest-of-rahul/pytest-44/test_external_redirect_rejecte0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000013813769F40&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+        import flask_webgoat
+        app = flask_webgoat.create_app()
+        app.config.update(TESTING=True)
+&gt;       return app.test_client()
+               ^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:950: in test_client
+    return cls(  # type: ignore
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+args = (&lt;Flask 'flask_webgoat'&gt;, &lt;class 'flask.wrappers.Response'&gt;)
+kwargs = {'use_cookies': True}
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.preserve_context = False
+        self._new_contexts: list[t.ContextManager[t.Any]] = []
+        self._context_stack = ExitStack()
+        self.environ_base = {
+            "REMOTE_ADDR": "127.0.0.1",
+&gt;           "HTTP_USER_AGENT": f"werkzeug/{werkzeug.__version__}",
+                                           ^^^^^^^^^^^^^^^^^^^^
+        }
+E       AttributeError: module 'werkzeug' has no attribute '__version__'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:118: AttributeError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.010"><error message="failed on setup with &quot;AttributeError: module 'werkzeug' has no attribute '__version__'&quot;">tmp_path = WindowsPath('C:/Users/rahul/AppData/Local/Temp/pytest-of-rahul/pytest-44/test_command_input_does_not_re0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000013813768E60&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+        import flask_webgoat
+        app = flask_webgoat.create_app()
+        app.config.update(TESTING=True)
+&gt;       return app.test_client()
+               ^^^^^^^^^^^^^^^^^
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\app.py:950: in test_client
+    return cls(  # type: ignore
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;FlaskClient &lt;Flask 'flask_webgoat'&gt;&gt;
+args = (&lt;Flask 'flask_webgoat'&gt;, &lt;class 'flask.wrappers.Response'&gt;)
+kwargs = {'use_cookies': True}
+
+    def __init__(self, *args: t.Any, **kwargs: t.Any) -&gt; None:
+        super().__init__(*args, **kwargs)
+        self.preserve_context = False
+        self._new_contexts: list[t.ContextManager[t.Any]] = []
+        self._context_stack = ExitStack()
+        self.environ_base = {
+            "REMOTE_ADDR": "127.0.0.1",
+&gt;           "HTTP_USER_AGENT": f"werkzeug/{werkzeug.__version__}",
+                                           ^^^^^^^^^^^^^^^^^^^^
+        }
+E       AttributeError: module 'werkzeug' has no attribute '__version__'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\AVR-System-review\.venv\Lib\site-packages\flask\testing.py:118: AttributeError</error></testcase></testsuite></testsuites>

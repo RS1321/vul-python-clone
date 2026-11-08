@@ -1,0 +1,32 @@
+[
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r1",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r1",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r2",
+    "status": "complete",
+    "returncode": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r2",
+    "status": "interrupted_api_error",
+    "returncode": 0
+  },
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r3",
+    "status": "interrupted_api_error",
+    "returncode": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r3",
+    "status": "interrupted_api_error",
+    "returncode": 0
+  }
+]

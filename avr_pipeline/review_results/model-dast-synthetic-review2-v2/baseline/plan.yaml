@@ -1,0 +1,52 @@
+env:
+  contexts:
+  - name: model-measurement
+    urls:
+    - http://127.0.0.1:18710
+    includePaths:
+    - ^http://127\.0\.0\.1:18710/.*$
+  parameters:
+    failOnError: true
+    failOnWarning: false
+    progressToStdout: true
+jobs:
+- type: requestor
+  requests:
+  - url: http://127.0.0.1:18710/profile?name=fixture
+    method: GET
+    headers:
+    - 'Content-Type: application/x-www-form-urlencoded'
+    data: ''
+    responseCode: 200
+  - url: http://127.0.0.1:18710/search?q=alice
+    method: GET
+    headers:
+    - 'Content-Type: application/x-www-form-urlencoded'
+    data: ''
+    responseCode: 200
+- type: activeScan
+  parameters:
+    context: model-measurement
+    threadPerHost: 2
+    maxScanDurationInMins: 3
+    maxRuleDurationInMins: 1
+    injectPluginIdInHeader: true
+  policyDefinition:
+    defaultThreshold: 'Off'
+    defaultStrength: Low
+    rules:
+    - id: 40012
+      threshold: Medium
+      strength: Low
+    - id: 40018
+      threshold: Medium
+      strength: Low
+- type: passiveScan-wait
+  parameters:
+    maxDuration: 1
+- type: report
+  parameters:
+    template: traditional-json
+    reportDir: C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\model-dast-synthetic-review2-v2\baseline
+    reportFile: scan.json
+    reportTitle: Model-generated paired authenticated active scan

@@ -1,0 +1,56 @@
+[
+  {
+    "finding": "py/path-injection:challenge/management/commands/startuplabs.py:51:7",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "challenge/management/commands/startuplabs.py",
+    "function": "Command.handle",
+    "accepted": false,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 3,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  },
+  {
+    "finding": "py/path-injection:challenge/views.py:244:8",
+    "cwe": "CWE-022",
+    "all_cwes": [
+      "CWE-022",
+      "CWE-023",
+      "CWE-036",
+      "CWE-073",
+      "CWE-099"
+    ],
+    "rule": "py/path-injection",
+    "file": "challenge/views.py",
+    "function": "_resolve_build_path",
+    "accepted": true,
+    "resolved": false,
+    "resolution_identity": "group_all_or_none",
+    "attempts": 2,
+    "agent_turns": null,
+    "test_change": {
+      "status": "unmeasured",
+      "new_failures": null,
+      "regressions": null
+    },
+    "behavioral_assertions_pass": null,
+    "joint_security": false,
+    "test_attribution": "batch outcome; not a causal per-patch test attribution"
+  }
+]

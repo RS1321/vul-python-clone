@@ -1,0 +1,51 @@
+[
+  {
+    "finding_id": "py/sql-injection:flask_webgoat/__init__.py:14:2",
+    "accepted": false,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/unsafe-deserialization:flask_webgoat/actions.py:61:5",
+    "accepted": true,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/command-line-injection:flask_webgoat/actions.py:45:1",
+    "accepted": true,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/path-injection:flask_webgoat/actions.py:35:0",
+    "accepted": true,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/url-redirection:flask_webgoat/auth.py:46:6",
+    "accepted": true,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/stack-trace-exposure:flask_webgoat/users.py:47:3",
+    "accepted": false,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  },
+  {
+    "finding_id": "py/flask-debug:run.py:15:4",
+    "accepted": false,
+    "attempts": [],
+    "agent_turns": 21,
+    "security_status": "pending_batch_rescan"
+  }
+]

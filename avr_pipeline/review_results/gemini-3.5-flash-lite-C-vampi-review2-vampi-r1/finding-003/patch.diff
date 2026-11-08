@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -141,7 +141,7 @@
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+         email_str = str(request_data.get('email', ''))
+-        regex = r'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
++        regex = r'^[a-z0-9._%+-]+@[a-z0-9.-]+(?:\.[a-z]{2,63})+$'
+         if len(email_str) <= 254 and re.match(regex, email_str, re.IGNORECASE):
+             user.email = email_str
+             db.session.commit()

@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "returncode": 1,
+  "tests": 8,
+  "failures": [
+    "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+    "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+    "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+    "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+    "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+  ],
+  "errors": 0,
+  "infrastructure_error": false,
+  "model_run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+  "source_file_sha256": "54617ce7c63a69c80bda9068628305d01caa5dffd9eb00017d07166171005d7a",
+  "behavioral_test_sha256": "0c45a1151c1c48d7b3a0c9cf2cea4e00a619590ad56bd2cac54aad6352df4980",
+  "scope": "New behavioral measurement of exactly replayed historical model patch; not a new model run."
+}

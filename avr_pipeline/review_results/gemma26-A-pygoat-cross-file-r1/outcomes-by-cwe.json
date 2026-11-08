@@ -1,0 +1,9 @@
+{
+  "CWE-022": {
+    "accepted": 1,
+    "resolved": 0,
+    "joint_security": 0,
+    "findings": 2,
+    "ambiguous_or_unmeasured": 0
+  }
+}

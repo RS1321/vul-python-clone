@@ -1,0 +1,20 @@
+[
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "status": "unavailable",
+    "error": "Gemini HTTP 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n",
+    "seconds": 1.030999999999949
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "status": "available",
+    "reported_model": "gemma-4-31b-it",
+    "seconds": 19.35900000000015
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "status": "available",
+    "reported_model": "gemini-3.5-flash-lite",
+    "seconds": 1.5939999999998236
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "finding_id": "py/flask-debug:run.py:15:4",
+  "accepted": true,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": true,
+      "duration_seconds": 0.9529999999995198,
+      "response": {
+        "content": "SCOPE: line\nEXPLANATION: Disable debug mode in Flask app to prevent remote code execution via the interactive debugger.\n```python\n    app.run(debug=False)\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 244,
+          "completion_tokens": 39,
+          "total_tokens": 283
+        }
+      },
+      "prompt": "Repair the reported vulnerability in run.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/flask-debug\",\n  \"cwe\": \"CWE-215\",\n  \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\"\n}\n\n\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # vulnerability: Security Misconfiguration\n    app.run(debug=True)\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "run.py",
+        "scope": "line",
+        "route": "verified_line",
+        "success": true,
+        "target": null
+      },
+      "validation": {
+        "status": "disabled_by_condition"
+      }
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "success": 1,
+    "verified_line": 1
+  },
+  "lines_added": 1,
+  "lines_removed": 3
+}

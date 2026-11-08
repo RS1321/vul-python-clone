@@ -1,0 +1,21 @@
+--- 
++++ 
+@@ -28,6 +28,7 @@
+ 
+ @bp.route("/login_and_redirect")
+ def login_and_redirect():
++    from urllib.parse import urlparse
+     username = request.args.get("username")
+     password = request.args.get("password")
+     url = request.args.get("url")
+@@ -42,7 +43,9 @@
+     query = "SELECT id, username, access_level FROM user WHERE username = ? AND password = ?"
+     result = query_db(query, (username, password), True)
+     if result is None:
+-        # vulnerability: Open Redirect
++        parsed = urlparse(url)
++        if parsed.netloc or parsed.scheme:
++            url = "/"
+         return redirect(url)
+     session["user_info"] = (result[0], result[1], result[2])
+     return jsonify({"success": True})

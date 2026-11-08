@@ -1,0 +1,324 @@
+{
+  "schema": 2,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "max_tokens": 8192,
+  "context_profile": "compact",
+  "temperature": 0.1,
+  "spending": "free/local only",
+  "limit": null,
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "conditions": {
+    "A": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "B": {
+      "guidance": false,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "no_guidance": {
+      "guidance": false,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "no_examples": {
+      "guidance": true,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "C": {
+      "guidance": true,
+      "examples": true,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor"
+    },
+    "simple": {
+      "guidance": false,
+      "examples": false,
+      "gates": false,
+      "attempts": 1,
+      "tests": "monitor",
+      "simple": true
+    },
+    "A_strict": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "block"
+    }
+  },
+  "measurement": "Post-batch CodeQL multiset resolution. Partial duplicate groups stay ambiguous. Joint security requires resolved, no new alerts, no new ordinary test failures, passing behavioral assertions. Missing evidence is null.",
+  "cells": [
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    },
+    {
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "complete",
+      "returncode": 0
+    }
+  ],
+  "plan_sha256": "83a511d12347c061fb56aa0a41166dabf3a6e11931bc73964c6af75c56588ffd",
+  "executed": true
+}

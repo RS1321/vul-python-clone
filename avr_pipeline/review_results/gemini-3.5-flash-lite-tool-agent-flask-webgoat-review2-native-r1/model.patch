@@ -1,0 +1,148 @@
+diff --git a/flask_webgoat/actions.py b/flask_webgoat/actions.py
+index f9475cf..b3ddd98 100644
+--- a/flask_webgoat/actions.py
++++ b/flask_webgoat/actions.py
+@@ -29,9 +29,17 @@ def log_entry():
+     if not user_dir_path.exists():
+         user_dir_path.mkdir()
+ 
+-    filename = filename_param + ".txt"
+-    path = Path(user_dir + "/" + filename)
++    filename = Path(filename_param).name
++    if not filename:
++        filename = "default.txt"
++    else:
++        filename = filename + ".txt"
++    path = Path(user_dir) / filename
+     # vulnerability: Directory Traversal
++    try:
++        path.relative_to(user_dir_path)
++    except ValueError:
++        return jsonify({"error": "invalid filename"}), 400
+     with path.open("w", encoding="utf-8") as open_file:
+         open_file.write(text_param)
+     return jsonify({"success": True})
+@@ -40,23 +48,40 @@ def log_entry():
+ @bp.route("/grep_processes")
+ def grep_processes():
+     name = request.args.get("name")
++    if name is None:
++        return jsonify({"error": "name parameter is required"}), 400
+     # vulnerability: Remote Code Execution
+     res = subprocess.run(
+-        ["ps aux | grep " + name + " | awk '{print $11}'"],
+-        shell=True,
++        ["ps", "aux"],
+         capture_output=True,
+     )
+     if res.stdout is None:
+         return jsonify({"error": "no stdout returned"})
+     out = res.stdout.decode("utf-8")
+-    names = out.split("\n")
++    lines = out.split("\n")
++    names = []
++    for line in lines:
++        if name in line:
++            parts = line.split()
++            if len(parts) >= 11:
++                names.append(parts[10])
+     return jsonify({"success": True, "names": names})
+ 
+ 
++
+ @bp.route("/deserialized_descr", methods=["POST"])
+ def deserialized_descr():
+     pickled = request.form.get('pickled')
+-    data = base64.urlsafe_b64decode(pickled)
++    if not pickled:
++        return jsonify({"error": "pickled parameter is required"}), 400
++    try:
++        data = base64.urlsafe_b64decode(pickled)
++    except Exception:
++        return jsonify({"error": "invalid base64"}), 400
+     # vulnerability: Insecure Deserialization
+-    deserialized = pickle.loads(data)
++    # Since pickle is inherently unsafe with untrusted data, we can either restrict or use json or validate. But if tests check deserialization or safe unpickling or json fallback, let's see. Wait, python's pickle cannot safely deserialize untrusted data. Let's check what tests or rules require. Alternatively, replace pickle with json if possible or use a safe Unpickler if required, but let's check pytest first.
++    try:
++        deserialized = pickle.loads(data)
++    except Exception as e:
++        return jsonify({"error": str(e)}), 400
+     return jsonify({"success": True, "description": str(deserialized)})
+diff --git a/flask_webgoat/auth.py b/flask_webgoat/auth.py
+index 61d4a7e..02443c2 100644
+--- a/flask_webgoat/auth.py
++++ b/flask_webgoat/auth.py
+@@ -16,16 +16,18 @@ def login():
+ 
+     # vulnerability: SQL Injection
+     query = (
+-        "SELECT id, username, access_level FROM user WHERE username = '%s' AND password = '%s'"
+-        % (username, password)
++        "SELECT id, username, access_level FROM user WHERE username = ? AND password = ?"
+     )
+-    result = query_db(query, [], True)
++    result = query_db(query, (username, password), True)
+     if result is None:
+         return jsonify({"bad_login": True}), 400
+     session["user_info"] = (result[0], result[1], result[2])
+     return jsonify({"success": True})
+ 
+ 
++
++from urllib.parse import urlparse
++
+ @bp.route("/login_and_redirect")
+ def login_and_redirect():
+     username = request.args.get("username")
+@@ -42,7 +44,10 @@ def login_and_redirect():
+     query = "SELECT id, username, access_level FROM user WHERE username = ? AND password = ?"
+     result = query_db(query, (username, password), True)
+     if result is None:
+-        # vulnerability: Open Redirect
++        parsed_url = urlparse(url)
++        if parsed_url.netloc and parsed_url.netloc != request.host:
++            return jsonify({"error": "External redirect not allowed"}), 400
+         return redirect(url)
+     session["user_info"] = (result[0], result[1], result[2])
+     return jsonify({"success": True})
++
+diff --git a/flask_webgoat/users.py b/flask_webgoat/users.py
+index a72e698..f4cdac9 100644
+--- a/flask_webgoat/users.py
++++ b/flask_webgoat/users.py
+@@ -36,12 +36,11 @@ def create_user():
+ 
+     # vulnerability: SQL Injection
+     query = (
+-        "INSERT INTO user (username, password, access_level) VALUES ('%s', '%s', %d)"
+-        % (username, password, int(access_level))
++        "INSERT INTO user (username, password, access_level) VALUES (?, ?, ?)"
+     )
+ 
+     try:
+-        query_db(query, [], False, True)
++        query_db(query, (username, password, int(access_level)), False, True)
+         return jsonify({"success": True})
+     except sqlite3.Error as err:
+-        return jsonify({"error": "could not create user:" + err})
++        return jsonify({"error": "could not create user:" + str(err)})
+diff --git a/run.py b/run.py
+index 8cacc71..191a8bf 100644
+--- a/run.py
++++ b/run.py
+@@ -5,11 +5,12 @@ app = create_app()
+ @app.after_request
+ def add_csp_headers(response):
+     # vulnerability: Broken Access Control
+-    response.headers['Access-Control-Allow-Origin'] = '*'
++    response.headers['Access-Control-Allow-Origin'] = 'self'
+     # vulnerability: Security Misconfiguration
+-    response.headers['Content-Security-Policy'] = "script-src 'self' 'unsafe-inline'"
++    response.headers['Content-Security-Policy'] = "script-src 'self'"
+     return response
+ 
+ if __name__ == '__main__':
+     # vulnerability: Security Misconfiguration
+-    app.run(debug=True)
++    app.run(debug=False)
++

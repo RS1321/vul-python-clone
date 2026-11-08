@@ -1,0 +1,39 @@
+{
+  "turn": 6,
+  "response": {
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "status": 200,
+        "input_budget_wait": 0.0,
+        "request_interval_wait": 8.859000000000378
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3171,
+      "completion_tokens": 32,
+      "total_tokens": 3203
+    },
+    "native_content": {
+      "parts": [
+        {
+          "functionCall": {
+            "name": "repository_action",
+            "args": {
+              "tool": "read_file",
+              "arguments": {
+                "path": "tests/test_app.py"
+              }
+            },
+            "id": "call_5057998147378857107"
+          },
+          "thoughtSignature": "EmAKXgFpFH0THYsqDnIL6XOSfXsdyjHGXLv1tNgbBZo9ZE5gcq9f8/GFxQzcrQk9yr7LQuMqz4bVHkskeoR6bM7uWUBEoa/Qvr+r5eXRZSEmbukgedHjLaE4Sq6ZB2s0nc0="
+        }
+      ],
+      "role": "model"
+    },
+    "content": "{\"tool\": \"read_file\", \"arguments\": {\"path\": \"tests/test_app.py\"}}"
+  },
+  "observation": "{\"tool_error\": \"Only tracked application paths are available\"}"
+}

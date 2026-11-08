@@ -3,6 +3,7 @@ import csv
 from collections import Counter
 import json
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 
 def group_key(finding):
@@ -32,8 +33,9 @@ def make_rows(findings, results, manifest, baseline_tests, policy=None):
     measured = manifest.get('status') == 'complete' and 'sast' in manifest
     behavior = manifest.get('behavioral_tests', {})
     # A suite result is batch-level evidence, never attribution to one patch.
-    behavior_pass = (behavior.get('status') == 'passed' and behavior.get('tests', 0) > 0
-                     and not behavior.get('infrastructure_error')) if behavior else None
+    behavior_pass = None
+    if behavior and not behavior.get('infrastructure_error') and behavior.get('tests',0) > 0:
+        behavior_pass = behavior.get('status') == 'passed'
     rows = []
     for f in findings:
         key = group_key(f)
@@ -49,23 +51,46 @@ def make_rows(findings, results, manifest, baseline_tests, policy=None):
                      'rule': key[0], 'file': key[1], 'function': key[2], 'accepted': r.get('accepted'),
                      'resolved': resolved, 'resolution_identity': 'unmeasured' if not measured else
                          'ambiguous_partial_duplicate_group' if resolved is None else 'group_all_or_none',
-                     'attempts': len(r.get('attempts', [])), 'test_change': changes,
+                     'attempts': None if manifest.get('condition') == 'tool_agent' else len(r.get('attempts', [])),
+                     'agent_turns':r.get('agent_turns'), 'test_change': changes,
                      'behavioral_assertions_pass': behavior_pass, 'joint_security': joint,
                      'test_attribution': 'batch outcome; not a causal per-patch test attribution'})
     return rows
+
+
+def write_rows(out, rows):
+    out = Path(out)
+    (out/'finding-outcomes.json').write_text(json.dumps(rows,indent=2),encoding='utf-8')
+    fields = ['finding','cwe','rule','file','function','accepted','resolved','resolution_identity','attempts',
+              'agent_turns','test_measurement_status','new_test_failures','regressions','old_behavior_failures','joint_security']
+    flat = [dict(r, test_measurement_status=r['test_change']['status'],
+                 new_test_failures=json.dumps(r['test_change']['new_failures']),
+                 regressions=r['test_change']['regressions'],
+                 old_behavior_failures=r['test_change'].get('old_behavior_failures')) for r in rows]
+    with (out/'finding-outcomes.csv').open('w',encoding='utf-8',newline='') as stream:
+        writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')
+        writer.writeheader(); writer.writerows(flat)
 
 
 def export_run(out, policy=None):
     out = Path(out)
     read = lambda name, default: json.loads((out / name).read_text(encoding='utf-8')) if (out / name).exists() else default
     m = read('manifest.json', {})
-    rows = make_rows(read('contexts.json', []), read('results.json', []), m, read('baseline-tests.json', {}), policy)
-    (out / 'finding-outcomes.json').write_text(json.dumps(rows, indent=2), encoding='utf-8')
-    fields = ['finding', 'cwe', 'rule', 'file', 'function', 'accepted', 'resolved', 'resolution_identity', 'attempts', 'joint_security']
-    with (out / 'finding-outcomes.csv').open('w', encoding='utf-8', newline='') as stream:
-        writer = csv.DictWriter(stream, fieldnames=fields, extrasaction='ignore')
-        writer.writeheader()
-        writer.writerows(rows)
+    def measured_tests(record, folder):
+        record = dict(record or {})
+        junit = out/folder/'pytest.xml'
+        if junit.exists():
+            errors = sum(c.find('error') is not None for c in ET.parse(junit).iter('testcase'))
+            if errors:
+                record.update(errors=errors,infrastructure_error=True)
+        return record
+    # Correct the early harness summaries from their retained JUnit evidence;
+    # immutable manifests are preserved and only derived outcome tables change.
+    m['post_tests'] = measured_tests(m.get('post_tests'), 'post-tests')
+    m['behavioral_tests'] = measured_tests(m.get('behavioral_tests'), 'behavioral-tests')
+    rows = make_rows(read('contexts.json', []), read('results.json', []), m,
+                     measured_tests(read('baseline-tests.json', {}),'baseline-tests'), policy)
+    write_rows(out,rows)
     by_cwe = {}
     for cwe in sorted({r['cwe'] or 'unknown' for r in rows}):
         selected = [r for r in rows if (r['cwe'] or 'unknown') == cwe]
@@ -79,4 +104,4 @@ def configuration(m):
     return {k: m.get(k) for k in ('source_commit', 'provider', 'model', 'condition', 'repetition',
             'settings', 'minimality_policy', 'pytest_args', 'test_policy_sha256', 'library_version',
             'library_sha256', 'max_tokens', 'context_profile', 'implementation_sha256', 'sarif_sha256',
-            'behavioral_test_sha256', 'status')}
+            'behavioral_test_sha256', 'validation_environment', 'lint_environment_sha256', 'status')}

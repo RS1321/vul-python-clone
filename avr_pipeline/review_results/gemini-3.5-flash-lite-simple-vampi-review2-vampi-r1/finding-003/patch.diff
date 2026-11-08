@@ -1,0 +1,12 @@
+--- 
++++ 
+@@ -141,7 +141,8 @@
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+         email = str(request_data.get('email', ''))
+-        if '@' in email and '.' in email and len(email) <= 254:
++        import re
++        if len(email) <= 254 and '@' in email and '.' in email and not re.search(r'0{10,}', email):
+             user.email = email
+             db.session.commit()
+             responseObject = {

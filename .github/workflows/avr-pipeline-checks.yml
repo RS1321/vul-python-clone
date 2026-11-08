@@ -1,6 +1,12 @@
 name: AVR pipeline checks
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - codex/manuscript-evaluation
+    paths:
+      - 'avr_pipeline/**'
+      - '.github/workflows/avr-pipeline-checks.yml'
   pull_request:
     paths:
       - 'avr_pipeline/**'
@@ -9,7 +15,10 @@ permissions:
   contents: read
 jobs:
   verify:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     defaults:
       run:
         working-directory: avr_pipeline
@@ -18,5 +27,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install -r requirements-review.txt
+      - run: python -m pip install -r requirements-lock.txt
       - run: python -m pytest review_tests -q --basetemp=.review-work/ci-checks
+      - run: python review/smoke.py --out .review-work/ci-smoke

@@ -12,7 +12,7 @@ import requests
 import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'continuation/results/security-resolution-v6/active-scans-final'
+OUT=ROOT/'oracle_validation/security-resolution-v6/active-scans-final'
 FLAGS=subprocess.CREATE_NO_WINDOW if sys.platform=='win32' else 0
 
 
@@ -37,7 +37,7 @@ def main():
             folder=OUT/dataset/state;status=folder/'status.json'
             if status.exists():rows.append(json.loads(status.read_text()));continue
             folder.mkdir(parents=True,exist_ok=True)
-            repo=ROOT/'benchmarks'/dataset if state=='baseline' else ROOT/f'continuation/results/security-resolution-v6/{dataset}/source'
+            repo=ROOT/'benchmarks'/dataset if state=='baseline' else ROOT/f'oracle_validation/security-resolution-v6/{dataset}/source'
             children=[]
             try:
                 extra=[]

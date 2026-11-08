@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -145,7 +145,7 @@
+             return Response(error_message_helper("Please Provide a valid email address."), 400, mimetype="application/json")
+         if vuln:  # Regex DoS fixed with a safer linear-time pattern and length bound
+             match = re.search(
+-                r"^[0-9a-zA-Z](?:[0-9a-zA-Z._-]*[0-9a-zA-Z])?@[0-9a-zA-Z](?:[0-9a-zA-Z_-]*[0-9a-zA-Z])?(?:\.[0-9a-zA-Z](?:[0-9a-zA-Z_-]*[0-9a-zA-Z])?)+$",
++                r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+                 email_val)
+             if match:
+                 user.email = email_val

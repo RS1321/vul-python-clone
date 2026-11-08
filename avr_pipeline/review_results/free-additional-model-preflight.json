@@ -1,0 +1,11 @@
+{
+  "model": "gemini-3.6-flash",
+  "status": "available",
+  "reported_model": "gemini-3.6-flash",
+  "usage": {
+    "prompt_tokens": 5,
+    "completion_tokens": 60,
+    "total_tokens": 65
+  },
+  "seconds": 2.29700000000048
+}

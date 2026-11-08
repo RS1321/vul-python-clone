@@ -1,0 +1,15 @@
+{
+  "status": "failed",
+  "returncode": 1,
+  "tests": 11,
+  "failures": [
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+    "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+  ],
+  "errors": 0,
+  "infrastructure_error": false
+}

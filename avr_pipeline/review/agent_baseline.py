@@ -20,6 +20,7 @@ from review.runner import (LLMClient, checked, command, contexts, finding_counts
                            scan, test_run, dump, digest, verify_batch_targets, behavioral_oracle)
 from review.outcomes import export_run
 from review.tool_client import ToolClient
+from review.project_paths import verify_input
 
 SYSTEM = '''You are repairing a local, authorized benchmark application. Preserve application behavior.
 Use one JSON object per reply: {"tool": NAME, "arguments": {...}}. No prose or fences.
@@ -85,6 +86,8 @@ def run(args):
     source, out = Path(args.repo).resolve(), Path(args.out).resolve()
     if out.exists():
         raise ValueError('Choose a fresh output path')
+    verify_input(source,args.sarif,checked)
+    api = ToolClient(args.provider, args.model, temperature=.1, max_tokens=args.max_tokens, json_mode=True)
     source_sha = checked(['git', 'rev-parse', 'HEAD'], source)
     if checked(['git', 'status', '--porcelain', '--untracked-files=no'], source):
         raise ValueError('Pinned source has edits')
@@ -121,7 +124,6 @@ def run(args):
     dump(out/'baseline-tests.json', baseline_tests)
     if behavioral:
         dump(out/'baseline-behavioral-tests.json', test_run(repo, [str(behavioral)], out/'baseline-behavioral-tests'))
-    api = ToolClient(args.provider, args.model, temperature=.1, max_tokens=args.max_tokens, json_mode=True)
     tools = Tools(repo, out, pytest_args, args.codeql)
     summaries = [{'finding_id':f['finding_id'], 'rule':f['sast']['rule_id'], 'cwe':f['sast'].get('cwe'),
                   'description':f['sast']['description'], 'location':f['sast']['location']} for f in findings]

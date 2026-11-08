@@ -24,7 +24,7 @@ def main():
     for row in external:
         grouped[row['dataset'], row['state']].append(row['result'])
     lines = ['# Expanded external and production evaluation', '',
-      'For the subsequent agent-authored repairs and authenticated active scans, read [Security resolution](../security-resolution-v6/SECURITY_RESOLUTION.md). The model-cohort results below remain historical measurements and have not been replaced by agent repair successes.', '',
+      'For the subsequent agent-authored repairs and authenticated active scans, read [Security resolution](../../../oracle_validation/security-resolution-v6/SECURITY_RESOLUTION.md). The model-cohort results below remain historical measurements and have not been replaced by agent repair successes.', '',
       'This follow-up completes the additional measurements for two externally sourced applications and four historical security defects in three production repositories, spanning Python and JavaScript. '
       'Completion describes the recorded evaluation, not a claim that every candidate fixed every vulnerability or that these samples establish language-wide performance. Manuscript work remains deferred.', '',
       '## External applications: paired security behavior', '',

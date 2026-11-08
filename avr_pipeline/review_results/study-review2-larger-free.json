@@ -1,0 +1,101 @@
+{
+  "schema": 2,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "max_tokens": 8192,
+  "context_profile": "compact",
+  "temperature": 0.1,
+  "spending": "free/local only",
+  "limit": null,
+  "repetitions": [
+    1,
+    2,
+    3
+  ],
+  "conditions": {
+    "A": {
+      "guidance": true,
+      "examples": true,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    },
+    "B": {
+      "guidance": false,
+      "examples": false,
+      "gates": true,
+      "attempts": 3,
+      "tests": "monitor"
+    }
+  },
+  "measurement": "Post-batch CodeQL multiset resolution. Partial duplicate groups stay ambiguous. Joint security requires resolved, no new alerts, no new ordinary test failures, passing behavioral assertions. Missing evidence is null.",
+  "cells": [
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r1",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r2",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    },
+    {
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r3",
+      "repo": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\benchmarks\\vampi",
+      "sarif": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review_results\\baseline-vampi\\scan.sarif",
+      "status": "not_run"
+    }
+  ],
+  "plan_sha256": "f2aba57efdf5d58e4b776502c8081f292dae219881ca0e87abc728dfe9cc3ba0"
+}

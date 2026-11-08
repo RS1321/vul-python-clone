@@ -27,11 +27,12 @@ from parsers.ast_utils import function_at, locate, boundaries
 from codePatcherAST import CodePatcher
 from factorial_prompts import PromptBuilder, SYSTEM_PROMPT, LIBRARY
 from minimality_validator import validate_fix_minimality
-from llm_client import LLMClient, GenerationLimitError
+from llm_client import LLMClient, GenerationLimitError, ModelOutputError
 from egress_guard import sanitise
 sys.path.insert(0, str(ROOT))
-from review.project_paths import tool_path, query_pack_root
+from review.project_paths import tool_path, query_pack_root, verify_input
 from review.outcomes import export_run
+from review.target_environment import target_python, describe as describe_environment, lint_options
 
 CONDITIONS = {
     'A': dict(guidance=True, examples=True, gates=True, attempts=3, tests='monitor'),
@@ -69,6 +70,17 @@ def checked(args, cwd=None, timeout=600):
 
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def implementation_hashes():
+    paths = [Path(__file__), ROOT/'llm/llm_client.py', ROOT/'llm/review_patcher.py',
+             ROOT/'llm/factorial_prompts.py', ROOT/'llm/minimality_validator.py',
+             ROOT/'llm/egress_guard.py', ROOT/'llm/request_budget.py',
+             ROOT/'context_builder/parsers/ast_utils.py', ROOT/'context_builder/parsers/code_fetcher.py',
+             ROOT/'llm/codePatcherAST.py', ROOT/'review/outcomes.py', ROOT/'review/project_paths.py',
+             ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
+             ROOT/'review/behavioral/conftest.py', ROOT/'review/target_environment.py']
+    return {str(p.relative_to(ROOT)):digest(p) for p in paths}
 
 
 def scan(repo, out, codeql=None):
@@ -270,7 +282,8 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
         checks['compile'] = {'passed': False, 'message': str(exc)}
         return False, checks
     # Structured lint errors and an explicit score; no shell output scraping.
-    lint = command([sys.executable, '-m', 'pylint', file_path, '--output-format=json2', '--exit-zero'], repo, 120)
+    lint_context = lint_options(condition.get('lint_pythonpath'))
+    lint = command([sys.executable, '-m', 'pylint', file_path, '--output-format=json2', '--exit-zero', *lint_context], repo, 120)
     try:
         data = json.loads(lint.stdout)
         messages = data['messages']
@@ -280,7 +293,7 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
         try:
             target.write_bytes(original)
             before_lint = command([sys.executable, '-m', 'pylint', file_path,
-                                   '--output-format=json2', '--exit-zero'], repo, 120)
+                                   '--output-format=json2', '--exit-zero', *lint_context], repo, 120)
             old = json.loads(before_lint.stdout)
         finally:
             target.write_bytes(candidate_bytes)
@@ -355,6 +368,11 @@ def repair_one(repo, finding, condition, client, pytest_args, baseline_tests, ou
                               generation_failure='output_token_limit', prompt=user)
                 previous = ''
                 feedback = 'The reply exhausted its output limit. Return a shorter complete patch within the same limit.'
+            elif isinstance(exc, ModelOutputError):
+                record.update(response=exc.response,duration_seconds=time.monotonic()-started,
+                              generation_failure='malformed_or_blocked_output',prompt=user)
+                previous = ''
+                feedback = 'The generation did not contain the required complete patch. Use the specified patch format.'
             # API access failures are not patch-quality measurements. Stop this
             # run rather than converting missing responses to unfixed findings.
             if isinstance(exc, RuntimeError) and (str(exc).startswith('Gemini') or 'API error' in str(exc)):
@@ -414,8 +432,17 @@ def behavioral_oracle(source):
 
 
 def run(args):
-    config = CONDITIONS[args.condition]
+    config = deepcopy(CONDITIONS[args.condition])
     source = Path(args.repo).resolve()
+    verify_input(source,args.sarif,checked)
+    # Missing provider configuration must fail before a running artifact exists.
+    client = LLMClient(args.provider, args.model, temperature=0.1, max_tokens=args.max_tokens)
+    validation_python = getattr(args, 'validation_python', None) or target_python(source)
+    validation_environment = describe_environment(validation_python) if validation_python else None
+    if validation_environment:
+        config['lint_pythonpath'] = validation_environment['site_packages']
+    if checked(['git','status','--porcelain','--untracked-files=no'], source):
+        raise ValueError('Input source has edits; prepare a pristine pinned clone')
     behavioral_path = behavioral_oracle(source)
     if not args.pytest_args and (source / 'tests').is_dir():
         args.pytest_args = ['tests', '-m', 'not network']
@@ -426,7 +453,7 @@ def run(args):
     workspace = out / 'source'
     if workspace.exists() and not args.resume:
         raise ValueError('Output already contains a source clone; choose a new run directory')
-    library_path = Path(args.guidance_library).resolve() if getattr(args, 'guidance_library', None) else ROOT / 'llm/guidance_library.json'
+    library_path = Path(args.guidance_library).resolve() if getattr(args, 'guidance_library', None) else ROOT / 'llm/guidance_library.review-2.json'
     library_bytes = library_path.read_bytes()
     prompt_library = json.loads(library_bytes)
     PromptBuilder(library=prompt_library)  # Validate before writing a running manifest.
@@ -448,18 +475,13 @@ def run(args):
                 'provider': args.provider, 'model': args.model, 'condition': args.condition,
                 'settings': config, 'temperature': 0.1, 'max_tokens': args.max_tokens,
                 'thinking_level': 'minimal' if args.model.startswith('gemma-4-') else None,
-                'implementation_sha256': {str(p.relative_to(ROOT)): digest(p) for p in
-                    [Path(__file__), ROOT/'llm/llm_client.py', ROOT/'llm/review_patcher.py',
-                     ROOT/'llm/factorial_prompts.py', ROOT/'llm/minimality_validator.py',
-                     ROOT/'llm/egress_guard.py', ROOT/'llm/request_budget.py',
-                     ROOT/'context_builder/parsers/ast_utils.py', ROOT/'context_builder/parsers/code_fetcher.py',
-                     ROOT/'llm/codePatcherAST.py', ROOT/'review/outcomes.py', ROOT/'review/project_paths.py',
-                     ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
-                     ROOT/'review/behavioral/conftest.py']},
+                'implementation_sha256': implementation_hashes(),
+                'validation_environment': validation_environment,
+                'lint_environment_sha256': validation_environment['distribution_sha256'] if validation_environment else None,
                 'baseline_sarif': str(Path(args.sarif).resolve()), 'sarif_sha256': digest(args.sarif),
                 'zap_sha256': digest(args.zap) if args.zap else None,
                 'context_profile': args.context_profile, 'cross_file_only': args.cross_file_only,
-                'transport_policy':{k:os.getenv(k) for k in ('AVR_INPUT_BUDGET_PER_MINUTE','AVR_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES')},
+                'transport_policy':{k:os.getenv(k) for k in ('AVR_INPUT_BUDGET_PER_MINUTE','AVR_REQUEST_BUDGET_PER_MINUTE','AVR_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES')},
                 'library_sha256': hashlib.sha256(library_bytes).hexdigest(),
                 'library_version': prompt_library['version'],
                 'minimality_policy': 'applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)',
@@ -476,7 +498,8 @@ def run(args):
         if prior.get('status') == 'running':
             raise ValueError('The existing run is marked running; do not resume while another process can write to it')
         for key in ('source_commit','provider','model','condition','sarif_sha256','library_sha256',
-                    'temperature','max_tokens','thinking_level','selected_findings','pytest_args','zap_sha256'):
+                    'temperature','max_tokens','thinking_level','selected_findings','pytest_args','zap_sha256',
+                    'implementation_sha256','validation_environment','lint_environment_sha256'):
             if prior.get(key) != manifest.get(key):
                 raise ValueError(f'Resume configuration changed: {key}')
         if prior.get('context_profile','full') != args.context_profile or prior.get('cross_file_only',False) != args.cross_file_only:
@@ -502,7 +525,6 @@ def run(args):
     dump(out / 'baseline-tests.json', baseline_tests)
     if behavioral_path:
         dump(out/'baseline-behavioral-tests.json', test_run(workspace, [str(behavioral_path)], out/'baseline-behavioral-tests'))
-    client = LLMClient(args.provider, args.model, temperature=0.1, max_tokens=args.max_tokens)
     results = prior_results
     started = time.monotonic()
     for i, finding in enumerate(findings, 1):
@@ -540,6 +562,7 @@ def run(args):
     policy = json.loads((ROOT/'review/test-policy.json').read_text(encoding='utf-8'))
     export_run(out, policy)
     print(json.dumps({k: manifest[k] for k in ('status','processed_findings','accepted_patches','elapsed_seconds')}, indent=2))
+    return manifest
 
 
 def matrix(args):
@@ -574,8 +597,12 @@ def main():
     p.add_argument('--cross-file-only', action='store_true')
     p.add_argument('--checkpoint-rescan', action='store_true', help='Also scan an interrupted checkpoint; no overall fix rate is reported')
     p.add_argument('--guidance-library', help='Versioned JSON library; the exact input is saved with its SHA256')
+    p.add_argument('--validation-python', help='Owner-provisioned target interpreter for lint imports; defaults to the dedicated PyGoat/VAmPI environment when available')
     args = parser.parse_args()
-    if args.action == 'run': run(args)
+    if args.action == 'run':
+        manifest = run(args)
+        if manifest['status'] not in ('complete','patching_complete') or (args.rescan and manifest['status'] != 'complete'):
+            raise SystemExit(2)
     elif args.action == 'scan': print(scan(args.repo, args.out, args.codeql))
     else: matrix(args)
 

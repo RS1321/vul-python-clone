@@ -1,0 +1,39 @@
+{
+  "turn": 9,
+  "response": {
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "status": 200,
+        "input_budget_wait": 0.0,
+        "request_interval_wait": 8.952999999999975
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 3589,
+      "completion_tokens": 26,
+      "total_tokens": 3615
+    },
+    "native_content": {
+      "parts": [
+        {
+          "functionCall": {
+            "name": "repository_action",
+            "args": {
+              "tool": "list_files",
+              "arguments": {
+                "path": "tests"
+              }
+            },
+            "id": "call_5091564534672200258"
+          },
+          "thoughtSignature": "EmAKXgFpFH0TQbJ7lTz0GUpkEyu0/I9sH+7IVrnMMi51Dpb0yeEtFB9wbHYd7Ul81kTTeaPUkI0yYpra9JJMmdc3ICqFZ5g+HXGbxr2KO03qvZIzoJIKXR2R4n7vT3j6Wig="
+        }
+      ],
+      "role": "model"
+    },
+    "content": "{\"tool\": \"list_files\", \"arguments\": {\"path\": \"tests\"}}"
+  },
+  "observation": "Dockerfile\nLICENSE\nREADME.md\nflask_webgoat/__init__.py\nflask_webgoat/actions.py\nflask_webgoat/auth.py\nflask_webgoat/status.py\nflask_webgoat/templates/base.html\nflask_webgoat/templates/error.html\nflask_webgoat/templates/search.html\nflask_webgoat/ui.py\nflask_webgoat/users.py\nrequirements.txt\nrun.py\nshiftleft.yml"
+}

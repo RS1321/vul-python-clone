@@ -1,0 +1,13 @@
+.git
+.env
+.venv
+.review-work
+benchmarks
+review_results/*
+!review_results/baseline-*/
+!review_results/baseline-*/**
+**/codeql-db
+**/source
+continuation/results
+oracle_validation
+__pycache__

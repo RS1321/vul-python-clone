@@ -19,3 +19,8 @@ __pycache__/
 coverage.json
 derepo.ps1
 other
+**/codeql-db/
+review_results/**/source/
+**/pytest-tmp/
+**/zap-home/
+**/target-state/

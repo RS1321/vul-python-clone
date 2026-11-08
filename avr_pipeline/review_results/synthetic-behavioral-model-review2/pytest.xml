@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="8" time="1.195" timestamp="2026-11-08T19:10:40.219170+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_health_contract" time="0.717" /><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_sql_login_cannot_bypass" time="0.026" /><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_html_is_encoded" time="0.028"><failure message="assert '&lt;b data-sec...1&quot;&gt;probe&lt;/b&gt;' not in '\n        &lt;...nt&lt;/p&gt;\n    '&#10;  &#10;  '&lt;b data-security-probe=&quot;1&quot;&gt;probe&lt;/b&gt;' is contained here:&#10;    &gt;Welcome, &lt;b data-security-probe=&quot;1&quot;&gt;probe&lt;/b&gt;!&lt;/p&gt;&#10;            &lt;p&gt;Your comment: No comment&lt;/p&gt;">subject = (&lt;module 'measured_synthetic' from 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\.review-work\\replayed-synthetic-model\\source\\vulnerable_app.py'&gt;, &lt;FlaskClient &lt;Flask 'measured_synthetic'&gt;&gt;)
+
+    def test_html_is_encoded(subject):
+        marker = '&lt;b data-security-probe="1"&gt;probe&lt;/b&gt;'
+        response = subject[1].get('/profile', query_string={'name': marker})
+        assert response.status_code &lt; 500
+&gt;       assert marker not in response.get_data(as_text=True)
+E       assert '&lt;b data-sec...1"&gt;probe&lt;/b&gt;' not in '\n        &lt;...nt&lt;/p&gt;\n    '
+E         
+E         '&lt;b data-security-probe="1"&gt;probe&lt;/b&gt;' is contained here:
+E           &gt;Welcome, &lt;b data-security-probe="1"&gt;probe&lt;/b&gt;!&lt;/p&gt;
+E                   &lt;p&gt;Your comment: No comment&lt;/p&gt;
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_synthetic.py:44: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_external_redirect_rejected" time="0.023" /><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_loopback_fetch_never_reaches_network" time="0.026"><failure message="AssertionError: assert not [('http://127.0.0.1:9/probe',)]">subject = (&lt;module 'measured_synthetic' from 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\.review-work\\replayed-synthetic-model\\source\\vulnerable_app.py'&gt;, &lt;FlaskClient &lt;Flask 'measured_synthetic'&gt;&gt;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001DC566381D0&gt;
+
+    def test_loopback_fetch_never_reaches_network(subject, monkeypatch):
+        calls = []
+        def spy(*args, **kwargs):
+            calls.append(args)
+            return SimpleNamespace(read=lambda: b'harmless probe')
+        monkeypatch.setattr(urllib.request, 'urlopen', spy)
+        response = subject[1].get('/fetch_url', query_string={'url': 'http://127.0.0.1:9/probe'})
+        assert response.status_code &lt; 500
+&gt;       assert not calls
+E       AssertionError: assert not [('http://127.0.0.1:9/probe',)]
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_synthetic.py:60: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_shell_input_rejected_before_execution" time="0.024"><failure message="AssertionError: assert not [(('ping -n 2 127.0.0.1;echo probe',), {'shell': True, 'stderr': -2, 'timeout': 5})]">subject = (&lt;module 'measured_synthetic' from 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\.review-work\\replayed-synthetic-model\\source\\vulnerable_app.py'&gt;, &lt;FlaskClient &lt;Flask 'measured_synthetic'&gt;&gt;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001DC56654D70&gt;
+
+    def test_shell_input_rejected_before_execution(subject, monkeypatch):
+        calls = []
+        def spy(*args, **kwargs):
+            calls.append((args, kwargs))
+            return b'probe'
+        monkeypatch.setattr(subprocess, 'check_output', spy)
+        monkeypatch.setattr(subprocess, 'run', spy)
+        response = subject[1].get('/ping', query_string={'host': '127.0.0.1;echo probe'})
+        assert response.status_code &lt; 500
+&gt;       assert not calls
+E       AssertionError: assert not [(('ping -n 2 127.0.0.1;echo probe',), {'shell': True, 'stderr': -2, 'timeout': 5})]
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_synthetic.py:72: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_untrusted_pickle_never_deserialized" time="0.028"><failure message="assert 500 &lt; 500&#10; +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code">subject = (&lt;module 'measured_synthetic' from 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\.review-work\\replayed-synthetic-model\\source\\vulnerable_app.py'&gt;, &lt;FlaskClient &lt;Flask 'measured_synthetic'&gt;&gt;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x000001DC56672780&gt;
+
+    def test_untrusted_pickle_never_deserialized(subject, monkeypatch):
+        calls = []
+        def spy(*args, **kwargs):
+            calls.append(True)
+            return {'probe': True}
+        monkeypatch.setattr(pickle, 'loads', spy)
+        response = subject[1].post('/load_object', data=b'not-a-trusted-object')
+&gt;       assert response.status_code &lt; 500
+E       assert 500 &lt; 500
+E        +  where 500 = &lt;WrapperTestResponse streamed [500 INTERNAL SERVER ERROR]&gt;.status_code
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_synthetic.py:82: AssertionError</failure></testcase><testcase classname="avr_pipeline.review.behavioral.test_synthetic" name="test_arbitrary_file_not_disclosed" time="0.028"><failure message="AssertionError: assert 'PRIVATE-BEHAVIOR-PROBE' not in '&lt;pre&gt;PRIVAT...-PROBE&lt;/pre&gt;'&#10;  &#10;  'PRIVATE-BEHAVIOR-PROBE' is contained here:&#10;    &lt;pre&gt;PRIVATE-BEHAVIOR-PROBE&lt;/pre&gt;">subject = (&lt;module 'measured_synthetic' from 'C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\.review-work\\replayed-synthetic-model\\source\\vulnerable_app.py'&gt;, &lt;FlaskClient &lt;Flask 'measured_synthetic'&gt;&gt;)
+tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/synthetic-behavioral-model-review2/pytest-tmp/test_arbitrary_file_not_disclo0')
+
+    def test_arbitrary_file_not_disclosed(subject, tmp_path):
+        target = tmp_path / 'private-probe.txt'
+        target.write_text('PRIVATE-BEHAVIOR-PROBE')
+        response = subject[1].get('/download', query_string={'file': str(target)})
+&gt;       assert 'PRIVATE-BEHAVIOR-PROBE' not in response.get_data(as_text=True)
+E       AssertionError: assert 'PRIVATE-BEHAVIOR-PROBE' not in '&lt;pre&gt;PRIVAT...-PROBE&lt;/pre&gt;'
+E         
+E         'PRIVATE-BEHAVIOR-PROBE' is contained here:
+E           &lt;pre&gt;PRIVATE-BEHAVIOR-PROBE&lt;/pre&gt;
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_synthetic.py:90: AssertionError</failure></testcase></testsuite></testsuites>

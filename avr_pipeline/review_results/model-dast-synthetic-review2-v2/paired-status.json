@@ -1,0 +1,143 @@
+{
+  "dataset": "synthetic",
+  "model_run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+  "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+  "model_manifest_sha256": "7e36e0d1401de3cfa5b7c39974bb39f89140f4ac613f63ec0cfd2888c0a14f1e",
+  "status": "complete",
+  "baseline": {
+    "status": "complete",
+    "dataset": "synthetic",
+    "profile": "authenticated fixed-route active SQL/XSS",
+    "native_authorization_claim": false,
+    "model_patch_only": true,
+    "returncode": 0,
+    "anonymous_status": 401,
+    "authenticated_status": 200,
+    "traffic": {
+      "requests": 47,
+      "authenticated_requests": 46,
+      "active_rules": {
+        "40012": 17,
+        "40018": 23
+      },
+      "active_authenticated_rules": {
+        "40012": 17,
+        "40018": 23
+      },
+      "statuses": {
+        "401 Unauthorized": 1,
+        "200 OK": 39,
+        "403 Forbidden": 3,
+        "500 INTERNAL SERVER ERROR": 4
+      }
+    },
+    "alerts_by_plugin": {
+      "40012": 1,
+      "40018": 1,
+      "10038": 2,
+      "10020": 2,
+      "10036": 2,
+      "10021": 2
+    },
+    "alert_types": 6,
+    "alert_instances": 10,
+    "seeds": [
+      {
+        "path": "/profile?name=fixture"
+      },
+      {
+        "path": "/search?q=alice"
+      }
+    ],
+    "policy": {
+      "defaultThreshold": "Off",
+      "defaultStrength": "Low",
+      "rules": [
+        {
+          "id": 40012,
+          "threshold": "Medium",
+          "strength": "Low"
+        },
+        {
+          "id": 40018,
+          "threshold": "Medium",
+          "strength": "Low"
+        }
+      ]
+    },
+    "zap_jar_sha256": "015dda4709b5ef79736086bb41e8e2a4e95b04cf6625f14d6bcc02b197c99c0c",
+    "implementation_sha256": {
+      "review\\model_dast.py": "759764df8f7afeea55f5d7004273d5a4a2b48f26bb1501b07ab83f3a623c4337",
+      "review\\serve_manuscript_scan.py": "9f6fb42638f647d3d4d0d405fb89e328b66c08454f9bf31e01c218e0f32da6a1"
+    }
+  },
+  "model": {
+    "status": "complete",
+    "dataset": "synthetic",
+    "profile": "authenticated fixed-route active SQL/XSS",
+    "native_authorization_claim": false,
+    "model_patch_only": true,
+    "returncode": 0,
+    "anonymous_status": 401,
+    "authenticated_status": 200,
+    "traffic": {
+      "requests": 47,
+      "authenticated_requests": 46,
+      "active_rules": {
+        "40012": 17,
+        "40018": 23
+      },
+      "active_authenticated_rules": {
+        "40012": 17,
+        "40018": 23
+      },
+      "statuses": {
+        "401 Unauthorized": 1,
+        "200 OK": 39,
+        "403 Forbidden": 3,
+        "500 INTERNAL SERVER ERROR": 4
+      }
+    },
+    "alerts_by_plugin": {
+      "40012": 1,
+      "40018": 1,
+      "10038": 2,
+      "10020": 2,
+      "10036": 2,
+      "10021": 2
+    },
+    "alert_types": 6,
+    "alert_instances": 10,
+    "seeds": [
+      {
+        "path": "/profile?name=fixture"
+      },
+      {
+        "path": "/search?q=alice"
+      }
+    ],
+    "policy": {
+      "defaultThreshold": "Off",
+      "defaultStrength": "Low",
+      "rules": [
+        {
+          "id": 40012,
+          "threshold": "Medium",
+          "strength": "Low"
+        },
+        {
+          "id": 40018,
+          "threshold": "Medium",
+          "strength": "Low"
+        }
+      ]
+    },
+    "zap_jar_sha256": "015dda4709b5ef79736086bb41e8e2a4e95b04cf6625f14d6bcc02b197c99c0c",
+    "implementation_sha256": {
+      "review\\model_dast.py": "759764df8f7afeea55f5d7004273d5a4a2b48f26bb1501b07ab83f3a623c4337",
+      "review\\serve_manuscript_scan.py": "9f6fb42638f647d3d4d0d405fb89e328b66c08454f9bf31e01c218e0f32da6a1"
+    }
+  },
+  "new_alert_types": [],
+  "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof."
+}

@@ -1,0 +1,494 @@
+[
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 2,
+    "b_only": 1,
+    "both": 1,
+    "neither": 3,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.14285714285714285,
+    "matched_odds_ratio": 2.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "b_rate_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r1",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r1",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 0,
+    "b_only": 0,
+    "both": 0,
+    "neither": 7,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "undefined",
+    "a_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "b_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r1",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r1",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 0,
+    "b_only": 2,
+    "both": 0,
+    "neither": 5,
+    "mcnemar_exact_p": 0.5,
+    "risk_difference": -0.2857142857142857,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "b_rate_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r2",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 0,
+    "b_only": 0,
+    "both": 0,
+    "neither": 7,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "undefined",
+    "a_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "b_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r2",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 3,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 1,
+    "b_only": 1,
+    "both": 0,
+    "neither": 5,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
+    "matched_odds_ratio": 1.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "b_rate_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r3",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+      ],
+      "repetition": 3,
+      "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+      "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "measured",
+    "n": 7,
+    "a_only": 0,
+    "b_only": 0,
+    "both": 0,
+    "neither": 7,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "undefined",
+    "a_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "b_rate_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "tool_agent_run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r3",
+    "avr_run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3",
+    "interpretation": "End-to-end method comparison with the same pinned input, reply cap, tests and final oracle; strategies and local gates differ.",
+    "holm_p_baseline_family": 1
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 3,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.5-flash-lite",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 3,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemini-3.6-flash",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 2,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  },
+  {
+    "identity": {
+      "behavioral_test_sha256": "df0a351641dd394099b3ab4d66f60a698e2c7d939f2bb597c88d209568844fec",
+      "max_tokens": 8192,
+      "model": "gemma-4-31b-it",
+      "provider": "gemini",
+      "pytest_args": [
+        "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_vampi.py"
+      ],
+      "repetition": 1,
+      "sarif_sha256": "a0b9f2f1560b27a65837269348ee05db6493fb34aa4ab8d177a5d88bf70c0652",
+      "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+      "temperature": 0.1,
+      "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23"
+    },
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null
+  }
+]

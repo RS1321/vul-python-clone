@@ -1,0 +1,10 @@
+--- 
++++ 
+@@ -44,4 +44,6 @@
+         query_db(query, [], False, True)
+         return jsonify({"success": True})
+     except sqlite3.Error as err:
+-        return jsonify({"error": "could not create user:" + err})
++        from flask import current_app
++        current_app.logger.exception("Could not create user")
++        return jsonify({"error": "could not create user"}), 500

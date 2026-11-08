@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -142,7 +142,7 @@
+         user = User.query.filter_by(username=resp['sub']).first()
+         if vuln:  # Regex DoS
+             match = re.search(
+-                r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
++                r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$",
+                 str(request_data.get('email')))
+             if match:
+                 user.email = request_data.get('email')

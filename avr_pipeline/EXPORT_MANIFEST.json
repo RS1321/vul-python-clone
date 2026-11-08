@@ -2,7 +2,7 @@
   "source_url": "https://github.com/Deep-Jiwan/AVR-System",
   "upstream_commit": "f411f88440be3439c1a95e06e2abc493dbe7ab22",
   "application_baseline_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
-  "scope": "Local code/evidence export. Runtime clones, credentials, model weights and databases omitted.",
+  "scope": "Historical import manifest at commit 8746d2c. Subsequent development is maintained directly in this repository; listed hashes describe the original export, not current files.",
   "redaction_note": "Redacted artifacts may require re-fetching the pinned public input for byte-exact reproduction.",
   "files": [
     {
@@ -46885,5 +46885,6 @@
       "workspace_path_redactions": 0,
       "generated_by": "export_to_user_repo.py"
     }
-  ]
+  ],
+  "historical_only": true
 }

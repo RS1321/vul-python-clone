@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Cite this version and its Git commit. The repository distinguishes manuscript-reported values, controlled model experiments and agent-authored oracle validation."
+type: software
+title: "AVR vulnerability-repair evaluation code and evidence"
+version: "review-2-evaluation-2026-11-08"
+authors:
+  - name: "RS1321 repository contributors"
+repository-code: "https://github.com/RS1321/vul-python-clone"
+url: "https://github.com/RS1321/vul-python-clone"

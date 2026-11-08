@@ -1,0 +1,3994 @@
+{
+  "generated_utc": "2026-11-08T15:14:12.701801+00:00",
+  "planned_cells": 420,
+  "completed_primary_cells": 45,
+  "controlled_code_commit": "12f7847",
+  "implementation_boundary": "The target-environment validator correction is a separate implementation, audited on a saved candidate. Keep its future runs under new tags and separate implementation hashes.",
+  "remaining_primary_cells": 375,
+  "spending": "free/local only",
+  "cells": [
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.6-flash-A-vampi-review2-additional-free-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.6-flash-A-vampi-review2-additional-free-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.6-flash-B-vampi-review2-additional-free-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-A-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-A-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-A-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-B-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-B-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-B-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-C-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-C-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-C-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-aligned-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-aligned-r1"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r2"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [
+        "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r3"
+      ],
+      "status": "complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "runs": [],
+      "status": "not_complete"
+    },
+    {
+      "provider": "local",
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 3,
+      "runs": [],
+      "status": "not_complete"
+    }
+  ],
+  "tool_agent_attempts": [
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-json-r1",
+      "status": "interrupted_api_error",
+      "repetition": 1,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-json-v2-r1",
+      "status": "interrupted_api_error",
+      "repetition": 1,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r1",
+      "status": "complete",
+      "repetition": 1,
+      "resolved": 3,
+      "new_alerts": 1,
+      "behavior": "passed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r2",
+      "status": "interrupted_api_error",
+      "repetition": 2,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r3",
+      "status": "complete",
+      "repetition": 3,
+      "resolved": 1,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2",
+      "status": "complete",
+      "repetition": 2,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-paced-v2-r1",
+      "status": "interrupted_api_error",
+      "repetition": 1,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-r1",
+      "status": "interrupted_api_error",
+      "repetition": 1,
+      "resolved": 0,
+      "new_alerts": 0,
+      "behavior": "failed"
+    }
+  ],
+  "harness_warmups_excluded": [
+    {
+      "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r1",
+      "status": "complete"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r2",
+      "status": "complete"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r1",
+      "status": "complete"
+    },
+    {
+      "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r1",
+      "status": "complete"
+    }
+  ],
+  "incomplete_primary_runs": [
+    {
+      "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r3",
+      "status": "interrupted_api_error"
+    },
+    {
+      "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r2",
+      "status": "interrupted_api_error"
+    },
+    {
+      "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r3",
+      "status": "interrupted_api_error"
+    },
+    {
+      "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r2",
+      "status": "interrupted_api_error"
+    },
+    {
+      "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r1",
+      "status": "interrupted_api_error"
+    },
+    {
+      "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r2",
+      "status": "interrupted_api_error"
+    }
+  ],
+  "human_review": "pending; no independent sign-off or original expert provenance established",
+  "zenodo_doi": null,
+  "linux_and_docker": "definitions added; no local Linux distribution or Docker installation available"
+}

@@ -14,12 +14,21 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+LOCAL_MODELS = {'qwen2.5-coder-1.5b-instruct-q4km':18080,
+                'qwen2.5-coder-0.5b-instruct-q4km':18081}
 
 
 class GenerationLimitError(ValueError):
     """A completed API response exhausted its output budget, not an outage."""
     def __init__(self, response):
         super().__init__('Generation output-token limit exhausted before a complete reply')
+        self.response = response
+
+
+class ModelOutputError(ValueError):
+    """An acknowledged malformed/blocked generation, not a transport outage."""
+    def __init__(self, response):
+        super().__init__('Model did not return a complete patch: '+str(response.get('finish_reason')))
         self.response = response
 
 
@@ -63,6 +72,10 @@ class LLMClient:
             raise ValueError("Set GEMINI_API_KEY (or the configured OPENAI_API_KEY Gemini alias)")
         elif self.provider not in ["openrouter", "deepseek", "ollama", "gemini", "local"]:
             raise ValueError(f"Unsupported provider: {provider}")
+        if self.provider == 'local' and self.model not in LOCAL_MODELS:
+            raise ValueError('Local model requires an explicitly configured loopback port; use the ollama provider for other local models')
+        if self.provider == 'gemini' and not re.fullmatch(r'[a-zA-Z0-9._-]+',self.model):
+            raise ValueError('Use an exact Gemini model ID')
     
     def chat_completion(self, messages: List[Dict[str, str]], system_prompt: Optional[str] = None, 
                        purpose: str = "chat", metrics=None, finding_number: Optional[str] = None, 
@@ -259,7 +272,10 @@ class LLMClient:
                     'completion_tokens': usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0),
                     'total_tokens': usage.get('totalTokenCount', 0)}})
         if not content or candidate.get("finishReason") not in (None, "STOP"):
-            raise RuntimeError(f"Gemini returned incomplete/blocked output: {candidate.get('finishReason')}")
+            raise ModelOutputError({'content':content,'model':reported_model,'provider':'gemini',
+                                    'finish_reason':candidate.get('finishReason'),
+                                    'native_content':candidate.get('content',{}),'transport_events':transport_events,
+                                    'usage':data.get('usageMetadata',{})})
         usage = data.get("usageMetadata", {})
         return {"content": content, "model": reported_model,
                 "provider": "gemini", "transport_events": transport_events, "usage": {
@@ -271,8 +287,7 @@ class LLMClient:
         """Free local models use fixed loopback-only, credential-free endpoints."""
         from egress_guard import sanitise
         messages=[dict(m,content=sanitise(m['content'])) for m in messages]
-        ports={'qwen2.5-coder-1.5b-instruct-q4km':18080,
-               'qwen2.5-coder-0.5b-instruct-q4km':18081}
+        ports=LOCAL_MODELS
         if self.model not in ports:
             raise ValueError('Local model requires an explicitly configured loopback port')
         with requests.Session() as session:

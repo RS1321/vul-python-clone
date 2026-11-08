@@ -1,0 +1,44 @@
+{
+  "finding_id": "py/sql-injection:flask_webgoat/__init__.py:14:2",
+  "accepted": false,
+  "security_status": "pending_batch_rescan",
+  "attempts": [
+    {
+      "attempt": 1,
+      "accepted": false,
+      "duration_seconds": 11.57799999999952,
+      "response": {
+        "content": "SCOPE: query_db\nEXPLANATION: Use parameterized queries correctly by ensuring arguments are passed safely to execute.\n```python\ndef query_db(query, args=(), one=False, commit=False):\n    with sqlite3.connect(DB_FILENAME) as conn:\n        # vulnerability: Sensitive Data Exposure\n        conn.set_trace_callback(print)\n        cur = conn.cursor()\n        cur.execute(query, args)\n        if commit:\n            conn.commit()\n        return cur.fetchone() if one else cur.fetchall()\n```",
+        "model": "gemini-3.5-flash-lite",
+        "provider": "gemini",
+        "transport_events": [
+          {
+            "http_status": 200,
+            "budget_wait_seconds": 0.0
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 320,
+          "completion_tokens": 125,
+          "total_tokens": 445
+        }
+      },
+      "prompt": "Repair the reported vulnerability in flask_webgoat/__init__.py\n\nScanner evidence\n{\n  \"rule_id\": \"py/sql-injection\",\n  \"cwe\": \"CWE-089\",\n  \"description\": \"This SQL query depends on a [user-provided value](1).\\nThis SQL query depends on a [user-provided value](2).\"\n}\n\n\n\nCurrent source snapshot\n```python\ndef query_db(query, args=(), one=False, commit=False):\n    with sqlite3.connect(DB_FILENAME) as conn:\n        # vulnerability: Sensitive Data Exposure\n        conn.set_trace_callback(print)\n        cur = conn.cursor().execute(query, args)\n        if commit:\n            conn.commit()\n        return cur.fetchone() if one else cur.fetchall()\n```\nReturn the minimal patch using the required format.",
+      "application": {
+        "file": "flask_webgoat/__init__.py",
+        "scope": "query_db",
+        "route": "rejected",
+        "success": false,
+        "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+      },
+      "error": "Only function or verified line patches are supported; multi-function edits require separate patches"
+    }
+  ],
+  "application_counts": {
+    "attempts": 1,
+    "failures": 1,
+    "rejected": 1
+  },
+  "lines_added": 0,
+  "lines_removed": 0
+}

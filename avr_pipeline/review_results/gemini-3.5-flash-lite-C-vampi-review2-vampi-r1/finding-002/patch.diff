@@ -1,0 +1,16 @@
+--- 
++++ 
+@@ -140,9 +140,10 @@
+         return Response(error_message_helper(resp), 401, mimetype="application/json")
+     else:
+         user = User.query.filter_by(username=resp['sub']).first()
+-        regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+-        if (re.search(regex, str(request_data.get('email')))):
+-            user.email = request_data.get('email')
++        email_str = str(request_data.get('email', ''))
++        regex = r'^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'
++        if len(email_str) <= 254 and re.match(regex, email_str, re.IGNORECASE):
++            user.email = email_str
+             db.session.commit()
+             responseObject = {
+                 'status': 'success',

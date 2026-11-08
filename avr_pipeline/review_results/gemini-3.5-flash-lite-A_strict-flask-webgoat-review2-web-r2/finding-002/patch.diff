@@ -1,0 +1,13 @@
+--- 
++++ 
+@@ -55,8 +55,7 @@
+ 
+ @bp.route("/deserialized_descr", methods=["POST"])
+ def deserialized_descr():
++    import json
+     pickled = request.form.get('pickled')
+-    data = base64.urlsafe_b64decode(pickled)
+-    # vulnerability: Insecure Deserialization
+-    deserialized = pickle.loads(data)
++    deserialized = json.loads(base64.urlsafe_b64decode(pickled))
+     return jsonify({"success": True, "description": str(deserialized)})

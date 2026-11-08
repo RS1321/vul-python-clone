@@ -1,0 +1,389 @@
+[
+  {
+    "finding_number": "FINDING 002",
+    "finding_id": "py/polynomial-redos:api_views/users.py:163:1",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/polynomial-redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '00'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 163,
+        "end_line": 163,
+        "function": "update_email"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 7,
+                        "startColumn": 38,
+                        "endColumn": 45
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 7,
+                        "startColumn": 38,
+                        "endColumn": 45
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 133,
+                        "startColumn": 20,
+                        "endColumn": 27
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 133,
+                        "startColumn": 5,
+                        "endColumn": 17
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request_data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 163,
+                        "startColumn": 34,
+                        "endColumn": 46
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request_data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 163,
+                        "startColumn": 34,
+                        "endColumn": 59
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2929bc1eac184303:1",
+      "primaryLocationStartColumnFingerprint": "21"
+    }
+  },
+  {
+    "finding_number": "FINDING 001",
+    "finding_id": "py/polynomial-redos:api_views/users.py:146:0",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/polynomial-redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '0'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 146,
+        "end_line": 146,
+        "function": "update_email"
+      },
+      "data_flow": [
+        {
+          "threadFlows": [
+            {
+              "locations": [
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 7,
+                        "startColumn": 38,
+                        "endColumn": 45
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for ImportMember"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 7,
+                        "startColumn": 38,
+                        "endColumn": 45
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 133,
+                        "startColumn": 20,
+                        "endColumn": 27
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 133,
+                        "startColumn": 5,
+                        "endColumn": 17
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request_data"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "AdditionalTaintStep",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 146,
+                        "startColumn": 21,
+                        "endColumn": 33
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for request_data"
+                    }
+                  }
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 146,
+                        "startColumn": 21,
+                        "endColumn": 46
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for Attribute()"
+                    }
+                  },
+                  "taxa": [
+                    {
+                      "id": "dict.get",
+                      "properties": {
+                        "CodeQL/DataflowRole": "step"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "location": {
+                    "physicalLocation": {
+                      "artifactLocation": {
+                        "uri": "api_views/users.py",
+                        "uriBaseId": "%SRCROOT%",
+                        "index": 0
+                      },
+                      "region": {
+                        "startLine": 146,
+                        "startColumn": 17,
+                        "endColumn": 47
+                      }
+                    },
+                    "message": {
+                      "text": "ControlFlowNode for str()"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "dc2397899085ed54:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 003",
+    "finding_id": "py/redos:api_views/users.py:145:2",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This part of the regular expression may cause exponential backtracking on strings starting with '0' and containing many repetitions of '0'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 145,
+        "end_line": 145,
+        "function": "update_email"
+      },
+      "data_flow": []
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "80b5cddf61b80f85:1",
+      "primaryLocationStartColumnFingerprint": "16"
+    }
+  }
+]

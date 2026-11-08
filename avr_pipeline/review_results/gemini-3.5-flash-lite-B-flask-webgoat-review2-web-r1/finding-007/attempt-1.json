@@ -1,0 +1,54 @@
+{
+  "attempt": 1,
+  "accepted": true,
+  "duration_seconds": 1.4849999999999,
+  "response": {
+    "content": "SCOPE: line\nEXPLANATION: Disabled Flask debug mode to prevent potential arbitrary code execution via the debugger.\n```python\n    app.run(debug=False)\n```",
+    "model": "gemini-3.5-flash-lite",
+    "provider": "gemini",
+    "transport_events": [
+      {
+        "http_status": 200,
+        "budget_wait_seconds": 0
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 543,
+      "completion_tokens": 37,
+      "total_tokens": 580
+    }
+  },
+  "prompt": "Repair the reported vulnerability in run.py\n\nScanner evidence\n{\n  \"finding_number\": \"FINDING 005\",\n  \"finding_id\": \"py/flask-debug:run.py:15:4\",\n  \"sast\": {\n    \"present\": true,\n    \"tool\": \"codeql\",\n    \"rule_id\": \"py/flask-debug\",\n    \"cwe\": \"CWE-215\",\n    \"all_cwes\": [\n      \"CWE-215\",\n      \"CWE-489\"\n    ],\n    \"description\": \"A Flask app appears to be run in debug mode. This may allow an attacker to run arbitrary code through the debugger.\",\n    \"location\": {\n      \"file_path\": \"run.py\",\n      \"start_line\": 13,\n      \"end_line\": 15,\n      \"function\": null\n    },\n    \"data_flow\": {\n      \"profile\": \"compact\",\n      \"paths\": [],\n      \"omitted_paths\": 0\n    }\n  },\n  \"dast\": {\n    \"present\": false,\n    \"reason\": \"No endpoint-linked ZAP evidence supplied\"\n  },\n  \"partial_fingerprints\": {\n    \"primaryLocationLineHash\": \"592eb5113a7053ce:1\",\n    \"primaryLocationStartColumnFingerprint\": \"0\"\n  },\n  \"module_snapshot\": \"if __name__ == '__main__':\\n    # vulnerability: Security Misconfiguration\\n    app.run(debug=True)\"\n}\n\n\n\nCurrent source snapshot\n```python\nif __name__ == '__main__':\n    # vulnerability: Security Misconfiguration\n    app.run(debug=True)\n```\nReturn the minimal patch using the required format.",
+  "application": {
+    "file": "run.py",
+    "scope": "line",
+    "route": "verified_line",
+    "success": true,
+    "target": null
+  },
+  "validation": {
+    "minimality": {
+      "passed": true,
+      "message": "4 added plus deleted lines; allowed 5",
+      "lines_added": 1,
+      "lines_removed": 3,
+      "total_churn": 4,
+      "original_length": 3,
+      "limit": 5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 7.142857142857143,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "not_configured",
+      "passed": null,
+      "failures": null
+    }
+  }
+}

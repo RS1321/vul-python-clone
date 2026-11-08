@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="5" failures="0" skipped="0" tests="5" time="0.389" timestamp="2026-11-08T19:10:23.947850+05:30" hostname="Rahuls_OMEN"><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_status_contract" time="0.119"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'baseh4'&quot;">tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2/behavioral-tests/pytest-tmp/test_status_contract0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000187C32EBFE0&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+&gt;       import flask_webgoat
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    import sqlite3
+    from pathlib import Path
+    
+    from flask import Flask, g, abort, url_for
+    from urllib.parse import urlparse, urljoin
+    from werkzeug.utils import secure_filename
+    import subprocess
+    import pickle
+&gt;   import baseh4 as base64_mod # wait, let's keep base64 correctly
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'baseh4'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2\source\flask_webgoat\__init__.py:9: ModuleNotFoundError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_legitimate_login" time="0.005"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'baseh4'&quot;">tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2/behavioral-tests/pytest-tmp/test_legitimate_login0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000187C3626D50&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+&gt;       import flask_webgoat
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    import sqlite3
+    from pathlib import Path
+    
+    from flask import Flask, g, abort, url_for
+    from urllib.parse import urlparse, urljoin
+    from werkzeug.utils import secure_filename
+    import subprocess
+    import pickle
+&gt;   import baseh4 as base64_mod # wait, let's keep base64 correctly
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'baseh4'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2\source\flask_webgoat\__init__.py:9: ModuleNotFoundError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_sql_authentication_bypass_rejected" time="0.005"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'baseh4'&quot;">tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2/behavioral-tests/pytest-tmp/test_sql_authentication_bypass0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000187C3625A90&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+&gt;       import flask_webgoat
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    import sqlite3
+    from pathlib import Path
+    
+    from flask import Flask, g, abort, url_for
+    from urllib.parse import urlparse, urljoin
+    from werkzeug.utils import secure_filename
+    import subprocess
+    import pickle
+&gt;   import baseh4 as base64_mod # wait, let's keep base64 correctly
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'baseh4'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2\source\flask_webgoat\__init__.py:9: ModuleNotFoundError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_external_redirect_rejected" time="0.006"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'baseh4'&quot;">tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2/behavioral-tests/pytest-tmp/test_external_redirect_rejecte0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000187C36267E0&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+&gt;       import flask_webgoat
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    import sqlite3
+    from pathlib import Path
+    
+    from flask import Flask, g, abort, url_for
+    from urllib.parse import urlparse, urljoin
+    from werkzeug.utils import secure_filename
+    import subprocess
+    import pickle
+&gt;   import baseh4 as base64_mod # wait, let's keep base64 correctly
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'baseh4'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2\source\flask_webgoat\__init__.py:9: ModuleNotFoundError</error></testcase><testcase classname="avr_pipeline.review.behavioral.test_flask_webgoat" name="test_command_input_does_not_reach_shell" time="0.004"><error message="failed on setup with &quot;ModuleNotFoundError: No module named 'baseh4'&quot;">tmp_path = WindowsPath('C:/Users/rahul/OneDrive/Documents/CodexCoding1/vul-python-clone/avr_pipeline/review_results/gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2/behavioral-tests/pytest-tmp/test_command_input_does_not_re0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x00000187C3627AA0&gt;
+
+    @pytest.fixture
+    def client(tmp_path, monkeypatch):
+        sys.path.insert(0, str(SOURCE))
+        monkeypatch.chdir(tmp_path)
+&gt;       import flask_webgoat
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review\behavioral\test_flask_webgoat.py:14: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    import sqlite3
+    from pathlib import Path
+    
+    from flask import Flask, g, abort, url_for
+    from urllib.parse import urlparse, urljoin
+    from werkzeug.utils import secure_filename
+    import subprocess
+    import pickle
+&gt;   import baseh4 as base64_mod # wait, let's keep base64 correctly
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'baseh4'
+
+C:\Users\rahul\OneDrive\Documents\CodexCoding1\vul-python-clone\avr_pipeline\review_results\gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2\source\flask_webgoat\__init__.py:9: ModuleNotFoundError</error></testcase></testsuite></testsuites>

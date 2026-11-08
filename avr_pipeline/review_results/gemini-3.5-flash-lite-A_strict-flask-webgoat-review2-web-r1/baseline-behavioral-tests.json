@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "returncode": 1,
+  "tests": 5,
+  "failures": [
+    "avr_pipeline.review.behavioral.test_flask_webgoat::test_status_contract",
+    "avr_pipeline.review.behavioral.test_flask_webgoat::test_legitimate_login",
+    "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+    "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+    "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+  ],
+  "infrastructure_error": false
+}

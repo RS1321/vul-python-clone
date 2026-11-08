@@ -1,0 +1,1394 @@
+[
+  {
+    "run": "gemini-3.1-flash-lite-A-pygoat-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 62,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 62
+  },
+  {
+    "run": "gemini-3.1-flash-lite-A-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 5,
+    "resolution_ci95": [
+      0.0759785725289123,
+      0.34548439890195237
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 5
+  },
+  {
+    "run": "gemini-3.1-flash-lite-A-vampi-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemini-3.1-flash-lite-B-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 8,
+    "resolution_ci95": [
+      0.14698755102087957,
+      0.45717132416865935
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-aligned-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 2
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-flask-webgoat-review2-web-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-pygoat-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 62,
+    "resolved": 39,
+    "resolution_ci95": [
+      0.5045796412346053,
+      0.7384283401585889
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 14,
+    "resolution_ci95": [
+      0.3138609015268349,
+      0.6556897811800528
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-vampi-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-aligned-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-flask-webgoat-review2-web-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-A_strict-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-aligned-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 4,
+    "resolution_ci95": [
+      0.25045836452765724,
+      0.8417801447485302
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-flask-webgoat-review2-web-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 4,
+    "resolution_ci95": [
+      0.25045836452765724,
+      0.8417801447485302
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 14,
+    "resolution_ci95": [
+      0.3138609015268349,
+      0.6556897811800528
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-B-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-flask-webgoat-review2-web-factorial-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-C-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-flask-webgoat-review2-web-factorial-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.08221892400405678,
+      0.6410655481673806
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_examples-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 4,
+    "resolution_ci95": [
+      0.25045836452765724,
+      0.8417801447485302
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-flask-webgoat-review2-web-factorial-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 4,
+    "resolution_ci95": [
+      0.25045836452765724,
+      0.8417801447485302
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-no_guidance-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-flask-webgoat-review2-web-factorial-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-simple-vampi-review2-vampi-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-json-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-json-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.1582198552514697,
+      0.7495416354723428
+    ],
+    "behavioral_evidence": "passed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r2",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-r3",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 1,
+    "resolution_ci95": [
+      0.02567962434474355,
+      0.5131278292743188
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-native-retry-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": [
+      0,
+      0.3543304350666873
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-paced-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.5-flash-lite-tool-agent-flask-webgoat-review2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 7,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 7
+  },
+  {
+    "run": "gemini-3.6-flash-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 5,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r2",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.6-flash-A-vampi-review2-additional-free-r3",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r2",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemini-3.6-flash-B-vampi-review2-additional-free-r3",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-pygoat-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 62,
+    "resolved": 38,
+    "resolution_ci95": [
+      0.4884784353901836,
+      0.7241535483288613
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 41
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 11,
+    "resolution_ci95": [
+      0.22688022100809843,
+      0.5599745579401147
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-A-vampi-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-B-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 11,
+    "resolution_ci95": [
+      0.22688022100809843,
+      0.5599745579401147
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 11
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-B-synthetic-matched-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 11,
+    "resolution_ci95": [
+      0.22688022100809843,
+      0.5599745579401147
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-C-synthetic-matched-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 24,
+    "resolution_ci95": [
+      0.6545156010980476,
+      0.9240214274710877
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_examples-synthetic-matched-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 11,
+    "resolution_ci95": [
+      0.22688022100809843,
+      0.5599745579401147
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 11
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-no_guidance-synthetic-matched-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 11,
+    "resolution_ci95": [
+      0.22688022100809843,
+      0.5599745579401147
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 11
+  },
+  {
+    "run": "gemma-4-26b-a4b-it-simple-synthetic-matched-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 23,
+    "resolution_ci95": [
+      0.6160990959613211,
+      0.9015392980215897
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-31b-it-A-pygoat-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 62,
+    "resolved": 11,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 62
+  },
+  {
+    "run": "gemma-4-31b-it-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-31b-it-A-vampi-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-31b-it-A-vampi-review2-larger-free-r2",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-31b-it-B-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 5,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma-4-31b-it-B-vampi-review2-larger-free-r2",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 3,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "failed",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma26-A-pygoat-cross-file-r1",
+    "status": "complete",
+    "full_run": false,
+    "findings": 2,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma26-A-pygoat-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 62,
+    "resolved": 11,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 62
+  },
+  {
+    "run": "gemma26-A-synthetic-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemma26-A-synthetic-v3-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 13,
+    "resolution_ci95": [
+      0.28413168023037205,
+      0.6245203678902908
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "gemma26-A-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemma26-simple-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.4385029682449546,
+      1
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemma31-A-synthetic-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 0,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemma31-A-synthetic-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 2,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "gemma31-A-vampi-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 2,
+    "resolution_ci95": [
+      0.20765960080204782,
+      0.9385080552796038
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  },
+  {
+    "run": "gemma31-B-synthetic-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": 2,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 0,
+    "resolution_ci95": [
+      0,
+      0.11696979849974071
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v2-r1",
+    "status": "interrupted_api_error",
+    "full_run": false,
+    "findings": 29,
+    "resolved": null,
+    "resolution_ci95": null,
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 29
+  },
+  {
+    "run": "qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v3-1024-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 0,
+    "resolution_ci95": [
+      0,
+      0.11696979849974071
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 62,
+    "resolved": 20,
+    "resolution_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 21
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 5,
+    "resolution_ci95": [
+      0.0759785725289123,
+      0.34548439890195237
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 3,
+    "resolved": 0,
+    "resolution_ci95": [
+      0,
+      0.5614970317550454
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 0
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1",
+    "status": "complete",
+    "full_run": true,
+    "findings": 29,
+    "resolved": 3,
+    "resolution_ci95": [
+      0.035814891350677044,
+      0.26385081090773793
+    ],
+    "behavioral_evidence": "unmeasured",
+    "joint_true": 0,
+    "joint_unknown": 3
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+  "source_url": "https://github.com/ShiftLeftSecurity/flask-webgoat.git",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "condition": "tool_agent",
+  "repetition": 1,
+  "settings": {
+    "tools": [
+      "list_files",
+      "read_file",
+      "replace_text",
+      "git_diff",
+      "pytest",
+      "codeql"
+    ],
+    "max_turns": 21,
+    "tests": "monitor",
+    "gates": "compile replacements; shared final oracle"
+  },
+  "max_tokens": 8192,
+  "max_reply_tokens_total": 172032,
+  "temperature": 0.1,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "guidance_used": false,
+  "implementation_sha256": {
+    "review/agent_baseline.py": "8842a753c8f37b4ebd057eae0a2d5acf4f9dfa6527c6ef194ba29326f15182b2",
+    "review/runner.py": "10523c1aaee527f152215522bf508838b540e7b5cbaf7cfa1fc06f858ab04c12"
+  },
+  "sarif_sha256": "814f1d88b7d138b937f7b95ed2af73027df9a16027bc558ebb6eefc915a41dd1",
+  "context_profile": "tool-selected",
+  "pytest_args": [
+    "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\vul-python-clone\\avr_pipeline\\review\\behavioral\\test_flask_webgoat.py"
+  ],
+  "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+  "behavioral_test_sha256": "83a3ebb2b6c2285b93f1d2e06ac097cb29c272f063292e779b085e023bd75926",
+  "eligible_findings": 7,
+  "selected_findings": 7,
+  "status": "interrupted_api_error",
+  "utc": "2026-11-08T12:55:16.275536+00:00",
+  "dast_status": "not_run",
+  "scope": "Model-generated tool-agent comparator; excludes human/agent-authored oracle repairs",
+  "acceptance_definition": "Tracked target file changed by model tools; not AVR local-gate acceptance",
+  "elapsed_seconds": 1.8589999999999236,
+  "processed_findings": 7,
+  "accepted_patches": 0,
+  "post_tests": {
+    "status": "failed",
+    "returncode": 1,
+    "tests": 5,
+    "failures": [
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_status_contract",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_legitimate_login",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+    ],
+    "infrastructure_error": false
+  },
+  "behavioral_tests": {
+    "status": "failed",
+    "returncode": 1,
+    "tests": 5,
+    "failures": [
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_status_contract",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_legitimate_login",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+      "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+    ],
+    "infrastructure_error": false
+  },
+  "sast": {
+    "baseline_findings": 7,
+    "remaining_baseline_findings": 7,
+    "resolved_findings": 0,
+    "new_findings": 0,
+    "resolution_rate": 0.0,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [],
+    "new_groups": []
+  }
+}

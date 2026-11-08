@@ -1,0 +1,141 @@
+{
+  "scope": "Validator audit of one previously generated candidate; not a new model run or a causal full-pipeline performance estimate.",
+  "model_run": "gemma-4-31b-it-A-vampi-review2-larger-free-r1",
+  "finding": "py/polynomial-redos:api_views/users.py:163:1",
+  "candidate_attempt": 1,
+  "candidate_response_sha256": "c3cb61a428f3e95660a8883cf1d6e2eabd4c52b61031062c885fe8bcc726dce0",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "site_packages": [
+      "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.review-work\\vampi-env",
+      "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.review-work\\vampi-env\\Lib\\site-packages"
+    ],
+    "packages": [
+      "Flask-SQLAlchemy==3.0.3",
+      "Flask-WTF==1.3.0",
+      "Flask==2.2.2",
+      "Jinja2==3.1.6",
+      "MarkupSafe==2.1.2",
+      "PyJWT==2.6.0",
+      "PyYAML==6.0.3",
+      "SQLAlchemy==2.0.2",
+      "WTForms==3.3.2",
+      "Werkzeug==2.2.3",
+      "argon2-cffi-bindings==26.1.0",
+      "argon2-cffi==25.1.0",
+      "attrs==26.1.0",
+      "certifi==2026.10.23",
+      "cffi==2.1.1",
+      "charset-normalizer==3.5.2",
+      "click==8.5.1",
+      "clickclick==20.10.2",
+      "connexion==2.14.2",
+      "defusedxml==0.7.1",
+      "greenlet==3.5.6",
+      "idna==3.20",
+      "inflection==0.5.1",
+      "itsdangerous==2.2.0",
+      "jsonschema==4.17.3",
+      "packaging==26.3",
+      "pillow==13.0.0",
+      "pycparser==3.12",
+      "pyrsistent==0.20.0",
+      "requests==2.34.2",
+      "swagger-ui-bundle==0.0.9",
+      "typing_extensions==4.16.0",
+      "urllib3==2.8.0"
+    ],
+    "distribution_sha256": "c51ebb8a19c9168be721db1ad5d03ccfc8e9d03b2c46c43b4dca775f739e7afb",
+    "executable": "C:\\Users\\rahul\\OneDrive\\Documents\\CodexCoding1\\AVR-System-review\\.review-work\\vampi-env\\Scripts\\python.exe"
+  },
+  "lint": {
+    "pipeline_environment": {
+      "score": 3.6029411764705888,
+      "errors": [
+        {
+          "symbol": "import-error",
+          "object": "",
+          "message": "Unable to import 'jsonschema'"
+        },
+        {
+          "symbol": "import-error",
+          "object": "",
+          "message": "Unable to import 'jwt'"
+        },
+        {
+          "symbol": "import-error",
+          "object": "update_email",
+          "message": "Unable to import 'jsonschema'"
+        }
+      ]
+    },
+    "target_environment": {
+      "score": 4.705882352941177,
+      "errors": []
+    }
+  },
+  "sast": {
+    "baseline_findings": 3,
+    "remaining_baseline_findings": 1,
+    "resolved_findings": 2,
+    "new_findings": 0,
+    "resolution_rate": 0.6666666666666666,
+    "matching": "multiset of rule, repository-relative file, qualified function; module locations aggregated",
+    "resolved_groups": [
+      {
+        "key": [
+          "py/polynomial-redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      },
+      {
+        "key": [
+          "py/redos",
+          "api_views/users.py",
+          "update_email"
+        ],
+        "count": 1
+      }
+    ],
+    "new_groups": []
+  },
+  "original_gate_accepted": false,
+  "corrected_gate_accepted": true,
+  "corrected_checks": {
+    "minimality": {
+      "passed": true,
+      "message": "6 added plus deleted lines; allowed 22.5",
+      "lines_added": 5,
+      "lines_removed": 1,
+      "total_churn": 6,
+      "original_length": 45,
+      "limit": 22.5
+    },
+    "compile": {
+      "passed": true
+    },
+    "pylint": {
+      "passed": true,
+      "score": 4.705882352941177,
+      "new_errors": [],
+      "preexisting_error_count": 0
+    },
+    "pytest": {
+      "status": "failed",
+      "returncode": 1,
+      "tests": 11,
+      "failures": [
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+        "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+      ],
+      "errors": 0,
+      "infrastructure_error": false
+    }
+  }
+}

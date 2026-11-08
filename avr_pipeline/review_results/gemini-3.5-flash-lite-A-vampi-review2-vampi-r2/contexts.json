@@ -1,0 +1,181 @@
+[
+  {
+    "finding_number": "FINDING 002",
+    "finding_id": "py/polynomial-redos:api_views/users.py:163:1",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/polynomial-redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '00'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 163,
+        "end_line": 163,
+        "function": "update_email"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "api_views/users.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 133,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 133,
+                "node": "ControlFlowNode for request_data"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 163,
+                "node": "ControlFlowNode for request_data"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 163,
+                "node": "ControlFlowNode for Attribute()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "2929bc1eac184303:1",
+      "primaryLocationStartColumnFingerprint": "21"
+    }
+  },
+  {
+    "finding_number": "FINDING 001",
+    "finding_id": "py/polynomial-redos:api_views/users.py:146:0",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/polynomial-redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This [regular expression](1) that depends on a [user-provided value](2) may run slow on strings starting with '0' and with many repetitions of '0'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 146,
+        "end_line": 146,
+        "function": "update_email"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [
+          {
+            "steps": [
+              {
+                "file": "api_views/users.py",
+                "line": 7,
+                "node": "ControlFlowNode for ImportMember"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 7,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 133,
+                "node": "ControlFlowNode for request"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 133,
+                "node": "ControlFlowNode for request_data"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 146,
+                "node": "ControlFlowNode for request_data"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 146,
+                "node": "ControlFlowNode for Attribute()"
+              },
+              {
+                "file": "api_views/users.py",
+                "line": 146,
+                "node": "ControlFlowNode for str()"
+              }
+            ],
+            "omitted_steps": 0
+          }
+        ],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "dc2397899085ed54:1",
+      "primaryLocationStartColumnFingerprint": "0"
+    }
+  },
+  {
+    "finding_number": "FINDING 003",
+    "finding_id": "py/redos:api_views/users.py:145:2",
+    "sast": {
+      "present": true,
+      "tool": "codeql",
+      "rule_id": "py/redos",
+      "cwe": "CWE-1333",
+      "all_cwes": [
+        "CWE-1333",
+        "CWE-400"
+      ],
+      "description": "This part of the regular expression may cause exponential backtracking on strings starting with '0' and containing many repetitions of '0'.",
+      "location": {
+        "file_path": "api_views/users.py",
+        "start_line": 145,
+        "end_line": 145,
+        "function": "update_email"
+      },
+      "data_flow": {
+        "profile": "compact",
+        "paths": [],
+        "omitted_paths": 0
+      }
+    },
+    "dast": {
+      "present": false,
+      "reason": "No endpoint-linked ZAP evidence supplied"
+    },
+    "partial_fingerprints": {
+      "primaryLocationLineHash": "80b5cddf61b80f85:1",
+      "primaryLocationStartColumnFingerprint": "16"
+    }
+  }
+]

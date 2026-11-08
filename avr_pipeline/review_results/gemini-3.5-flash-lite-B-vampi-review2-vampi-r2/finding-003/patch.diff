@@ -1,0 +1,11 @@
+--- 
++++ 
+@@ -146,7 +146,7 @@
+                             mimetype="application/json")
+         if vuln:  # Regex DoS
+             match = re.search(
+-                r"^[0-9a-zA-Z]([-_.\w]{0,63}[0-9a-zA-Z])?@([0-9a-zA-Z][-\w]{0,63}[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$",
++                r"^[0-9a-zA-Z][0-9a-zA-Z._-]{0,62}@[0-9a-zA-Z][0-9a-zA-Z._-]{0,62}\.[a-zA-Z]{2,9}$",
+                 email_val)
+             if match:
+                 user.email = request_data.get('email')

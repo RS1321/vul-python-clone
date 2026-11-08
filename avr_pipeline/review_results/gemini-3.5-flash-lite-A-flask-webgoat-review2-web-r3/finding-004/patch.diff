@@ -1,0 +1,24 @@
+--- 
++++ 
+@@ -24,14 +24,16 @@
+         return jsonify({"error": "text parameter is required"})
+ 
+     user_id = user_info[0]
+-    user_dir = "data/" + str(user_id)
+-    user_dir_path = Path(user_dir)
++    user_dir_path = Path("data") / str(user_id)
+     if not user_dir_path.exists():
+-        user_dir_path.mkdir()
++        user_dir_path.mkdir(parents=True, exist_ok=True)
+ 
+     filename = filename_param + ".txt"
+-    path = Path(user_dir + "/" + filename)
+-    # vulnerability: Directory Traversal
++    resolved_root = user_dir_path.resolve()
++    path = (resolved_root / filename).resolve()
++    if not path.is_relative_to(resolved_root):
++        return jsonify({"error": "invalid filename"}), 400
++
+     with path.open("w", encoding="utf-8") as open_file:
+         open_file.write(text_param)
+     return jsonify({"success": True})

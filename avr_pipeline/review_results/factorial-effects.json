@@ -1,0 +1,590 @@
+[
+  {
+    "model": "gemini-3.1-flash-lite",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "9a73fe06c709916e682ddaac0f86f874badacc514e7123b31020676bace09e97",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.1-flash-lite",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "2c00185337e282e9ca5b7b6d5b81a3033380307a3ae473a355082dea4f777411",
+    "missing": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "identity_sha256": "277faef7585f43e9a4d16fd4fb7444702a54aa01b3b44b57aecb0328126a23f1",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": -28.57142857142857,
+    "examples_main_effect_pp": 0.0,
+    "interaction_pp": 0.0,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "identity_sha256": "277faef7585f43e9a4d16fd4fb7444702a54aa01b3b44b57aecb0328126a23f1",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": -14.285714285714285,
+    "examples_main_effect_pp": 0.0,
+    "interaction_pp": 0.0,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "identity_sha256": "4c2bfd8c3b40cac85d03c9792f9ecc16a27a844ea405d66c95948b9c8dcc03e1",
+    "missing": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "identity_sha256": "90f6e586e28367f045bca0955110324f948cf273867940212edba5808f61facd",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 3,
+    "identity_sha256": "277faef7585f43e9a4d16fd4fb7444702a54aa01b3b44b57aecb0328126a23f1",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": -35.71428571428571,
+    "examples_main_effect_pp": -7.142857142857142,
+    "interaction_pp": -14.28571428571428,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
+    "identity_sha256": "0c144b107078e0260819ce53da6cdec65874964eb784615295968adcf8c38190",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "84fe40229e7450185d0a8c9bf186232653e2372f5e6ee8f2eb18f51f52bcc51b",
+    "missing": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "fc83bb27443e58d6653d09574fbb79ba3a51d759f1444a188792abd934b020f1",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "b8da1c0c34aec88b8220148879f6ea8d1148cc2bd8824595ccd4abd074649e30",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 2,
+    "identity_sha256": "b8da1c0c34aec88b8220148879f6ea8d1148cc2bd8824595ccd4abd074649e30",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 3,
+    "identity_sha256": "b8da1c0c34aec88b8220148879f6ea8d1148cc2bd8824595ccd4abd074649e30",
+    "missing": [],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "identity_sha256": "90f6e586e28367f045bca0955110324f948cf273867940212edba5808f61facd",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "identity_sha256": "4adeea26257373fc78708ac0bf0f56deee0b449a300c8b013189578d5bfbf5bf",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 3,
+    "identity_sha256": "4adeea26257373fc78708ac0bf0f56deee0b449a300c8b013189578d5bfbf5bf",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.5-flash-lite",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "identity_sha256": "4adeea26257373fc78708ac0bf0f56deee0b449a300c8b013189578d5bfbf5bf",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemini-3.6-flash",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "3c0cbcfd95634d703046863e3d59bdb1be5be2dd25c36d8bd841696aa07231a2",
+    "missing": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemini-3.6-flash",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 2,
+    "identity_sha256": "3c0cbcfd95634d703046863e3d59bdb1be5be2dd25c36d8bd841696aa07231a2",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
+    "identity_sha256": "c15d12c0ba24d5e2eb0ac23bf1f248179bc3b7a2d70fa6209273072d65ea598d",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "113490be59efeb38f551a7cbf4daf26dde9095d83a6a5f8bf3984764e2b97b0d",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "b9a73f80d99080572dacb83da177d9849e89cff4cac57a6b68f748c7d325010b",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "66c156cc5283dc016915d51f6a0fd2e96bc4061ae6f95a4a166f2555281cdbc7",
+    "missing": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "3805e7d3884a0889eb55c1a5be8389d27ec7549e26429d0c064773b6d34948c7",
+    "missing": [
+      "A",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "e3d14eff14ef48bfebebeecba8e9e1c13fea32560e864c6443888780ea3946b9",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "3a8546e1e0afee42d9b946b5e2cf46b173e258477c3b008ce11924cd20111fb4",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "759354abf8e23ade691429a0cfa2a2ddfe58febc35df05b716f78e7594ed3d9f",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 0,
+    "interpretation": "No library entry applies; named prompt-factor differences are not guidance/example treatment effects."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "7714d6cf875ac8d6531a6c3f1eeb38766eb3d541468de87ff0e003f877d342aa",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "6199ddf8a9f0d0c9537de134dd0cd577b2f57c9bf5f07ccd48ec17cc223577ca",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-26b-a4b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "79d5f9e3a1d1e9243d01e1da0123291d2f8ff209aa93fba432d92154a8385855",
+    "missing": [
+      "A",
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "gemma-4-31b-it",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "cf82985d8d0028a94c21308ac1e9645da872e2bb4aa09a242b966ae1c50aa4bc",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "7be8b76938655469d71aa24e02ed2b0c64c0e7223d19cb0c76ea79940bdf1b28",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "34e1a8b4386642689b8a7499af42fc89b5cb8249e6c1a5664305029f928b50af",
+    "missing": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
+    "identity_sha256": "c57fc61e092dc5d8b22c572f809e2846c8938c7ccfa25fcc191f90118771ecec",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "repetition": 1,
+    "identity_sha256": "51384fed25c9ebad32b9381a2878b5d2572fa599074411de5ba736b660c88dd6",
+    "missing": [
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "identity_sha256": "19fa6e96077d59fbc4c3f0d535f6423d060b9d6fb3024f438bd17a9968df11e5",
+    "missing": [
+      "B",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": null,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  }
+]

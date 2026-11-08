@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "dataset": "synthetic",
+  "profile": "authenticated fixed-route active SQL/XSS",
+  "native_authorization_claim": false,
+  "model_patch_only": true,
+  "error": "Target startup/login failed; see application.log"
+}
