@@ -1114,12 +1114,28 @@
     "comparison": "A-no_guidance",
     "metric": "resolved",
     "identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.6249999999999994,
+    "risk_difference": -0.03225806451612903,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 3,
+    "both": 41,
+    "neither": 17,
+    "matched_odds_ratio": 0.3333333333333333,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.553680880928481,
+      0.780455093487161
+    ],
+    "b_rate_ci95": [
+      0.587123542650136,
+      0.8077644271138047
+    ],
+    "a_run": "gemma-4-26b-a4b-it-A-pygoat-review2-validated-retry1-r1",
+    "b_run": "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-recovery4-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "gemma-4-26b-a4b-it",
@@ -1128,12 +1144,28 @@
     "comparison": "A-no_guidance",
     "metric": "joint_security",
     "identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.1368683772161599e-13,
+    "risk_difference": -0.7096774193548387,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 0,
+    "b_only": 44,
+    "both": 0,
+    "neither": 18,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0,
+      0.058344072101372456
+    ],
+    "b_rate_ci95": [
+      0.587123542650136,
+      0.8077644271138047
+    ],
+    "a_run": "gemma-4-26b-a4b-it-A-pygoat-review2-validated-retry1-r1",
+    "b_run": "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-recovery4-r1",
+    "holm_p_all_reported_comparisons": 3.5811353882309036e-11
   },
   {
     "model": "gemma-4-26b-a4b-it",
@@ -1230,12 +1262,28 @@
     "comparison": "A-simple",
     "metric": "resolved",
     "identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 60,
+    "mcnemar_exact_p": 0.00390625,
+    "risk_difference": -0.15,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 0,
+    "b_only": 9,
+    "both": 40,
+    "neither": 11,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.5405686645211968,
+      0.7727073847647731
+    ],
+    "b_rate_ci95": [
+      0.7008024625353195,
+      0.8944220311080235
+    ],
+    "a_run": "gemma-4-26b-a4b-it-A-pygoat-review2-validated-retry1-r1",
+    "b_run": "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "gemma-4-26b-a4b-it",
@@ -1244,12 +1292,28 @@
     "comparison": "A-simple",
     "metric": "joint_security",
     "identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 60,
+    "mcnemar_exact_p": 3.552713678800505e-15,
+    "risk_difference": -0.8166666666666667,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 0,
+    "b_only": 49,
+    "both": 0,
+    "neither": 11,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0,
+      0.06017185214208983
+    ],
+    "b_rate_ci95": [
+      0.7008024625353195,
+      0.8944220311080235
+    ],
+    "a_run": "gemma-4-26b-a4b-it-A-pygoat-review2-validated-retry1-r1",
+    "b_run": "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r1",
+    "holm_p_all_reported_comparisons": 1.1226575225009595e-12
   },
   {
     "model": "gemma-4-26b-a4b-it",
@@ -8366,12 +8430,28 @@
     "comparison": "A-no_guidance",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 1,
+    "both": 19,
+    "neither": 41,
+    "matched_odds_ratio": 1.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8380,12 +8460,28 @@
     "comparison": "A-no_guidance",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 1,
+    "both": 19,
+    "neither": 41,
+    "matched_odds_ratio": 1.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8422,12 +8518,28 @@
     "comparison": "A-C",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.125,
+    "risk_difference": 0.06451612903225806,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 4,
+    "b_only": 0,
+    "both": 16,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.16554876141628072,
+      0.37881127347148014
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8436,12 +8548,28 @@
     "comparison": "A-C",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.125,
+    "risk_difference": 0.06451612903225806,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 4,
+    "b_only": 0,
+    "both": 16,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.16554876141628072,
+      0.37881127347148014
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8450,12 +8578,28 @@
     "comparison": "A-simple",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 1,
+    "both": 19,
+    "neither": 41,
+    "matched_odds_ratio": 1.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-simple-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8464,12 +8608,28 @@
     "comparison": "A-simple",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.0,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 1,
+    "both": 19,
+    "neither": 41,
+    "matched_odds_ratio": 1.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r1",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-simple-pygoat-review2-validated-r1",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8654,12 +8814,28 @@
     "comparison": "A-C",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.0625,
+    "risk_difference": 0.08064516129032258,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 5,
+    "b_only": 0,
+    "both": 15,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.15245896205333753,
+      0.3615250751602741
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r2",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r2",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8668,12 +8844,28 @@
     "comparison": "A-C",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.0625,
+    "risk_difference": 0.08064516129032258,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 5,
+    "b_only": 0,
+    "both": 15,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.15245896205333753,
+      0.3615250751602741
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r2",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r2",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8770,12 +8962,28 @@
     "comparison": "A-B",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": -0.016129032258064516,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 0,
+    "b_only": 1,
+    "both": 19,
+    "neither": 42,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-B-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8784,12 +8992,28 @@
     "comparison": "A-B",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": -0.016129032258064516,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 0,
+    "b_only": 1,
+    "both": 19,
+    "neither": 42,
+    "matched_odds_ratio": 0.0,
+    "odds_ratio_boundary": null,
+    "a_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "b_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-B-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8854,12 +9078,28 @@
     "comparison": "A-C",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.007812500000000002,
+    "risk_difference": 0.12903225806451613,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 8,
+    "b_only": 0,
+    "both": 11,
+    "neither": 43,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "b_rate_ci95": [
+      0.10206437766005085,
+      0.2904156688569636
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8868,12 +9108,28 @@
     "comparison": "A-C",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 0.007812500000000002,
+    "risk_difference": 0.12903225806451613,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 8,
+    "b_only": 0,
+    "both": 11,
+    "neither": 43,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "b_rate_ci95": [
+      0.10206437766005085,
+      0.2904156688569636
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8910,12 +9166,28 @@
     "comparison": "A_strict-A",
     "metric": "resolved",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.016129032258064516,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 0,
+    "both": 19,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A_strict-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -8924,12 +9196,28 @@
     "comparison": "A_strict-A",
     "metric": "joint_security",
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
-    "status": "missing_or_duplicate_condition",
-    "n": 0,
-    "mcnemar_exact_p": null,
-    "risk_difference": null,
+    "status": "measured",
+    "n": 62,
+    "mcnemar_exact_p": 1.0,
+    "risk_difference": 0.016129032258064516,
     "guidance_covered_findings": 55,
-    "holm_p_all_reported_comparisons": null
+    "a_only": 1,
+    "b_only": 0,
+    "both": 19,
+    "neither": 42,
+    "matched_odds_ratio": null,
+    "odds_ratio_boundary": "infinite",
+    "a_rate_ci95": [
+      0.21954490651283895,
+      0.446319119071519
+    ],
+    "b_rate_ci95": [
+      0.2058158658563416,
+      0.42967216205386716
+    ],
+    "a_run": "qwen2.5-coder-1.5b-instruct-q4km-A_strict-pygoat-review2-validated-r3",
+    "b_run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3",
+    "holm_p_all_reported_comparisons": 1
   },
   {
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
@@ -10706,6 +10994,174 @@
     "a_run": "qwen2.5-coder-7b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r3",
     "b_run": "qwen2.5-coder-7b-instruct-q4km-A-flask-webgoat-review2-validated-r3",
     "holm_p_all_reported_comparisons": 1
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-B",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-B",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-no_guidance",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-no_guidance",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-no_examples",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-no_examples",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-C",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-C",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-simple",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A-simple",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A_strict-A",
+    "metric": "resolved",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "comparison": "A_strict-A",
+    "metric": "joint_security",
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "status": "missing_or_duplicate_condition",
+    "n": 0,
+    "mcnemar_exact_p": null,
+    "risk_difference": null,
+    "guidance_covered_findings": 55,
+    "holm_p_all_reported_comparisons": null
   },
   {
     "model": "qwen2.5-coder-7b-instruct-q4km",

@@ -549,5 +549,23 @@
       "old_behavior_failures": 0
     },
     "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-7b-instruct-q4km-A_strict-pygoat-review2-validated-r2",
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "resolved": 0,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
   }
 ]

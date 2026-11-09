@@ -13,6 +13,13 @@ def test_as_run_export_omits_raw_messages_and_machine_metadata():
     assert_safe(result)
 
 
+def test_owner_test_arguments_remain_reproducible_without_account_paths():
+    row=dict(pytest_args=['C:\\Users\\fixture\\project\\review\\behavioral\\test_pygoat.py','-q'])
+    result=public_config(row)
+    assert result['pytest_args']==['review/behavioral/test_pygoat.py','-q']
+    assert_safe(result)
+
+
 def test_local_paths_are_removed_without_treating_urls_as_drives():
     assert portable('C:\\Users\\fixture\\source.py').startswith('[local path')
     assert portable('/home/runner/work/source.py').startswith('[local path')

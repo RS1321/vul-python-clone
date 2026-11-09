@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-11-09T09:57:46.098718+00:00",
+  "generated_utc": "2026-11-09T10:28:12.382140+00:00",
   "protocol_id": "review2-validated-2026-11-09-continuation1",
   "controlled_code_commit": "bb43ccdb4f012a46a83899b43cf4eddd481f96e9",
   "planned_cells": 420,
-  "completed_cells": 191,
-  "remaining_cells": 229,
+  "completed_cells": 203,
+  "remaining_cells": 217,
   "counts": {
-    "complete": 191,
-    "running": 8,
-    "interrupted": 23,
-    "not_run": 198
+    "complete": 203,
+    "running": 7,
+    "interrupted": 21,
+    "not_run": 189
   },
   "spending": "free/local only",
   "deferred_by_user": [
@@ -1531,7 +1531,7 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 1,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry1-r1",
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r1"
@@ -1543,7 +1543,7 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r2"
       ]
@@ -1618,12 +1618,23 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-recovery3-r1",
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-recovery4-r1",
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-validated-retry2-r1"
-      ]
+      ],
+      "resolved": 44,
+      "new_alerts": 0,
+      "accepted": 51,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1652,7 +1663,7 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-checkpoint1-r3",
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-validated-retry2-r3"
@@ -1741,10 +1752,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 2,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-C-pygoat-review2-validated-retry2-r2"
-      ]
+      ],
+      "resolved": 44,
+      "new_alerts": 3,
+      "accepted": 54,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1784,10 +1806,21 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 1,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r1"
-      ]
+      ],
+      "resolved": 50,
+      "new_alerts": 0,
+      "accepted": 51,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1842,8 +1875,9 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
+        "gemma-4-26b-a4b-it-simple-pygoat-review2-paced1-r3",
         "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r3"
       ],
       "measurement_outages": {
@@ -5088,8 +5122,21 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-review2-validated-r3"
+      ],
+      "resolved": 19,
+      "new_alerts": 0,
+      "accepted": 22,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5141,8 +5188,21 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-pygoat-review2-validated-r3"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 23,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5216,8 +5276,21 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r1"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 23,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5270,8 +5343,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r1"
+      ],
+      "resolved": 16,
+      "new_alerts": 0,
+      "accepted": 18,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5279,8 +5365,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r2"
+      ],
+      "resolved": 15,
+      "new_alerts": 0,
+      "accepted": 16,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5288,8 +5387,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-pygoat-review2-validated-r3"
+      ],
+      "resolved": 11,
+      "new_alerts": 0,
+      "accepted": 15,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5297,8 +5409,21 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-pygoat-review2-validated-r1"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 21,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7180,8 +7305,21 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-B-pygoat-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7207,8 +7345,21 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A_strict-pygoat-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",

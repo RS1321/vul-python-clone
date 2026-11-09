@@ -40,6 +40,11 @@ def require_budget_safe_resume(out, preserve_replies=False):
             raise ValueError('Resume would reset an already consumed generation budget; retain this partial attempt and start a fresh trial')
 
 
+def require_resume_source(out):
+    if not (out/'source/.git').exists():
+        raise ValueError('Restore the exact saved model source before resuming; cloning the baseline would discard accepted repairs')
+
+
 @contextmanager
 def scanner_lock(path):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -86,6 +91,7 @@ def main():
     if '--out' in remaining:
         out = Path(remaining[remaining.index('--out')+1])
         if '--resume' in remaining:
+            require_resume_source(out)
             require_budget_safe_resume(out,preserve_replies=declaration.get('continuation_policy',{}).get('version')=='recorded-attempts-v1')
             if declaration.get('continuation_policy',{}).get('version')=='recorded-attempts-v1':
                 remaining += ['--resume-protocol',str(protocol.resolve())]

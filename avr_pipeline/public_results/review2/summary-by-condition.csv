@@ -23,10 +23,10 @@ gemma-4-26b-a4b-it,synthetic,simple,1,0.8275862068965517,,0.0,0,0
 gemma-4-26b-a4b-it,pygoat,A,1,0.6774193548387096,,0.0,0,1
 gemma-4-26b-a4b-it,pygoat,B,0,,,,0,
 gemma-4-26b-a4b-it,pygoat,A_strict,0,,,,0,
-gemma-4-26b-a4b-it,pygoat,no_guidance,0,,,,0,
+gemma-4-26b-a4b-it,pygoat,no_guidance,1,0.7096774193548387,,0.7096774193548387,0,0
 gemma-4-26b-a4b-it,pygoat,no_examples,1,0.6935483870967742,,0.0,0,2
-gemma-4-26b-a4b-it,pygoat,C,2,0.7258064516129032,,0.0,0,3
-gemma-4-26b-a4b-it,pygoat,simple,1,0.7903225806451613,,0.7741935483870968,2,0
+gemma-4-26b-a4b-it,pygoat,C,3,0.7204301075268817,"[0.7096774193548386, 0.7419354838709676]",0.0,0,3
+gemma-4-26b-a4b-it,pygoat,simple,2,0.7983870967741935,,0.782258064516129,4,0
 qwen2.5-coder-0.5b-instruct-q4km,vampi,A,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-0.5b-instruct-q4km,vampi,B,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-0.5b-instruct-q4km,vampi,A_strict,3,0.0,"[0.0, 0.0]",0.0,0,0
@@ -76,13 +76,13 @@ qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_guidance,0,,,,0,
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_examples,0,,,,0,
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,C,0,,,,0,
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,simple,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,pygoat,A,2,0.3225806451612903,,0.3225806451612903,0,0
-qwen2.5-coder-1.5b-instruct-q4km,pygoat,B,2,0.3387096774193548,,0.33064516129032256,2,0
+qwen2.5-coder-1.5b-instruct-q4km,pygoat,A,3,0.3172043010752688,"[0.3064516129032258, 0.3225806451612903]",0.3172043010752688,0,0
+qwen2.5-coder-1.5b-instruct-q4km,pygoat,B,3,0.3333333333333333,"[0.3225806451612903, 0.3387096774193548]",0.3279569892473118,2,0
 qwen2.5-coder-1.5b-instruct-q4km,pygoat,A_strict,3,0.3172043010752688,"[0.3064516129032258, 0.3225806451612903]",0.3118279569892473,2,0
-qwen2.5-coder-1.5b-instruct-q4km,pygoat,no_guidance,0,,,,0,
+qwen2.5-coder-1.5b-instruct-q4km,pygoat,no_guidance,1,0.3225806451612903,,0.3225806451612903,0,0
 qwen2.5-coder-1.5b-instruct-q4km,pygoat,no_examples,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,pygoat,C,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,pygoat,simple,0,,,,0,
+qwen2.5-coder-1.5b-instruct-q4km,pygoat,C,3,0.22580645161290322,"[0.17741935483870966, 0.25806451612903225]",0.22580645161290322,0,0
+qwen2.5-coder-1.5b-instruct-q4km,pygoat,simple,1,0.3225806451612903,,0.3225806451612903,0,0
 qwen2.5-coder-3b-instruct-q4km,vampi,A,0,,,,0,
 qwen2.5-coder-3b-instruct-q4km,vampi,B,0,,,,0,
 qwen2.5-coder-3b-instruct-q4km,vampi,A_strict,0,,,,0,
@@ -133,8 +133,8 @@ qwen2.5-coder-7b-instruct-q4km,synthetic,no_examples,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,synthetic,C,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,synthetic,simple,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,pygoat,A,0,,,,0,
-qwen2.5-coder-7b-instruct-q4km,pygoat,B,0,,,,0,
-qwen2.5-coder-7b-instruct-q4km,pygoat,A_strict,0,,,,0,
+qwen2.5-coder-7b-instruct-q4km,pygoat,B,1,0.0,,0.0,0,0
+qwen2.5-coder-7b-instruct-q4km,pygoat,A_strict,1,0.0,,0.0,0,0
 qwen2.5-coder-7b-instruct-q4km,pygoat,no_guidance,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,pygoat,no_examples,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,pygoat,C,0,,,,0,

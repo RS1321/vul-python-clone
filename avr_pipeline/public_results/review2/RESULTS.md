@@ -1,6 +1,6 @@
 # Corrected free-model study: measured results
 
-Snapshot: 2026-11-09T09:57:46.098718+00:00. **191/420 cells complete**. 229 cells remain unevaluated or interrupted. Planned cells never count as model failures.
+Snapshot: 2026-11-09T10:28:12.382140+00:00. **203/420 cells complete**. 217 cells remain unevaluated or interrupted. Planned cells never count as model failures.
 
 The study uses four pinned Python subjects, five accessible free models, seven conditions and three repetitions per cell. Every model receives an 8,192-token reply cap. Within-model contrasts use the same source, library, tests and patch gates. All four local Qwen models share a family and use Q4_K_M CPU inference; model sizes do not provide five independent architectures.
 
@@ -34,10 +34,10 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | gemma-4-26b-a4b-it | pygoat | A | 1 | 67.7% | — | 0.0% | 0 | 1.00 |
 | gemma-4-26b-a4b-it | pygoat | B | 0 | — | — | — | 0 | — |
 | gemma-4-26b-a4b-it | pygoat | A_strict | 0 | — | — | — | 0 | — |
-| gemma-4-26b-a4b-it | pygoat | no_guidance | 0 | — | — | — | 0 | — |
+| gemma-4-26b-a4b-it | pygoat | no_guidance | 1 | 71.0% | — | 71.0% | 0 | 0.00 |
 | gemma-4-26b-a4b-it | pygoat | no_examples | 1 | 69.4% | — | 0.0% | 0 | 2.00 |
-| gemma-4-26b-a4b-it | pygoat | C | 2 | 72.6% | — | 0.0% | 0 | 3.00 |
-| gemma-4-26b-a4b-it | pygoat | simple | 1 | 79.0% | — | 77.4% | 2 | 0.00 |
+| gemma-4-26b-a4b-it | pygoat | C | 3 | 72.0% | 71.0%–74.2% | 0.0% | 0 | 3.00 |
+| gemma-4-26b-a4b-it | pygoat | simple | 2 | 79.8% | — | 78.2% | 4 | 0.00 |
 | qwen2.5-coder-0.5b-instruct-q4km | vampi | A | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-0.5b-instruct-q4km | vampi | B | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-0.5b-instruct-q4km | vampi | A_strict | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
@@ -87,13 +87,13 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | qwen2.5-coder-1.5b-instruct-q4km | synthetic | no_examples | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-1.5b-instruct-q4km | synthetic | C | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-1.5b-instruct-q4km | synthetic | simple | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-1.5b-instruct-q4km | pygoat | A | 2 | 32.3% | — | 32.3% | 0 | 0.00 |
-| qwen2.5-coder-1.5b-instruct-q4km | pygoat | B | 2 | 33.9% | — | 33.1% | 2 | 0.00 |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | A | 3 | 31.7% | 30.6%–32.3% | 31.7% | 0 | 0.00 |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | B | 3 | 33.3% | 32.3%–33.9% | 32.8% | 2 | 0.00 |
 | qwen2.5-coder-1.5b-instruct-q4km | pygoat | A_strict | 3 | 31.7% | 30.6%–32.3% | 31.2% | 2 | 0.00 |
-| qwen2.5-coder-1.5b-instruct-q4km | pygoat | no_guidance | 0 | — | — | — | 0 | — |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | no_guidance | 1 | 32.3% | — | 32.3% | 0 | 0.00 |
 | qwen2.5-coder-1.5b-instruct-q4km | pygoat | no_examples | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-1.5b-instruct-q4km | pygoat | C | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-1.5b-instruct-q4km | pygoat | simple | 0 | — | — | — | 0 | — |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | C | 3 | 22.6% | 17.7%–25.8% | 22.6% | 0 | 0.00 |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | simple | 1 | 32.3% | — | 32.3% | 0 | 0.00 |
 | qwen2.5-coder-3b-instruct-q4km | vampi | A | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-3b-instruct-q4km | vampi | B | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-3b-instruct-q4km | vampi | A_strict | 0 | — | — | — | 0 | — |
@@ -144,8 +144,8 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | qwen2.5-coder-7b-instruct-q4km | synthetic | C | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | synthetic | simple | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | A | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-7b-instruct-q4km | pygoat | B | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-7b-instruct-q4km | pygoat | A_strict | 0 | — | — | — | 0 | — |
+| qwen2.5-coder-7b-instruct-q4km | pygoat | B | 1 | 0.0% | — | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-7b-instruct-q4km | pygoat | A_strict | 1 | 0.0% | — | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | no_guidance | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | no_examples | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | C | 0 | — | — | — | 0 | — |
@@ -173,6 +173,8 @@ These are bounded active SQL/XSS scans of fixed routes in isolated copies, with 
 ## Interpretation and reproducibility
 
 The paper reports 28–29 of 29 synthetic SAST alerts resolved using a different five-model cohort. These runs do not reproduce that model-specific claim. The paper also reports new DAST alert types and functional regressions, so its SAST headline is not a joint security success rate. See [the manuscript comparison](../../review_docs/MANUSCRIPT_CORRELATION.md) for table numbers and protocol differences.
+
+The current matrix supplied no ZAP report as a model prompt input. The later paired scans independently evaluate model-generated patches. This is another protocol difference from the paper; the optional class-level ZAP hint is not endpoint-to-source exploit attribution.
 
 VAmPI has three CWE-1333 alerts and no applicable review-2 guidance entry. Differences among its named prompt factors are descriptive; they do not estimate the effect of guidance that was never supplied. Its authorization/disclosure assertions cover additional weaknesses outside those three alerts.
 

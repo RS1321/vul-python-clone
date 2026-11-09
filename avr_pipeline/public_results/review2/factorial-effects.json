@@ -45,7 +45,6 @@
     "identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af",
     "missing": [
       "B",
-      "no_guidance",
       "no_examples"
     ],
     "ambiguous": [],
@@ -348,7 +347,6 @@
     "repetition": 1,
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
     "missing": [
-      "no_guidance",
       "no_examples"
     ],
     "ambiguous": [],
@@ -380,8 +378,6 @@
     "repetition": 3,
     "identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef",
     "missing": [
-      "A",
-      "B",
       "no_guidance",
       "no_examples"
     ],
@@ -496,6 +492,23 @@
     "examples_main_effect_pp": 0.0,
     "interaction_pp": 0.0,
     "guidance_covered_findings": 7,
+    "interpretation": "Interpret within the reported library coverage and fixed subject."
+  },
+  {
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 2,
+    "identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6",
+    "missing": [
+      "A",
+      "no_guidance",
+      "no_examples"
+    ],
+    "ambiguous": [],
+    "guidance_main_effect_pp": null,
+    "examples_main_effect_pp": null,
+    "interaction_pp": null,
+    "guidance_covered_findings": 55,
     "interpretation": "Interpret within the reported library coverage and fixed subject."
   },
   {

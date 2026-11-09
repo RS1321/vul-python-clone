@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.outcomes import configuration, write_rows
 from review.measurement_audit import export_run
+from review.configuration_audit import ci_configuration, local_timeout
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
 from review.evidence_io import recorded_outages
 from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
@@ -61,13 +62,15 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
                 r['attempts'] = None
                 r['agent_turns'] = turns.get(r['finding'])
             write_rows(path.parent,rows)
+        timeout, timeout_origin = local_timeout(path.parent,m)
         configurations.append(dict(run=path.parent.name, **configuration(m),
              temperature=m.get('temperature'), guidance_used=m.get('guidance_used'),
+             ci_configuration=ci_configuration(path.parent),
              transport_policy=m.get('transport_policy'),
              transport_execution_history=[json.loads(line) for line in (path.parent/'worker-executions.jsonl').read_text(encoding='utf-8').splitlines()]
                  if (path.parent/'worker-executions.jsonl').exists() else None,
-             local_request_timeout_seconds=m.get('local_request_timeout_seconds', 180 if m.get('provider') == 'local' else None),
-             local_timeout_origin='manifest' if 'local_request_timeout_seconds' in m else 'earlier pinned client source' if m.get('provider') == 'local' else None,
+             local_request_timeout_seconds=timeout,
+             local_timeout_origin=timeout_origin,
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
         eligible = m.get('eligible_findings')
         outages = recorded_outages(path.parent)
@@ -184,7 +187,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
               'temperature','guidance_used',
               'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
               'lint_environment_sha256','implementation_sha256','transport_policy','local_request_timeout_seconds',
-              'local_timeout_origin','transport_execution_history','agent_turn_cap','status']
+              'local_timeout_origin','ci_configuration','transport_execution_history','agent_turn_cap','status']
     flat = [dict(r,gates=(r.get('settings') or {}).get('gates'),test_policy=(r.get('settings') or {}).get('tests')) for r in configurations]
     with (output_root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
         writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')
@@ -192,7 +195,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         writer.writerows({k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in flat)
     (output_root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
         'protocol_sha256':hashlib.sha256(protocol_path.read_bytes()).hexdigest(), 'primary_only':primary_only,
-        'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/measurement_audit.py',ROOT/'review/evidence_io.py',ROOT/'review/study_statistics.py']},
+        'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/measurement_audit.py',ROOT/'review/evidence_io.py',ROOT/'review/configuration_audit.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
         'junit_normalization':'Retained JUnit evidence overrides early summaries in derived tables only. A working baseline followed by missing-symbol ImportErrors in the patched source is a startup regression; other setup errors remain unmeasured. Original manifests are unchanged.',
         'unknowns': 'No imputation of missing conditions, behavior tests, interrupted runs, or partial duplicate-group identities.',

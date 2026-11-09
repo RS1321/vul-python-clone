@@ -5,6 +5,8 @@ import pytest
 
 from review.continue_study import identity, provider_retry_seconds, quota_reason, select_run, safe_interrupted_candidate
 from review.controlled_worker import require_budget_safe_resume, verify_snapshot
+from review.controlled_worker import require_resume_source
+from review.continue_study import choose_trial
 import json
 
 
@@ -85,3 +87,15 @@ def test_safe_checkpoint_selection_uses_no_fix_rate_and_requires_same_bytes(tmp_
         matches.append((path, dict(utc=stamp, implementation_sha256={'r':implementation}, status='interrupted_api_error')))
     selected = safe_interrupted_candidate(matches, {'primary_implementation_sha256':{'r':'same'}})
     assert selected[0].name == 'new'
+
+
+def test_finished_generations_are_rescanned_instead_of_retried_for_a_better_score():
+    saved=(Path('saved'),dict(status='patching_complete',processed_findings=3,selected_findings=3,rescan_error='invalid source'))
+    assert choose_trial([saved],{},fresh=True,resume_safe=True)==('resume',saved)
+
+
+def test_missing_source_cannot_silently_resume_against_the_baseline(tmp_path):
+    with pytest.raises(ValueError,match='discard accepted repairs'):
+        require_resume_source(tmp_path)
+    (tmp_path/'source/.git').mkdir(parents=True)
+    require_resume_source(tmp_path)

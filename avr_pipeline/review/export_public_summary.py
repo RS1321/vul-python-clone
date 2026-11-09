@@ -41,11 +41,19 @@ def public_config(row):
     fields = ['run','model','provider','source_commit','condition','repetition','minimality_policy','library_version',
               'library_sha256','max_tokens','context_profile','test_policy_sha256','behavioral_test_sha256',
               'lint_environment_sha256','implementation_sha256','sarif_sha256','status','agent_turn_cap',
-              'local_request_timeout_seconds','transport_policy','temperature','guidance_used']
+              'local_request_timeout_seconds','local_timeout_origin','ci_configuration','transport_policy','temperature','guidance_used']
     result = select(row,fields)
     settings = row.get('settings') or {}
     result['settings'] = select(settings,['guidance','examples','gates','attempts','tests','simple','max_turns'])
-    result['test_command'] = 'owner-fixed test suite; original local arguments retained in private as-run metadata'
+    args=[]
+    for value in row.get('pytest_args') or []:
+        if isinstance(value,str) and LOCAL_PATH.search(value):
+            path=re.sub('/+','/',value.replace('\\','/'))
+            marker='/review/behavioral/'
+            value='review/behavioral/'+path.split(marker,1)[1] if marker in path else '[local test path omitted]'
+        args.append(value)
+    result['pytest_args']=args
+    result['test_command'] = 'owner-fixed pytest arguments; machine prefixes normalized to repository paths'
     return result
 
 

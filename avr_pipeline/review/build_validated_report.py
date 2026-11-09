@@ -139,6 +139,8 @@ def generate():
         'The paper reports 28–29 of 29 synthetic SAST alerts resolved using a different five-model cohort. These runs do not reproduce that model-specific claim. '
         'The paper also reports new DAST alert types and functional regressions, so its SAST headline is not a joint security success rate. '
         'See [the manuscript comparison](MANUSCRIPT_CORRELATION.md) for table numbers and protocol differences.','',
+        'The current matrix supplied no ZAP report as a model prompt input. The later paired scans independently evaluate model-generated patches. '
+        'This is another protocol difference from the paper; the optional class-level ZAP hint is not endpoint-to-source exploit attribution.','',
         'VAmPI has three CWE-1333 alerts and no applicable review-2 guidance entry. Differences among its named prompt factors are descriptive; '
         'they do not estimate the effect of guidance that was never supplied. Its authorization/disclosure assertions cover additional weaknesses outside those three alerts.','',
         'The three local 7B tool-agent runs use the same pinned flask-webgoat input, 21-turn limit, 8,192-token reply cap and final CodeQL oracle. '

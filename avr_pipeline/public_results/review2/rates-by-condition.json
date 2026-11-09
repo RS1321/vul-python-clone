@@ -134,9 +134,38 @@
     "condition": "C",
     "repetitions": [
       1,
-      3
+      3,
+      2
     ],
-    "mean_resolution_rate": 0.7258064516129032,
+    "mean_resolution_rate": 0.7204301075268816,
+    "repetition_cluster_ci95": [
+      0.7096774193548386,
+      0.7419354838709676
+    ],
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
+    "condition": "no_guidance",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.7096774193548387,
+    "repetition_cluster_ci95": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
+    "condition": "simple",
+    "repetitions": [
+      1,
+      2
+    ],
+    "mean_resolution_rate": 0.7983870967741935,
     "repetition_cluster_ci95": null,
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
@@ -304,18 +333,6 @@
       2
     ],
     "mean_resolution_rate": 0.6935483870967742,
-    "repetition_cluster_ci95": null,
-    "model": "gemma-4-26b-a4b-it",
-    "provider": "gemini",
-    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
-    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
-  },
-  {
-    "condition": "simple",
-    "repetitions": [
-      2
-    ],
-    "mean_resolution_rate": 0.7903225806451613,
     "repetition_cluster_ci95": null,
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
@@ -921,10 +938,14 @@
     "condition": "A",
     "repetitions": [
       1,
-      2
+      2,
+      3
     ],
-    "mean_resolution_rate": 0.3225806451612903,
-    "repetition_cluster_ci95": null,
+    "mean_resolution_rate": 0.3172043010752688,
+    "repetition_cluster_ci95": [
+      0.3064516129032258,
+      0.3225806451612903
+    ],
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
     "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
@@ -951,9 +972,54 @@
     "condition": "B",
     "repetitions": [
       1,
-      2
+      2,
+      3
     ],
-    "mean_resolution_rate": 0.3387096774193548,
+    "mean_resolution_rate": 0.3333333333333333,
+    "repetition_cluster_ci95": [
+      0.3225806451612903,
+      0.3387096774193548
+    ],
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "condition": "C",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.22580645161290325,
+    "repetition_cluster_ci95": [
+      0.17741935483870966,
+      0.25806451612903225
+    ],
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "condition": "no_guidance",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3225806451612903,
+    "repetition_cluster_ci95": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "condition": "simple",
+    "repetitions": [
+      1
+    ],
+    "mean_resolution_rate": 0.3225806451612903,
     "repetition_cluster_ci95": null,
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
@@ -1136,6 +1202,30 @@
     "provider": "local",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
     "configuration_identity_sha256": "2d7969b23a7f5dbe9506356b8169d5271af2f11f36b2564f66ace7fa9e6314b4"
+  },
+  {
+    "condition": "A_strict",
+    "repetitions": [
+      2
+    ],
+    "mean_resolution_rate": 0.0,
+    "repetition_cluster_ci95": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6"
+  },
+  {
+    "condition": "B",
+    "repetitions": [
+      2
+    ],
+    "mean_resolution_rate": 0.0,
+    "repetition_cluster_ci95": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "67d659df0e8538880cb070e93b0102ed5f7a7e71708acda365a5fcec904f56d6"
   },
   {
     "condition": "tool_agent",

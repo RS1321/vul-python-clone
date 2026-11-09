@@ -96,6 +96,12 @@ def safe_interrupted_candidate(matches, protocol):
 
 
 def choose_trial(matches, protocol, fresh=False, resume_safe=False):
+    finished_generation = [(p,m) for p,m in matches if m.get('status')=='patching_complete'
+                           and m.get('processed_findings')==m.get('selected_findings')]
+    if finished_generation and not any(m.get('status') in ('complete','running') for p,m in matches):
+        # Rescan the same generated source. A compile/scanner failure is never
+        # permission to generate another candidate and select a better score.
+        return 'resume',sorted(finished_generation,key=lambda item:(item[1].get('utc',''),item[0].name))[-1]
     if fresh and matches and not any(m.get('status') in ('complete', 'running') for p,m in matches):
         prior = safe_interrupted_candidate(matches, protocol) if resume_safe else None
         return ('resume', prior) if prior else ('new', None)
@@ -120,9 +126,9 @@ def provider_retry_seconds(errors):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--snapshot', type=Path, default=ROOT/'.review-work/controlled-study-code')
-    parser.add_argument('--protocol', type=Path, default=ROOT/'review/study-protocol.json')
-    parser.add_argument('--cohort', type=Path, default=ROOT/'review/free-cohort.json')
+    parser.add_argument('--snapshot', type=Path, default=ROOT)
+    parser.add_argument('--protocol', type=Path, default=ROOT/'review/study-protocol.validated.json')
+    parser.add_argument('--cohort', type=Path, default=ROOT/'review/validated-cohort.json')
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--datasets', nargs='+', choices=DATASETS, default=list(DATASETS))
     parser.add_argument('--conditions', nargs='+', choices=CONDITIONS, default=list(CONDITIONS))
@@ -160,9 +166,9 @@ def main(argv=None):
                                     for p in [Path(__file__), ROOT/'review/controlled_worker.py']},
              'scheduling': 'one sequential worker per model; serialized CodeQL; hosted calls spaced >=5.1s',
              'spending': 'free/local only', 'executed': args.execute, 'cells': []}
-    output = results/f'continuation-{args.tag}.json'
-    if output.exists() and json.loads(output.read_text(encoding='utf-8')).get('executed'):
-        output = results/f'continuation-{args.tag}-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.json'
+    # Disjoint condition queues can start in the same second with one tag.
+    # Each coordinator owns its state file; model run names remain unchanged.
+    output = results/f'continuation-{args.tag}-{datetime.now(timezone.utc):%Y%m%dT%H%M%S%fZ}-{os.getpid()}.json'
     state_lock = Lock()
 
     def record(cell):

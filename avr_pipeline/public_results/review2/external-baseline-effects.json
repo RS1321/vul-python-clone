@@ -530,6 +530,28 @@
   {
     "metric": "resolved",
     "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "6f4062f7e72e3513dbb4873852ceb2e0c2b1c3ee9d37a04c49276200f70d0f4a"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "6f4062f7e72e3513dbb4873852ceb2e0c2b1c3ee9d37a04c49276200f70d0f4a"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
     "status": "measured",
     "n": 7,
     "a_only": 3,
