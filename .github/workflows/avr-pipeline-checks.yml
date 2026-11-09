@@ -46,4 +46,9 @@ jobs:
         if: always()
         with:
           name: linux-scanner-evidence
-          path: container-evidence
+          retention-days: 1
+          path: |
+            container-evidence/container-check.json
+            container-evidence/flask-webgoat-sast/*.log
+            container-evidence/flask-webgoat-sast/*.json
+            container-evidence/flask-webgoat-sast/*.sarif

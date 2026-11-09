@@ -15,7 +15,9 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 LOCAL_MODELS = {'qwen2.5-coder-1.5b-instruct-q4km':18080,
-                'qwen2.5-coder-0.5b-instruct-q4km':18081}
+                'qwen2.5-coder-0.5b-instruct-q4km':18081,
+                'qwen2.5-coder-3b-instruct-q4km':18082,
+                'qwen2.5-coder-7b-instruct-q4km':18083}
 
 
 class GenerationLimitError(ValueError):

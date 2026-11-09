@@ -90,6 +90,8 @@ def provider_retry_seconds(errors):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, default=ROOT/'.review-work/controlled-study-code')
+    parser.add_argument('--protocol', type=Path, default=ROOT/'review/study-protocol.json')
+    parser.add_argument('--cohort', type=Path, default=ROOT/'review/free-cohort.json')
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--datasets', nargs='+', choices=DATASETS, default=list(DATASETS))
     parser.add_argument('--tag', default='review2-continued')
@@ -100,9 +102,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.tag):
         parser.error('Invalid study tag')
-    protocol = json.loads((ROOT/'review/study-protocol.json').read_text())
+    protocol = json.loads(args.protocol.read_text())
     verify_snapshot(args.snapshot, protocol)
-    cohort = json.loads((ROOT/'review/free-cohort.json').read_text())
+    cohort = json.loads(args.cohort.read_text())
     if args.models:
         unknown = set(args.models)-{m['model'] for m in cohort}
         if unknown:
@@ -168,6 +170,7 @@ def main(argv=None):
                         continue
                     cli = [sys.executable, str(ROOT/'review/controlled_worker.py'),
                            '--snapshot', str(args.snapshot.resolve()), '--study-root', str(ROOT),
+                           '--protocol', str(args.protocol.resolve()),
                            'run', '--repo', str(ROOT/'benchmarks'/dataset),
                            '--sarif', str(results/f'baseline-{dataset}'/'scan.sarif'),
                            '--out', str(out), '--provider', model['provider'], '--model', model['model'],

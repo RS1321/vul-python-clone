@@ -82,7 +82,7 @@ def implementation_hashes():
              ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
              ROOT/'review/behavioral/conftest.py', ROOT/'review/target_environment.py',
              ROOT/'review/validation_health.py']
-    return {str(p.relative_to(ROOT)):digest(p) for p in paths}
+    return {p.relative_to(ROOT).as_posix():digest(p) for p in paths}
 
 
 def scan(repo, out, codeql=None):

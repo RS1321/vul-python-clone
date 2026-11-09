@@ -57,10 +57,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, required=True)
     parser.add_argument('--study-root', type=Path, required=True)
+    parser.add_argument('--protocol', type=Path)
     args, remaining = parser.parse_known_args()
     root = args.study_root.resolve()
     snapshot = args.snapshot.resolve()
-    verify_snapshot(snapshot, json.loads((root/'review/study-protocol.json').read_text()))
+    protocol = args.protocol or root/'review/study-protocol.json'
+    verify_snapshot(snapshot, json.loads(protocol.read_text()))
     if '--out' in remaining:
         out = Path(remaining[remaining.index('--out')+1])
         out.mkdir(parents=True, exist_ok=True)
