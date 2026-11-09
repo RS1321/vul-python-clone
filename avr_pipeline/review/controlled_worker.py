@@ -7,6 +7,7 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import hashlib
+import importlib
 import json
 import os
 from pathlib import Path
@@ -88,22 +89,35 @@ def hosted_lock(path):
             manager.__exit__(None,None,None)
         except OSError:
             # scanner_lock closes its handle even if explicit unlock fails.
-            # Closure releases the OS lock; preserve any received reply or
-            # generation-limit exception instead of losing its consumed budget.
+            # Closure releases the OS lock; preserve the completed reservation
+            # or its original exception rather than losing its budget state.
             pass
 
 
-def paced_call(root,client,original,last_request,*args,**kwargs):
-    if client.provider!='gemini':
-        return original(client,*args,**kwargs)
+def reserve_hosted(root,original,model,contents):
     # A large reservation can otherwise keep losing the shared minute window
     # to smaller calls from parallel condition queues. The original ledger
     # still enforces both limits, including every internal transport retry.
-    model_hash=hashlib.sha256(client.model.encode()).hexdigest()[:16]
-    with hosted_lock(root/'.review-work'/('hosted-call-'+model_hash+'.lock')):
+    model_hash=hashlib.sha256(model.encode()).hexdigest()[:16]
+    started=time.monotonic()
+    with hosted_lock(root/'.review-work'/('hosted-reservation-'+model_hash+'.lock')):
+        queue_wait=time.monotonic()-started
+        try:
+            waited=original(model,contents)
+        except Exception as exc:
+            if isinstance(exc,RuntimeError) and str(exc).startswith('Gemini'):
+                raise
+            # All failures here precede the HTTP request and are not model
+            # generations, including ledger I/O and malformed ledger JSON.
+            raise RuntimeError('Gemini quota coordination unavailable: '+type(exc).__name__) from None
+        return round(queue_wait+waited,3)
+
+
+def paced_call(root,client,original,last_request,*args,**kwargs):
+    if client.provider=='gemini':
         time.sleep(max(0,5.1-(time.monotonic()-last_request[0])))
         last_request[0]=time.monotonic()
-        return original(client,*args,**kwargs)
+    return original(client,*args,**kwargs)
 
 
 def main():
@@ -114,6 +128,7 @@ def main():
     args, remaining = parser.parse_known_args()
     root = args.study_root.resolve()
     snapshot = args.snapshot.resolve()
+    os.environ.setdefault('AVR_REQUEST_LEDGER_DIR',str(root/'.review-work/request-budget'))
     protocol = args.protocol or root/'review/study-protocol.json'
     declaration = json.loads(protocol.read_text(encoding='utf-8'))
     verify_snapshot(snapshot, declaration)
@@ -137,7 +152,7 @@ def main():
                      'transport_environment': {key:os.getenv(key) for key in (
                          'AVR_REQUEST_TIMEOUT','AVR_LOCAL_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES',
                          'AVR_REQUEST_BUDGET_PER_MINUTE','AVR_INPUT_BUDGET_PER_MINUTE')},
-                     'scheduling': 'serialized CodeQL; hosted logical calls serialized by model across condition queues; original shared request ledger and per-worker 5.1s pacing retained; no prompt/patch/gate changes'}
+                     'scheduling': 'serialized CodeQL; hosted quota reservations serialized by model across condition queues, with network waits allowed to overlap; original shared ledger limits and per-worker 5.1s pacing retained; no prompt/patch/gate changes'}
         prior_manifest = out/'manifest.json'
         if prior_manifest.exists():
             execution['previous_manifest_sha256'] = hashlib.sha256(prior_manifest.read_bytes()).hexdigest()
@@ -146,6 +161,9 @@ def main():
             handle.write(json.dumps(execution)+'\n')
     sys.path.insert(0, str(snapshot))
     from review import runner
+    budget=importlib.import_module('request_budget')
+    original_reserve=budget.reserve
+    budget.reserve=lambda model,contents:reserve_hosted(root,original_reserve,model,contents)
     io_events = []
     if (snapshot/'review/evidence_io.py').exists():
         from review.evidence_io import durable_dump

@@ -8,7 +8,7 @@ from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 from review.controlled_worker import require_resume_source
 from review.continue_study import choose_trial
 from review.continue_study import index_runs
-from review.controlled_worker import paced_call,hosted_lock
+from review.controlled_worker import paced_call,hosted_lock,reserve_hosted
 from contextlib import contextmanager
 from types import SimpleNamespace
 import json
@@ -120,7 +120,7 @@ def test_single_cell_lookup_does_not_open_unrelated_large_response_files(tmp_pat
     assert list(result)==[key]
 
 
-def test_hosted_pacing_preserves_payload_and_uses_a_shared_model_lock(tmp_path,monkeypatch):
+def test_quota_reservations_preserve_payload_and_use_a_shared_model_lock(tmp_path,monkeypatch):
     import review.controlled_worker as module
     held=[];paths=[];payload=[dict(role='user',content='Exact frozen input')]
     @contextmanager
@@ -130,12 +130,31 @@ def test_hosted_pacing_preserves_payload_and_uses_a_shared_model_lock(tmp_path,m
         finally:held.pop()
     monkeypatch.setattr(module,'scanner_lock',lock)
     monkeypatch.setattr(module.time,'sleep',lambda seconds:None)
-    def original(client,messages,**kwargs):
-        assert held and messages is payload and kwargs=={'system_prompt':'unchanged'}
-        return 'original response'
+    def original(model,contents):
+        assert held and contents is payload
+        return 13.5
     for model in ['same','same','different']:
-        assert paced_call(tmp_path,SimpleNamespace(provider='gemini',model=model),original,[0.0],payload,system_prompt='unchanged')=='original response'
+        assert reserve_hosted(tmp_path,original,model,payload)==pytest.approx(13.5,abs=.1)
     assert paths[0]==paths[1] and paths[0]!=paths[2]
+
+
+def test_network_waits_do_not_hold_the_shared_reservation_lock(tmp_path,monkeypatch):
+    import review.controlled_worker as module
+    def forbidden(*args):raise AssertionError('Network waits must allow other reservations')
+    monkeypatch.setattr(module,'scanner_lock',forbidden)
+    monkeypatch.setattr(module.time,'sleep',lambda seconds:None)
+    payload=[dict(role='user',content='unchanged')]
+    assert paced_call(tmp_path,SimpleNamespace(provider='gemini'),lambda client,messages:messages,[0.0],payload) is payload
+
+
+def test_ledger_failure_is_not_a_model_quality_failure(tmp_path,monkeypatch):
+    import review.controlled_worker as module
+    @contextmanager
+    def lock(path):yield
+    monkeypatch.setattr(module,'scanner_lock',lock)
+    def broken(model,contents):raise ValueError('malformed quota ledger')
+    with pytest.raises(RuntimeError,match='^Gemini quota coordination unavailable'):
+        reserve_hosted(tmp_path,broken,'model',{})
 
 
 def test_local_inference_does_not_enter_the_hosted_lock(tmp_path,monkeypatch):
