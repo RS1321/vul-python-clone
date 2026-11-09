@@ -199,9 +199,12 @@
     "model": "gemma-4-26b-a4b-it",
     "dataset": "synthetic",
     "condition": "A",
-    "repetitions": 2,
-    "mean_resolution_rate": 0.43103448275862066,
-    "resolution_repetition_ci95": null,
+    "repetitions": 3,
+    "mean_resolution_rate": 0.4367816091954023,
+    "resolution_repetition_ci95": [
+      0.41379310344827586,
+      0.4482758620689655
+    ],
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
     "mean_new_alerts": 1
@@ -287,23 +290,26 @@
     "model": "gemma-4-26b-a4b-it",
     "dataset": "pygoat",
     "condition": "B",
-    "repetitions": 0,
-    "mean_resolution_rate": null,
-    "resolution_repetition_ci95": null,
-    "mean_joint_rate": null,
-    "joint_unknown_findings": 0,
-    "mean_new_alerts": null
+    "repetitions": 3,
+    "mean_resolution_rate": 0.6774193548387096,
+    "resolution_repetition_ci95": [
+      0.6451612903225806,
+      0.7096774193548386
+    ],
+    "mean_joint_rate": 0.6666666666666666,
+    "joint_unknown_findings": 4,
+    "mean_new_alerts": 0
   },
   {
     "model": "gemma-4-26b-a4b-it",
     "dataset": "pygoat",
     "condition": "A_strict",
-    "repetitions": 1,
-    "mean_resolution_rate": 0.6451612903225806,
+    "repetitions": 2,
+    "mean_resolution_rate": 0.6612903225806451,
     "resolution_repetition_ci95": null,
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
-    "mean_new_alerts": 1
+    "mean_new_alerts": 1.5
   },
   {
     "model": "gemma-4-26b-a4b-it",
@@ -1271,20 +1277,26 @@
     "model": "qwen2.5-coder-3b-instruct-q4km",
     "dataset": "flask-webgoat",
     "condition": "no_guidance",
-    "repetitions": 0,
-    "mean_resolution_rate": null,
-    "resolution_repetition_ci95": null,
-    "mean_joint_rate": null,
+    "repetitions": 3,
+    "mean_resolution_rate": 0.14285714285714285,
+    "resolution_repetition_ci95": [
+      0.14285714285714285,
+      0.14285714285714285
+    ],
+    "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
-    "mean_new_alerts": null
+    "mean_new_alerts": 0
   },
   {
     "model": "qwen2.5-coder-3b-instruct-q4km",
     "dataset": "flask-webgoat",
     "condition": "no_examples",
-    "repetitions": 1,
-    "mean_resolution_rate": 0.14285714285714285,
-    "resolution_repetition_ci95": null,
+    "repetitions": 3,
+    "mean_resolution_rate": 0.09523809523809523,
+    "resolution_repetition_ci95": [
+      0.0,
+      0.14285714285714285
+    ],
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
     "mean_new_alerts": 0
@@ -1307,9 +1319,12 @@
     "model": "qwen2.5-coder-3b-instruct-q4km",
     "dataset": "flask-webgoat",
     "condition": "simple",
-    "repetitions": 2,
+    "repetitions": 3,
     "mean_resolution_rate": 0.14285714285714285,
-    "resolution_repetition_ci95": null,
+    "resolution_repetition_ci95": [
+      0.14285714285714285,
+      0.14285714285714285
+    ],
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
     "mean_new_alerts": 0
@@ -1749,9 +1764,12 @@
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "dataset": "pygoat",
     "condition": "A_strict",
-    "repetitions": 2,
+    "repetitions": 3,
     "mean_resolution_rate": 0.0,
-    "resolution_repetition_ci95": null,
+    "resolution_repetition_ci95": [
+      0.0,
+      0.0
+    ],
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
     "mean_new_alerts": 0
@@ -1782,9 +1800,12 @@
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "dataset": "pygoat",
     "condition": "C",
-    "repetitions": 1,
+    "repetitions": 3,
     "mean_resolution_rate": 0.0,
-    "resolution_repetition_ci95": null,
+    "resolution_repetition_ci95": [
+      0.0,
+      0.0
+    ],
     "mean_joint_rate": 0.0,
     "joint_unknown_findings": 0,
     "mean_new_alerts": 0

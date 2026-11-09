@@ -15,6 +15,7 @@ from review.study_progress import build_status
 from review.study_statistics import repeated_cluster_ci
 from review.evidence_io import durable_dump as dump, recorded_outages
 from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
+from review.supplemental_analysis import enrich as supplemental_summary
 
 
 def secondary_tables(lines, results, protocol):
@@ -36,7 +37,7 @@ def secondary_tables(lines, results, protocol):
         'The model chose its tool actions and stopping point within 21 turns. In the recorded comparator patches, deleting a required importable function breaks startup; '
         'the ordinary-test and behavioral results expose that failure despite alert removal.','',
         '## Paired model-patch DAST','',
-        '| Subject | Model run | Status | Alert types before → after | Instances before → after | Authenticated SQL/XSS requests before → after | New types |',
+        '| Subject | Model run | Status | Alert types before → after | Instances before → after | Authenticated XSS/SQL requests (40012/40018), before → after | New types |',
         '|---|---|---|---|---|---|---|']
     count = 0
     for path in sorted(results.glob('model-dast-*-validated-*/paired-status.json')):
@@ -58,6 +59,40 @@ def secondary_tables(lines, results, protocol):
     lines += ['', 'These are bounded active SQL/XSS scans of fixed routes in isolated copies, with verified authenticated traffic. '
         'The identical outer session gateway is measurement containment and does not establish native authorization correctness. '
         'A failed application start or missing active traffic is an incomplete scan, not zero alerts. Historical DAST pairs remain separately labelled.','']
+    supplemental=results/'supplemental-model-security-v2/summary.json'
+    if supplemental.exists():
+        extra=supplemental_summary(supplemental)
+        lines += ['## Broader external behavioral validation','',
+            'This separate post-hoc check selects A/r1 for every frozen-cohort model, without replacing weak results or requesting new generations. '
+            'It replays the accepted responses and verifies their saved patch before testing all 21 PyGoat lesson directories, four targeted lesson suites and the Django host; '
+            'VAmPI receives the extended authorization/disclosure checks. It does not alter the primary matrix joint metric.','',
+            '| Model | Subject | Suites with assertion results / expected | Security checks passed / observed | Functional checks passed / observed | New functional failures on matched checks | All-observed suites passing |',
+            '|---|---|---:|---:|---:|---:|---:|']
+        def append_supplement(label,dataset,rows,field):
+            observed=sum(r[field] is not None for r in rows)
+            total=26 if dataset=='pygoat' else 1
+            def tally(category):
+                values=[r[field][category] for r in rows if r[field] is not None]
+                return str(sum(v['passed'] for v in values))+'/'+str(sum(v['total'] for v in values))
+            passing=sum(all(c['passed']==c['total'] for c in r[field].values()) for r in rows if r[field] is not None)
+            if field=='baseline_counts':regressions='—'
+            else:
+                changes=[r['matched_changes_by_category']['functionality'] for r in rows]
+                regressions=str(sum(c['newly_failing'] for c in changes if c is not None))
+                if any(c is None for c in changes):regressions+='; some unmeasured'
+            lines.append(f"| {label} | {dataset} | {observed}/{total} | {tally('security')} | {tally('functionality')} | {regressions} | {passing}/{observed} |")
+        for dataset in ['pygoat','vampi']:
+            first=next((a for a in extra['source_verification'] if a['dataset']==dataset),None)
+            if first:
+                rows=[r for r in extra['results'] if r['model']==first['model'] and r['dataset']==dataset]
+                append_supplement('Pinned baseline',dataset,rows,'baseline_counts')
+        for audit in extra['source_verification']:
+            rows=[r for r in extra['results'] if r['model']==audit['model'] and r['dataset']==audit['dataset']]
+            append_supplement(audit['model'],audit['dataset'],rows,'model_counts')
+        lines += ['',f"Supplemental selection: {len(extra['source_verification'])}/10 source snapshots evaluated; {len(extra['pending'])} await completed primary A/r1 runs. ",
+            'Shared headers repeat across lessons and are not independent vulnerabilities. Counts refer to observed assertions, with baseline/model comparisons in '
+            '`supplemental-security.json`; missing execution results remain unmeasured. Newly passing assertions can include functional compatibility changes, '
+            'so their combined count is not a count of repaired vulnerabilities. These are isolated application fixtures, without a full Docker deployment or exhaustive endpoint coverage.','']
 
 
 def generate():
@@ -134,7 +169,9 @@ def generate():
         'Rows use completed repetitions only. A missing result is shown as a dash. Partial rows are interim observations. '
         'Intervals resample whole repetitions and are withheld below three repetitions; with only three repetitions they are descriptive and unstable. '
         'Joint success requires an alert resolved, no new alerts, no measured ordinary-test regression and passing batch behavioral assertions. '
-        'Unknown joint outcomes remain unknown, rather than becoming successes.','',
+        'Unknown joint outcomes remain unknown, rather than becoming successes. '
+        'The frozen behavioral suites contain eight synthetic checks, 11 VAmPI checks, five flask-webgoat checks and 14 PyGoat Django-host checks. '
+        'The primary PyGoat joint metric does not test all embedded lessons; the separate broader validation below reports that additional coverage.','',
         '| Model | Subject | Condition | Repetitions / 3 | Mean SAST resolved | Repetition CI | Joint successes / all findings | Unknown joint findings | Mean new alerts |',
         '|---|---|---|---:|---:|---|---:|---:|---:|']
     for row in data:

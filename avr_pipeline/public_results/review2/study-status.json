@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-11-09T11:56:18.769861+00:00",
+  "generated_utc": "2026-11-09T12:52:45.290689+00:00",
   "protocol_id": "review2-validated-2026-11-09-continuation1",
   "controlled_code_commit": "bb43ccdb4f012a46a83899b43cf4eddd481f96e9",
   "planned_cells": 420,
-  "completed_cells": 280,
-  "remaining_cells": 140,
+  "completed_cells": 294,
+  "remaining_cells": 126,
   "counts": {
-    "complete": 280,
-    "running": 5,
-    "interrupted": 15,
-    "not_run": 120
+    "complete": 294,
+    "interrupted": 12,
+    "running": 3,
+    "not_run": 111
   },
   "spending": "free/local only",
   "status_scope": "Verified local artifacts. not_run means no compatible local manifest yet and can include remote queued/running jobs whose evidence has not been imported.",
@@ -1231,7 +1231,7 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 3,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-A-synthetic-review2-syn-rest1-r3",
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r3"
@@ -1244,6 +1244,23 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 13,
+      "new_alerts": 1,
+      "accepted": 13,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -1340,7 +1357,7 @@
       "dataset": "synthetic",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-A_strict-synthetic-review2-validated-retry1-r2"
       ]
@@ -1421,7 +1438,7 @@
       "dataset": "synthetic",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-no_examples-synthetic-review2-recovery3-r1",
         "gemma-4-26b-a4b-it-no_examples-synthetic-review2-validated-retry1-r1"
@@ -1599,11 +1616,22 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 1,
-      "status": "interrupted",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry1-r1",
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r1"
-      ]
+      ],
+      "resolved": 42,
+      "new_alerts": 0,
+      "accepted": 52,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1611,10 +1639,21 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r2"
-      ]
+      ],
+      "resolved": 40,
+      "new_alerts": 0,
+      "accepted": 50,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1622,7 +1661,7 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-paced1-r3",
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r3"
@@ -1635,6 +1674,17 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 44,
+      "new_alerts": 0,
+      "accepted": 51,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -1677,7 +1727,7 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-recovery3-r3",
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-validated-retry2-r3"
@@ -1690,6 +1740,17 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 42,
+      "new_alerts": 2,
+      "accepted": 52,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -1722,7 +1783,7 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-checkpoint1-r2",
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-validated-retry2-r2"
@@ -1743,7 +1804,7 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-checkpoint1-r3",
         "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-validated-retry2-r3"
@@ -7051,8 +7112,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_guidance-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7060,8 +7138,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_guidance",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_guidance-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7069,8 +7164,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_guidance-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7104,8 +7216,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_examples",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_examples-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7113,8 +7242,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_examples-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7251,8 +7397,25 @@
       "dataset": "flask-webgoat",
       "condition": "simple",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-simple-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -8725,8 +8888,21 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A_strict-pygoat-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -8810,8 +8986,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-C-pygoat-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -8819,8 +9008,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-C-pygoat-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",

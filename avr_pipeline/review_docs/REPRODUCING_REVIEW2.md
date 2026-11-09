@@ -69,6 +69,8 @@ Install `requirements-figures.lock` in a separate environment and run `python re
 
 ## Paired dynamic measurement and Linux container
 
+The primary behavioral suites are frozen: synthetic 8 assertions, VAmPI 11, flask-webgoat 5 and PyGoat 14 Django-host assertions. Passing the primary PyGoat behavioral gate does not establish that its 21 embedded lessons are secure. `python review/supplemental_security.py --execute` performs a separate post-hoc A/r1 validation for every cohort model: all 21 lesson directories, four existing targeted suites, the host suite and extended VAmPI checks. It makes no model requests and does not change the primary joint metric. Sources are reconstructed from accepted responses and checked against saved diffs. Completed cases are reused; pending primary runs remain pending, and missing assertion evidence is not zero failures. The initial supplemental setup failed before producing model scores because of a lesson-argument error and excessive Git path length; it is retained locally. The corrected `supplemental-model-security-v2` declaration uses short case identifiers and records exact oracle/runtime hashes. Raw logs remain local; its allowlisted summary is `public_results/review2/supplemental-security.json`.
+
 ```text
 python review/model_dast.py --dataset flask-webgoat --baseline benchmarks/flask-webgoat --run review_results/COMPLETED_MODEL_RUN --out review_results/fresh-dast-pair
 docker build -t avr-review -f Dockerfile .

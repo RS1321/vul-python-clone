@@ -131,11 +131,28 @@
     "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
   },
   {
+    "condition": "B",
+    "repetitions": [
+      1,
+      3,
+      2
+    ],
+    "mean_resolution_rate": 0.6774193548387096,
+    "repetition_cluster_ci95": [
+      0.6451612903225806,
+      0.7096774193548386
+    ],
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
     "condition": "C",
     "repetitions": [
       1,
-      2,
-      3
+      3,
+      2
     ],
     "mean_resolution_rate": 0.7204301075268816,
     "repetition_cluster_ci95": [
@@ -151,8 +168,8 @@
     "condition": "no_examples",
     "repetitions": [
       1,
-      2,
-      3
+      3,
+      2
     ],
     "mean_resolution_rate": 0.6881720430107526,
     "repetition_cluster_ci95": [
@@ -180,8 +197,8 @@
     "condition": "simple",
     "repetitions": [
       1,
-      2,
-      3
+      3,
+      2
     ],
     "mean_resolution_rate": 0.8225806451612904,
     "repetition_cluster_ci95": [
@@ -196,11 +213,15 @@
   {
     "condition": "A",
     "repetitions": [
+      3,
       1,
       2
     ],
-    "mean_resolution_rate": 0.43103448275862066,
-    "repetition_cluster_ci95": null,
+    "mean_resolution_rate": 0.43678160919540227,
+    "repetition_cluster_ci95": [
+      0.41379310344827586,
+      0.4482758620689655
+    ],
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
     "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
@@ -388,9 +409,10 @@
   {
     "condition": "A_strict",
     "repetitions": [
+      3,
       2
     ],
-    "mean_resolution_rate": 0.6451612903225806,
+    "mean_resolution_rate": 0.6612903225806451,
     "repetition_cluster_ci95": null,
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
@@ -1420,10 +1442,32 @@
   {
     "condition": "no_examples",
     "repetitions": [
-      1
+      1,
+      2,
+      3
+    ],
+    "mean_resolution_rate": 0.09523809523809523,
+    "repetition_cluster_ci95": [
+      0.0,
+      0.14285714285714285
+    ],
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "4866ce040c712d752392c36556a7aaa76720ce32f48286480867783aac94a3f7"
+  },
+  {
+    "condition": "no_guidance",
+    "repetitions": [
+      1,
+      2,
+      3
     ],
     "mean_resolution_rate": 0.14285714285714285,
-    "repetition_cluster_ci95": null,
+    "repetition_cluster_ci95": [
+      0.14285714285714285,
+      0.14285714285714285
+    ],
     "model": "qwen2.5-coder-3b-instruct-q4km",
     "provider": "local",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
@@ -1433,10 +1477,14 @@
     "condition": "simple",
     "repetitions": [
       1,
-      2
+      2,
+      3
     ],
     "mean_resolution_rate": 0.14285714285714285,
-    "repetition_cluster_ci95": null,
+    "repetition_cluster_ci95": [
+      0.14285714285714285,
+      0.14285714285714285
+    ],
     "model": "qwen2.5-coder-3b-instruct-q4km",
     "provider": "local",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
@@ -1628,10 +1676,14 @@
     "condition": "A_strict",
     "repetitions": [
       1,
-      2
+      2,
+      3
     ],
     "mean_resolution_rate": 0.0,
-    "repetition_cluster_ci95": null,
+    "repetition_cluster_ci95": [
+      0.0,
+      0.0
+    ],
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "provider": "local",
     "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
@@ -1653,10 +1705,15 @@
   {
     "condition": "C",
     "repetitions": [
-      1
+      1,
+      2,
+      3
     ],
     "mean_resolution_rate": 0.0,
-    "repetition_cluster_ci95": null,
+    "repetition_cluster_ci95": [
+      0.0,
+      0.0
+    ],
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "provider": "local",
     "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",

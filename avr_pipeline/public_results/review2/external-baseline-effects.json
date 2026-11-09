@@ -96,6 +96,28 @@
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
     "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "eda33c8dc1c53ae628624921a5e8c4cd5caa18df47a1eea817027dab3776b3a8"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "eda33c8dc1c53ae628624921a5e8c4cd5caa18df47a1eea817027dab3776b3a8"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
     "configuration_identity_sha256": "00f18cd1f8453f8bdf801f7e6c3b8f6a9f47ac826b83c23a32ede19b90895f3c"
   },
   {

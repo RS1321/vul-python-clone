@@ -1,12 +1,12 @@
 # Corrected free-model study: measured results
 
-Snapshot: 2026-11-09T11:56:18.769861+00:00. **280/420 cells complete**. 140 cells remain unevaluated or interrupted. Planned cells never count as model failures.
+Snapshot: 2026-11-09T12:52:45.290689+00:00. **294/420 cells complete**. 126 cells remain unevaluated or interrupted. Planned cells never count as model failures.
 
 The study uses four pinned Python subjects, five accessible free models, seven conditions and three repetitions per cell. Every model receives an 8,192-token reply cap. Within-model contrasts use the same source, library, tests and patch gates. All four local Qwen models share a family and use Q4_K_M CPU inference; model sizes do not provide five independent architectures.
 
 ## Measured outcomes
 
-Rows use completed repetitions only. A missing result is shown as a dash. Partial rows are interim observations. Intervals resample whole repetitions and are withheld below three repetitions; with only three repetitions they are descriptive and unstable. Joint success requires an alert resolved, no new alerts, no measured ordinary-test regression and passing batch behavioral assertions. Unknown joint outcomes remain unknown, rather than becoming successes.
+Rows use completed repetitions only. A missing result is shown as a dash. Partial rows are interim observations. Intervals resample whole repetitions and are withheld below three repetitions; with only three repetitions they are descriptive and unstable. Joint success requires an alert resolved, no new alerts, no measured ordinary-test regression and passing batch behavioral assertions. Unknown joint outcomes remain unknown, rather than becoming successes. The frozen behavioral suites contain eight synthetic checks, 11 VAmPI checks, five flask-webgoat checks and 14 PyGoat Django-host checks. The primary PyGoat joint metric does not test all embedded lessons; the separate broader validation below reports that additional coverage.
 
 | Model | Subject | Condition | Repetitions / 3 | Mean SAST resolved | Repetition CI | Joint successes / all findings | Unknown joint findings | Mean new alerts |
 |---|---|---|---:|---:|---|---:|---:|---:|
@@ -24,7 +24,7 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | gemma-4-26b-a4b-it | flask-webgoat | no_examples | 3 | 42.9% | 42.9%–42.9% | 0.0% | 0 | 0.00 |
 | gemma-4-26b-a4b-it | flask-webgoat | C | 3 | 57.1% | 57.1%–57.1% | 0.0% | 0 | 1.00 |
 | gemma-4-26b-a4b-it | flask-webgoat | simple | 3 | 47.6% | 42.9%–57.1% | 0.0% | 0 | 0.00 |
-| gemma-4-26b-a4b-it | synthetic | A | 2 | 43.1% | — | 0.0% | 0 | 1.00 |
+| gemma-4-26b-a4b-it | synthetic | A | 3 | 43.7% | 41.4%–44.8% | 0.0% | 0 | 1.00 |
 | gemma-4-26b-a4b-it | synthetic | B | 1 | 37.9% | — | 0.0% | 0 | 0.00 |
 | gemma-4-26b-a4b-it | synthetic | A_strict | 1 | 37.9% | — | 0.0% | 0 | 1.00 |
 | gemma-4-26b-a4b-it | synthetic | no_guidance | 1 | 31.0% | — | 0.0% | 0 | 0.00 |
@@ -32,8 +32,8 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | gemma-4-26b-a4b-it | synthetic | C | 1 | 86.2% | — | 0.0% | 0 | 3.00 |
 | gemma-4-26b-a4b-it | synthetic | simple | 1 | 82.8% | — | 0.0% | 0 | 0.00 |
 | gemma-4-26b-a4b-it | pygoat | A | 1 | 67.7% | — | 0.0% | 0 | 1.00 |
-| gemma-4-26b-a4b-it | pygoat | B | 0 | — | — | — | 0 | — |
-| gemma-4-26b-a4b-it | pygoat | A_strict | 1 | 64.5% | — | 0.0% | 0 | 1.00 |
+| gemma-4-26b-a4b-it | pygoat | B | 3 | 67.7% | 64.5%–71.0% | 66.7% | 4 | 0.00 |
+| gemma-4-26b-a4b-it | pygoat | A_strict | 2 | 66.1% | — | 0.0% | 0 | 1.50 |
 | gemma-4-26b-a4b-it | pygoat | no_guidance | 1 | 71.0% | — | 71.0% | 0 | 0.00 |
 | gemma-4-26b-a4b-it | pygoat | no_examples | 3 | 68.8% | 64.5%–72.6% | 24.2% | 0 | 1.33 |
 | gemma-4-26b-a4b-it | pygoat | C | 3 | 72.0% | 71.0%–74.2% | 0.0% | 0 | 3.00 |
@@ -104,10 +104,10 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | qwen2.5-coder-3b-instruct-q4km | flask-webgoat | A | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-3b-instruct-q4km | flask-webgoat | B | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-3b-instruct-q4km | flask-webgoat | A_strict | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
-| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | no_guidance | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | no_examples | 1 | 14.3% | — | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | no_guidance | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | no_examples | 3 | 9.5% | 0.0%–14.3% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-3b-instruct-q4km | flask-webgoat | C | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
-| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | simple | 2 | 14.3% | — | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-3b-instruct-q4km | flask-webgoat | simple | 3 | 14.3% | 14.3%–14.3% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-3b-instruct-q4km | synthetic | A | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-3b-instruct-q4km | synthetic | B | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-3b-instruct-q4km | synthetic | A_strict | 0 | — | — | — | 0 | — |
@@ -145,10 +145,10 @@ Rows use completed repetitions only. A missing result is shown as a dash. Partia
 | qwen2.5-coder-7b-instruct-q4km | synthetic | simple | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | A | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | B | 2 | 0.8% | — | 0.8% | 0 | 0.00 |
-| qwen2.5-coder-7b-instruct-q4km | pygoat | A_strict | 2 | 0.0% | — | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-7b-instruct-q4km | pygoat | A_strict | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | no_guidance | 0 | — | — | — | 0 | — |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | no_examples | 0 | — | — | — | 0 | — |
-| qwen2.5-coder-7b-instruct-q4km | pygoat | C | 1 | 0.0% | — | 0.0% | 0 | 0.00 |
+| qwen2.5-coder-7b-instruct-q4km | pygoat | C | 3 | 0.0% | 0.0%–0.0% | 0.0% | 0 | 0.00 |
 | qwen2.5-coder-7b-instruct-q4km | pygoat | simple | 0 | — | — | — | 0 | — |
 
 ## Tool-agent comparator
@@ -163,12 +163,31 @@ The comparator uses the same pinned flask-webgoat input, final CodeQL oracle, te
 
 ## Paired model-patch DAST
 
-| Subject | Model run | Status | Alert types before → after | Instances before → after | Authenticated SQL/XSS requests before → after | New types |
+| Subject | Model run | Status | Alert types before → after | Instances before → after | Authenticated XSS/SQL requests (40012/40018), before → after | New types |
 |---|---|---|---|---|---|---|
 | flask-webgoat | gemma-4-26b-a4b-it-A-flask-webgoat-review2-recovery3-r1 | complete | 7 → 7 | 14 → 13 | 40/32 → 40/32 | [] |
 | synthetic | gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r1 | complete | 6 → 6 | 10 → 10 | 17/23 → 17/23 | [] |
 
 These are bounded active SQL/XSS scans of fixed routes in isolated copies, with verified authenticated traffic. The identical outer session gateway is measurement containment and does not establish native authorization correctness. A failed application start or missing active traffic is an incomplete scan, not zero alerts. Historical DAST pairs remain separately labelled.
+
+## Broader external behavioral validation
+
+This separate post-hoc check selects A/r1 for every frozen-cohort model, without replacing weak results or requesting new generations. It replays the accepted responses and verifies their saved patch before testing all 21 PyGoat lesson directories, four targeted lesson suites and the Django host; VAmPI receives the extended authorization/disclosure checks. It does not alter the primary matrix joint metric.
+
+| Model | Subject | Suites with assertion results / expected | Security checks passed / observed | Functional checks passed / observed | New functional failures on matched checks | All-observed suites passing |
+|---|---|---:|---:|---:|---:|---:|
+| Pinned baseline | pygoat | 26/26 | 35/107 | 43/45 | — | 1/26 |
+| Pinned baseline | vampi | 1/1 | 3/11 | 3/6 | — | 0/1 |
+| gemma-4-26b-a4b-it | pygoat | 26/26 | 41/107 | 41/45 | 2 | 4/26 |
+| gemma-4-26b-a4b-it | vampi | 1/1 | 3/11 | 3/6 | 0 | 0/1 |
+| qwen2.5-coder-0.5b-instruct-q4km | pygoat | 26/26 | 35/107 | 42/45 | 1 | 1/26 |
+| qwen2.5-coder-0.5b-instruct-q4km | vampi | 1/1 | 3/11 | 3/6 | 0 | 0/1 |
+| qwen2.5-coder-1.5b-instruct-q4km | pygoat | 26/26 | 36/107 | 43/45 | 0 | 2/26 |
+| qwen2.5-coder-1.5b-instruct-q4km | vampi | 1/1 | 3/11 | 3/6 | 0 | 0/1 |
+| qwen2.5-coder-7b-instruct-q4km | pygoat | 26/26 | 35/107 | 43/45 | 0 | 1/26 |
+
+Supplemental selection: 7/10 source snapshots evaluated; 3 await completed primary A/r1 runs. 
+Shared headers repeat across lessons and are not independent vulnerabilities. Counts refer to observed assertions, with baseline/model comparisons in `supplemental-security.json`; missing execution results remain unmeasured. Newly passing assertions can include functional compatibility changes, so their combined count is not a count of repaired vulnerabilities. These are isolated application fixtures, without a full Docker deployment or exhaustive endpoint coverage.
 
 
 ## Interpretation and reproducibility

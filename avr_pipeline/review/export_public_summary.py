@@ -5,6 +5,10 @@ import json
 from pathlib import Path
 import re
 import shutil
+import sys
+
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from review.supplemental_analysis import enrich as supplemental_summary
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCAL_PATH = re.compile(r'(?<![A-Za-z0-9])[A-Za-z]:[/\\]|(?:^|[\s\"\'(])/(?:home|Users|tmp|workspace)/')
@@ -102,6 +106,7 @@ def main():
     dast=[]
     for path in (ROOT/'review_results').glob('model-dast-*-validated-*/paired-status.json'):
         raw=json.loads(path.read_text(encoding='utf-8'));row=select(raw,['dataset','model_run','source_commit','model_manifest_sha256','status','new_alert_types','scope'])
+        row['active_rule_labels']={'40012':'Reflected XSS','40018':'SQL injection'}
         audit_path=path.parent/'model-source-audit.json'
         if audit_path.exists():
             audit=json.loads(audit_path.read_text(encoding='utf-8'))
@@ -114,6 +119,12 @@ def main():
             row[phase]['authenticated_rule_requests']=raw[phase].get('traffic',{}).get('active_authenticated_rules',{})
         dast.append(row)
     write('paired-dast.json',dast)
+    supplemental=ROOT/'review_results/supplemental-model-security-v2/summary.json'
+    if supplemental.exists():
+        raw=supplemental_summary(supplemental)
+        write('supplemental-security.json',select(raw,['generated_utc','status','role','selection','condition','repetition',
+            'model_requests','plan_sha256','oracle_sha256','runner_sha256','category_analysis_sha256','runtime_distribution_sha256',
+            'pending','source_verification','results','scope']))
     figures=ROOT/'review_docs/figures/validated'
     for source_file in figures.glob('*'):
         if source_file.suffix not in ('.png','.svg','.json'):continue

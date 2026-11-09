@@ -7,6 +7,10 @@
     "status": "complete",
     "new_alert_types": [],
     "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "active_rule_labels": {
+      "40012": "Reflected XSS",
+      "40018": "SQL injection"
+    },
     "source_verification": {
       "status": "verified",
       "tracked_files_checked": 17,
@@ -96,6 +100,10 @@
     "status": "complete",
     "new_alert_types": [],
     "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "active_rule_labels": {
+      "40012": "Reflected XSS",
+      "40018": "SQL injection"
+    },
     "source_verification": {
       "status": "verified",
       "tracked_files_checked": 33,
