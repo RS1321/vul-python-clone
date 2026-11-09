@@ -62,6 +62,8 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
             write_rows(path.parent,rows)
         configurations.append(dict(run=path.parent.name, **configuration(m),
              transport_policy=m.get('transport_policy'),
+             local_request_timeout_seconds=m.get('local_request_timeout_seconds', 180 if m.get('provider') == 'local' else None),
+             local_timeout_origin='manifest' if 'local_request_timeout_seconds' in m else 'earlier pinned client source' if m.get('provider') == 'local' else None,
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
         eligible = m.get('eligible_findings')
         outages = recorded_outages(path.parent)
@@ -175,7 +177,8 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         (output_root / name).write_text(json.dumps(data, indent=2), encoding='utf-8')
     fields = ['run','model','provider','source_commit','condition','repetition','gates','test_policy','pytest_args',
               'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
-              'lint_environment_sha256','implementation_sha256','transport_policy','agent_turn_cap','status']
+              'lint_environment_sha256','implementation_sha256','transport_policy','local_request_timeout_seconds',
+              'local_timeout_origin','agent_turn_cap','status']
     flat = [dict(r,gates=(r.get('settings') or {}).get('gates'),test_policy=(r.get('settings') or {}).get('tests')) for r in configurations]
     with (output_root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
         writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')

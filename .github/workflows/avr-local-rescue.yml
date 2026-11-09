@@ -1,0 +1,76 @@
+name: Review-2 interrupted local cells
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/avr-local-rescue.yml'
+      - 'avr_pipeline/review/ci-rescue-cells.json'
+permissions:
+  contents: read
+jobs:
+  plan:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    outputs:
+      cells: ${{ steps.plan.outputs.cells }}
+      wave: ${{ steps.plan.outputs.wave }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - id: plan
+        shell: python
+        run: |
+          import json, os
+          from pathlib import Path
+          plan = json.loads(Path('avr_pipeline/review/ci-rescue-cells.json').read_text())
+          assert len(plan['cells']) <= 200
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              print('cells='+json.dumps(plan['cells']), file=output)
+              print('wave='+str(plan['wave']), file=output)
+  evaluate:
+    needs: plan
+    if: needs.plan.outputs.cells != '[]' && github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        include: ${{ fromJson(needs.plan.outputs.cells) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/llama-linux.tar.gz
+          key: avr-llama-b12182-linux-c1dbfdb9
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/codeql-linux64.zip
+          key: avr-codeql-2.27.4-linux-393bf92b
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/ci-models
+          key: avr-review2-weights-${{ matrix.model }}
+      - name: Retry only the infrastructure-interrupted cell
+        working-directory: avr_pipeline
+        env:
+          AVR_LOCAL_REQUEST_TIMEOUT: '3600'
+        run: python review/ci_local_study.py --model ${{ matrix.model }} --dataset ${{ matrix.dataset }} --condition ${{ matrix.condition }} --repetition ${{ matrix.repetition }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review2-rescue-${{ needs.plan.outputs.wave }}-${{ matrix.model }}-${{ matrix.dataset }}-${{ matrix.condition }}-r${{ matrix.repetition }}
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: true
+          path: |
+            avr_pipeline/.review-work/ci-evidence/*.tar.xz
+            avr_pipeline/.review-work/ci-evidence/*.json

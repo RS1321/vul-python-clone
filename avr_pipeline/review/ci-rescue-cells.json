@@ -1,0 +1,413 @@
+{
+  "wave": 1,
+  "selection": "Infrastructure status only; no score-based selection. Partial trials retained; completed trial uses original attempt caps.",
+  "cells": [
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652428315\\qwen2.5-coder-0.5b-instruct-q4km-A-flask-webgoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652318672\\qwen2.5-coder-0.5b-instruct-q4km-A-flask-webgoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652891438\\qwen2.5-coder-0.5b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652568759\\qwen2.5-coder-0.5b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652618365\\qwen2.5-coder-0.5b-instruct-q4km-C-flask-webgoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652557150\\qwen2.5-coder-0.5b-instruct-q4km-C-flask-webgoat-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652921165\\qwen2.5-coder-0.5b-instruct-q4km-simple-flask-webgoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652577179\\qwen2.5-coder-0.5b-instruct-q4km-simple-flask-webgoat-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652818025\\qwen2.5-coder-0.5b-instruct-q4km-A-pygoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetition": 2,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-A-pygoat-review2-validated-r2"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653530049\\qwen2.5-coder-0.5b-instruct-q4km-B-pygoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652982210\\qwen2.5-coder-0.5b-instruct-q4km-B-pygoat-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653387242\\qwen2.5-coder-0.5b-instruct-q4km-C-pygoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653381722\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-pygoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653346982\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-pygoat-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653073179\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-pygoat-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653017733\\qwen2.5-coder-0.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 1,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-review2-validated-r1"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652643683\\qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 1,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-A_strict-synthetic-review2-validated-r1"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652952263\\qwen2.5-coder-0.5b-instruct-q4km-A_strict-synthetic-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetition": 3,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-A_strict-synthetic-review2-validated-r3"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652836985\\qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-review2-validated-r1\\ci-error.json",
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-fivefree-v2-r1"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653026132\\qwen2.5-coder-0.5b-instruct-q4km-B-synthetic-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652951906\\qwen2.5-coder-0.5b-instruct-q4km-C-synthetic-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652766945\\qwen2.5-coder-0.5b-instruct-q4km-C-synthetic-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 1,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-no_examples-synthetic-review2-validated-r1"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653235440\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-synthetic-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652424676\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-synthetic-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 1,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r1"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 2,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r2"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653065530\\qwen2.5-coder-0.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13653255264\\qwen2.5-coder-0.5b-instruct-q4km-simple-synthetic-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetition": 2,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-0.5b-instruct-q4km-simple-synthetic-review2-validated-r2"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652805520\\qwen2.5-coder-0.5b-instruct-q4km-A-vampi-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652363363\\qwen2.5-coder-0.5b-instruct-q4km-A_strict-vampi-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652880624\\qwen2.5-coder-0.5b-instruct-q4km-A_strict-vampi-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652666592\\qwen2.5-coder-0.5b-instruct-q4km-B-vampi-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652785297\\qwen2.5-coder-0.5b-instruct-q4km-C-vampi-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652383149\\qwen2.5-coder-0.5b-instruct-q4km-C-vampi-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652815750\\qwen2.5-coder-0.5b-instruct-q4km-C-vampi-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 1,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652546337\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-vampi-review2-validated-r1\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 2,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652865368\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-vampi-review2-validated-r2\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetition": 3,
+      "reasons": [
+        "bootstrap failure: review_results\\ci-bootstrap-failures\\13652363119\\qwen2.5-coder-0.5b-instruct-q4km-no_examples-vampi-review2-validated-r3\\ci-error.json"
+      ]
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetition": 1,
+      "reasons": [
+        "retained infrastructure interruption: qwen2.5-coder-1.5b-instruct-q4km-B-vampi-review2-pure-r1"
+      ]
+    }
+  ]
+}
