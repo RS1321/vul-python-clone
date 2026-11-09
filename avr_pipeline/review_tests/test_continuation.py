@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from review.continue_study import identity, provider_retry_seconds, quota_reason, select_run
+from review.continue_study import identity, provider_retry_seconds, quota_reason, select_run, safe_interrupted_candidate
 from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 import json
 
@@ -70,3 +70,18 @@ def test_resume_cannot_reset_consumed_generation_attempts(tmp_path):
     result[0]['attempts'] = [{'attempt':1,'infrastructure_error':True}]
     (tmp_path/'results.json').write_text(json.dumps(result))
     require_budget_safe_resume(tmp_path)
+
+
+def test_safe_checkpoint_selection_uses_no_fix_rate_and_requires_same_bytes(tmp_path):
+    matches = []
+    for name, stamp, implementation, consumed in [('old','1','same',False),
+            ('new','2','same',False), ('unsafe','3','same',True), ('changed','4','other',False)]:
+        path = tmp_path/name
+        path.mkdir()
+        attempts = [{'infrastructure_error':True}]
+        if consumed:
+            attempts.insert(0, {'response':{'content':'a rejected reply'}})
+        (path/'results.json').write_text(json.dumps([{'attempts':attempts}]))
+        matches.append((path, dict(utc=stamp, implementation_sha256={'r':implementation}, status='interrupted_api_error')))
+    selected = safe_interrupted_candidate(matches, {'primary_implementation_sha256':{'r':'same'}})
+    assert selected[0].name == 'new'

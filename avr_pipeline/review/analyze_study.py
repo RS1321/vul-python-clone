@@ -9,7 +9,8 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from review.outcomes import export_run, configuration, write_rows
+from review.outcomes import configuration, write_rows
+from review.measurement_audit import export_run
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
 from review.validation_health import recorded_outages
 from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
@@ -188,7 +189,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         'protocol_sha256':hashlib.sha256(protocol_path.read_bytes()).hexdigest(), 'primary_only':primary_only,
         'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
-        'junit_normalization':'Retained JUnit setup/collection errors override early summaries in derived tables only; original manifests are unchanged.',
+        'junit_normalization':'Retained JUnit evidence overrides early summaries in derived tables only. A working baseline followed by missing-symbol ImportErrors in the patched source is a startup regression; other setup errors remain unmeasured. Original manifests are unchanged.',
         'unknowns': 'No imputation of missing conditions, behavior tests, interrupted runs, or partial duplicate-group identities.',
         'statistics': 'Wilson descriptive per-run intervals; exact conditional McNemar; matched risk difference and odds ratio; Holm across reported tests; repetition-cluster bootstrap only with >=3 repetitions. Finding-level McNemar assumes independent discordances; shared functions can violate this, so these are exploratory fixed-subject comparisons.'}, indent=2))
     return {'runs': len(inventory), 'full_runs': sum(r['full_run'] for r in inventory),

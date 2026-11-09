@@ -1,0 +1,32 @@
+[
+  {
+    "job_id": 129024387325,
+    "run_id": 42576187333,
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "dataset": "pygoat",
+    "condition": "simple",
+    "repetition": 3,
+    "reason": "actions/setup-python Python 3.12.14 download failed with HTTP 504 before model generation",
+    "rerun_api": "403 insufficient integration permissions; schedule a fresh equivalent job"
+  },
+  {
+    "job_id": 129024387522,
+    "run_id": 42576187333,
+    "model": "qwen2.5-coder-0.5b-instruct-q4km",
+    "dataset": "synthetic",
+    "condition": "C",
+    "repetition": 1,
+    "reason": "actions/setup-python Python 3.12.14 download failed with HTTP 504 before model generation",
+    "rerun_api": "403 insufficient integration permissions; schedule a fresh equivalent job"
+  },
+  {
+    "job_id": 129025439994,
+    "run_id": 42576457785,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "dataset": "flask-webgoat",
+    "condition": "no_guidance",
+    "repetition": 1,
+    "reason": "actions/setup-python Python 3.12.14 download failed with HTTP 504 before model generation",
+    "rerun_api": "403 insufficient integration permissions; schedule a fresh equivalent job"
+  }
+]

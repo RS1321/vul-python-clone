@@ -20,7 +20,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from review.controlled_worker import verify_snapshot
+from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 from review.project_paths import verify_input
 from review.runner import checked, dump
 from review.validation_health import recorded_outages
@@ -72,6 +72,33 @@ def select_run(matches):
     return ('resume', matches[0]) if matches else ('new', None)
 
 
+def safe_interrupted_candidate(matches, protocol):
+    """Resume the latest compatible checkpoint only with zero consumed replies.
+
+    Ordering uses creation time and path, never patch acceptance or fix rate.
+    Completed/running trials are handled by select_run before this function.
+    """
+    ordered = sorted(matches, key=lambda item: (item[1].get('utc', ''), item[0].name), reverse=True)
+    for path, manifest in ordered:
+        if manifest.get('implementation_sha256') != protocol['primary_implementation_sha256']:
+            continue
+        if manifest.get('status') != 'interrupted_api_error':
+            continue
+        try:
+            require_budget_safe_resume(path)
+        except ValueError:
+            continue
+        return path, manifest
+    return None
+
+
+def choose_trial(matches, protocol, fresh=False, resume_safe=False):
+    if fresh and matches and not any(m.get('status') in ('complete', 'running') for p,m in matches):
+        prior = safe_interrupted_candidate(matches, protocol) if resume_safe else None
+        return ('resume', prior) if prior else ('new', None)
+    return select_run(matches)
+
+
 def quota_reason(errors):
     text = ' '.join(errors).lower()
     if '429' in text and any(term in text for term in ('perday', 'per_day', 'per day', 'daily', 'requestsperday')):
@@ -95,6 +122,7 @@ def main(argv=None):
     parser.add_argument('--cohort', type=Path, default=ROOT/'review/free-cohort.json')
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--datasets', nargs='+', choices=DATASETS, default=list(DATASETS))
+    parser.add_argument('--conditions', nargs='+', choices=CONDITIONS, default=list(CONDITIONS))
     parser.add_argument('--tag', default='review2-continued')
     parser.add_argument('--jobs', type=int, choices=range(1, 6), default=5)
     parser.add_argument('--execute', action='store_true')
@@ -102,6 +130,8 @@ def main(argv=None):
                         help='Wait for an explicitly reported reset instead of ending that model queue')
     parser.add_argument('--fresh-interrupted', action='store_true',
                         help='Keep partial trials and start their missing cells afresh under a new tag')
+    parser.add_argument('--resume-safe-interrupted', action='store_true',
+                        help='Prefer a same-code checkpoint whose interrupted finding consumed no reply')
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.tag):
         parser.error('Invalid study tag')
@@ -142,15 +172,13 @@ def main(argv=None):
         failures, blocked = 0, None
         for repetition in (1, 2, 3):
             for dataset in args.datasets:
-                for condition in CONDITIONS:
+                for condition in args.conditions:
                     cell = dict(model, dataset=dataset, condition=condition, repetition=repetition)
                     key = (model['provider'], model['model'], dataset, condition, repetition)
                     matches = index_runs(results, protocol, sources).get(key, [])
-                    if args.fresh_interrupted and matches and not any(m.get('status') in ('complete','running') for p,m in matches):
-                        selection, prior = 'new', None
+                    selection, prior = choose_trial(matches, protocol, args.fresh_interrupted, args.resume_safe_interrupted)
+                    if matches and selection in ('new', 'resume'):
                         cell['previous_incomplete_trials'] = [p.name for p,m in matches]
-                    else:
-                        selection, prior = select_run(matches)
                     # A prior coordinator may have exited while this worker was
                     # still finishing. Wait rather than queue concurrent calls
                     # to the same model or resume a source being written.
@@ -158,7 +186,10 @@ def main(argv=None):
                         record(dict(cell, run=prior[0].name, status='waiting_for_active_worker'))
                         while selection == 'already_running':
                             time.sleep(5)
-                            selection, prior = select_run(index_runs(results, protocol, sources).get(key, []))
+                            matches = index_runs(results, protocol, sources).get(key, [])
+                            selection, prior = choose_trial(matches, protocol, args.fresh_interrupted, args.resume_safe_interrupted)
+                        if matches and selection in ('new', 'resume'):
+                            cell['previous_incomplete_trials'] = [p.name for p,m in matches]
                     if selection in ('complete', 'already_running'):
                         record(dict(cell, run=prior[0].name, status=selection))
                         continue
