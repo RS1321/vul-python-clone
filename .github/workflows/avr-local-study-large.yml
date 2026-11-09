@@ -1,0 +1,68 @@
+name: Review-2 local study large
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/avr-local-study-large.yml']
+permissions:
+  contents: read
+jobs:
+  pilot:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - name: Verify model, target environment, tests and scanner
+        working-directory: avr_pipeline
+        run: python review/ci_local_study.py --model qwen2.5-coder-3b-instruct-q4km --dataset vampi --condition A --repetition 1 --pilot
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review2-large-pilot
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: true
+          path: |
+            avr_pipeline/.review-work/ci-evidence/*.tar.xz
+            avr_pipeline/.review-work/ci-evidence/*.json
+  evaluate:
+    needs: pilot
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        model: [qwen2.5-coder-3b-instruct-q4km, qwen2.5-coder-7b-instruct-q4km]
+        dataset: [vampi, flask-webgoat, synthetic, pygoat]
+        condition: [A, B, no_guidance, no_examples, C, simple, A_strict]
+        repetition: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - name: Execute complete pinned-input cell
+        working-directory: avr_pipeline
+        run: python review/ci_local_study.py --model ${{ matrix.model }} --dataset ${{ matrix.dataset }} --condition ${{ matrix.condition }} --repetition ${{ matrix.repetition }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review2-large-${{ matrix.model }}-${{ matrix.dataset }}-${{ matrix.condition }}-r${{ matrix.repetition }}
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: true
+          path: |
+            avr_pipeline/.review-work/ci-evidence/*.tar.xz
+            avr_pipeline/.review-work/ci-evidence/*.json
