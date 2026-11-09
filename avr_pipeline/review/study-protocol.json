@@ -34,7 +34,19 @@
     "review\\behavioral\\conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055"
   },
   "implementation_selection_note": "Final corrected harness, selected by code identity rather than outcome. Earlier warm-up implementations are retained and analyzed separately. This record is not an independent preregistration.",
-  "cohort_selection": "The new free plan uses Gemini-3.6-flash alongside 3.1/3.5 Flash Lite and the two local Qwen models. Gemma-26B returned HTTP 500; Gemma-31B completed one pilot then returned repeated HTTP 500/503. Flash 3.6 completed three cells before its observed 20-requests-per-day free quota was exhausted. Access failures are not model repair failures.",
+  "cohort_selection": "Five accessible free/local models: Gemini 3.1/3.5 Flash Lite, Gemma 4 26B A4B, local Qwen2.5 Coder 1.5B and 0.5B. The access-driven 2026-11-09 replacement and supplemental prior runs are recorded below. Cohort changes are not an independent preregistration.",
   "controlled_code_commit": "12f7847",
-  "latest_code_note": "The target-environment validator correction is a separate implementation, audited on a saved candidate. Keep its future runs under new tags and separate implementation hashes."
+  "latest_code_note": "The target-environment validator correction is a separate implementation, audited on a saved candidate. Keep its future runs under new tags and separate implementation hashes.",
+  "cohort_replacements": [
+    {
+      "date": "2026-11-09",
+      "previous": "gemini-3.6-flash",
+      "replacement": "gemma-4-26b-a4b-it",
+      "reason": "Flash 3.6 reports a 20-request daily free quota. Gemma 26B answered repeated availability probes, including the study minimal-thinking setting. Selection is based on access, not repair scores. The three completed Flash 3.6 cells remain supplemental; no result is erased.",
+      "access_evidence": [
+        "access-probe-2026-11-09.json",
+        "gemma-thinking-probe-2026-11-09.json"
+      ]
+    }
+  ]
 }

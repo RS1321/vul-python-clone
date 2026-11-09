@@ -4,6 +4,7 @@ from collections import Counter
 import json
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from review.validation_health import outages_in_results
 
 
 def group_key(finding):
@@ -30,7 +31,7 @@ def make_rows(findings, results, manifest, baseline_tests, policy=None):
     removed = {tuple(g['key']): g['count'] for g in manifest.get('sast', {}).get('resolved_groups', [])}
     by_id = {r['finding_id']: r for r in results}
     changes = test_changes(baseline_tests, manifest.get('post_tests'), policy)
-    measured = manifest.get('status') == 'complete' and 'sast' in manifest
+    measured = manifest.get('status') == 'complete' and 'sast' in manifest and not outages_in_results(results)
     behavior = manifest.get('behavioral_tests', {})
     # A suite result is batch-level evidence, never attribution to one patch.
     behavior_pass = None

@@ -1,7 +1,7 @@
 [
   {
     "provider": "gemini",
-    "model": "gemini-3.6-flash"
+    "model": "gemma-4-26b-a4b-it"
   },
   {
     "provider": "gemini",

@@ -61,6 +61,15 @@ def main():
     root = args.study_root.resolve()
     snapshot = args.snapshot.resolve()
     verify_snapshot(snapshot, json.loads((root/'review/study-protocol.json').read_text()))
+    if '--out' in remaining:
+        out = Path(remaining[remaining.index('--out')+1])
+        out.mkdir(parents=True, exist_ok=True)
+        execution = {'worker_pid': os.getpid(), 'snapshot': str(snapshot),
+                     'worker_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                     'arguments': remaining,
+                     'scheduling': 'serialized CodeQL; >=5.1s between hosted logical calls; no patch/gate changes'}
+        with (out/'worker-executions.jsonl').open('a', encoding='utf-8') as handle:
+            handle.write(json.dumps(execution)+'\n')
     sys.path.insert(0, str(snapshot))
     from review import runner
     original_scan = runner.scan

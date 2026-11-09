@@ -33,6 +33,7 @@ sys.path.insert(0, str(ROOT))
 from review.project_paths import tool_path, query_pack_root, verify_input
 from review.outcomes import export_run
 from review.target_environment import target_python, describe as describe_environment, lint_options
+from review.validation_health import ValidatorInfrastructureError, require_lint_health
 
 CONDITIONS = {
     'A': dict(guidance=True, examples=True, gates=True, attempts=3, tests='monitor'),
@@ -79,7 +80,8 @@ def implementation_hashes():
              ROOT/'context_builder/parsers/ast_utils.py', ROOT/'context_builder/parsers/code_fetcher.py',
              ROOT/'llm/codePatcherAST.py', ROOT/'review/outcomes.py', ROOT/'review/project_paths.py',
              ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
-             ROOT/'review/behavioral/conftest.py', ROOT/'review/target_environment.py']
+             ROOT/'review/behavioral/conftest.py', ROOT/'review/target_environment.py',
+             ROOT/'review/validation_health.py']
     return {str(p.relative_to(ROOT)):digest(p) for p in paths}
 
 
@@ -286,6 +288,7 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
     lint = command([sys.executable, '-m', 'pylint', file_path, '--output-format=json2', '--exit-zero', *lint_context], repo, 120)
     try:
         data = json.loads(lint.stdout)
+        require_lint_health(data)
         messages = data['messages']
         errors = [m for m in messages if m.get('type') in ('fatal', 'error')]
         target = repo / file_path
@@ -295,6 +298,7 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
             before_lint = command([sys.executable, '-m', 'pylint', file_path,
                                    '--output-format=json2', '--exit-zero', *lint_context], repo, 120)
             old = json.loads(before_lint.stdout)
+            require_lint_health(old)
         finally:
             target.write_bytes(candidate_bytes)
         def identity(m):
@@ -304,8 +308,8 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
         checks['pylint'] = {'passed': not new_errors and data['statistics']['score'] >= 2.0,
                             'score': data['statistics']['score'], 'new_errors': new_errors,
                             'preexisting_error_count': sum(prior.values())}
-    except (ValueError, KeyError):
-        checks['pylint'] = {'passed': False, 'error': 'Pylint unavailable or invalid structured report'}
+    except (ValueError, KeyError) as exc:
+        raise ValidatorInfrastructureError('Validator infrastructure: Pylint unavailable or invalid structured report') from exc
     if not checks['pylint']['passed']:
         return False, checks
     tests = test_run(repo, pytest_args, out)
@@ -378,6 +382,9 @@ def repair_one(repo, finding, condition, client, pytest_args, baseline_tests, ou
             if isinstance(exc, RuntimeError) and (str(exc).startswith('Gemini') or 'API error' in str(exc)):
                 record['infrastructure_error'] = True
                 break
+            if isinstance(exc, ValidatorInfrastructureError):
+                record.update(infrastructure_error=True, infrastructure_kind='validator')
+                break
         finally:
             if not record['accepted']:
                 path.write_bytes(before)
@@ -437,6 +444,11 @@ def run(args):
     verify_input(source,args.sarif,checked)
     # Missing provider configuration must fail before a running artifact exists.
     client = LLMClient(args.provider, args.model, temperature=0.1, max_tokens=args.max_tokens)
+    if config['gates']:
+        try:
+            checked([sys.executable, '-I', '-c', 'import isort; import pylint'], timeout=30)
+        except RuntimeError as exc:
+            raise ValidatorInfrastructureError('Validator infrastructure: Pylint dependency preflight failed') from exc
     validation_python = getattr(args, 'validation_python', None) or target_python(source)
     validation_environment = describe_environment(validation_python) if validation_python else None
     if validation_environment:
@@ -538,7 +550,9 @@ def run(args):
         results.append(result)
         dump(out / 'results.json', results)
         if any(a.get('infrastructure_error') for a in result.get('attempts', [])):
-            manifest['status'] = 'interrupted_api_error'
+            manifest['status'] = ('interrupted_validator_error' if any(
+                a.get('infrastructure_kind') == 'validator' for a in result.get('attempts', []))
+                else 'interrupted_api_error')
             break
     else:
         manifest['status'] = 'patching_complete'

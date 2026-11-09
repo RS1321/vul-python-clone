@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.runner import dump
 from review.matrix_study import FACTORIAL, DATASETS
+from review.validation_health import recorded_outages
 
 
 def main():
@@ -26,6 +27,9 @@ def main():
             continue
         dataset = next((d for d,sha in sources.items() if sha == m.get('source_commit')), None)
         full = m.get('status') == 'complete' and m.get('sast') and m.get('selected_findings') == m.get('eligible_findings')
+        if recorded_outages(path.parent):
+            interrupted.append({'run':path.parent.name,'status':'validator_outage_in_recorded_attempts'})
+            continue
         if m.get('condition') == 'tool_agent':
             agents.append({'run':path.parent.name,'status':m.get('status'),'repetition':m.get('repetition'),
                            'resolved':m.get('sast',{}).get('resolved_findings'), 'new_alerts':m.get('sast',{}).get('new_findings'),

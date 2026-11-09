@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from review.continue_study import identity, quota_reason, select_run
+from review.continue_study import identity, provider_retry_seconds, quota_reason, select_run
 from review.controlled_worker import verify_snapshot
 
 
@@ -38,6 +38,8 @@ def test_daily_quota_is_separate_from_bad_model_output():
     assert quota_reason(['Gemini HTTP 429 requestsPerDay limit 20']) == 'daily_quota'
     assert quota_reason(['Gemini HTTP 503 unavailable']) == 'service_unavailable'
     assert quota_reason(['Gemini returned incomplete/blocked output: SAFETY']) is None
+    assert provider_retry_seconds(['{"retryDelay": "10448s"}']) == 10458
+    assert provider_retry_seconds(['quota exceeded']) is None
 
 
 def test_historical_snapshot_requires_exact_bytes(tmp_path):

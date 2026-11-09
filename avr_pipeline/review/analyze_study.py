@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.outcomes import export_run, configuration, write_rows
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
+from review.validation_health import recorded_outages
 
 COMPARISONS = [('A', 'B'), ('A', 'no_guidance'), ('A', 'no_examples'), ('A', 'C'), ('A', 'simple'), ('A_strict', 'A')]
 
@@ -49,9 +50,11 @@ def analyze(root):
              transport_policy=m.get('transport_policy'),
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
         eligible = m.get('eligible_findings')
-        complete = m.get('status') == 'complete' and 'sast' in m and m.get('selected_findings') == eligible
+        outages = recorded_outages(path.parent)
+        complete = m.get('status') == 'complete' and 'sast' in m and m.get('selected_findings') == eligible and not outages
         inventory.append({'run': path.parent.name, 'status': m.get('status'), 'full_run': complete,
-                          'findings': len(rows), 'resolved': m.get('sast', {}).get('resolved_findings'),
+                          'validator_outages':outages,
+                          'findings': len(rows), 'resolved': m.get('sast', {}).get('resolved_findings') if complete else None,
                           'resolution_ci95': wilson(m['sast']['resolved_findings'], eligible) if complete else None,
                           'behavioral_evidence': m.get('behavioral_tests', {}).get('status', 'unmeasured'),
                           'joint_true': sum(r['joint_security'] is True for r in rows),
