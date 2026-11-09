@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 from review.continue_study import CONDITIONS, DATASETS, identity
 from review.runner import dump
 from review.validation_health import recorded_outages
+from review.protocol_compatibility import budget_violations
 
 
 def build_status(results, protocol, cohort):
@@ -30,7 +31,7 @@ def build_status(results, protocol, cohort):
                 for repetition in (1, 2, 3):
                     key = (model['provider'], model['model'], dataset, condition, repetition)
                     runs = index.get(key, [])
-                    complete = [(p,m) for p,m in runs if m.get('status') == 'complete' and m.get('sast') and not recorded_outages(p)]
+                    complete = [(p,m) for p,m in runs if m.get('status') == 'complete' and m.get('sast') and not recorded_outages(p) and not budget_violations(p)]
                     status = ('complete' if len(complete) == 1 else 'ambiguous_duplicate' if complete else
                               'running' if any(m.get('status') == 'running' for p,m in runs) else
                               'interrupted' if runs else 'not_run')

@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 
 from review.continue_study import identity, provider_retry_seconds, quota_reason, select_run
-from review.controlled_worker import verify_snapshot
+from review.controlled_worker import require_budget_safe_resume, verify_snapshot
+import json
 
 
 def test_completed_duplicate_is_never_selected_by_result():
@@ -58,3 +59,14 @@ def test_historical_snapshot_requires_exact_bytes(tmp_path):
     source.write_bytes(b'original\n')
     with pytest.raises(ValueError, match='snapshot differs'):
         verify_snapshot(tmp_path, protocol)
+
+
+def test_resume_cannot_reset_consumed_generation_attempts(tmp_path):
+    result = [{'attempts':[{'attempt':1,'response':{'content':'rejected patch'}},
+                            {'attempt':2,'infrastructure_error':True}]}]
+    (tmp_path/'results.json').write_text(json.dumps(result))
+    with pytest.raises(ValueError, match='consumed generation budget'):
+        require_budget_safe_resume(tmp_path)
+    result[0]['attempts'] = [{'attempt':1,'infrastructure_error':True}]
+    (tmp_path/'results.json').write_text(json.dumps(result))
+    require_budget_safe_resume(tmp_path)

@@ -12,16 +12,20 @@ sys.path.insert(0, str(ROOT))
 from review.outcomes import export_run, configuration, write_rows
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
 from review.validation_health import recorded_outages
+from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
 
 COMPARISONS = [('A', 'B'), ('A', 'no_guidance'), ('A', 'no_examples'), ('A', 'C'), ('A', 'simple'), ('A_strict', 'A')]
 
 
-def identity(m):
+def identity(m, protocol=None):
     keys = ('source_commit', 'provider', 'model', 'sarif_sha256', 'library_sha256', 'max_tokens',
             'temperature', 'thinking_level', 'context_profile', 'zap_sha256', 'pytest_args',
             'test_policy_sha256', 'behavioral_test_sha256', 'implementation_sha256', 'minimality_policy',
             'lint_environment_sha256', 'validation_environment')
-    return json.dumps({k: m.get(k) for k in keys}, sort_keys=True)
+    values = {k:m.get(k) for k in keys}
+    if protocol and matches_implementation(m, protocol):
+        values['implementation_sha256'] = protocol['primary_implementation_sha256']
+    return json.dumps(values, sort_keys=True)
 
 
 def analyze(root, protocol_path=None, output_root=None, primary_only=False):
@@ -41,9 +45,9 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         m = json.loads(path.read_text(encoding='utf-8'))
         if primary_only and cohort and dict(provider=m.get('provider'),model=m.get('model')) not in cohort:
             continue
-        if primary_only and m.get('implementation_sha256') != protocol['primary_implementation_sha256'] and m.get('condition') != 'tool_agent':
+        if primary_only and not matches_implementation(m, protocol) and m.get('condition') != 'tool_agent':
             continue
-        if primary_only and m.get('condition') == 'tool_agent' and m.get('implementation_sha256',{}).get('review/runner.py') != protocol['primary_implementation_sha256']['review/runner.py']:
+        if primary_only and m.get('condition') == 'tool_agent' and m.get('implementation_sha256',{}).get('review/runner.py') not in runner_hashes(protocol):
             continue
         if not (path.parent / 'contexts.json').exists():
             continue
@@ -61,17 +65,19 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
         eligible = m.get('eligible_findings')
         outages = recorded_outages(path.parent)
-        complete = m.get('status') == 'complete' and 'sast' in m and m.get('selected_findings') == eligible and not outages
+        budget_errors = budget_violations(path.parent)
+        complete = m.get('status') == 'complete' and 'sast' in m and m.get('selected_findings') == eligible and not outages and not budget_errors
         inventory.append({'run': path.parent.name, 'status': m.get('status'), 'full_run': complete,
                           'validator_outages':outages,
+                          'generation_budget_violations':budget_errors,
                           'findings': len(rows), 'resolved': m.get('sast', {}).get('resolved_findings') if complete else None,
                           'resolution_ci95': wilson(m['sast']['resolved_findings'], eligible) if complete else None,
                           'behavioral_evidence': m.get('behavioral_tests', {}).get('status', 'unmeasured'),
                           'joint_true': sum(r['joint_security'] is True for r in rows),
                           'joint_unknown': sum(r['joint_security'] is None for r in rows)})
         if complete:
-            groups[(identity(m), m.get('repetition', 1))][m['condition']].append((path.parent.name, m, rows))
-            is_primary = m.get('implementation_sha256') == protocol.get('primary_implementation_sha256')
+            groups[(identity(m,protocol), m.get('repetition', 1))][m['condition']].append((path.parent.name, m, rows))
+            is_primary = matches_implementation(m, protocol)
             if is_primary and m['condition'] == 'A_strict':
                 raw = json.loads((path.parent/'results.json').read_text())
                 blocked = [{'finding':r['finding_id'],'attempt':a['attempt'],'new_failures':a['validation']['new_test_failures']}

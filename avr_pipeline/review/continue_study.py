@@ -24,13 +24,14 @@ from review.controlled_worker import verify_snapshot
 from review.project_paths import verify_input
 from review.runner import checked, dump
 from review.validation_health import recorded_outages
+from review.protocol_compatibility import budget_violations, matches_implementation
 
 CONDITIONS = ('A', 'B', 'A_strict', 'no_guidance', 'no_examples', 'C', 'simple')
 DATASETS = ('vampi', 'flask-webgoat', 'synthetic', 'pygoat')
 
 
 def identity(manifest, protocol, sources):
-    if (manifest.get('implementation_sha256') != protocol['primary_implementation_sha256']
+    if (not matches_implementation(manifest, protocol)
             or manifest.get('library_sha256') != protocol['library_sha256']
             or manifest.get('test_policy_sha256') != protocol['test_policy_sha256']
             or manifest.get('max_tokens') != protocol['max_tokens']
@@ -52,7 +53,7 @@ def index_runs(results, protocol, sources):
     for path in sorted(results.glob('*/manifest.json')):
         manifest = json.loads(path.read_text(encoding='utf-8'))
         key = identity(manifest, protocol, sources)
-        if key and not recorded_outages(path.parent):
+        if key and not recorded_outages(path.parent) and not budget_violations(path.parent):
             index.setdefault(key, []).append((path.parent, manifest))
     return index
 
@@ -99,6 +100,8 @@ def main(argv=None):
     parser.add_argument('--execute', action='store_true')
     parser.add_argument('--wait-for-quota', action='store_true',
                         help='Wait for an explicitly reported reset instead of ending that model queue')
+    parser.add_argument('--fresh-interrupted', action='store_true',
+                        help='Keep partial trials and start their missing cells afresh under a new tag')
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.tag):
         parser.error('Invalid study tag')
@@ -142,7 +145,12 @@ def main(argv=None):
                 for condition in CONDITIONS:
                     cell = dict(model, dataset=dataset, condition=condition, repetition=repetition)
                     key = (model['provider'], model['model'], dataset, condition, repetition)
-                    selection, prior = select_run(index_runs(results, protocol, sources).get(key, []))
+                    matches = index_runs(results, protocol, sources).get(key, [])
+                    if args.fresh_interrupted and matches and not any(m.get('status') in ('complete','running') for p,m in matches):
+                        selection, prior = 'new', None
+                        cell['previous_incomplete_trials'] = [p.name for p,m in matches]
+                    else:
+                        selection, prior = select_run(matches)
                     # A prior coordinator may have exited while this worker was
                     # still finishing. Wait rather than queue concurrent calls
                     # to the same model or resume a source being written.

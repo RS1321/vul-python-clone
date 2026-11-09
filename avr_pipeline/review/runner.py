@@ -494,6 +494,7 @@ def run(args):
                 'zap_sha256': digest(args.zap) if args.zap else None,
                 'context_profile': args.context_profile, 'cross_file_only': args.cross_file_only,
                 'transport_policy':{k:os.getenv(k) for k in ('AVR_INPUT_BUDGET_PER_MINUTE','AVR_REQUEST_BUDGET_PER_MINUTE','AVR_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES')},
+                'local_request_timeout_seconds':int(os.getenv('AVR_LOCAL_REQUEST_TIMEOUT','3600')) if args.provider == 'local' else None,
                 'library_sha256': hashlib.sha256(library_bytes).hexdigest(),
                 'library_version': prompt_library['version'],
                 'minimality_policy': 'applied added+deleted lines <=5 for <15 significant target lines; otherwise <=min(50, 50% of target)',

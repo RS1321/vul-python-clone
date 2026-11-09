@@ -1,5 +1,6 @@
 """Verify and import compact CI evidence; never overwrite a different attempt."""
 import argparse
+from collections import Counter
 from datetime import datetime, timezone
 import hashlib
 import io
@@ -12,6 +13,9 @@ import zipfile
 from urllib.parse import urlsplit
 
 import requests
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from review.protocol_compatibility import matches_implementation, runner_hashes
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -41,8 +45,8 @@ def unpack(archive, metadata, results, protocol):
         manifest = json.loads(bundle.extractfile(manifest_member).read()) if manifest_member else None
         if manifest:
             agent = manifest.get('condition') == 'tool_agent'
-            implementation_matches = (manifest.get('implementation_sha256',{}).get('review/runner.py') == protocol['primary_implementation_sha256'].get('review/runner.py') if agent else
-                                      manifest.get('implementation_sha256') == protocol['primary_implementation_sha256'])
+            implementation_matches = (manifest.get('implementation_sha256',{}).get('review/runner.py') in runner_hashes(protocol) if agent else
+                                      matches_implementation(manifest, protocol))
             if not implementation_matches:
                 raise ValueError('CI implementation differs from declared protocol')
             fields = ('max_tokens', 'library_sha256', 'test_policy_sha256')+(() if agent else ('context_profile',))
@@ -105,6 +109,7 @@ def fetch(row, root):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fetch-stdin', action='store_true')
+    parser.add_argument('--quiet', action='store_true')
     args = parser.parse_args()
     if not args.fetch_stdin:
         parser.error('Supply connector download references on stdin')
@@ -115,6 +120,7 @@ def main():
     protocol = json.loads((ROOT/'review/study-protocol.validated.json').read_text())
     index_path = results/'ci-imports.json'
     imported = json.loads(index_path.read_text()) if index_path.exists() else []
+    added, errors = [], []
     for row in rows:
         if any(r['artifact_id'] == row['artifact']['id'] for r in imported):
             continue
@@ -124,11 +130,17 @@ def main():
         except Exception as error:
             # Signed temporary URLs never enter logs or permanent metadata.
             record = {'artifact_id':row['artifact']['id'], 'status':'import_error', 'error_type':type(error).__name__}
-            print(json.dumps(record),flush=True)
+            errors.append(record)
+            if not args.quiet:
+                print(json.dumps(record),flush=True)
             continue
         imported.append(record)
+        added.append(record)
         index_path.write_text(json.dumps(imported,indent=2))
-        print(json.dumps(record),flush=True)
+        if not args.quiet:
+            print(json.dumps(record),flush=True)
+    if args.quiet:
+        print(json.dumps({'new_records':len(added),'counts':dict(Counter(r['status'] for r in added)), 'errors':errors}),flush=True)
 
 
 if __name__ == '__main__':

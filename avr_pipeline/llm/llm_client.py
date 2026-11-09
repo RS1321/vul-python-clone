@@ -297,7 +297,7 @@ class LLMClient:
             try:
                 response=session.post(f'http://127.0.0.1:{ports[self.model]}/v1/chat/completions',
                     json={'model':self.model,'messages':messages,'temperature':self.temperature,
-                          'max_tokens':self.max_tokens},timeout=180)
+                          'max_tokens':self.max_tokens},timeout=int(os.getenv('AVR_LOCAL_REQUEST_TIMEOUT','3600')))
                 response.raise_for_status()
                 data=response.json()
             except requests.RequestException as exc:

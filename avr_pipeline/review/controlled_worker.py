@@ -24,6 +24,15 @@ def verify_snapshot(snapshot, protocol):
             raise ValueError('Frozen study input differs: ' + relative)
 
 
+def require_budget_safe_resume(out):
+    """The historical resume path restarts a finding; forbid extra real replies."""
+    path = out/'results.json'
+    results = json.loads(path.read_text()) if path.exists() else []
+    if results and any(a.get('infrastructure_error') for a in results[-1].get('attempts', [])):
+        if any(a.get('response') is not None for a in results[-1].get('attempts', [])):
+            raise ValueError('Resume would reset an already consumed generation budget; retain this partial attempt and start a fresh trial')
+
+
 @contextmanager
 def scanner_lock(path):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -65,6 +74,8 @@ def main():
     verify_snapshot(snapshot, json.loads(protocol.read_text()))
     if '--out' in remaining:
         out = Path(remaining[remaining.index('--out')+1])
+        if '--resume' in remaining:
+            require_budget_safe_resume(out)
         out.mkdir(parents=True, exist_ok=True)
         execution = {'worker_pid': os.getpid(), 'snapshot': str(snapshot),
                      'worker_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
