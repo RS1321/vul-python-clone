@@ -22,8 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 from review.project_paths import verify_input
-from review.runner import checked, dump
-from review.validation_health import recorded_outages
+from review.runner import checked
+from review.evidence_io import durable_dump as dump, recorded_outages
 from review.protocol_compatibility import budget_violations, matches_implementation
 
 CONDITIONS = ('A', 'B', 'A_strict', 'no_guidance', 'no_examples', 'C', 'simple')
@@ -80,12 +80,13 @@ def safe_interrupted_candidate(matches, protocol):
     """
     ordered = sorted(matches, key=lambda item: (item[1].get('utc', ''), item[0].name), reverse=True)
     for path, manifest in ordered:
-        if manifest.get('implementation_sha256') != protocol['primary_implementation_sha256']:
+        preserving = protocol.get('continuation_policy',{}).get('version')=='recorded-attempts-v1'
+        if not (matches_implementation(manifest,protocol) if preserving else manifest.get('implementation_sha256')==protocol['primary_implementation_sha256']):
             continue
         if manifest.get('status') != 'interrupted_api_error':
             continue
         try:
-            require_budget_safe_resume(path)
+            require_budget_safe_resume(path,preserve_replies=preserving)
         except ValueError:
             continue
         return path, manifest
@@ -135,9 +136,9 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.tag):
         parser.error('Invalid study tag')
-    protocol = json.loads(args.protocol.read_text())
+    protocol = json.loads(args.protocol.read_text(encoding='utf-8'))
     verify_snapshot(args.snapshot, protocol)
-    cohort = json.loads(args.cohort.read_text())
+    cohort = json.loads(args.cohort.read_text(encoding='utf-8'))
     if args.models:
         unknown = set(args.models)-{m['model'] for m in cohort}
         if unknown:
@@ -158,7 +159,7 @@ def main(argv=None):
              'scheduling': 'one sequential worker per model; serialized CodeQL; hosted calls spaced >=5.1s',
              'spending': 'free/local only', 'executed': args.execute, 'cells': []}
     output = results/f'continuation-{args.tag}.json'
-    if output.exists() and json.loads(output.read_text()).get('executed'):
+    if output.exists() and json.loads(output.read_text(encoding='utf-8')).get('executed'):
         output = results/f'continuation-{args.tag}-{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}.json'
     state_lock = Lock()
 
@@ -227,8 +228,8 @@ def main(argv=None):
                     with (out/'coordinator.log').open('a', encoding='utf-8') as log:
                         child = subprocess.run(cli, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT)
                     path = out/'manifest.json'
-                    manifest = json.loads(path.read_text()) if path.exists() else {}
-                    entries = json.loads((out/'results.json').read_text()) if (out/'results.json').exists() else []
+                    manifest = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+                    entries = json.loads((out/'results.json').read_text(encoding='utf-8')) if (out/'results.json').exists() else []
                     errors = [a.get('error', '') for r in entries for a in r.get('attempts', [])
                               if a.get('infrastructure_error')]
                     reason = quota_reason(errors)

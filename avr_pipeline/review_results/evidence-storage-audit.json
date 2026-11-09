@@ -1,0 +1,237 @@
+{
+  "utc": "2026-11-09T08:49:29.672741+00:00",
+  "checker_sha256": "b05f79d994c71ca9799104c52f159030d0e73a1b2ddebce82c338759001d3fa0",
+  "affected_runs": 19,
+  "trials": [
+    {
+      "run": "gemini-3.1-flash-lite-A-pygoat-fivefree-v2-r1",
+      "results_sha256": "849d937f490b1dec9cad88946d99b4a1032c87d211a120d097539c50ee152089",
+      "outages": [
+        {
+          "finding": "py/weak-sensitive-data-hashing:dockerized_labs/crypto_failure_lab/app.py:38:49",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r3",
+      "results_sha256": "a3f9c75fba1350a227c6cb2f9c8551afe97a0d75f670b21f985bd24950e7d1f7",
+      "outages": [
+        {
+          "finding": "py/sql-injection:vulnerable_app.py:369:16",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-A_strict-pygoat-review2-validated-retry2-r3",
+      "results_sha256": "4c05989749d0e6bcb87c5dc7bca9d6ec47ff512ad53d46d9e2257627eddfdf35",
+      "outages": [
+        {
+          "finding": "py/url-redirection:challenge/labs/security_headers_lab/app.py:189:54",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r3",
+      "results_sha256": "bfd9430caf05fc1feb7a17e19a29124335b8ef2ec3d364da9f2bd7423c90190c",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:challenge/views.py:625:25",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-B-synthetic-fivefree-v2-r1",
+      "results_sha256": "57aa27be2300cc134fec213048c5e7ded307dd809a87651324e4be4b6ddfc909",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:vulnerable_app.py:393:20",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-B-synthetic-review2-validated-r1",
+      "results_sha256": "86da0eb0d6eb8070d46828d3a9663413669c277c28583b1f20da03b139192b26",
+      "outages": [
+        {
+          "finding": "py/sql-injection:vulnerable_app.py:282:13",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-C-pygoat-review2-validated-retry2-r3",
+      "results_sha256": "a73d89ee4250176e4a03bdb18698d41472a45d8bd3f024934a80aa5b73f767a2",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:challenge/views.py:533:22",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-C-synthetic-matched-r1",
+      "results_sha256": "e42877bca30505b38bbc65971890203a21e5cf49e9404040cf8e0aad4bad252e",
+      "outages": [
+        {
+          "finding": "py/sql-injection:vulnerable_app.py:282:13",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-C-vampi-review2-validated-retry1-r2",
+      "results_sha256": "14412675a027a0721ce0460bfcc4e93ebb54a711c433041f15c7a8d8d43b748b",
+      "outages": [
+        {
+          "finding": "py/polynomial-redos:api_views/users.py:146:0",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-no_examples-synthetic-review2-validated-retry1-r2",
+      "results_sha256": "437bc6448d79d0be9f5d1e6b0486ebea77abb98b70c39daf4ecf4b51386f47ec",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:vulnerable_app.py:241:18",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-no_guidance-pygoat-review2-validated-retry2-r2",
+      "results_sha256": "daa69810db852948d1b365911373e04d1d1d41906fa4da2d4212dce64dfe22f5",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:challenge/views.py:675:27",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-no_guidance-synthetic-review2-validated-retry1-r1",
+      "results_sha256": "1bf0438de58a9555f9b943f98400edd43e81f7270be74e00aa56eddf5835e9a7",
+      "outages": [
+        {
+          "finding": "py/reflective-xss:vulnerable_app.py:156:7",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r2",
+      "results_sha256": "971cbfc7e2be775821d509021d641c322ac363cb7f3402d8603232fe2d2fff1a",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:challenge/views.py:625:25",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        },
+        {
+          "finding": "py/code-injection:dockerized_labs/command_injection_lab/app.py:49:11",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        },
+        {
+          "finding": "py/flask-debug:dockerized_labs/insecure_design_lab/app.py:153:40",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        },
+        {
+          "finding": "py/flask-debug:dockerized_labs/sql_injection_lab/app.py:78:36",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r3",
+      "results_sha256": "8c16d3bf453bb9db0f78a06625bfb49be8da89e1c0e552c01f982e52d8fe42b4",
+      "outages": [
+        {
+          "finding": "py/flask-debug:challenge/labs/security_headers_lab/app.py:233:35",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        },
+        {
+          "finding": "py/log-injection:dockerized_labs/a9_uckv_lab/app.py:66:60",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+      "results_sha256": "7bb0cf31e92cea10679e4969f34d8c0f7b4902dfe470635912ef89e9ff0de6ec",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:vulnerable_app.py:433:22",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "qwen2.5-coder-0.5b-instruct-q4km-A-synthetic-fivefree-v3-1024-r1",
+      "results_sha256": "aeb42f51c4381f3b7fc45cdd3ebf1ed96b85d5f70d2138630ad4411d44dbd794",
+      "outages": [
+        {
+          "finding": "py/template-injection:vulnerable_app.py:139:2",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "qwen2.5-coder-1.5b-instruct-q4km-A-pygoat-fivefree-v2-r1",
+      "results_sha256": "7ce075ab8a91e42a601425f8dd5e89aefb286612327367de34a2fc35be77c269",
+      "outages": [
+        {
+          "finding": "py/stack-trace-exposure:challenge/views.py:675:27",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-fivefree-v2-r1",
+      "results_sha256": "c265d4a42775ae03b4c3e97aae6a535240b33c3c6e1c963579f0fce2670988cd",
+      "outages": [
+        {
+          "finding": "py/sql-injection:vulnerable_app.py:102:12",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    },
+    {
+      "run": "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-fivefree-v2-r1",
+      "results_sha256": "2a3d2376295580b1bae4e3a3d41f7c15d4ad4856d7f9daf80881b248914334f4",
+      "outages": [
+        {
+          "finding": "py/reflective-xss:vulnerable_app.py:223:8",
+          "attempt": null,
+          "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
+        }
+      ]
+    }
+  ],
+  "decision": "Exclude incomplete evidence; retain original files including pending JSON; restart affected cells independently of scores"
+}

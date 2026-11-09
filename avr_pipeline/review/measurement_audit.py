@@ -4,13 +4,13 @@ A working baseline followed by a source-local missing-symbol import error is
 an application startup regression. Other setup errors remain unmeasured until
 their cause can be established; missing dependencies are never assumed repaired.
 """
-from collections import Counter
 import json
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
 
 from review.outcomes import make_rows, write_rows
+from review.evidence_io import storage_outages
 
 
 def junit_errors(path):
@@ -46,10 +46,17 @@ def export_run(out, policy=None):
     out = Path(out)
     read = lambda name, default: json.loads((out/name).read_text(encoding='utf-8')) if (out/name).exists() else default
     manifest = read('manifest.json', {})
+    storage = storage_outages(out)
+    if storage:
+        manifest['status'] = 'interrupted_evidence_storage'
     manifest['post_tests'] = audit_tests(out, manifest.get('post_tests'), 'post-tests', 'baseline-tests')
     manifest['behavioral_tests'] = audit_tests(out, manifest.get('behavioral_tests'), 'behavioral-tests', 'baseline-behavioral-tests')
     baseline = audit_tests(out, read('baseline-tests.json', {}), 'baseline-tests', 'baseline-tests')
     rows = make_rows(read('contexts.json', []), read('results.json', []), manifest, baseline, policy)
+    for row in rows:
+        affected = [issue for issue in storage if issue['finding']==row['finding']]
+        if affected:
+            row.update(accepted=None, attempts=None, evidence_outages=affected)
     write_rows(out, rows)
     by_cwe = {}
     for cwe in sorted({r['cwe'] or 'unknown' for r in rows}):

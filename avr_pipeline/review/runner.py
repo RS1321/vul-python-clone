@@ -34,6 +34,7 @@ from review.project_paths import tool_path, query_pack_root, verify_input
 from review.outcomes import export_run
 from review.target_environment import target_python, describe as describe_environment, lint_options
 from review.validation_health import ValidatorInfrastructureError, require_lint_health
+from review.continuation_state import carried_attempts, compatible_resume, restore_refinement, verify_generation_reference
 
 CONDITIONS = {
     'A': dict(guidance=True, examples=True, gates=True, attempts=3, tests='monitor'),
@@ -81,7 +82,7 @@ def implementation_hashes():
              ROOT/'llm/codePatcherAST.py', ROOT/'review/outcomes.py', ROOT/'review/project_paths.py',
              ROOT/'review/external_security.py', ROOT/'review/behavioral/external_assertions.py',
              ROOT/'review/behavioral/conftest.py', ROOT/'review/target_environment.py',
-             ROOT/'review/validation_health.py']
+             ROOT/'review/validation_health.py', ROOT/'review/continuation_state.py']
     return {p.relative_to(ROOT).as_posix():digest(p) for p in paths}
 
 
@@ -324,7 +325,7 @@ def gates(repo, file_path, original, snippet, patch, condition, pytest_args, bas
     return True, checks
 
 
-def repair_one(repo, finding, condition, client, pytest_args, baseline_tests, out, prompt_library=None):
+def repair_one(repo, finding, condition, client, pytest_args, baseline_tests, out, prompt_library=None, prior_attempts=None):
     out.mkdir(parents=True, exist_ok=True)
     file_path = finding['sast']['location']['file_path']
     path = repo / file_path
@@ -333,12 +334,19 @@ def repair_one(repo, finding, condition, client, pytest_args, baseline_tests, ou
     builder = PromptBuilder(condition['guidance'], condition['examples'], condition.get('simple', False), library=prompt_library)
     prompt = builder.build_initial_fix_prompt(finding, {}, snippet, file_path)
     prompt = sanitise(prompt)
+    patcher = CodePatcher(repo)
+    attempts = deepcopy(prior_attempts or [])
+    previous, feedback = restore_refinement(attempts,builder,prompt,finding,condition['attempts'],patcher.parse_fix_response)
+    for saved in attempts:
+        event = saved.get('application')
+        if event:
+            patcher.application_counts['attempts'] += 1
+            patcher.application_counts['success' if event['success'] else 'failures'] += 1
+            patcher.application_counts[event['route']] += 1
     dump(out / 'prompt.json', {'system': SYSTEM_PROMPT, 'user': prompt,
                               'library_version': builder.library_version, 'condition': condition})
-    patcher = CodePatcher(repo)
-    attempts, previous, feedback = [], '', ''
     accepted = False
-    for number in range(1, condition['attempts'] + 1):
+    for number in range(len(attempts)+1, condition['attempts'] + 1):
         # Every attempt starts from the pre-finding bytes, including after a
         # failed post-application gate. Earlier accepted findings remain intact.
         path.write_bytes(before)
@@ -505,14 +513,17 @@ def run(args):
                 'utc': datetime.now(timezone.utc).isoformat(), 'status': 'running',
                 'scope': 'new revision; not a reproduction of original paper prompts or models',
                 'dast_status': 'not_run', 'sampling': 'cross-file taint pilot' if args.cross_file_only else ('all findings' if not args.limit else 'pilot only; limit applied')}
-    prior_results = []
+    prior_results, pending_attempts = [], []
     if args.resume:
         prior = json.loads((out / 'manifest.json').read_text(encoding='utf-8'))
         if prior.get('status') == 'running':
             raise ValueError('The existing run is marked running; do not resume while another process can write to it')
         for key in ('source_commit','provider','model','condition','sarif_sha256','library_sha256',
                     'temperature','max_tokens','thinking_level','selected_findings','pytest_args','zap_sha256',
-                    'implementation_sha256','validation_environment','lint_environment_sha256'):
+                    'implementation_sha256','validation_environment','lint_environment_sha256',
+                    'test_policy_sha256','behavioral_test_sha256','settings','repetition'):
+            if key=='implementation_sha256' and compatible_resume(prior.get(key),manifest.get(key),args.provider,getattr(args,'resume_protocol',None)):
+                continue
             if prior.get(key) != manifest.get(key):
                 raise ValueError(f'Resume configuration changed: {key}')
         if prior.get('context_profile','full') != args.context_profile or prior.get('cross_file_only',False) != args.cross_file_only:
@@ -521,12 +532,24 @@ def run(args):
         # restored pre-finding state. Successful preceding findings are not replayed.
         prior_results = json.loads((out / 'results.json').read_text(encoding='utf-8'))
         history = prior.get('resume_history', [])
+        previous_manifest = f'prior-manifest-{len(history)+1:03d}.json'
+        dump(out/previous_manifest,prior)
         history.append({'previous_status':prior['status'], 'previous_implementation':prior.get('implementation_sha256'),
-                        'utc':manifest['utc'], 'previous_elapsed_seconds':prior.get('elapsed_seconds')})
+                        'utc':manifest['utc'], 'previous_elapsed_seconds':prior.get('elapsed_seconds'),
+                        'previous_manifest':previous_manifest,'previous_manifest_sha256':digest(out/previous_manifest)})
         manifest['resume_history'] = history
         if prior_results and any(a.get('infrastructure_error') for a in prior_results[-1].get('attempts', [])):
             interrupted = prior_results.pop()
-            dump(out / f'interrupted-finding-{len(prior_results)+1:03d}-{len(history)}.json', interrupted)
+            if len(prior_results)>=len(findings) or interrupted['finding_id']!=findings[len(prior_results)]['finding_id']:
+                raise ValueError('Interrupted finding does not match the pinned ordered input')
+            saved_name = f'interrupted-finding-{len(prior_results)+1:03d}-{len(history)}.json'
+            dump(out/saved_name,interrupted)
+            pending_attempts = carried_attempts(interrupted,saved_name)
+            for attempt in pending_attempts:
+                verify_generation_reference(out,attempt)
+            manifest['checkpoint_continuation'] = {'policy':'preserve recorded replies and remaining allowance',
+                                                   'carried_generations':len(pending_attempts),
+                                                   'original_finding':interrupted['finding_id']}
         manifest['resumed_from_findings'] = len(prior_results)
     dump(out / 'manifest.json', manifest)
     (out / 'prompt-library.json').write_bytes(library_bytes)
@@ -537,7 +560,8 @@ def run(args):
     baseline_tests = json.loads(baseline_path.read_text()) if args.resume and baseline_path.exists() else test_run(workspace, args.pytest_args, out / 'baseline-tests')
     dump(out / 'baseline-tests.json', baseline_tests)
     if behavioral_path:
-        dump(out/'baseline-behavioral-tests.json', test_run(workspace, [str(behavioral_path)], out/'baseline-behavioral-tests'))
+        if not args.resume or not (out/'baseline-behavioral-tests.json').exists():
+            dump(out/'baseline-behavioral-tests.json', test_run(workspace, [str(behavioral_path)], out/'baseline-behavioral-tests'))
     results = prior_results
     started = time.monotonic()
     for i, finding in enumerate(findings, 1):
@@ -545,9 +569,13 @@ def run(args):
             continue
         print(f"{args.model} {args.condition}: {i}/{len(findings)} {finding['finding_id']}", flush=True)
         try:
-            result = repair_one(workspace, finding, config, client, args.pytest_args, baseline_tests, out / f'finding-{i:03d}', prompt_library=prompt_library)
+            result = repair_one(workspace, finding, config, client, args.pytest_args, baseline_tests, out / f'finding-{i:03d}', prompt_library=prompt_library,prior_attempts=pending_attempts)
         except Exception as exc:
             result = {'finding_id': finding['finding_id'], 'accepted': False, 'error': str(exc), 'attempts': []}
+            if isinstance(exc,ValidatorInfrastructureError):
+                result['attempts'] = [{'attempt':len(pending_attempts)+1,'accepted':False,'error':str(exc),
+                                       'infrastructure_error':True,'infrastructure_kind':'validator'}]
+        pending_attempts = []
         results.append(result)
         dump(out / 'results.json', results)
         if any(a.get('infrastructure_error') for a in result.get('attempts', [])):
@@ -608,6 +636,7 @@ def main():
     p.add_argument('--pytest-args', nargs='*', default=[])
     p.add_argument('--rescan', action='store_true'); p.add_argument('--codeql')
     p.add_argument('--resume', action='store_true')
+    p.add_argument('--resume-protocol',type=Path,help='Explicit declaration of compatible continuation-only source versions')
     p.add_argument('--context-profile', choices=('full','compact'), default='full')
     p.add_argument('--cross-file-only', action='store_true')
     p.add_argument('--checkpoint-rescan', action='store_true', help='Also scan an interrupted checkpoint; no overall fix rate is reported')

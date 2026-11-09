@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 from review.outcomes import configuration, write_rows
 from review.measurement_audit import export_run
 from review.study_statistics import paired, repeated_cluster_ci, holm, wilson
-from review.validation_health import recorded_outages
+from review.evidence_io import recorded_outages
 from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
 
 COMPARISONS = [('A', 'B'), ('A', 'no_guidance'), ('A', 'no_examples'), ('A', 'C'), ('A', 'simple'), ('A_strict', 'A')]
@@ -33,11 +33,11 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
     groups = defaultdict(lambda: defaultdict(list))
     configurations, inventory, baseline_cells, strict_audits = [], [], defaultdict(lambda: defaultdict(list)), []
     protocol_path = protocol_path or ROOT/'review/study-protocol.json'
-    protocol = json.loads(protocol_path.read_text())
-    cohort = json.loads((ROOT/protocol['cohort_file']).read_text()) if protocol.get('cohort_file') else None
+    protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
+    cohort = json.loads((ROOT/protocol['cohort_file']).read_text(encoding='utf-8')) if protocol.get('cohort_file') else None
     output_root = output_root or root
     output_root.mkdir(parents=True, exist_ok=True)
-    ids = {int(e['cwe'].split('-')[1]) for e in json.loads((ROOT/'llm/guidance_library.review-2.json').read_text())['entries']}
+    ids = {int(e['cwe'].split('-')[1]) for e in json.loads((ROOT/'llm/guidance_library.review-2.json').read_text(encoding='utf-8'))['entries']}
     condition_rates = defaultdict(list)
     policy_path = ROOT / 'review/test-policy.json'
     policy_bytes = policy_path.read_bytes()
@@ -55,7 +55,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         rows = export_run(path.parent, policy)
         if m.get('condition') == 'tool_agent':
             result_path = path.parent/'results.json'
-            records = json.loads(result_path.read_text()) if result_path.exists() else []
+            records = json.loads(result_path.read_text(encoding='utf-8')) if result_path.exists() else []
             turns = {r['finding_id']:r.get('agent_turns') for r in records}
             for r in rows:
                 r['attempts'] = None
@@ -63,6 +63,8 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
             write_rows(path.parent,rows)
         configurations.append(dict(run=path.parent.name, **configuration(m),
              transport_policy=m.get('transport_policy'),
+             transport_execution_history=[json.loads(line) for line in (path.parent/'worker-executions.jsonl').read_text(encoding='utf-8').splitlines()]
+                 if (path.parent/'worker-executions.jsonl').exists() else None,
              local_request_timeout_seconds=m.get('local_request_timeout_seconds', 180 if m.get('provider') == 'local' else None),
              local_timeout_origin='manifest' if 'local_request_timeout_seconds' in m else 'earlier pinned client source' if m.get('provider') == 'local' else None,
              agent_turn_cap=m.get('settings', {}).get('max_turns')))
@@ -72,6 +74,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         complete = m.get('status') == 'complete' and 'sast' in m and m.get('selected_findings') == eligible and not outages and not budget_errors
         inventory.append({'run': path.parent.name, 'status': m.get('status'), 'full_run': complete,
                           'validator_outages':outages,
+                          'measurement_outages':outages,
                           'generation_budget_violations':budget_errors,
                           'findings': len(rows), 'resolved': m.get('sast', {}).get('resolved_findings') if complete else None,
                           'resolution_ci95': wilson(m['sast']['resolved_findings'], eligible) if complete else None,
@@ -82,7 +85,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
             groups[(identity(m,protocol), m.get('repetition', 1))][m['condition']].append((path.parent.name, m, rows))
             is_primary = matches_implementation(m, protocol)
             if is_primary and m['condition'] == 'A_strict':
-                raw = json.loads((path.parent/'results.json').read_text())
+                raw = json.loads((path.parent/'results.json').read_text(encoding='utf-8'))
                 blocked = [{'finding':r['finding_id'],'attempt':a['attempt'],'new_failures':a['validation']['new_test_failures']}
                            for r in raw for a in r.get('attempts',[]) if not a.get('accepted') and a.get('validation',{}).get('new_test_failures')]
                 strict_audits.append({'run':path.parent.name,'model':m['model'],'source_commit':m['source_commit'],
@@ -179,7 +182,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
     fields = ['run','model','provider','source_commit','condition','repetition','gates','test_policy','pytest_args',
               'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
               'lint_environment_sha256','implementation_sha256','transport_policy','local_request_timeout_seconds',
-              'local_timeout_origin','agent_turn_cap','status']
+              'local_timeout_origin','transport_execution_history','agent_turn_cap','status']
     flat = [dict(r,gates=(r.get('settings') or {}).get('gates'),test_policy=(r.get('settings') or {}).get('tests')) for r in configurations]
     with (output_root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
         writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')
@@ -187,7 +190,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         writer.writerows({k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in flat)
     (output_root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
         'protocol_sha256':hashlib.sha256(protocol_path.read_bytes()).hexdigest(), 'primary_only':primary_only,
-        'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/study_statistics.py']},
+        'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/measurement_audit.py',ROOT/'review/evidence_io.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
         'junit_normalization':'Retained JUnit evidence overrides early summaries in derived tables only. A working baseline followed by missing-symbol ImportErrors in the patched source is a startup regression; other setup errors remain unmeasured. Original manifests are unchanged.',
         'unknowns': 'No imputation of missing conditions, behavior tests, interrupted runs, or partial duplicate-group identities.',

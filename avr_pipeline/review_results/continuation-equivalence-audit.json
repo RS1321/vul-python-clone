@@ -1,0 +1,168 @@
+{
+  "old_runner_sha256": "f69e9b32b6a80250c3f53011cbe47cee2b7b41e180393fc96f1ce3b083fd0cf0",
+  "new_runner_sha256": "6634317af0fa45fe1e899cf0e17fbc4fdfb85269e01bf22d0cb05cdc563bbdbd",
+  "cases": [
+    {
+      "condition": "A",
+      "rejection_kind": "gated",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "4547d182f079c025e5806bdf4a55f21abdd86528417406f1f8a64d9fbb2c7e03"
+    },
+    {
+      "condition": "A",
+      "rejection_kind": "format",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "5ba84229e28c9c19465fee1364984656c75f1fc09b52c4214ef56d33d207099e"
+    },
+    {
+      "condition": "A",
+      "rejection_kind": "limit",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "81d91be444bd9fa31a2f51f4f42cac706b0262a70f0425ad0ef969ebc4438158"
+    },
+    {
+      "condition": "A",
+      "rejection_kind": "blocked",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "c7dc6687aadcdcab20726cb2ba6814339447788c0f53444cfcb1b700c34db497"
+    },
+    {
+      "condition": "B",
+      "rejection_kind": "gated",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "50f2dd149f20bd53dedfffd110961157cd2f8ad0429a36beb9eaf696021a09ad"
+    },
+    {
+      "condition": "B",
+      "rejection_kind": "format",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "a2b3c99b0647a70eb5647f9a6e1086eb68a58f7cdb153e68c62c7f25828deb75"
+    },
+    {
+      "condition": "B",
+      "rejection_kind": "limit",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "cd2ae492bd6ad95280bcf5b16ac16d383775238efee0398f62bb4c62c5b6ab03"
+    },
+    {
+      "condition": "B",
+      "rejection_kind": "blocked",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "e2d7b908a6cec4d8f5c0155d9ced72c1753a3a60dbe08c89cb4b7a740ca04f05"
+    },
+    {
+      "condition": "no_guidance",
+      "rejection_kind": "gated",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "8372b339549b35603727b6165e959e3c7801d604b204ca563799442196206117"
+    },
+    {
+      "condition": "no_guidance",
+      "rejection_kind": "format",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "d9c9c6e0002360415440012c18d58cdcea5e8b4ea31fbcd833efaee2ada34338"
+    },
+    {
+      "condition": "no_guidance",
+      "rejection_kind": "limit",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "b59071f832d1ef76338658135a42cef29c3034a090599973fbba2b041e2761de"
+    },
+    {
+      "condition": "no_guidance",
+      "rejection_kind": "blocked",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "5a8adfea6f59a9e38cf9c499700cf908a11db8aa7f7526bfc6e210667f63d89a"
+    },
+    {
+      "condition": "no_examples",
+      "rejection_kind": "gated",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "623c0b695e7214f2fa601b3c92b98bba6393df25e4c4af7e9f22980c54fc70fe"
+    },
+    {
+      "condition": "no_examples",
+      "rejection_kind": "format",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "1cbc1b985a19e7be40adc7a1ad577110c1f48db2132d60e101350d654cf29757"
+    },
+    {
+      "condition": "no_examples",
+      "rejection_kind": "limit",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "8e699834a783e1061d8cc8e29a58f9474135002bfd8abee2a6e4121054f41004"
+    },
+    {
+      "condition": "no_examples",
+      "rejection_kind": "blocked",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "f7fae9282b0c6ac6acb73406b9d835fec8e11d3d460bfd8553a9ae588ee25bbe"
+    },
+    {
+      "condition": "A_strict",
+      "rejection_kind": "gated",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "4547d182f079c025e5806bdf4a55f21abdd86528417406f1f8a64d9fbb2c7e03"
+    },
+    {
+      "condition": "A_strict",
+      "rejection_kind": "format",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "5ba84229e28c9c19465fee1364984656c75f1fc09b52c4214ef56d33d207099e"
+    },
+    {
+      "condition": "A_strict",
+      "rejection_kind": "limit",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "81d91be444bd9fa31a2f51f4f42cac706b0262a70f0425ad0ef969ebc4438158"
+    },
+    {
+      "condition": "A_strict",
+      "rejection_kind": "blocked",
+      "normal_prompts_identical": true,
+      "normal_patch_identical": true,
+      "normal_outcomes_identical": true,
+      "prompt_transcript_sha256": "c7dc6687aadcdcab20726cb2ba6814339447788c0f53444cfcb1b700c34db497"
+    }
+  ],
+  "framework_tests": 107,
+  "scope": "Twenty canned-response cases compare normal prompts, patches and outcome counters against the pinned previous implementation. Separate tests cover interrupted execution, blocked/limited/malformed replies, two outages, source changes, reference integrity and the original generation cap. Bounded regression evidence, not proof for every program."
+}

@@ -10,17 +10,16 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.continue_study import CONDITIONS, DATASETS, identity
-from review.runner import dump
-from review.validation_health import recorded_outages
+from review.evidence_io import durable_dump as dump, recorded_outages
 from review.protocol_compatibility import budget_violations
 
 
 def build_status(results, protocol, cohort):
-    sources = {d:dict(source_commit=json.loads((results/f'baseline-{d}/dataset-manifest.json').read_text())['source_commit'],
+    sources = {d:dict(source_commit=json.loads((results/f'baseline-{d}/dataset-manifest.json').read_text(encoding='utf-8'))['source_commit'],
                       sarif_sha256=hashlib.sha256((results/f'baseline-{d}/scan.sarif').read_bytes()).hexdigest()) for d in DATASETS}
     index = {}
     for path in sorted(results.glob('*/manifest.json')):
-        manifest = json.loads(path.read_text())
+        manifest = json.loads(path.read_text(encoding='utf-8'))
         key = identity(manifest, protocol, sources)
         if key:
             index.setdefault(key, []).append((path.parent, manifest))
@@ -37,6 +36,9 @@ def build_status(results, protocol, cohort):
                               'interrupted' if runs else 'not_run')
                     cell = dict(model, dataset=dataset, condition=condition, repetition=repetition,
                                 status=status, runs=[p.name for p,m in runs])
+                    outages = {p.name:recorded_outages(p) for p,m in runs if recorded_outages(p)}
+                    if outages:
+                        cell['measurement_outages'] = outages
                     if status == 'complete':
                         m = complete[0][1]
                         cell.update(resolved=m['sast']['resolved_findings'], new_alerts=m['sast']['new_findings'],
@@ -56,7 +58,7 @@ def main():
     parser.add_argument('--cohort', type=Path, default=ROOT/'review/validated-cohort.json')
     parser.add_argument('--results', type=Path, default=ROOT/'review_results')
     args = parser.parse_args()
-    report = build_status(args.results, json.loads(args.protocol.read_text()), json.loads(args.cohort.read_text()))
+    report = build_status(args.results, json.loads(args.protocol.read_text(encoding='utf-8')), json.loads(args.cohort.read_text(encoding='utf-8')))
     dump(args.results/'validated-study-status.json', report)
     print(json.dumps({k:v for k,v in report.items() if k != 'cells'}, indent=2))
 

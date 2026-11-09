@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "library_version": "review-2",
+  "library_sha256": "5ec4f49f4e7abc494331933e52204e2742f572cff2a7a7a3e3866395afe4ef96",
+  "max_tokens": 8192,
+  "context_profile": "compact",
+  "minimum_repetitions": 3,
+  "measurement": "Post-batch CodeQL multiset resolution. Partial duplicate groups stay ambiguous. Joint security requires resolved, no new alerts, no new ordinary test failures, passing behavioral assertions. Missing evidence is null.",
+  "test_classification": "Exact frozen test IDs only; unlisted failures count as regressions.",
+  "human_review": "deferred by the user; professor will supply later",
+  "unsupported_cwes": [
+    "CWE-1333",
+    "CWE-117",
+    "CWE-1004",
+    "CWE-614",
+    "CWE-094"
+  ],
+  "test_policy_sha256": "77e81ff04f463e5114a4458d4b3f31e15d88c344785e7082346e26eb098b3c23",
+  "primary_implementation_sha256": {
+    "review/runner.py": "f69e9b32b6a80250c3f53011cbe47cee2b7b41e180393fc96f1ce3b083fd0cf0",
+    "llm/llm_client.py": "5abd4b8b8a2121997cb608cc842054d50255896ff99933d1a4b5f9eca28c2804",
+    "llm/review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+    "llm/factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+    "llm/minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+    "llm/egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+    "llm/request_budget.py": "4d8959d4fb024572475b1a24995696d526128f14a5c2509c7b059d256f08b11d",
+    "context_builder/parsers/ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+    "context_builder/parsers/code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+    "llm/codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+    "review/outcomes.py": "029e0bbdbf3d9268799921ae792e90da28c11133aa2e8b771eaf309d0b7ce219",
+    "review/project_paths.py": "0814dcc59c30515248742a5f86d9a2373346fa18c5397fc9e895b33be6ef4ad0",
+    "review/external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+    "review/behavioral/external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+    "review/behavioral/conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+    "review/target_environment.py": "5f36b3a51488d909769cacf67af6d3c2d3fc6c60e0ff0bc04e909c51bc6515ab",
+    "review/validation_health.py": "02771b675edd535673791ccbd4761cde7266aaf4abf30198a4e3427ec06f57c9"
+  },
+  "implementation_selection_note": "Target-environment validation and validator-outage corrections. Separate from all 12f7847 runs; no retrospective pooling.",
+  "cohort_selection": "Gemma 4 26B A4B and four Qwen2.5 Coder sizes selected for free access and quota-independent local evaluation, before observing new-model repair outcomes.",
+  "controlled_code_commit": "a4922a28e5a337ea2f6558636b83785a8b259931",
+  "latest_code_note": "Primary local cells all use 3600-second HTTP waiting. Earlier 180-second local runs are pilots only. The earlier source map is compatible only for Gemini-provider calls whose generation path is unchanged. Raw fingerprints remain visible and generation budgets are audited.",
+  "cohort_replacements": [],
+  "protocol_id": "review2-validated-2026-11-09",
+  "cohort_file": "review/validated-cohort.json",
+  "cohort_sha256": "501b931593ccc1c9176b98fda02aec97f3a2727cb9eca46ee98458d283e2771b",
+  "zenodo": "deferred by the user; no DOI claimed",
+  "planned_cells": 420,
+  "transport_only_compatible_implementations": [
+    {
+      "commit": "f116a315fd18f97cd204cbc09f0c91c5a84d9db0",
+      "implementation_sha256": {
+        "review/runner.py": "680109fb4895c59aa8f91b9a7ade6ae469ec36337d4f44cd1d3aa1fdd875a138",
+        "llm/llm_client.py": "e1b0d6f9f52ce9fff90b5ec0407bf71d33cd062460e0a31b45de18469e669e1c",
+        "llm/review_patcher.py": "f749ca403074bde50b31098e1f84e2f4fe2b65aeb867ad3495c18bfa8b203ea3",
+        "llm/factorial_prompts.py": "49eb7bab6df4b2565d27ef3b63e47562d67b3fd725ddea10573543dc6356f62b",
+        "llm/minimality_validator.py": "a1ad6205166ab50785a0425a52d68f68ca26c1f054a845a81391bcccbdc1dfdf",
+        "llm/egress_guard.py": "5bae3021a4b997f6eebd42ad4ef75818d318feeeb65683e2ff66d13d64b996d3",
+        "llm/request_budget.py": "4d8959d4fb024572475b1a24995696d526128f14a5c2509c7b059d256f08b11d",
+        "context_builder/parsers/ast_utils.py": "cd778613e5a70edede29b2e3ded6a956538285ce20ac48fb31aabef4ad2c9032",
+        "context_builder/parsers/code_fetcher.py": "1e61361e864c9cd61f3ddb04aadec5f76528068cead8d16f9b48bd4fd3c83aaf",
+        "llm/codePatcherAST.py": "14431ed851ffc86b9c4a0f6055fe7a1c4d552e9b4a06434589433ff40924e17e",
+        "review/outcomes.py": "029e0bbdbf3d9268799921ae792e90da28c11133aa2e8b771eaf309d0b7ce219",
+        "review/project_paths.py": "0814dcc59c30515248742a5f86d9a2373346fa18c5397fc9e895b33be6ef4ad0",
+        "review/external_security.py": "703cf3bd8ca7eebc65ad04c36570e3bf0e650a9e5785d31cf26bf3a1f18d7b1b",
+        "review/behavioral/external_assertions.py": "9adbacb7bc5bc67a36558caef98504de33eb3b0134ed9faca38150731e114186",
+        "review/behavioral/conftest.py": "2320ff1c3979b9b32dce2d7af783f8a45c86ad3cd0428256bf7da3b9f46da055",
+        "review/target_environment.py": "5f36b3a51488d909769cacf67af6d3c2d3fc6c60e0ff0bc04e909c51bc6515ab",
+        "review/validation_health.py": "02771b675edd535673791ccbd4761cde7266aaf4abf30198a4e3427ec06f57c9"
+      },
+      "difference": "Hosted Gemini-provider calls never invoke the changed local HTTP method. All earlier local-provider runs are excluded as timeout180 pilots and the whole local matrix is rerun under 3600 seconds, independently of pilot scores.",
+      "providers": [
+        "gemini"
+      ]
+    }
+  ],
+  "local_http_timeout_seconds": 3600,
+  "orchestration_io_policy": {
+    "version": "windows-atomic-save-retry-1",
+    "implementation_sha256": "b05f79d994c71ca9799104c52f159030d0e73a1b2ddebce82c338759001d3fa0",
+    "max_wait_seconds": 30,
+    "scope": "File I/O only, identical serialized bytes; prompts, generation caps, patching, gates and tests unchanged. Healthy Linux and earlier healthy Windows results remain comparable. Trials with evidence-save failures are excluded independently of scores and restarted fresh; consumed reply count cannot be recovered safely."
+  }
+}

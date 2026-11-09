@@ -19,7 +19,7 @@ from urllib3.util.retry import Retry
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from review.collect_ci_results import unpack
-from review.runner import dump
+from review.evidence_io import durable_dump as dump
 from review.study_progress import build_status
 
 REPOSITORY = 'RS1321/vul-python-clone'
@@ -86,10 +86,10 @@ def main():
     cache = ROOT/'.review-work/downloaded-study-artifacts'
     cache.mkdir(parents=True,exist_ok=True)
     index_path = results/'ci-imports.json'
-    index = json.loads(index_path.read_text()) if index_path.exists() else []
+    index = json.loads(index_path.read_text(encoding='utf-8')) if index_path.exists() else []
     seen = {r['artifact_id'] for r in index}
-    protocol = json.loads((ROOT/'review/study-protocol.validated.json').read_text())
-    cohort = json.loads((ROOT/'review/validated-cohort.json').read_text())
+    protocol = json.loads((ROOT/'review/study-protocol.validated.json').read_text(encoding='utf-8'))
+    cohort = json.loads((ROOT/'review/validated-cohort.json').read_text(encoding='utf-8'))
     failures, previous_summary = {}, None
     while True:
         workflows, new_records = [], []
