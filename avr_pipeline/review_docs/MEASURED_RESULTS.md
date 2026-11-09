@@ -1,6 +1,6 @@
 # Measured manuscript follow-up
 
-**Historical validator study.** For the corrected five-model study, use [VALIDATED_RESULTS.md](VALIDATED_RESULTS.md) and `review_results/validated-study-status.json`. The values below retain the earlier `12f7847` experiment. They are not pooled with the corrected cohort. Linux container/scanner execution has since passed; human sign-off and Zenodo publication are now deferred to the professor at the user's request.
+**Historical validator study.** For the corrected five-model study, use the [public summary](../public_results/review2/RESULTS.md) and [cell inventory](../public_results/review2/study-status.json). The values below retain the earlier `12f7847` experiment. They are not pooled with the corrected cohort. Linux container/scanner execution has since passed; human sign-off and Zenodo publication are now deferred to the professor at the user's request.
 
 Historical matrix: **45/420 cells complete**. Its remaining cells are listed in `manuscript-study-status.json`; plans and warm-ups do not count as completed evidence.
 

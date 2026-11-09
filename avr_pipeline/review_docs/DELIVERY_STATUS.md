@@ -1,6 +1,6 @@
 # Scope and remaining work
 
-**This is the retained status of the earlier validator study.** The current matrix, including all completed cells and remaining interruptions, is in [VALIDATED_RESULTS.md](VALIDATED_RESULTS.md) and `review_results/validated-study-status.json`. The [current protocol](VALIDATED_STUDY.md) replaces quota-limited cohort members with four local Qwen sizes and hosted Gemma. Three current 7B tool-agent repetitions are recorded, and Linux Docker/ZAP/CodeQL execution has passed. The user explicitly deferred human sign-off and Zenodo publication to the professor. Read the historical table below with these later changes in mind.
+**This is the retained status of the earlier validator study.** The current matrix, including all completed cells and remaining interruptions, is in the [public summary](../public_results/review2/RESULTS.md) and [cell inventory](../public_results/review2/study-status.json). The [current protocol](VALIDATED_STUDY.md) replaces quota-limited cohort members with four local Qwen sizes and hosted Gemma. Three current 7B tool-agent repetitions are recorded, and Linux Docker/ZAP/CodeQL execution has passed. The user explicitly deferred human sign-off and Zenodo publication to the professor. Read the historical table below with these later changes in mind.
 
 This delivery implements the experimental infrastructure and records real completed runs. It does **not** claim the full five-model study is finished or that the paper's headline results have been reproduced.
 

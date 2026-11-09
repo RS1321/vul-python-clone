@@ -24,3 +24,14 @@ review_results/**/source/
 **/pytest-tmp/
 **/zap-home/
 **/target-state/
+
+# New raw experiment evidence stays local until separately approved for release.
+# Already tracked historical evidence is unaffected. Publish allowlisted exports
+# with review/export_public_summary.py; pinned baseline inputs remain versioned.
+review_results/*
+!review_results/baseline-*/
+review_results/baseline-*/*
+!review_results/baseline-*/*.json
+!review_results/baseline-*/*.sarif
+review_docs/VALIDATED_RESULTS.md
+review_docs/figures/validated/
