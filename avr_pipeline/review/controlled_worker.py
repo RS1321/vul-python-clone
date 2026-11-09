@@ -74,6 +74,38 @@ def scanner_lock(path):
                 fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
 
+@contextmanager
+def hosted_lock(path):
+    manager=scanner_lock(path)
+    try:
+        manager.__enter__()
+    except OSError as exc:
+        raise RuntimeError('Gemini hosted coordination unavailable: '+type(exc).__name__) from None
+    try:
+        yield
+    finally:
+        try:
+            manager.__exit__(None,None,None)
+        except OSError:
+            # scanner_lock closes its handle even if explicit unlock fails.
+            # Closure releases the OS lock; preserve any received reply or
+            # generation-limit exception instead of losing its consumed budget.
+            pass
+
+
+def paced_call(root,client,original,last_request,*args,**kwargs):
+    if client.provider!='gemini':
+        return original(client,*args,**kwargs)
+    # A large reservation can otherwise keep losing the shared minute window
+    # to smaller calls from parallel condition queues. The original ledger
+    # still enforces both limits, including every internal transport retry.
+    model_hash=hashlib.sha256(client.model.encode()).hexdigest()[:16]
+    with hosted_lock(root/'.review-work'/('hosted-call-'+model_hash+'.lock')):
+        time.sleep(max(0,5.1-(time.monotonic()-last_request[0])))
+        last_request[0]=time.monotonic()
+        return original(client,*args,**kwargs)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--snapshot', type=Path, required=True)
@@ -105,7 +137,7 @@ def main():
                      'transport_environment': {key:os.getenv(key) for key in (
                          'AVR_REQUEST_TIMEOUT','AVR_LOCAL_REQUEST_TIMEOUT','AVR_TRANSPORT_RETRIES',
                          'AVR_REQUEST_BUDGET_PER_MINUTE','AVR_INPUT_BUDGET_PER_MINUTE')},
-                     'scheduling': 'serialized CodeQL; >=5.1s between hosted logical calls; no patch/gate changes'}
+                     'scheduling': 'serialized CodeQL; hosted logical calls serialized by model across condition queues; original shared request ledger and per-worker 5.1s pacing retained; no prompt/patch/gate changes'}
         prior_manifest = out/'manifest.json'
         if prior_manifest.exists():
             execution['previous_manifest_sha256'] = hashlib.sha256(prior_manifest.read_bytes()).hexdigest()
@@ -125,15 +157,12 @@ def main():
             return original_scan(*scan_args, **scan_kwargs)
 
     runner.scan = serialized_scan
-    # One sequential worker per hosted model; pacing changes only wall time.
+    # Serialize logical hosted calls; pacing changes only wall time.
     original_chat = runner.LLMClient.chat_completion
     last_request = [0.0]
 
     def paced_chat(client, *chat_args, **chat_kwargs):
-        if client.provider == 'gemini':
-            time.sleep(max(0, 5.1-(time.monotonic()-last_request[0])))
-            last_request[0] = time.monotonic()
-        return original_chat(client, *chat_args, **chat_kwargs)
+        return paced_call(root,client,original_chat,last_request,*chat_args,**chat_kwargs)
 
     runner.LLMClient.chat_completion = paced_chat
     sys.argv = [str(snapshot/'review/runner.py'), *remaining]

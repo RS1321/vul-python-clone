@@ -8,6 +8,9 @@ from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 from review.controlled_worker import require_resume_source
 from review.continue_study import choose_trial
 from review.continue_study import index_runs
+from review.controlled_worker import paced_call,hosted_lock
+from contextlib import contextmanager
+from types import SimpleNamespace
 import json
 
 
@@ -115,3 +118,54 @@ def test_single_cell_lookup_does_not_open_unrelated_large_response_files(tmp_pat
     key=('local','selected','vampi','A',1)
     result=index_runs(tmp_path,protocol,{'vampi':dict(source_commit='pin',sarif_sha256='sarif')},only_key=key)
     assert list(result)==[key]
+
+
+def test_hosted_pacing_preserves_payload_and_uses_a_shared_model_lock(tmp_path,monkeypatch):
+    import review.controlled_worker as module
+    held=[];paths=[];payload=[dict(role='user',content='Exact frozen input')]
+    @contextmanager
+    def lock(path):
+        paths.append(path);held.append(True)
+        try:yield
+        finally:held.pop()
+    monkeypatch.setattr(module,'scanner_lock',lock)
+    monkeypatch.setattr(module.time,'sleep',lambda seconds:None)
+    def original(client,messages,**kwargs):
+        assert held and messages is payload and kwargs=={'system_prompt':'unchanged'}
+        return 'original response'
+    for model in ['same','same','different']:
+        assert paced_call(tmp_path,SimpleNamespace(provider='gemini',model=model),original,[0.0],payload,system_prompt='unchanged')=='original response'
+    assert paths[0]==paths[1] and paths[0]!=paths[2]
+
+
+def test_local_inference_does_not_enter_the_hosted_lock(tmp_path,monkeypatch):
+    import review.controlled_worker as module
+    def forbidden(*args):raise AssertionError('Local inference must keep its original path')
+    monkeypatch.setattr(module,'scanner_lock',forbidden)
+    assert paced_call(tmp_path,SimpleNamespace(provider='local'),lambda client,value:value,[0.0],'unchanged')=='unchanged'
+
+
+@pytest.mark.parametrize('callback_error',[False,True])
+def test_unlock_failure_cannot_discard_a_received_reply_or_generation_exception(tmp_path,monkeypatch,callback_error):
+    import review.controlled_worker as module
+    class Lock:
+        def __enter__(self):pass
+        def __exit__(self,*args):raise PermissionError('transient unlock failure after handle closure')
+    monkeypatch.setattr(module,'scanner_lock',lambda path:Lock())
+    received=RuntimeError('acknowledged generation limit')
+    if callback_error:
+        with pytest.raises(RuntimeError) as error:
+            with hosted_lock(tmp_path/'lock'):raise received
+        assert error.value is received
+    else:
+        with hosted_lock(tmp_path/'lock'):result='received model reply'
+        assert result=='received model reply'
+
+
+def test_coordination_failure_is_infrastructure_before_a_model_request(tmp_path,monkeypatch):
+    import review.controlled_worker as module
+    class Lock:
+        def __enter__(self):raise PermissionError('temporary file lock')
+    monkeypatch.setattr(module,'scanner_lock',lambda path:Lock())
+    with pytest.raises(RuntimeError,match='^Gemini hosted coordination unavailable'):
+        with hosted_lock(tmp_path/'lock'):raise AssertionError('No model request may start')

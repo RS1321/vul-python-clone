@@ -47,6 +47,8 @@ def public_config(row):
               'lint_environment_sha256','implementation_sha256','sarif_sha256','status','agent_turn_cap',
               'local_request_timeout_seconds','local_timeout_origin','ci_configuration','transport_policy','temperature','guidance_used']
     result = select(row,fields)
+    result['execution_pacing']=[select(execution,['utc','worker_sha256','evidence_io_sha256','scheduling','transport_environment'])
+        for execution in row.get('transport_execution_history') or []]
     settings = row.get('settings') or {}
     result['settings'] = select(settings,['guidance','examples','gates','attempts','tests','simple','max_turns'])
     args=[]
