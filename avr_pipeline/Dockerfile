@@ -2,7 +2,9 @@
 FROM --platform=linux/amd64 python:3.12.14-slim-bookworm
 ARG CODEQL_VERSION=2.27.4
 ARG CODEQL_SHA256=393bf92b66596141ec93baf9b483f4a350f3749916c922fed0dd63c67706047d
-RUN apt-get update && apt-get install -y --no-install-recommends git curl unzip nodejs ca-certificates build-essential libffi-dev libpq-dev \
+ARG ZAP_VERSION=2.17.0
+ARG ZAP_SHA256=efe799aaa3627db683b43f00c9c210aea0b75c00cc8f0a0f0434d12bb3ddde5a
+RUN apt-get update && apt-get install -y --no-install-recommends git curl unzip nodejs ca-certificates build-essential libffi-dev libpq-dev default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /opt/avr
 COPY requirements-lock.txt requirements-django.lock requirements-lessons.lock requirements-vampi.lock ./
@@ -20,5 +22,9 @@ ENV PATH="/opt/scanners/codeql:${PATH}" \
     AVR_PYGOAT_PYTHON=/opt/pygoat-env/bin/python \
     AVR_VAMPI_PYTHON=/opt/vampi-env/bin/python
 RUN codeql pack download codeql/python-queries@1.9.0 --dir=/opt/scanners/packs
+RUN curl --fail --location "https://github.com/zaproxy/zaproxy/releases/download/v${ZAP_VERSION}/ZAP_${ZAP_VERSION}_Linux.tar.gz" -o /tmp/zap.tar.gz \
+    && echo "$ZAP_SHA256  /tmp/zap.tar.gz" | sha256sum --check \
+    && tar -xzf /tmp/zap.tar.gz -C /opt/scanners && rm /tmp/zap.tar.gz
+ENV ZAP_JAR=/opt/scanners/ZAP_2.17.0/zap-2.17.0.jar
 COPY . .
 CMD ["python", "review/smoke.py", "--out", "/tmp/avr-smoke"]
