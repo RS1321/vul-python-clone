@@ -2,10 +2,12 @@
   "runtime": {
     "release": "b12182",
     "url": "https://github.com/ggml-org/llama.cpp/releases/download/b12182/llama-b12182-bin-ubuntu-x64.tar.gz",
+    "api_url": "https://api.github.com/repos/ggml-org/llama.cpp/releases/assets/719484031",
     "sha256": "c1dbfdb9cbef7ee50b6ab08142d6424184d68b242906837770439ed118c57d99"
   },
   "codeql": {
     "url": "https://github.com/github/codeql-cli-binaries/releases/download/v2.27.4/codeql-linux64.zip",
+    "api_url": "https://api.github.com/repos/github/codeql-cli-binaries/releases/assets/692228339",
     "sha256": "393bf92b66596141ec93baf9b483f4a350f3749916c922fed0dd63c67706047d"
   },
   "models": {

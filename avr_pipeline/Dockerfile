@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements-lock.txt \
     && python -m venv /opt/lessons-env && /opt/lessons-env/bin/pip install --no-cache-dir -r requirements-lessons.lock \
     && python -m venv /opt/vampi-env && /opt/vampi-env/bin/pip install --no-cache-dir -r requirements-vampi.lock
 RUN test -n "$CODEQL_SHA256" \
-    && curl --fail --location --retry 4 --retry-delay 5 --retry-all-errors "https://github.com/github/codeql-cli-binaries/releases/download/v${CODEQL_VERSION}/codeql-linux64.zip" -o /tmp/codeql.zip \
+    && (curl --fail --location --retry 4 --retry-delay 5 --retry-all-errors "https://github.com/github/codeql-cli-binaries/releases/download/v${CODEQL_VERSION}/codeql-linux64.zip" -o /tmp/codeql.zip \
+        || curl --fail --location --retry 4 --retry-delay 5 --retry-all-errors -H 'Accept: application/octet-stream' "https://api.github.com/repos/github/codeql-cli-binaries/releases/assets/692228339" -o /tmp/codeql.zip) \
     && echo "$CODEQL_SHA256  /tmp/codeql.zip" | sha256sum --check \
     && unzip -q /tmp/codeql.zip -d /opt/scanners && rm /tmp/codeql.zip
 ENV PATH="/opt/scanners/codeql:${PATH}" \

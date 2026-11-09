@@ -1,6 +1,6 @@
 """Evaluate pinned local models on free standard public-repository CI runners.
 
-No hosted model keys, paid runners, caches, or uploaded runtimes are used.
+No hosted model keys or paid runners are used. Cached assets are checksum-verified.
 Evidence archives contain raw measurements and exact patches, never databases or
 runtime/source clones. The archive cap bounds this study's artifact storage.
 """
@@ -33,7 +33,7 @@ def digest(path):
         return hashlib.file_digest(handle, 'sha256').hexdigest()
 
 
-def download(url, target, expected):
+def download(url, target, expected, fallback_url=None):
     target.parent.mkdir(parents=True, exist_ok=True)
     if target.exists():
         if digest(target) == expected:
@@ -43,14 +43,21 @@ def download(url, target, expected):
     session.mount('https://', HTTPAdapter(max_retries=Retry(total=4, backoff_factor=2,
                   status_forcelist=[429, 500, 502, 503, 504])))
     pending = target.with_suffix(target.suffix+'.partial')
-    with session.get(url, stream=True, timeout=(30, 180)) as response:
-        response.raise_for_status()
-        with pending.open('wb') as handle:
-            for chunk in response.iter_content(1024*1024):
-                handle.write(chunk)
-    if digest(pending) != expected:
-        raise ValueError('Downloaded asset checksum differs')
-    pending.replace(target)
+    for address in [url]+([fallback_url] if fallback_url else []):
+        try:
+            headers = {'Accept':'application/octet-stream'} if address == fallback_url else {}
+            with session.get(address, headers=headers, stream=True, timeout=(30, 180)) as response:
+                response.raise_for_status()
+                with pending.open('wb') as handle:
+                    for chunk in response.iter_content(1024*1024):
+                        handle.write(chunk)
+            if digest(pending) != expected:
+                raise ValueError('Downloaded asset checksum differs')
+            pending.replace(target)
+            return
+        except (requests.RequestException, ValueError):
+            continue
+    raise RuntimeError('Unable to download the checksum-verified asset from its official endpoints')
 
 
 def package_evidence(out, destination, maximum_bytes=1024*1024):
@@ -97,7 +104,7 @@ def main():
         runtime = work/'ci-runtime'
         runtime.mkdir(parents=True, exist_ok=True)
         runtime_archive = work/'llama-linux.tar.gz'
-        download(assets['runtime']['url'], runtime_archive, assets['runtime']['sha256'])
+        download(assets['runtime']['url'], runtime_archive, assets['runtime']['sha256'], assets['runtime'].get('api_url'))
         with tarfile.open(runtime_archive, 'r:gz') as bundle:
             bundle.extractall(runtime, filter='data')
         servers = list(runtime.rglob('llama-server'))
@@ -107,12 +114,11 @@ def main():
         download(f'https://huggingface.co/{asset["repo"]}/resolve/{asset["revision"]}/{asset["file"]}',
                  model_path, asset['sha256'])
         scanner_archive = work/'codeql-linux64.zip'
-        download(assets['codeql']['url'], scanner_archive, assets['codeql']['sha256'])
+        download(assets['codeql']['url'], scanner_archive, assets['codeql']['sha256'], assets['codeql'].get('api_url'))
         scanner_root = work/'codeql-cli'
         scanner_root.mkdir(parents=True, exist_ok=True)
         checked(['unzip', '-q', str(scanner_archive), '-d', str(scanner_root)], timeout=300)
-        # Archives have been verified and extracted; retaining them is unnecessary.
-        scanner_archive.unlink()
+        # The verified compressed archive is retained for the included CI cache.
         codeql = scanner_root/'codeql/codeql'
         packs = work/'packs'
         checked([codeql, 'pack', 'download', 'codeql/python-queries@1.9.0', '--dir='+str(packs)], timeout=600)

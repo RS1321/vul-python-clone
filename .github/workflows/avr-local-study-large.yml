@@ -19,6 +19,18 @@ jobs:
         with:
           python-version: '3.12.14'
       - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/llama-linux.tar.gz
+          key: avr-llama-b12182-linux-c1dbfdb9
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/codeql-linux64.zip
+          key: avr-codeql-2.27.4-linux-393bf92b
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/ci-models
+          key: avr-review2-weights-qwen2.5-coder-3b-instruct-q4km
       - name: Verify model, target environment, tests and scanner
         working-directory: avr_pipeline
         run: python review/ci_local_study.py --model qwen2.5-coder-3b-instruct-q4km --dataset vampi --condition A --repetition 1 --pilot
@@ -53,6 +65,18 @@ jobs:
         with:
           python-version: '3.12.14'
       - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/llama-linux.tar.gz
+          key: avr-llama-b12182-linux-c1dbfdb9
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/codeql-linux64.zip
+          key: avr-codeql-2.27.4-linux-393bf92b
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/ci-models
+          key: avr-review2-weights-${{ matrix.model }}
       - name: Execute complete pinned-input cell
         working-directory: avr_pipeline
         run: python review/ci_local_study.py --model ${{ matrix.model }} --dataset ${{ matrix.dataset }} --condition ${{ matrix.condition }} --repetition ${{ matrix.repetition }}
