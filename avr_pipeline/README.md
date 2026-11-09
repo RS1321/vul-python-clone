@@ -1,5 +1,7 @@
 # Local vulnerability repair replication
 
+The current experiment is documented in [VALIDATED_STUDY.md](review_docs/VALIDATED_STUDY.md), with [measured results](review_docs/VALIDATED_RESULTS.md), [actual cell coverage](review_results/validated-study-status.json) and [current reproduction commands](review_docs/REPRODUCING_REVIEW2.md). It uses the corrected validator, frozen review-2 library, five free models, four subjects, seven conditions and three repetitions, with equal 8,192-token reply caps. Earlier review-1 results and 180-second local timeout pilots remain historical observations. The detailed historical commands and reports below are retained for context; use the current reproduction guide for new runs.
+
 This revision addresses implementation and execution concerns in the supplied reviewer comments. Earlier improvements and the manuscript evaluation follow-up are versioned in this repository. Upstream benchmark repositories remain unchanged. Results produced here belong to a new revision of the pipeline; they do not establish that the original paper's measurements have been reproduced.
 
 The latest [security-resolution report](oracle_validation/security-resolution-v6/SECURITY_RESOLUTION.md) records separate hardened VAmPI/PyGoat clones, all 21 lesson suites, authenticated active scans and final static rescans. These explicit agent-authored repairs are separate from the earlier measured free-model cohort.

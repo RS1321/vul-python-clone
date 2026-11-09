@@ -1,6 +1,6 @@
 # AVR: vulnerability repair and evaluation
 
-Latest manuscript follow-up: [measured results](avr_pipeline/review_docs/MEASURED_RESULTS.md) and [delivery status](avr_pipeline/review_docs/DELIVERY_STATUS.md). The five-model study is incomplete; the reports distinguish completed model runs, access failures and agent-authored validation.
+Latest work: [corrected study protocol](avr_pipeline/review_docs/VALIDATED_STUDY.md), [current measured results](avr_pipeline/review_docs/VALIDATED_RESULTS.md), [live cell inventory](avr_pipeline/review_results/validated-study-status.json) and [reproduction guide](avr_pipeline/review_docs/REPRODUCING_REVIEW2.md). The corrected study comprises 420 cells; the inventory distinguishes completed evidence, interrupted access and pending work. Historical model results and agent-authored validation remain separate.
 
 This repository contains the original deliberately vulnerable Flask benchmark and an automated vulnerability remediation (AVR) pipeline, with recorded experiments, defensive repairs and reproducible validation scripts.
 
@@ -20,6 +20,8 @@ This repository contains the original deliberately vulnerable Flask benchmark an
 The reports and raw observations can be read directly on GitHub. API access, model downloads and scanners are needed only for the operations that use them.
 
 ## Recorded results
+
+The current controlled cohort is hosted Gemma 4 26B A4B and local Qwen2.5 Coder 0.5B, 1.5B, 3B and 7B Q4_K_M. All use an 8,192-token reply cap, seven conditions and three repetitions on four pinned subjects. Public standard Linux runners execute the local models without API keys or paid runners. The separate 7B tool-agent comparison has three recorded repetitions. Read the current report before using older numbers below: the older validator implementation and local 180-second timeout pilots are excluded from the corrected study. Human guidance sign-off and Zenodo publication are deferred to the professor at the user's request.
 
 ### Defensive follow-up
 

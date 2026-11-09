@@ -26,7 +26,7 @@ def verify_snapshot(snapshot, protocol):
 
 
 def require_budget_safe_resume(out, preserve_replies=False):
-    """The historical resume path restarts a finding; forbid extra real replies."""
+    """Keep uncertain budgets out; only the declared upgrade may carry replies."""
     path = out/'results.json'
     results = json.loads(path.read_text(encoding='utf-8')) if path.exists() else []
     for finding in results:

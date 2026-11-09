@@ -1,6 +1,8 @@
 # Measured manuscript follow-up
 
-Primary matrix: **45/420 cells complete**. All remaining cells are listed in `manuscript-study-status.json`; plans and warm-ups do not count as completed evidence.
+**Historical validator study.** For the corrected five-model study, use [VALIDATED_RESULTS.md](VALIDATED_RESULTS.md) and `review_results/validated-study-status.json`. The values below retain the earlier `12f7847` experiment. They are not pooled with the corrected cohort. Linux container/scanner execution has since passed; human sign-off and Zenodo publication are now deferred to the professor at the user's request.
+
+Historical matrix: **45/420 cells complete**. Its remaining cells are listed in `manuscript-study-status.json`; plans and warm-ups do not count as completed evidence.
 
 Controlled execution uses code commit `12f7847`. The later target-environment validator correction is audited separately. New runs of the corrected implementation require a new study tag and must not be pooled with these runs.
 
@@ -28,4 +30,4 @@ VAmPI CWE-1333 has no review-2 library entry. Its guidance/example switches add 
 
 See `matched-statistics.json`, `external-baseline-effects.json` and `repeat-effects.json` for matched outcomes and uncertainty. Missing or duplicate cells remain explicit. Completed comparator runs use a different strategy with the same pinned input, reply cap and final CodeQL oracle.
 
-Agent-authored security-resolution-v6 results are under `oracle_validation` and excluded. Linux CI/container execution, independent human review and a minted DOI remain outstanding.
+Agent-authored security-resolution-v6 results are under `oracle_validation` and excluded. Linux CI/container validation is now recorded in `linux-container-validation-2026-11-09.json`. Independent human review and DOI publication are deferred to the professor.

@@ -54,3 +54,16 @@ def test_collector_rejects_unexpected_reply_budget(tmp_path):
     zip_path, metadata = artifact(tmp_path, 'run', {'run/manifest.json':json.dumps(manifest)})
     with pytest.raises(ValueError, match='max_tokens'):
         unpack(zip_path, metadata, tmp_path/'results', protocol)
+
+
+def test_healthy_pre_continuation_results_remain_primary(tmp_path):
+    protocol=dict(primary_implementation_sha256={'runner':'new'}, max_tokens=8192,
+                  library_sha256='lib', test_policy_sha256='policy', context_profile='compact',
+                  continuation_only_compatible_implementations=[dict(implementation_sha256={'runner':'old'},providers=['local'])])
+    manifest=dict(implementation_sha256={'runner':'old'},provider='local',status='complete',
+                  max_tokens=8192,library_sha256='lib',test_policy_sha256='policy',context_profile='compact')
+    archive,metadata=artifact(tmp_path,'healthy',{'healthy/manifest.json':json.dumps(manifest)})
+    root=tmp_path/'results'
+    assert unpack(archive,metadata,root,protocol)['status']=='complete'
+    assert (root/'healthy/manifest.json').exists()
+    assert not (root/'local-timeout180-pilots/healthy').exists()

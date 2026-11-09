@@ -1,5 +1,7 @@
 # Release and DOI status
 
+The user explicitly deferred independent human guidance sign-off and Zenodo author/publication details to the professor on 2026-11-09. These two items are excluded from the current execution task. Existing code tags/archives remain historical snapshots; a new final tag must identify the final measured delivery without modifying an older tag.
+
 The code and measured artifacts can be cited by their Git commit after the final study changes are committed. A DOI has **not** been created. A Zenodo DOI needs an authenticated repository-owner/Zenodo connection, release metadata with the correct authors, and publication of the release/archive. Zenodo is not connected here, and author-approved archive metadata is missing.
 
 Before publishing a version, run the checks and regenerate the study status and statistics, distinguish completed runs from planned cells, inspect the archive for credentials/runtime clones, tag the exact reviewed commit, and archive that version through Zenodo. Add the actual returned DOI to the repository citation metadata. Do not invent a DOI, independent reviewer, author affiliation, or claim that a draft release has already been archived.

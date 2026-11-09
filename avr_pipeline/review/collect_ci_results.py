@@ -15,7 +15,7 @@ from urllib.parse import urlsplit
 import requests
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from review.protocol_compatibility import matches_implementation, runner_hashes
+from review.protocol_compatibility import compatible_variants, matches_implementation, runner_hashes
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -45,7 +45,7 @@ def unpack(archive, metadata, results, protocol):
         manifest = json.loads(bundle.extractfile(manifest_member).read()) if manifest_member else None
         if manifest:
             agent = manifest.get('condition') == 'tool_agent'
-            known_maps = [protocol['primary_implementation_sha256']]+[v['implementation_sha256'] for v in protocol.get('transport_only_compatible_implementations', [])]
+            known_maps = [protocol['primary_implementation_sha256']]+[v['implementation_sha256'] for v in compatible_variants(protocol)]
             implementation_matches = (manifest.get('implementation_sha256',{}).get('review/runner.py') in runner_hashes(protocol) if agent else
                                       manifest.get('implementation_sha256') in known_maps)
             if not implementation_matches:

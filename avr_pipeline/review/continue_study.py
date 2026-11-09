@@ -73,10 +73,12 @@ def select_run(matches):
 
 
 def safe_interrupted_candidate(matches, protocol):
-    """Resume the latest compatible checkpoint only with zero consumed replies.
+    """Resume the latest compatible checkpoint without resetting consumed replies.
 
     Ordering uses creation time and path, never patch acceptance or fix rate.
     Completed/running trials are handled by select_run before this function.
+    Older declarations permit only zero-reply interruptions; version 1 carries
+    recorded replies and their original rejection feedback within the same cap.
     """
     ordered = sorted(matches, key=lambda item: (item[1].get('utc', ''), item[0].name), reverse=True)
     for path, manifest in ordered:
@@ -132,7 +134,7 @@ def main(argv=None):
     parser.add_argument('--fresh-interrupted', action='store_true',
                         help='Keep partial trials and start their missing cells afresh under a new tag')
     parser.add_argument('--resume-safe-interrupted', action='store_true',
-                        help='Prefer a same-code checkpoint whose interrupted finding consumed no reply')
+                        help='Prefer a declared-compatible checkpoint without resetting its reply allowance')
     args = parser.parse_args(argv)
     if not re.fullmatch(r'[A-Za-z0-9-]+', args.tag):
         parser.error('Invalid study tag')

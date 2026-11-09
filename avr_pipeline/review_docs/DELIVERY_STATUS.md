@@ -1,5 +1,7 @@
 # Scope and remaining work
 
+**This is the retained status of the earlier validator study.** The current matrix, including all completed cells and remaining interruptions, is in [VALIDATED_RESULTS.md](VALIDATED_RESULTS.md) and `review_results/validated-study-status.json`. The [current protocol](VALIDATED_STUDY.md) replaces quota-limited cohort members with four local Qwen sizes and hosted Gemma. Three current 7B tool-agent repetitions are recorded, and Linux Docker/ZAP/CodeQL execution has passed. The user explicitly deferred human sign-off and Zenodo publication to the professor. Read the historical table below with these later changes in mind.
+
 This delivery implements the experimental infrastructure and records real completed runs. It does **not** claim the full five-model study is finished or that the paper's headline results have been reproduced.
 
 The controlled implementation at `12f7847` completed 42 matched factorial runs: Gemini-3.5-flash-lite, VAmPI and flask-webgoat, seven conditions, three repetitions each. Three tool-agent comparator repetitions also completed. Additional Gemma-31B and Flash-3.6 runs remain in the corpus, including access failures. Flash 3.6 completed three cells before this key hit its observed **20 requests/day** free quota; Gemma completed one pilot before repeated HTTP 500/503 failures. Access failures are excluded from repair-effect estimates. The exact plan coverage is in `manuscript-study-status.json`.
