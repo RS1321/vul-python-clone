@@ -1,5 +1,5 @@
 # Linux amd64 scanner digest verified against the official GitHub release asset.
-FROM --platform=linux/amd64 python:3.12.14-slim-bookworm
+FROM --platform=linux/amd64 python:3.12.14-slim-bookworm@sha256:392307d22300de8b5986851a12d9176dfc0fc073e65bf6523ebd7dcbeb23564e
 ARG CODEQL_VERSION=2.27.4
 ARG CODEQL_SHA256=393bf92b66596141ec93baf9b483f4a350f3749916c922fed0dd63c67706047d
 ARG ZAP_VERSION=2.17.0
