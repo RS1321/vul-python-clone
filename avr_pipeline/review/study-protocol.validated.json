@@ -38,7 +38,7 @@
   "implementation_selection_note": "Target-environment validation and validator-outage corrections. Separate from all 12f7847 runs; no retrospective pooling.",
   "cohort_selection": "Gemma 4 26B A4B and four Qwen2.5 Coder sizes selected for free access and quota-independent local evaluation, before observing new-model repair outcomes.",
   "controlled_code_commit": "a4922a28e5a337ea2f6558636b83785a8b259931",
-  "latest_code_note": "The explicit earlier transport-only variant is allowed for completed uncensored replies. Raw hashes remain in configuration tables. Interrupted shorter-timeout trials are retained and rerun; real generation budgets are audited across resume history. Commit 12f7847 is not compatible with this corrected study.",
+  "latest_code_note": "Primary local cells all use 3600-second HTTP waiting. Earlier 180-second local runs are pilots only. The earlier source map is compatible only for Gemini-provider calls whose generation path is unchanged. Raw fingerprints remain visible and generation budgets are audited.",
   "cohort_replacements": [],
   "protocol_id": "review2-validated-2026-11-09",
   "cohort_file": "review/validated-cohort.json",
@@ -67,7 +67,10 @@
         "review/target_environment.py": "5f36b3a51488d909769cacf67af6d3c2d3fc6c60e0ff0bc04e909c51bc6515ab",
         "review/validation_health.py": "02771b675edd535673791ccbd4761cde7266aaf4abf30198a4e3427ec06f57c9"
       },
-      "difference": "Only local HTTP waiting changed from 180 seconds to a configurable 3600 seconds, plus recording that setting. Prompts, sampling, reply caps, patch application, gates and tests are unchanged. Only completed uncensored cells without validator outages or acknowledged-generation budget violations are eligible."
+      "difference": "Hosted Gemini-provider calls never invoke the changed local HTTP method. All earlier local-provider runs are excluded as timeout180 pilots and the whole local matrix is rerun under 3600 seconds, independently of pilot scores.",
+      "providers": [
+        "gemini"
+      ]
     }
   ],
   "local_http_timeout_seconds": 3600

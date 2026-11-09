@@ -45,8 +45,9 @@ def unpack(archive, metadata, results, protocol):
         manifest = json.loads(bundle.extractfile(manifest_member).read()) if manifest_member else None
         if manifest:
             agent = manifest.get('condition') == 'tool_agent'
+            known_maps = [protocol['primary_implementation_sha256']]+[v['implementation_sha256'] for v in protocol.get('transport_only_compatible_implementations', [])]
             implementation_matches = (manifest.get('implementation_sha256',{}).get('review/runner.py') in runner_hashes(protocol) if agent else
-                                      matches_implementation(manifest, protocol))
+                                      manifest.get('implementation_sha256') in known_maps)
             if not implementation_matches:
                 raise ValueError('CI implementation differs from declared protocol')
             fields = ('max_tokens', 'library_sha256', 'test_policy_sha256')+(() if agent else ('context_profile',))
@@ -55,14 +56,17 @@ def unpack(archive, metadata, results, protocol):
                     raise ValueError('CI configuration differs: '+field)
             if manifest.get('provider') != 'local':
                 raise ValueError('This collector accepts local-model CI evidence only')
-            target = results/name
+            historical = (manifest.get('implementation_sha256',{}).get('review/runner.py') not in runner_hashes(protocol,manifest.get('provider')) if agent else
+                          not matches_implementation(manifest,protocol))
+            target_root = results/'local-timeout180-pilots' if historical else results
+            target = target_root/name
             if target.exists():
                 identical = all((target/Path(*PurePosixPath(m.name).parts[1:])).is_file() and
                     (target/Path(*PurePosixPath(m.name).parts[1:])).read_bytes() == bundle.extractfile(m).read()
                     for m in members)
                 if identical:
                     return {'artifact_id':metadata['id'], 'run':name, 'status':'already_imported'}
-                target = results/(name+'-ci-'+str(metadata['id']))
+                target = target_root/(name+'-ci-'+str(metadata['id']))
                 if target.exists():
                     raise ValueError('A different retry is already stored at its artifact-specific path')
         else:

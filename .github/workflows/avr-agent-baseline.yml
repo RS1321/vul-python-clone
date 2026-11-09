@@ -10,7 +10,7 @@ jobs:
   evaluate:
     if: github.event.repository.private == false
     runs-on: ubuntu-24.04
-    timeout-minutes: 180
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       max-parallel: 3
@@ -38,6 +38,8 @@ jobs:
           key: avr-review2-weights-qwen2.5-coder-7b-instruct-q4km
       - name: Execute the matched 21-turn comparator
         working-directory: avr_pipeline
+        env:
+          AVR_LOCAL_REQUEST_TIMEOUT: '3600'
         run: python review/ci_local_study.py --model qwen2.5-coder-7b-instruct-q4km --dataset flask-webgoat --condition A --repetition ${{ matrix.repetition }} --agent
       - uses: actions/upload-artifact@v4
         if: always()

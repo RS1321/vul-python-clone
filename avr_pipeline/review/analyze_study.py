@@ -47,7 +47,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
             continue
         if primary_only and not matches_implementation(m, protocol) and m.get('condition') != 'tool_agent':
             continue
-        if primary_only and m.get('condition') == 'tool_agent' and m.get('implementation_sha256',{}).get('review/runner.py') not in runner_hashes(protocol):
+        if primary_only and m.get('condition') == 'tool_agent' and m.get('implementation_sha256',{}).get('review/runner.py') not in runner_hashes(protocol,m.get('provider')):
             continue
         if not (path.parent / 'contexts.json').exists():
             continue

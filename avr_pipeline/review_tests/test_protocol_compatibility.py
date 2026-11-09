@@ -36,6 +36,9 @@ def test_only_declared_source_variant_is_compatible():
                 'transport_only_compatible_implementations':[{'implementation_sha256':{'runner':'old'}}]}
     assert matches_implementation({'implementation_sha256':{'runner':'old'}}, protocol)
     assert not matches_implementation({'implementation_sha256':{'runner':'unknown'}}, protocol)
+    protocol['transport_only_compatible_implementations'][0]['providers'] = ['gemini']
+    assert matches_implementation({'implementation_sha256':{'runner':'old'},'provider':'gemini'}, protocol)
+    assert not matches_implementation({'implementation_sha256':{'runner':'old'},'provider':'local'}, protocol)
 
 
 def test_retries_cannot_hide_consumed_generations(tmp_path):

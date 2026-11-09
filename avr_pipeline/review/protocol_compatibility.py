@@ -11,13 +11,15 @@ import json
 def matches_implementation(manifest, protocol):
     fingerprints = manifest.get('implementation_sha256')
     return fingerprints == protocol['primary_implementation_sha256'] or any(
-        fingerprints == variant['implementation_sha256']
+        fingerprints == variant['implementation_sha256'] and
+        (not variant.get('providers') or manifest.get('provider') in variant['providers'])
         for variant in protocol.get('transport_only_compatible_implementations', []))
 
 
-def runner_hashes(protocol):
+def runner_hashes(protocol, provider=None):
     maps = [protocol['primary_implementation_sha256']]+[
-        v['implementation_sha256'] for v in protocol.get('transport_only_compatible_implementations', [])]
+        v['implementation_sha256'] for v in protocol.get('transport_only_compatible_implementations', [])
+        if provider is None or not v.get('providers') or provider in v['providers']]
     return {m.get('review/runner.py') for m in maps}
 
 

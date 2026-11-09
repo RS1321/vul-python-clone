@@ -31,6 +31,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--wave', type=int, required=True)
     parser.add_argument('--limit', type=int, default=128)
+    parser.add_argument('--all-missing', action='store_true', help='Run all remaining cells after a global common-budget correction')
     args = parser.parse_args()
     results = ROOT/'review_results'
     cohort = json.loads((ROOT/'review/validated-cohort.json').read_text())
@@ -43,6 +44,11 @@ def main():
     schedules = json.loads(scheduled_path.read_text()) if scheduled_path.exists() else []
     scheduled = {key(c) for s in schedules for c in s['cells']}
     candidates = {}
+    if args.all_missing:
+        for cell in status['cells']:
+            if cell['provider'] == 'local' and cell['status'] != 'complete':
+                selected = {k:cell[k] for k in ('model','dataset','condition','repetition')}
+                candidates[key(selected)] = dict(selected,reasons=['Global common-budget replacement: all local cells use the full 3600-second wait, independent of pilot scores'])
     for path in (results/'ci-bootstrap-failures').glob('*/*/ci-error.json'):
         cell = parse_name(path.parent.name,models)
         if cell:
