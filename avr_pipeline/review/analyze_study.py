@@ -62,6 +62,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
                 r['agent_turns'] = turns.get(r['finding'])
             write_rows(path.parent,rows)
         configurations.append(dict(run=path.parent.name, **configuration(m),
+             temperature=m.get('temperature'), guidance_used=m.get('guidance_used'),
              transport_policy=m.get('transport_policy'),
              transport_execution_history=[json.loads(line) for line in (path.parent/'worker-executions.jsonl').read_text(encoding='utf-8').splitlines()]
                  if (path.parent/'worker-executions.jsonl').exists() else None,
@@ -180,6 +181,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
     for name, data in outputs.items():
         (output_root / name).write_text(json.dumps(data, indent=2), encoding='utf-8')
     fields = ['run','model','provider','source_commit','condition','repetition','gates','test_policy','pytest_args',
+              'temperature','guidance_used',
               'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
               'lint_environment_sha256','implementation_sha256','transport_policy','local_request_timeout_seconds',
               'local_timeout_origin','transport_execution_history','agent_turn_cap','status']

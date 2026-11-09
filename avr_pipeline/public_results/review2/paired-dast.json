@@ -1,0 +1,82 @@
+[
+  {
+    "dataset": "flask-webgoat",
+    "model_run": "gemma-4-26b-a4b-it-A-flask-webgoat-review2-recovery3-r1",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "status": "complete",
+    "new_alert_types": [],
+    "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "baseline": {
+      "status": "complete",
+      "alert_types": 7,
+      "alert_instances": 14,
+      "alerts_by_plugin": {
+        "40018": 2,
+        "10054": 2,
+        "10036": 2,
+        "10021": 2,
+        "10111": 2,
+        "10024": 2,
+        "10112": 2
+      },
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "policy": {
+        "defaultThreshold": "Off",
+        "defaultStrength": "Low",
+        "rules": [
+          {
+            "id": 40012,
+            "threshold": "Medium",
+            "strength": "Low"
+          },
+          {
+            "id": 40018,
+            "threshold": "Medium",
+            "strength": "Low"
+          }
+        ]
+      },
+      "authenticated_rule_requests": {
+        "40012": 40,
+        "40018": 32
+      }
+    },
+    "model": {
+      "status": "complete",
+      "alert_types": 7,
+      "alert_instances": 13,
+      "alerts_by_plugin": {
+        "40018": 2,
+        "10054": 2,
+        "10036": 2,
+        "10021": 2,
+        "10111": 1,
+        "10024": 2,
+        "10112": 2
+      },
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "policy": {
+        "defaultThreshold": "Off",
+        "defaultStrength": "Low",
+        "rules": [
+          {
+            "id": 40012,
+            "threshold": "Medium",
+            "strength": "Low"
+          },
+          {
+            "id": 40018,
+            "threshold": "Medium",
+            "strength": "Low"
+          }
+        ]
+      },
+      "authenticated_rule_requests": {
+        "40012": 40,
+        "40018": 32
+      }
+    }
+  }
+]

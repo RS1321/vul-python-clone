@@ -1,0 +1,1727 @@
+{
+  "generated_from": "review_results\\validated-analysis\\summary-by-condition.json",
+  "source_sha256": "be5685ae78613f58f1d7d5c5dda91c6c802703ece2b60720d05ae884ea3ccbb5",
+  "status_sha256": "ab12a88249580c8c211fac93ed329b2d3f109f0a28851fb8985fe19f7ba5d2ef",
+  "snapshot_utc": "2026-11-09T09:57:46.098718+00:00",
+  "plotter_sha256": "ca034c9cba180895a965772935cfcde076f0bbbfbc502c7411befd927536b44c",
+  "rows": [
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.8888888888888888,
+      "resolution_repetition_ci95": [
+        0.6666666666666666,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.8888888888888888,
+      "resolution_repetition_ci95": [
+        0.6666666666666666,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.6666666666666666,
+      "resolution_repetition_ci95": [
+        0.6666666666666666,
+        0.6666666666666666
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.7777777777777778,
+      "resolution_repetition_ci95": [
+        0.6666666666666666,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.8888888888888888,
+      "resolution_repetition_ci95": [
+        0.6666666666666666,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 1.0,
+      "resolution_repetition_ci95": [
+        1.0,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 1.0,
+      "resolution_repetition_ci95": [
+        1.0,
+        1.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.38095238095238093,
+      "resolution_repetition_ci95": [
+        0.2857142857142857,
+        0.42857142857142855
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.42857142857142855,
+      "resolution_repetition_ci95": [
+        0.42857142857142855,
+        0.42857142857142855
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.47619047619047616,
+      "resolution_repetition_ci95": [
+        0.42857142857142855,
+        0.5714285714285714
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.42857142857142855,
+      "resolution_repetition_ci95": [
+        0.42857142857142855,
+        0.42857142857142855
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.42857142857142855,
+      "resolution_repetition_ci95": [
+        0.42857142857142855,
+        0.42857142857142855
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.5714285714285714,
+      "resolution_repetition_ci95": [
+        0.5714285714285714,
+        0.5714285714285714
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 1
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.47619047619047616,
+      "resolution_repetition_ci95": [
+        0.42857142857142855,
+        0.5714285714285714
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.3793103448275862,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 1
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.8620689655172413,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 3
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.8275862068965517,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.6774193548387096,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 1
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.6935483870967742,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 2
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetitions": 2,
+      "mean_resolution_rate": 0.7258064516129032,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 3
+    },
+    {
+      "model": "gemma-4-26b-a4b-it",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.7903225806451613,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.7741935483870968,
+      "joint_unknown_findings": 2,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0.6666666666666666
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.04597701149425287,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.06896551724137931
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.2413793103448276,
+      "resolution_repetition_ci95": [
+        0.20689655172413793,
+        0.27586206896551724
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.03225806451612903,
+      "resolution_repetition_ci95": [
+        0.016129032258064516,
+        0.04838709677419354
+      ],
+      "mean_joint_rate": 0.03225806451612903,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.03763440860215054,
+      "resolution_repetition_ci95": [
+        0.016129032258064516,
+        0.04838709677419354
+      ],
+      "mean_joint_rate": 0.03763440860215054,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.03763440860215054,
+      "resolution_repetition_ci95": [
+        0.03225806451612903,
+        0.04838709677419354
+      ],
+      "mean_joint_rate": 0.03763440860215054,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-0.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.23809523809523808,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.2857142857142857
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.14285714285714285,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.14285714285714285
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.23809523809523808,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.2857142857142857
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.14285714285714285,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.14285714285714285
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.19047619047619047,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.2857142857142857
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.09523809523809523,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.14285714285714285
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.14285714285714285,
+      "resolution_repetition_ci95": [
+        0.14285714285714285,
+        0.14285714285714285
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetitions": 2,
+      "mean_resolution_rate": 0.3225806451612903,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.3225806451612903,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetitions": 2,
+      "mean_resolution_rate": 0.3387096774193548,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.33064516129032256,
+      "joint_unknown_findings": 2,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.3172043010752688,
+      "resolution_repetition_ci95": [
+        0.3064516129032258,
+        0.3225806451612903
+      ],
+      "mean_joint_rate": 0.3118279569892473,
+      "joint_unknown_findings": 2,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-1.5b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetitions": 1,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-3b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "vampi",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "B",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "A_strict",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_guidance",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "no_examples",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "C",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "flask-webgoat",
+      "condition": "simple",
+      "repetitions": 3,
+      "mean_resolution_rate": 0.0,
+      "resolution_repetition_ci95": [
+        0.0,
+        0.0
+      ],
+      "mean_joint_rate": 0.0,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": 0
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "synthetic",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "B",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "A_strict",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_guidance",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "no_examples",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "C",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    },
+    {
+      "model": "qwen2.5-coder-7b-instruct-q4km",
+      "dataset": "pygoat",
+      "condition": "simple",
+      "repetitions": 0,
+      "mean_resolution_rate": null,
+      "resolution_repetition_ci95": null,
+      "mean_joint_rate": null,
+      "joint_unknown_findings": 0,
+      "mean_new_alerts": null
+    }
+  ],
+  "interpretation": "Fixed-subject descriptive repetition intervals; incomplete rows explicit. No independent-finding or architecture-generalization claim."
+}

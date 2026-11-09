@@ -14,7 +14,50 @@ from review.continue_study import CONDITIONS, DATASETS, identity
 from review.study_progress import build_status
 from review.study_statistics import repeated_cluster_ci
 from review.evidence_io import durable_dump as dump, recorded_outages
-from review.protocol_compatibility import budget_violations
+from review.protocol_compatibility import budget_violations, matches_implementation, runner_hashes
+
+
+def secondary_tables(lines, results, protocol):
+    lines += ['', '## Tool-agent comparator','',
+        '| Model | Repetition | SAST resolved | New alerts | New ordinary-test regressions | Behavioral assertions | Turns used / cap |',
+        '|---|---:|---:|---:|---:|---|---:|']
+    for path in sorted(results.glob('*tool-agent*validated*/manifest.json')):
+        m = json.loads(path.read_text(encoding='utf-8'))
+        if (m.get('status')!='complete' or not m.get('sast') or
+                m.get('implementation_sha256',{}).get('review/runner.py') not in runner_hashes(protocol,m.get('provider'))):
+            continue
+        rows = json.loads((path.parent/'finding-outcomes.json').read_text(encoding='utf-8'))
+        tests = m.get('behavioral_tests',{})
+        total = tests.get('tests',0)
+        passed = total-len(tests.get('failures') or [])
+        regressions = rows[0]['test_change']['regressions'] if rows else None
+        lines.append(f"| {m['model']} | {m['repetition']} | {m['sast']['resolved_findings']}/{m['eligible_findings']} | {m['sast']['new_findings']} | {regressions if regressions is not None else 'unknown'} | {passed}/{total} | {len(list(path.parent.glob('turn-*.json')))}/{m['settings']['max_turns']} |")
+    lines += ['', 'The comparator uses the same pinned flask-webgoat input, final CodeQL oracle, tests and reply cap as the corresponding 7B AVR runs. '
+        'The model chose its tool actions and stopping point within 21 turns. In the recorded comparator patches, deleting a required importable function breaks startup; '
+        'the ordinary-test and behavioral results expose that failure despite alert removal.','',
+        '## Paired model-patch DAST','',
+        '| Subject | Model run | Status | Alert types before → after | Instances before → after | Authenticated SQL/XSS requests before → after | New types |',
+        '|---|---|---|---|---|---|---|']
+    count = 0
+    for path in sorted(results.glob('model-dast-*-validated-*/paired-status.json')):
+        pair = json.loads(path.read_text(encoding='utf-8'))
+        run = results/pair['model_run']
+        manifest_path = run/'manifest.json'
+        if not manifest_path.exists():
+            continue
+        m = json.loads(manifest_path.read_text(encoding='utf-8'))
+        if not matches_implementation(m,protocol) or recorded_outages(run) or budget_violations(run):
+            continue
+        before,after = pair['baseline'],pair['model']
+        metrics = lambda key: f"{before.get(key,'unknown')} → {after.get(key,'unknown')}"
+        traffic = lambda item: '/'.join(str(item.get('traffic',{}).get('active_authenticated_rules',{}).get(rule,0)) for rule in ['40012','40018'])
+        lines.append(f"| {pair['dataset']} | {pair['model_run']} | {pair['status']} | {metrics('alert_types')} | {metrics('alert_instances')} | {traffic(before)} → {traffic(after)} | {pair.get('new_alert_types')} |")
+        count += 1
+    if not count:
+        lines.append('| Pending | — | No completed current pair | — | — | — | — |')
+    lines += ['', 'These are bounded active SQL/XSS scans of fixed routes in isolated copies, with verified authenticated traffic. '
+        'The identical outer session gateway is measurement containment and does not establish native authorization correctness. '
+        'A failed application start or missing active traffic is an incomplete scan, not zero alerts. Historical DAST pairs remain separately labelled.','']
 
 
 def generate():
@@ -91,6 +134,7 @@ def generate():
         ci='—' if interval is None else f'{percent(interval[0])}–{percent(interval[1])}'
         alerts='—' if row['mean_new_alerts'] is None else f"{row['mean_new_alerts']:.2f}"
         lines.append(f"| {row['model']} | {row['dataset']} | {row['condition']} | {row['repetitions']} | {percent(row['mean_resolution_rate'])} | {ci} | {percent(row['mean_joint_rate'])} | {row['joint_unknown_findings']} | {alerts} |")
+    secondary_tables(lines,results,protocol)
     lines += ['', '## Interpretation and reproducibility','',
         'The paper reports 28–29 of 29 synthetic SAST alerts resolved using a different five-model cohort. These runs do not reproduce that model-specific claim. '
         'The paper also reports new DAST alert types and functional regressions, so its SAST headline is not a joint security success rate. '
