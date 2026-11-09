@@ -24,10 +24,14 @@ def identity(m):
     return json.dumps({k: m.get(k) for k in keys}, sort_keys=True)
 
 
-def analyze(root):
+def analyze(root, protocol_path=None, output_root=None, primary_only=False):
     groups = defaultdict(lambda: defaultdict(list))
     configurations, inventory, baseline_cells, strict_audits = [], [], defaultdict(lambda: defaultdict(list)), []
-    protocol = json.loads((ROOT/'review/study-protocol.json').read_text())
+    protocol_path = protocol_path or ROOT/'review/study-protocol.json'
+    protocol = json.loads(protocol_path.read_text())
+    cohort = json.loads((ROOT/protocol['cohort_file']).read_text()) if protocol.get('cohort_file') else None
+    output_root = output_root or root
+    output_root.mkdir(parents=True, exist_ok=True)
     ids = {int(e['cwe'].split('-')[1]) for e in json.loads((ROOT/'llm/guidance_library.review-2.json').read_text())['entries']}
     condition_rates = defaultdict(list)
     policy_path = ROOT / 'review/test-policy.json'
@@ -35,6 +39,12 @@ def analyze(root):
     policy = json.loads(policy_bytes)
     for path in sorted(root.glob('*/manifest.json')):
         m = json.loads(path.read_text(encoding='utf-8'))
+        if primary_only and cohort and dict(provider=m.get('provider'),model=m.get('model')) not in cohort:
+            continue
+        if primary_only and m.get('implementation_sha256') != protocol['primary_implementation_sha256'] and m.get('condition') != 'tool_agent':
+            continue
+        if primary_only and m.get('condition') == 'tool_agent' and m.get('implementation_sha256',{}).get('review/runner.py') != protocol['primary_implementation_sha256']['review/runner.py']:
+            continue
         if not (path.parent / 'contexts.json').exists():
             continue
         rows = export_run(path.parent, policy)
@@ -156,16 +166,17 @@ def analyze(root):
                'repeat-effects.json': repeat_effects, 'configuration-as-run.json': configurations,
                'outcome-inventory.json': inventory}
     for name, data in outputs.items():
-        (root / name).write_text(json.dumps(data, indent=2), encoding='utf-8')
+        (output_root / name).write_text(json.dumps(data, indent=2), encoding='utf-8')
     fields = ['run','model','provider','source_commit','condition','repetition','gates','test_policy','pytest_args',
               'minimality_policy','library_version','library_sha256','max_tokens','context_profile','test_policy_sha256',
               'lint_environment_sha256','implementation_sha256','transport_policy','agent_turn_cap','status']
     flat = [dict(r,gates=(r.get('settings') or {}).get('gates'),test_policy=(r.get('settings') or {}).get('tests')) for r in configurations]
-    with (root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
+    with (output_root/'configuration-as-run.csv').open('w',encoding='utf-8',newline='') as stream:
         writer = csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore')
         writer.writeheader()
         writer.writerows({k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in flat)
-    (root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
+    (output_root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
+        'protocol_sha256':hashlib.sha256(protocol_path.read_bytes()).hexdigest(), 'primary_only':primary_only,
         'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
         'junit_normalization':'Retained JUnit setup/collection errors override early summaries in derived tables only; original manifests are unchanged.',
@@ -178,8 +189,11 @@ def analyze(root):
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--results', type=Path, default=ROOT / 'review_results')
+    p.add_argument('--protocol', type=Path)
+    p.add_argument('--output', type=Path)
+    p.add_argument('--primary-only', action='store_true')
     args = p.parse_args()
-    print(json.dumps(analyze(args.results), indent=2))
+    print(json.dumps(analyze(args.results,args.protocol,args.output,args.primary_only), indent=2))
 
 
 if __name__ == '__main__':

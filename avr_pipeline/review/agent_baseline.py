@@ -84,14 +84,14 @@ def run(args):
     if args.provider == 'openrouter' and not args.model.endswith(':free'):
         raise ValueError('Only explicitly free routes are allowed')
     source, out = Path(args.repo).resolve(), Path(args.out).resolve()
-    if out.exists():
+    if (out/'source').exists() or (out/'manifest.json').exists():
         raise ValueError('Choose a fresh output path')
     verify_input(source,args.sarif,checked)
     api = ToolClient(args.provider, args.model, temperature=.1, max_tokens=args.max_tokens, json_mode=True)
     source_sha = checked(['git', 'rev-parse', 'HEAD'], source)
     if checked(['git', 'status', '--porcelain', '--untracked-files=no'], source):
         raise ValueError('Pinned source has edits')
-    out.mkdir(parents=True)
+    out.mkdir(parents=True, exist_ok=True)
     repo = out / 'source'
     checked(['git', 'clone', '--local', '--no-hardlinks', source, repo])
     checked(['git', 'checkout', '--detach', source_sha], repo)

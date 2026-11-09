@@ -1,0 +1,51 @@
+name: Review-2 local tool-agent comparator
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/avr-agent-baseline.yml']
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        repetition: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+      - run: python -m pip install -r avr_pipeline/requirements-lock.txt
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/llama-linux.tar.gz
+          key: avr-llama-b12182-linux-c1dbfdb9
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/codeql-linux64.zip
+          key: avr-codeql-2.27.4-linux-393bf92b
+      - uses: actions/cache@v4
+        with:
+          path: avr_pipeline/.review-work/ci-models
+          key: avr-review2-weights-qwen2.5-coder-7b-instruct-q4km
+      - name: Execute the matched 21-turn comparator
+        working-directory: avr_pipeline
+        run: python review/ci_local_study.py --model qwen2.5-coder-7b-instruct-q4km --dataset flask-webgoat --condition A --repetition ${{ matrix.repetition }} --agent
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: review2-agent-7b-flask-webgoat-r${{ matrix.repetition }}
+          retention-days: 1
+          compression-level: 0
+          include-hidden-files: true
+          path: |
+            avr_pipeline/.review-work/ci-evidence/*.tar.xz
+            avr_pipeline/.review-work/ci-evidence/*.json

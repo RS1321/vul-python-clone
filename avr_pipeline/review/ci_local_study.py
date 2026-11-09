@@ -87,6 +87,7 @@ def main():
     parser.add_argument('--condition', choices=list(CONDITIONS), required=True)
     parser.add_argument('--repetition', type=int, choices=[1, 2, 3], required=True)
     parser.add_argument('--pilot', action='store_true')
+    parser.add_argument('--agent', action='store_true', help='Evaluate the tool-agent comparator with the same model assets')
     args = parser.parse_args()
     if sys.platform != 'linux':
         parser.error('This runner is pinned to Linux amd64')
@@ -94,7 +95,7 @@ def main():
     verify_snapshot(ROOT, protocol)
     work = ROOT/'.review-work'
     tag = 'review2-ci-pilot' if args.pilot else 'review2-validated'
-    name = f'{args.model}-{args.condition}-{args.dataset}-{tag}-r{args.repetition}'
+    name = f'{args.model}-{("tool-agent" if args.agent else args.condition)}-{args.dataset}-{tag}-r{args.repetition}'
     out = ROOT/'review_results'/name
     out.mkdir(parents=True, exist_ok=False)
     process = None
@@ -164,17 +165,22 @@ def main():
              'packages': sorted(d.metadata['Name']+'=='+d.version for d in distributions() if d.metadata.get('Name')),
              'github_run_id': os.getenv('GITHUB_RUN_ID'), 'github_run_attempt': os.getenv('GITHUB_RUN_ATTEMPT'),
              'github_sha': os.getenv('GITHUB_SHA'), 'spending': 'standard public-repository runner; local model; no API credentials'})
-        cli = [sys.executable, str(ROOT/'review/runner.py'), 'run', '--repo', str(ROOT/'benchmarks'/args.dataset),
-               '--sarif', str(ROOT/f'review_results/baseline-{args.dataset}/scan.sarif'), '--out', str(out),
-               '--provider', 'local', '--model', args.model, '--condition', args.condition,
-               '--repetition', str(args.repetition), '--max-tokens', '8192', '--context-profile', 'compact',
-               '--guidance-library', str(ROOT/'llm/guidance_library.review-2.json'), '--rescan']
+        cli = [sys.executable, str(ROOT/('review/agent_baseline.py' if args.agent else 'review/runner.py'))]
+        if not args.agent:
+            cli += ['run']
+        cli += ['--repo', str(ROOT/'benchmarks'/args.dataset),
+                '--sarif', str(ROOT/f'review_results/baseline-{args.dataset}/scan.sarif'), '--out', str(out),
+                '--provider', 'local', '--model', args.model,
+                '--repetition', str(args.repetition), '--max-tokens', '8192']
+        if not args.agent:
+            cli += ['--condition', args.condition, '--context-profile', 'compact',
+                    '--guidance-library', str(ROOT/'llm/guidance_library.review-2.json'), '--rescan']
         if args.pilot:
             cli += ['--limit', '1']
         with (out/'runner.log').open('w', encoding='utf-8') as log:
             code = subprocess.run(cli, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT).returncode
         manifest = json.loads((out/'manifest.json').read_text())
-        if manifest.get('status') == 'complete':
+        if (out/'source/.git').exists():
             (out/'model.patch').write_text(checked(['git', 'diff', '--no-ext-diff'], out/'source'), encoding='utf-8')
         print(json.dumps({'run': name, 'status': manifest.get('status'), 'sast': manifest.get('sast'),
                           'behavioral_tests': manifest.get('behavioral_tests')}, indent=2), flush=True)
