@@ -117,6 +117,28 @@
     "holm_p_baseline_family": null,
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "8e7dc920341c794069bb5a7ea88642c41f83e3405434d742b5fcc5ba8ef4b97c"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "8e7dc920341c794069bb5a7ea88642c41f83e3405434d742b5fcc5ba8ef4b97c"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
     "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
     "configuration_identity_sha256": "87d3aa462c409f8e167a311e8a8458eb51de626fba2390857a055dacf13219a6"
   },
@@ -640,6 +662,138 @@
   {
     "metric": "resolved",
     "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "2cd073849ae1c96e2309d2bcfa8d6519927b83e87ae4c76b3f6f43b2e47e4890"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "2cd073849ae1c96e2309d2bcfa8d6519927b83e87ae4c76b3f6f43b2e47e4890"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "97b0a678a5a45fabd79ed47779b8259047c5d285d4b0356065290432d0a8be6a"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "97b0a678a5a45fabd79ed47779b8259047c5d285d4b0356065290432d0a8be6a"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "5b169eb4c1fc47461c4cb5cec5e7b7a92c8a8f3dae96cd18dd51f0be1a7df030"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "configuration_identity_sha256": "5b169eb4c1fc47461c4cb5cec5e7b7a92c8a8f3dae96cd18dd51f0be1a7df030"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "aceea03b7f584c55dc227e34a3f244899624990fd38355bc1ccd7a7c820b8f90"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "aceea03b7f584c55dc227e34a3f244899624990fd38355bc1ccd7a7c820b8f90"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "2f29b46f758dd59076e5bc8fc8e59bcb707dd35b87adbedafb005c11dada8a9a"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "2f29b46f758dd59076e5bc8fc8e59bcb707dd35b87adbedafb005c11dada8a9a"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "27f61824c7f5fef243667af0f1f1d2d0c144d17e04180e6ba6be1842ec24a03a"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "configuration_identity_sha256": "27f61824c7f5fef243667af0f1f1d2d0c144d17e04180e6ba6be1842ec24a03a"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
     "status": "measured",
     "n": 7,
     "a_only": 3,
@@ -816,6 +970,50 @@
     "provider": "local",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
     "configuration_identity_sha256": "d35431ef59e0720c912373bb7be6b97144b29c2b66418eb3ac685c11be238850"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "a59716d8589b13c39269aac77a37cc1baa600e3f0770477aa286cec304e8620e"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "a59716d8589b13c39269aac77a37cc1baa600e3f0770477aa286cec304e8620e"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "1522292cd933a42328ce5eac4cb2b4ec09532f652e05882890d42058482797e6"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "1522292cd933a42328ce5eac4cb2b4ec09532f652e05882890d42058482797e6"
   },
   {
     "metric": "resolved",

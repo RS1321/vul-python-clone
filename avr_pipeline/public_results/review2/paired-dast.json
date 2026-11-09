@@ -3,9 +3,18 @@
     "dataset": "flask-webgoat",
     "model_run": "gemma-4-26b-a4b-it-A-flask-webgoat-review2-recovery3-r1",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "model_manifest_sha256": "11f65d0decd68af8c8e716e9bc0d31c9e57fe5ebe37c8505162d575551a0fde3",
     "status": "complete",
     "new_alert_types": [],
     "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "source_verification": {
+      "status": "verified",
+      "tracked_files_checked": 17,
+      "differing_files": [],
+      "model_manifest_matches_scan": true,
+      "accepted_responses_replayed": 4,
+      "replayed_patch_sha256": "0210eab89909d7d56ea5ca0d701b354d62ff5dd7cfdbacc2eb3f640a9984ad18"
+    },
     "baseline": {
       "status": "complete",
       "alert_types": 7,
@@ -83,9 +92,18 @@
     "dataset": "synthetic",
     "model_run": "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r1",
     "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "model_manifest_sha256": "d4c0d879584a55ce420e81180d21ec5a16f0c2ec573d5dd6e2f01b589cf9f0ce",
     "status": "complete",
     "new_alert_types": [],
     "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "source_verification": {
+      "status": "verified",
+      "tracked_files_checked": 33,
+      "differing_files": [],
+      "model_manifest_matches_scan": true,
+      "accepted_responses_replayed": 12,
+      "replayed_patch_sha256": "1761b60222713eed9bf5e058f513dfb5725f6f6fd81931e5309da8b35a463112"
+    },
     "baseline": {
       "status": "complete",
       "alert_types": 6,

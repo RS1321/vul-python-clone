@@ -569,6 +569,114 @@
     "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
   },
   {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r1",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 1,
+    "resolved": 0,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r2",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 2,
+    "resolved": 2,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r3",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
+    "repetition": 3,
+    "resolved": 0,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r1",
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 1,
+    "resolved": 1,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r2",
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 2,
+    "resolved": 1,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r3",
+    "model": "qwen2.5-coder-3b-instruct-q4km",
+    "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
+    "repetition": 3,
+    "resolved": 1,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
     "run": "qwen2.5-coder-7b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r1",
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
@@ -609,6 +717,24 @@
     "model": "qwen2.5-coder-7b-instruct-q4km",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
     "repetition": 3,
+    "resolved": 0,
+    "new_alerts": 0,
+    "blocked_candidates": [],
+    "blocked_candidate_count": 0,
+    "distinct_findings_with_blocked_candidates": 0,
+    "final_test_change": {
+      "status": "measured",
+      "new_failures": [],
+      "regressions": 0,
+      "old_behavior_failures": 0
+    },
+    "interpretation": "Candidate-level observed rejection evidence; not a count of causal failures prevented in an otherwise identical full model run. A_strict blocks all new failures, including tests requiring old vulnerable behavior."
+  },
+  {
+    "run": "qwen2.5-coder-7b-instruct-q4km-A_strict-pygoat-review2-validated-r1",
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "repetition": 1,
     "resolved": 0,
     "new_alerts": 0,
     "blocked_candidates": [],

@@ -49,6 +49,7 @@ def build_status(results, protocol, cohort):
             'controlled_code_commit':protocol['controlled_code_commit'], 'planned_cells':len(cells),
             'completed_cells':counts['complete'], 'remaining_cells':len(cells)-counts['complete'],
             'counts':dict(counts), 'spending':'free/local only',
+            'status_scope':'Verified local artifacts. not_run means no compatible local manifest yet and can include remote queued/running jobs whose evidence has not been imported.',
             'deferred_by_user':['independent human guidance sign-off','Zenodo author details/publication'], 'cells':cells}
 
 

@@ -13,10 +13,10 @@ gemma-4-26b-a4b-it,flask-webgoat,no_guidance,3,0.42857142857142855,"[0.428571428
 gemma-4-26b-a4b-it,flask-webgoat,no_examples,3,0.42857142857142855,"[0.42857142857142855, 0.42857142857142855]",0.0,0,0
 gemma-4-26b-a4b-it,flask-webgoat,C,3,0.5714285714285714,"[0.5714285714285714, 0.5714285714285714]",0.0,0,1
 gemma-4-26b-a4b-it,flask-webgoat,simple,3,0.47619047619047616,"[0.42857142857142855, 0.5714285714285714]",0.0,0,0
-gemma-4-26b-a4b-it,synthetic,A,1,0.41379310344827586,,0.0,0,1
+gemma-4-26b-a4b-it,synthetic,A,2,0.43103448275862066,,0.0,0,1
 gemma-4-26b-a4b-it,synthetic,B,1,0.3793103448275862,,0.0,0,0
 gemma-4-26b-a4b-it,synthetic,A_strict,1,0.3793103448275862,,0.0,0,1
-gemma-4-26b-a4b-it,synthetic,no_guidance,0,,,,0,
+gemma-4-26b-a4b-it,synthetic,no_guidance,1,0.3103448275862069,,0.0,0,0
 gemma-4-26b-a4b-it,synthetic,no_examples,0,,,,0,
 gemma-4-26b-a4b-it,synthetic,C,1,0.8620689655172413,,0.0,0,3
 gemma-4-26b-a4b-it,synthetic,simple,1,0.8275862068965517,,0.0,0,0
@@ -24,7 +24,7 @@ gemma-4-26b-a4b-it,pygoat,A,1,0.6774193548387096,,0.0,0,1
 gemma-4-26b-a4b-it,pygoat,B,0,,,,0,
 gemma-4-26b-a4b-it,pygoat,A_strict,1,0.6451612903225806,,0.0,0,1
 gemma-4-26b-a4b-it,pygoat,no_guidance,1,0.7096774193548387,,0.7096774193548387,0,0
-gemma-4-26b-a4b-it,pygoat,no_examples,2,0.6693548387096775,,0.0,0,2
+gemma-4-26b-a4b-it,pygoat,no_examples,3,0.6881720430107527,"[0.6451612903225806, 0.7258064516129034]",0.24193548387096775,0,1.3333333333333333
 gemma-4-26b-a4b-it,pygoat,C,3,0.7204301075268817,"[0.7096774193548386, 0.7419354838709676]",0.0,0,3
 gemma-4-26b-a4b-it,pygoat,simple,3,0.8225806451612903,"[0.7903225806451614, 0.8709677419354839]",0.8064516129032258,6,0
 qwen2.5-coder-0.5b-instruct-q4km,vampi,A,3,0.0,"[0.0, 0.0]",0.0,0,0
@@ -55,13 +55,13 @@ qwen2.5-coder-0.5b-instruct-q4km,pygoat,no_guidance,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-0.5b-instruct-q4km,pygoat,no_examples,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-0.5b-instruct-q4km,pygoat,C,3,0.03763440860215054,"[0.03225806451612903, 0.04838709677419354]",0.03763440860215054,0,0
 qwen2.5-coder-0.5b-instruct-q4km,pygoat,simple,3,0.0,"[0.0, 0.0]",0.0,0,0
-qwen2.5-coder-1.5b-instruct-q4km,vampi,A,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,vampi,B,1,0.0,,0.0,0,0
-qwen2.5-coder-1.5b-instruct-q4km,vampi,A_strict,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,vampi,no_guidance,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,vampi,no_examples,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,vampi,C,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,vampi,simple,0,,,,0,
+qwen2.5-coder-1.5b-instruct-q4km,vampi,A,3,0.3333333333333333,"[0.0, 0.6666666666666666]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,vampi,B,3,0.2222222222222222,"[0.0, 0.6666666666666666]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,vampi,A_strict,3,0.2222222222222222,"[0.0, 0.6666666666666666]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,vampi,no_guidance,3,0.2222222222222222,"[0.0, 0.6666666666666666]",0.0,0,0.3333333333333333
+qwen2.5-coder-1.5b-instruct-q4km,vampi,no_examples,3,0.0,"[0.0, 0.0]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,vampi,C,3,0.0,"[0.0, 0.0]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,vampi,simple,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,flask-webgoat,A,3,0.23809523809523808,"[0.14285714285714285, 0.2857142857142857]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,flask-webgoat,B,3,0.14285714285714285,"[0.14285714285714285, 0.14285714285714285]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,flask-webgoat,A_strict,3,0.23809523809523808,"[0.14285714285714285, 0.2857142857142857]",0.0,0,0
@@ -72,10 +72,10 @@ qwen2.5-coder-1.5b-instruct-q4km,flask-webgoat,simple,3,0.14285714285714285,"[0.
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,A,3,0.05747126436781609,"[0.034482758620689655, 0.10344827586206896]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,B,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,A_strict,3,0.04597701149425287,"[0.034482758620689655, 0.06896551724137931]",0.0,0,0
-qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_guidance,0,,,,0,
-qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_examples,0,,,,0,
+qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_guidance,3,0.0574712643678161,"[0.0, 0.1724137931034483]",0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,synthetic,no_examples,3,0.04597701149425287,"[0.034482758620689655, 0.06896551724137931]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,synthetic,C,3,0.011494252873563218,"[0.0, 0.034482758620689655]",0.0,0,0
-qwen2.5-coder-1.5b-instruct-q4km,synthetic,simple,1,0.0,,0.0,0,0
+qwen2.5-coder-1.5b-instruct-q4km,synthetic,simple,3,0.022988505747126436,"[0.0, 0.06896551724137931]",0.0,0,0
 qwen2.5-coder-1.5b-instruct-q4km,pygoat,A,3,0.3172043010752688,"[0.3064516129032258, 0.3225806451612903]",0.3172043010752688,0,0
 qwen2.5-coder-1.5b-instruct-q4km,pygoat,B,3,0.3333333333333333,"[0.3225806451612903, 0.3387096774193548]",0.3279569892473118,2,0
 qwen2.5-coder-1.5b-instruct-q4km,pygoat,A_strict,3,0.3172043010752688,"[0.3064516129032258, 0.3225806451612903]",0.3118279569892473,2,0
@@ -90,13 +90,13 @@ qwen2.5-coder-3b-instruct-q4km,vampi,no_guidance,3,0.0,"[0.0, 0.0]",0.0,0,0
 qwen2.5-coder-3b-instruct-q4km,vampi,no_examples,1,0.0,,0.0,0,0
 qwen2.5-coder-3b-instruct-q4km,vampi,C,0,,,,0,
 qwen2.5-coder-3b-instruct-q4km,vampi,simple,3,0.0,"[0.0, 0.0]",0.0,0,0
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,A,0,,,,0,
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,B,0,,,,0,
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,A_strict,0,,,,0,
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,A,3,0.14285714285714285,"[0.14285714285714285, 0.14285714285714285]",0.0,0,0
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,B,3,0.14285714285714285,"[0.14285714285714285, 0.14285714285714285]",0.0,0,0
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,A_strict,3,0.14285714285714285,"[0.14285714285714285, 0.14285714285714285]",0.0,0,0
 qwen2.5-coder-3b-instruct-q4km,flask-webgoat,no_guidance,0,,,,0,
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,no_examples,0,,,,0,
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,C,0,,,,0,
-qwen2.5-coder-3b-instruct-q4km,flask-webgoat,simple,0,,,,0,
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,no_examples,1,0.14285714285714285,,0.0,0,0
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,C,3,0.14285714285714285,"[0.14285714285714285, 0.14285714285714285]",0.0,0,0
+qwen2.5-coder-3b-instruct-q4km,flask-webgoat,simple,2,0.14285714285714285,,0.0,0,0
 qwen2.5-coder-3b-instruct-q4km,synthetic,A,0,,,,0,
 qwen2.5-coder-3b-instruct-q4km,synthetic,B,0,,,,0,
 qwen2.5-coder-3b-instruct-q4km,synthetic,A_strict,0,,,,0,
@@ -132,10 +132,10 @@ qwen2.5-coder-7b-instruct-q4km,synthetic,no_guidance,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,synthetic,no_examples,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,synthetic,C,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,synthetic,simple,0,,,,0,
-qwen2.5-coder-7b-instruct-q4km,pygoat,A,1,0.0,,0.0,0,0
-qwen2.5-coder-7b-instruct-q4km,pygoat,B,1,0.0,,0.0,0,0
-qwen2.5-coder-7b-instruct-q4km,pygoat,A_strict,1,0.0,,0.0,0,0
+qwen2.5-coder-7b-instruct-q4km,pygoat,A,3,0.0,"[0.0, 0.0]",0.0,0,0
+qwen2.5-coder-7b-instruct-q4km,pygoat,B,2,0.008064516129032258,,0.008064516129032258,0,0
+qwen2.5-coder-7b-instruct-q4km,pygoat,A_strict,2,0.0,,0.0,0,0
 qwen2.5-coder-7b-instruct-q4km,pygoat,no_guidance,0,,,,0,
 qwen2.5-coder-7b-instruct-q4km,pygoat,no_examples,0,,,,0,
-qwen2.5-coder-7b-instruct-q4km,pygoat,C,0,,,,0,
+qwen2.5-coder-7b-instruct-q4km,pygoat,C,1,0.0,,0.0,0,0
 qwen2.5-coder-7b-instruct-q4km,pygoat,simple,0,,,,0,

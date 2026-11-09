@@ -1,17 +1,18 @@
 {
-  "generated_utc": "2026-11-09T11:25:58.301929+00:00",
+  "generated_utc": "2026-11-09T11:56:18.769861+00:00",
   "protocol_id": "review2-validated-2026-11-09-continuation1",
   "controlled_code_commit": "bb43ccdb4f012a46a83899b43cf4eddd481f96e9",
   "planned_cells": 420,
-  "completed_cells": 229,
-  "remaining_cells": 191,
+  "completed_cells": 280,
+  "remaining_cells": 140,
   "counts": {
-    "complete": 229,
-    "running": 7,
-    "interrupted": 16,
-    "not_run": 168
+    "complete": 280,
+    "running": 5,
+    "interrupted": 15,
+    "not_run": 120
   },
   "spending": "free/local only",
+  "status_scope": "Verified local artifacts. not_run means no compatible local manifest yet and can include remote queued/running jobs whose evidence has not been imported.",
   "deferred_by_user": [
     "independent human guidance sign-off",
     "Zenodo author details/publication"
@@ -1202,10 +1203,27 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 2,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r2"
-      ]
+      ],
+      "resolved": 13,
+      "new_alerts": 1,
+      "accepted": 13,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1213,8 +1231,9 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
+        "gemma-4-26b-a4b-it-A-synthetic-review2-syn-rest1-r3",
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r3"
       ],
       "measurement_outages": {
@@ -1343,7 +1362,7 @@
       "dataset": "synthetic",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-synthetic-review2-checkpoint1-r1",
         "gemma-4-26b-a4b-it-no_guidance-synthetic-review2-validated-retry1-r1"
@@ -1356,6 +1375,22 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 9,
+      "new_alerts": 0,
+      "accepted": 10,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -1386,7 +1421,7 @@
       "dataset": "synthetic",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-no_examples-synthetic-review2-recovery3-r1",
         "gemma-4-26b-a4b-it-no_examples-synthetic-review2-validated-retry1-r1"
@@ -1587,7 +1622,7 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 3,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-paced1-r3",
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r3"
@@ -1774,11 +1809,22 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-no_examples-pygoat-review2-recovery3-r3",
         "gemma-4-26b-a4b-it-no_examples-pygoat-review2-validated-retry2-r3"
-      ]
+      ],
+      "resolved": 45,
+      "new_alerts": 0,
+      "accepted": 53,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -4206,8 +4252,28 @@
       "dataset": "vampi",
       "condition": "A",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4215,8 +4281,28 @@
       "dataset": "vampi",
       "condition": "A",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-review2-validated-r2"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4224,8 +4310,28 @@
       "dataset": "vampi",
       "condition": "A",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4262,8 +4368,28 @@
       "dataset": "vampi",
       "condition": "B",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-vampi-review2-validated-r2"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4271,8 +4397,28 @@
       "dataset": "vampi",
       "condition": "B",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4280,8 +4426,28 @@
       "dataset": "vampi",
       "condition": "A_strict",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4289,8 +4455,28 @@
       "dataset": "vampi",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r2"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4298,8 +4484,28 @@
       "dataset": "vampi",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4307,8 +4513,28 @@
       "dataset": "vampi",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-vampi-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 1,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4316,8 +4542,28 @@
       "dataset": "vampi",
       "condition": "no_guidance",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-vampi-review2-validated-r2"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4325,8 +4571,28 @@
       "dataset": "vampi",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4334,8 +4600,28 @@
       "dataset": "vampi",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-vampi-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4343,8 +4629,28 @@
       "dataset": "vampi",
       "condition": "no_examples",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-vampi-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4352,8 +4658,28 @@
       "dataset": "vampi",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4361,8 +4687,28 @@
       "dataset": "vampi",
       "condition": "C",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-vampi-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4370,8 +4716,28 @@
       "dataset": "vampi",
       "condition": "C",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-vampi-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4379,8 +4745,28 @@
       "dataset": "vampi",
       "condition": "C",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4388,8 +4774,28 @@
       "dataset": "vampi",
       "condition": "simple",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-vampi-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4397,8 +4803,28 @@
       "dataset": "vampi",
       "condition": "simple",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-vampi-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4406,8 +4832,28 @@
       "dataset": "vampi",
       "condition": "simple",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-vampi-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 11,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot read private book]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[other account cannot change owner password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[registration cannot self-assign admin]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[debug does not disclose fixture password]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[failed login does not enumerate account]",
+          "avr_pipeline.review.behavioral.test_vampi::test_behavioral_assertion[SQL-shaped username returns no fixture account]"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5224,8 +5670,29 @@
       "dataset": "synthetic",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5233,8 +5700,29 @@
       "dataset": "synthetic",
       "condition": "no_guidance",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5242,8 +5730,29 @@
       "dataset": "synthetic",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-synthetic-review2-validated-r3"
+      ],
+      "resolved": 5,
+      "new_alerts": 0,
+      "accepted": 7,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5251,8 +5760,28 @@
       "dataset": "synthetic",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-synthetic-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5260,8 +5789,28 @@
       "dataset": "synthetic",
       "condition": "no_examples",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-synthetic-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 4,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5269,8 +5818,28 @@
       "dataset": "synthetic",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-synthetic-review2-validated-r3"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 5,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5398,8 +5967,29 @@
       "dataset": "synthetic",
       "condition": "simple",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-synthetic-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5407,8 +5997,29 @@
       "dataset": "synthetic",
       "condition": "simple",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-synthetic-review2-validated-r3"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6207,8 +6818,25 @@
       "dataset": "flask-webgoat",
       "condition": "A",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6216,8 +6844,25 @@
       "dataset": "flask-webgoat",
       "condition": "A",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6225,8 +6870,25 @@
       "dataset": "flask-webgoat",
       "condition": "A",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6234,8 +6896,25 @@
       "dataset": "flask-webgoat",
       "condition": "B",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-B-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6243,8 +6922,24 @@
       "dataset": "flask-webgoat",
       "condition": "B",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-B-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6252,8 +6947,25 @@
       "dataset": "flask-webgoat",
       "condition": "B",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-B-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6261,8 +6973,25 @@
       "dataset": "flask-webgoat",
       "condition": "A_strict",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6270,8 +6999,25 @@
       "dataset": "flask-webgoat",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6279,8 +7025,25 @@
       "dataset": "flask-webgoat",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-A_strict-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6315,8 +7078,25 @@
       "dataset": "flask-webgoat",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-no_examples-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6342,8 +7122,25 @@
       "dataset": "flask-webgoat",
       "condition": "C",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-C-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6351,8 +7148,25 @@
       "dataset": "flask-webgoat",
       "condition": "C",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-C-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6360,8 +7174,25 @@
       "dataset": "flask-webgoat",
       "condition": "C",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-C-flask-webgoat-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6369,8 +7200,25 @@
       "dataset": "flask-webgoat",
       "condition": "simple",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-simple-flask-webgoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -6378,8 +7226,24 @@
       "dataset": "flask-webgoat",
       "condition": "simple",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-3b-instruct-q4km-simple-flask-webgoat-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 5,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_sql_authentication_bypass_rejected",
+          "avr_pipeline.review.behavioral.test_flask_webgoat::test_command_input_does_not_reach_shell"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7698,8 +8562,21 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A-pygoat-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7707,8 +8584,21 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A-pygoat-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7738,8 +8628,21 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-B-pygoat-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7778,8 +8681,21 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A_strict-pygoat-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7872,8 +8788,21 @@
       "dataset": "pygoat",
       "condition": "C",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-C-pygoat-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",

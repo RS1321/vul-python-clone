@@ -101,7 +101,14 @@ def main():
     records.append(path)
     dast=[]
     for path in (ROOT/'review_results').glob('model-dast-*-validated-*/paired-status.json'):
-        raw=json.loads(path.read_text(encoding='utf-8'));row=select(raw,['dataset','model_run','source_commit','status','new_alert_types','scope'])
+        raw=json.loads(path.read_text(encoding='utf-8'));row=select(raw,['dataset','model_run','source_commit','model_manifest_sha256','status','new_alert_types','scope'])
+        audit_path=path.parent/'model-source-audit.json'
+        if audit_path.exists():
+            audit=json.loads(audit_path.read_text(encoding='utf-8'))
+            row['source_verification']=select(audit,['status','tracked_files_checked','differing_files','model_manifest_matches_scan'])
+            replay=audit.get('accepted_response_replay',{})
+            row['source_verification'].update(accepted_responses_replayed=len(replay.get('verified_accepted_findings',[])),
+                replayed_patch_sha256=replay.get('model_patch_sha256'))
         for phase in ['baseline','model']:
             row[phase]=select(raw[phase],['status','alert_types','alert_instances','alerts_by_plugin','anonymous_status','authenticated_status','policy'])
             row[phase]['authenticated_rule_requests']=raw[phase].get('traffic',{}).get('active_authenticated_rules',{})
