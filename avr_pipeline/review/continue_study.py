@@ -48,11 +48,13 @@ def identity(manifest, protocol, sources):
             manifest.get('condition'), manifest.get('repetition'))
 
 
-def index_runs(results, protocol, sources):
+def index_runs(results, protocol, sources, only_key=None):
     index = {}
     for path in sorted(results.glob('*/manifest.json')):
         manifest = json.loads(path.read_text(encoding='utf-8'))
         key = identity(manifest, protocol, sources)
+        if only_key is not None and key!=only_key:
+            continue
         if key and not recorded_outages(path.parent) and not budget_violations(path.parent):
             index.setdefault(key, []).append((path.parent, manifest))
     return index
@@ -132,6 +134,7 @@ def main(argv=None):
     parser.add_argument('--models', nargs='+')
     parser.add_argument('--datasets', nargs='+', choices=DATASETS, default=list(DATASETS))
     parser.add_argument('--conditions', nargs='+', choices=CONDITIONS, default=list(CONDITIONS))
+    parser.add_argument('--repetition-ids',nargs='+',type=int,choices=(1,2,3),default=[1,2,3])
     parser.add_argument('--tag', default='review2-continued')
     parser.add_argument('--jobs', type=int, choices=range(1, 6), default=5)
     parser.add_argument('--execute', action='store_true')
@@ -179,12 +182,12 @@ def main(argv=None):
 
     def model_worker(model):
         failures, blocked = 0, None
-        for repetition in (1, 2, 3):
+        for repetition in args.repetition_ids:
             for dataset in args.datasets:
                 for condition in args.conditions:
                     cell = dict(model, dataset=dataset, condition=condition, repetition=repetition)
                     key = (model['provider'], model['model'], dataset, condition, repetition)
-                    matches = index_runs(results, protocol, sources).get(key, [])
+                    matches = index_runs(results, protocol, sources,only_key=key).get(key, [])
                     selection, prior = choose_trial(matches, protocol, args.fresh_interrupted, args.resume_safe_interrupted)
                     if matches and selection in ('new', 'resume'):
                         cell['previous_incomplete_trials'] = [p.name for p,m in matches]
@@ -195,7 +198,7 @@ def main(argv=None):
                         record(dict(cell, run=prior[0].name, status='waiting_for_active_worker'))
                         while selection == 'already_running':
                             time.sleep(5)
-                            matches = index_runs(results, protocol, sources).get(key, [])
+                            matches = index_runs(results, protocol, sources,only_key=key).get(key, [])
                             selection, prior = choose_trial(matches, protocol, args.fresh_interrupted, args.resume_safe_interrupted)
                         if matches and selection in ('new', 'resume'):
                             cell['previous_incomplete_trials'] = [p.name for p,m in matches]

@@ -66,7 +66,6 @@ def generate():
     protocol_path = ROOT/'review/study-protocol.validated.json'
     protocol = json.loads(protocol_path.read_text(encoding='utf-8'))
     cohort = json.loads((ROOT/'review/validated-cohort.json').read_text(encoding='utf-8'))
-    analyze(results, protocol_path, output, primary_only=True)
     status = build_status(results, protocol, cohort)
     dump(results/'validated-study-status.json', status)
     dump(output/'study-status-snapshot.json', status)
@@ -81,6 +80,14 @@ def generate():
         if (key in frozen_cells and manifest.get('status') == 'complete' and manifest.get('sast') and
                 not recorded_outages(path.parent) and not budget_violations(path.parent)):
             runs[key].append((path.parent, manifest))
+    selected_runs={path.name for choices in runs.values() for path,manifest in choices}
+    for path in results.glob('*tool-agent*validated*/manifest.json'):
+        manifest=json.loads(path.read_text(encoding='utf-8'))
+        if manifest.get('status')=='complete' and manifest.get('sast'):
+            selected_runs.add(path.parent.name)
+    # All tables share the same completed-run snapshot even while other cells
+    # finish. New completions enter only the next report generation.
+    analyze(results,protocol_path,output,primary_only=True,selected_runs=selected_runs)
     data, findings = [], []
     for model in cohort:
         for dataset in DATASETS:
@@ -106,6 +113,7 @@ def generate():
                     joint_unknown_findings=unknown,
                     mean_new_alerts=statistics.mean(m['sast']['new_findings'] for m,rows in selected) if selected else None))
     dump(output/'summary-by-condition.json', data)
+    dump(output/'outcomes-by-cwe.json',cwe_summary(findings))
     assert sum(row['repetitions'] for row in data) == status['completed_cells'], 'Snapshot changed during reporting; regenerate after active writes finish'
     fields = list(data[0])
     with (output/'summary-by-condition.csv').open('w',newline='',encoding='utf-8') as stream:
@@ -146,7 +154,7 @@ def generate():
         'The three local 7B tool-agent runs use the same pinned flask-webgoat input, 21-turn limit, 8,192-token reply cap and final CodeQL oracle. '
         'Their file-editing strategy and tool calls differ from AVR. Source-local missing-function import failures after a working baseline count as startup regressions in the derived analysis; raw logs/manifests are unchanged. '
         'See `external-baseline-effects.json`, per-run test audits and the full configuration table.','',
-        'Raw evidence is under `review_results/<run>/`; configuration and finding tables, exact McNemar tests, Holm adjustments, factorial effects, '
+        'Raw evidence is under `review_results/<run>/`; configuration and finding tables, primary-CWE outcome counts, exact McNemar tests, Holm adjustments, factorial effects, '
         'whole-repetition intervals and strict-gate audits are under `review_results/validated-analysis/`. '
         'McNemar comparisons are exploratory because findings can share functions and are not independent. '
         'The original validator study and 180-second local-timeout pilots are excluded from this primary cohort.','',
@@ -155,6 +163,27 @@ def generate():
     (ROOT/'review_docs/VALIDATED_RESULTS.md').write_text('\n'.join(lines),encoding='utf-8')
     print(json.dumps({'completed_cells':status['completed_cells'],'planned_cells':status['planned_cells'],'finding_rows':len(findings)}))
     return data
+
+
+def cwe_summary(findings):
+    """Count known and unknown finding outcomes separately within primary CWE."""
+    groups=defaultdict(list)
+    for row in findings:
+        groups[(row['model'],row['dataset'],row['condition'],row['cwe'])].append(row)
+    output=[]
+    for (model,dataset,condition,cwe),rows in sorted(groups.items()):
+        output.append(dict(model=model,dataset=dataset,condition=condition,cwe=cwe,
+            repetitions=len({row['repetition'] for row in rows}),findings=len(rows),
+            accepted=sum(row['accepted'] is True for row in rows),
+            resolved=sum(row['resolved'] is True for row in rows),
+            unresolved=sum(row['resolved'] is False for row in rows),
+            resolution_unknown=sum(row['resolved'] is None for row in rows),
+            joint_success=sum(row['joint_security'] is True for row in rows),
+            joint_failure=sum(row['joint_security'] is False for row in rows),
+            joint_unknown=sum(row['joint_security'] is None for row in rows),
+            recorded_attempts=sum(row['attempts'] for row in rows if isinstance(row['attempts'],int)),
+            attempts_unknown=sum(row['attempts'] is None for row in rows)))
+    return output
 
 
 if __name__ == '__main__':

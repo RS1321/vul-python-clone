@@ -1,10 +1,13 @@
 """Collect current study jobs using an existing GitHub sign-in, without logging it.
 
-This is a read-only GitHub client. It downloads only bounded study artifacts,
-verifies their digests and declared protocol, and retains original measurements.
+Downloads only bounded study artifacts, verifies their digests and declared
+protocol, and retains original measurements. Optional remote deletion requires
+an explicit flag and a verified local archive plus a successful import record.
 """
 import argparse
 from collections import Counter
+from datetime import datetime, timezone
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -72,11 +75,29 @@ def download(http, artifact, cache):
     return path
 
 
+def delete_transferred_artifact(http, artifact, archive, imported):
+    """Remove only an imported artifact with an intact lossless local ZIP."""
+    if imported.get('artifact_id') != artifact['id'] or imported.get('status') == 'import_error':
+        raise ValueError('A successful matching import is required before remote deletion')
+    local_digest = 'sha256:'+hashlib.sha256(archive.read_bytes()).hexdigest()
+    if local_digest != artifact.get('digest'):
+        raise ValueError('Local artifact checksum differs; remote evidence retained')
+    response = http.delete(API+f'/actions/artifacts/{artifact["id"]}', timeout=(30,90))
+    if response.status_code not in (204,404):
+        response.raise_for_status()
+        raise RuntimeError('Unexpected artifact deletion response')
+    return dict(artifact_id=artifact['id'], run=imported['run'], zip_sha256=local_digest[7:],
+                local_archive=archive.name, deleted_utc=datetime.now(timezone.utc).isoformat(),
+                remote_status='deleted' if response.status_code==204 else 'already_absent')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', type=int, nargs='+', required=True)
     parser.add_argument('--use-git-credential', action='store_true')
     parser.add_argument('--watch', action='store_true')
+    parser.add_argument('--delete-after-import',action='store_true',
+                        help='After explicit owner authorization, delete each temporary GitHub artifact only after verified local transfer')
     parser.add_argument('--interval', type=int, default=45)
     args = parser.parse_args()
     if args.interval < 15:
@@ -88,21 +109,30 @@ def main():
     index_path = results/'ci-imports.json'
     index = json.loads(index_path.read_text(encoding='utf-8')) if index_path.exists() else []
     seen = {r['artifact_id'] for r in index}
+    retention_path=results/'ci-artifact-retention.json'
+    retention=json.loads(retention_path.read_text(encoding='utf-8')) if retention_path.exists() else []
+    removed={r['artifact_id'] for r in retention}
     protocol = json.loads((ROOT/'review/study-protocol.validated.json').read_text(encoding='utf-8'))
     cohort = json.loads((ROOT/'review/validated-cohort.json').read_text(encoding='utf-8'))
-    failures, previous_summary = {}, None
+    failures, deletion_errors, previous_summary = {}, {}, None
     while True:
         workflows, new_records = [], []
         for run in args.run:
             data = api_json(http, f'/actions/runs/{run}')
             workflows.append({k:data[k] for k in ('id','name','status','conclusion','head_sha','html_url')})
-            page = 1
+            page, all_artifacts = 1, []
             while True:
                 listing = api_json(http, f'/actions/runs/{run}/artifacts?per_page=100&page={page}')
                 artifacts = listing.get('artifacts',[])
-                for artifact in artifacts:
-                    if artifact['id'] in seen or artifact.get('expired') or not artifact['name'].startswith('review2-'):
-                        continue
+                all_artifacts.extend(artifacts)
+                if len(artifacts) < 100:
+                    break
+                page += 1
+            # Finish pagination before any deletion, which would shift pages.
+            for artifact in all_artifacts:
+                if artifact.get('expired') or not artifact['name'].startswith('review2-'):
+                    continue
+                if artifact['id'] not in seen:
                     try:
                         archive = download(http, artifact, cache)
                         record = unpack(archive, artifact, results, protocol)
@@ -116,17 +146,26 @@ def main():
                     index.append(record)
                     new_records.append(record)
                     dump(index_path,index)
-                if len(artifacts) < 100:
-                    break
-                page += 1
+                if args.delete_after_import and artifact['id'] not in removed:
+                    try:
+                        imported=next(r for r in index if r['artifact_id']==artifact['id'])
+                        record=delete_transferred_artifact(http,artifact,cache/(str(artifact['id'])+'.zip'),imported)
+                        retention.append(record)
+                        dump(retention_path,retention)
+                        removed.add(artifact['id'])
+                        deletion_errors.pop(str(artifact['id']),None)
+                    except Exception as error:
+                        deletion_errors[str(artifact['id'])]={'error_type':type(error).__name__,
+                            'http_status':getattr(getattr(error,'response',None),'status_code',None)}
         report = build_status(results,protocol,cohort)
         dump(results/'validated-study-status.json',report)
         dump(results/'github-study-collection.json',{'workflows':workflows,'imported_artifacts':len(index),
-                                                   'import_errors':failures,'completed_cells':report['completed_cells']})
+                     'import_errors':failures,'completed_cells':report['completed_cells'],
+                     'remote_artifacts_deleted_after_verified_transfer':len(removed),'deletion_errors':deletion_errors})
         summary = {'completed_cells':report['completed_cells'],'remaining_cells':report['remaining_cells'],
                    'new_artifacts':len(new_records),'new_status_counts':dict(Counter(r['status'] for r in new_records)),
                    'remote_status_counts':dict(Counter(w['status'] for w in workflows)),
-                   'import_errors':len(failures)}
+                   'import_errors':len(failures),'remote_artifacts_deleted':len(removed),'deletion_errors':len(deletion_errors)}
         if new_records or summary != previous_summary:
             print(json.dumps(summary),flush=True)
             previous_summary = summary

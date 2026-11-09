@@ -69,6 +69,7 @@ def main():
     def read(name):return json.loads((source/name).read_text(encoding='utf-8'))
     write('study-status.json',read('study-status-snapshot.json'))
     summary=read('summary-by-condition.json');write('summary-by-condition.json',summary)
+    cwe_rows=read('outcomes-by-cwe.json');write('outcomes-by-cwe.json',cwe_rows)
     configs=[public_config(row) for row in read('configuration-as-run.json')]
     write('configuration-as-run.json',configs)
     write('factorial-effects.json',read('factorial-effects.json'))
@@ -90,6 +91,10 @@ def main():
         for raw in csv.DictReader(incoming):
             row=select(raw,fields);assert_safe(row);writer.writerow(row)
     records.append(path)
+    path=out/'outcomes-by-cwe.csv'
+    with path.open('w',encoding='utf-8',newline='') as target:
+        writer=csv.DictWriter(target,fieldnames=list(cwe_rows[0]));writer.writeheader();writer.writerows(cwe_rows)
+    records.append(path)
     path=out/'summary-by-condition.csv'
     with path.open('w',encoding='utf-8',newline='') as target:
         writer=csv.DictWriter(target,fieldnames=list(summary[0]));writer.writeheader();writer.writerows(summary)
@@ -109,7 +114,7 @@ def main():
         destination=out/'figures'/source_file.name;destination.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source_file,destination);records.append(destination)
     report=(ROOT/'review_docs/VALIDATED_RESULTS.md').read_text(encoding='utf-8')
-    report=report.replace('Raw evidence is under `review_results/<run>/`;','Raw evidence is retained locally under `review_results/<run>/`; publication of raw messages and machine metadata requires separate approval. Public allowlisted exports are under `public_results/review2/`.')
+    report=report.replace('Raw evidence is under `review_results/<run>/`;','Raw evidence is retained locally under `review_results/<run>/`, as the user chose summary-and-figure publication only. Public allowlisted exports are under `public_results/review2/`.')
     report=report.replace('(MANUSCRIPT_CORRELATION.md)','(../../review_docs/MANUSCRIPT_CORRELATION.md)')
     assert_safe(report)
     destination=out/'RESULTS.md';destination.write_text(report,encoding='utf-8');records.append(destination)

@@ -119,6 +119,27 @@ def test_analysis_keeps_unfinished_agent_unmeasured(tmp_path):
     assert rows[0]['resolved'] is None and rows[0]['attempts'] is None
 
 
+def test_frozen_report_excludes_later_or_unselected_runs(tmp_path):
+    from review.analyze_study import analyze
+    unselected=tmp_path/'new-completion';unselected.mkdir()
+    (unselected/'manifest.json').write_text('This run is outside the frozen snapshot')
+    result=analyze(tmp_path,selected_runs=set())
+    assert result['runs']==0
+    assert json.loads((tmp_path/'analysis-provenance.json').read_text())['selected_runs']==[]
+
+
+def test_cwe_counts_preserve_unknowns_and_separate_conditions():
+    from review.build_validated_report import cwe_summary
+    base=dict(model='fixture',dataset='synthetic',condition='A',cwe='CWE-79',repetition=1)
+    rows=[dict(base,accepted=True,resolved=True,joint_security=False,attempts=2),
+          dict(base,accepted=False,resolved=None,joint_security=None,attempts=None),
+          dict(base,condition='B',accepted=False,resolved=False,joint_security=False,attempts=5)]
+    a,b=cwe_summary(rows)
+    assert (a['findings'],a['resolved'],a['resolution_unknown'],a['joint_success'],a['joint_unknown'])==(2,1,1,0,1)
+    assert a['recorded_attempts']==2 and a['attempts_unknown']==1
+    assert b['condition']=='B' and b['unresolved']==1
+
+
 def test_behavioral_infrastructure_error_never_becomes_security_evidence():
     m = {'status':'complete','sast':{'resolved_groups':[{'key':['r','app.py','f'],'count':1}], 'new_findings':0},
          'post_tests':{'status':'passed','failures':[]},

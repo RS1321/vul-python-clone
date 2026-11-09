@@ -7,6 +7,56 @@ import zipfile
 import pytest
 
 from review.collect_ci_results import unpack
+from review.collect_github_study import delete_transferred_artifact
+
+
+class DeleteSession:
+    def __init__(self,status=204):
+        self.calls=[]
+        self.status=status
+    def delete(self,url,timeout):
+        self.calls.append(url)
+        return self
+    @property
+    def status_code(self):
+        return self.status
+    def raise_for_status(self):
+        raise RuntimeError('remote deletion denied')
+
+
+@pytest.mark.parametrize('damage',['changed','missing','unimported'])
+def test_remote_evidence_survives_an_unverified_local_transfer(tmp_path,damage):
+    archive=tmp_path/'123.zip';archive.write_bytes(b'original lossless archive')
+    metadata=dict(id=123,digest='sha256:'+hashlib.sha256(archive.read_bytes()).hexdigest())
+    imported=dict(artifact_id=123,run='measured',status='complete')
+    if damage=='changed':archive.write_bytes(b'damaged')
+    elif damage=='missing':archive.unlink()
+    else:imported['artifact_id']=999
+    http=DeleteSession()
+    with pytest.raises((ValueError,FileNotFoundError)):
+        delete_transferred_artifact(http,metadata,archive,imported)
+    assert http.calls==[]
+
+
+@pytest.mark.parametrize('status',[204,404])
+def test_remote_deletion_preserves_the_verified_local_archive(tmp_path,status):
+    archive=tmp_path/'123.zip';archive.write_bytes(b'original lossless archive')
+    metadata=dict(id=123,digest='sha256:'+hashlib.sha256(archive.read_bytes()).hexdigest())
+    http=DeleteSession(status)
+    record=delete_transferred_artifact(http,metadata,archive,dict(artifact_id=123,run='measured',status='complete'))
+    assert archive.read_bytes()==b'original lossless archive'
+    assert record['zip_sha256']==metadata['digest'][7:]
+    assert record['remote_status']==('deleted' if status==204 else 'already_absent')
+    assert http.calls==['https://api.github.com/repos/RS1321/vul-python-clone/actions/artifacts/123']
+
+
+def test_remote_deletion_failure_is_not_recorded_as_success(tmp_path):
+    archive=tmp_path/'123.zip';archive.write_bytes(b'evidence')
+    metadata=dict(id=123,digest='sha256:'+hashlib.sha256(archive.read_bytes()).hexdigest())
+    with pytest.raises(RuntimeError,match='denied'):
+        delete_transferred_artifact(DeleteSession(403),metadata,archive,
+                                   dict(artifact_id=123,run='measured',status='complete'))
+    assert archive.exists()
 
 
 def artifact(tmp_path, name, files):

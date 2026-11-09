@@ -1,6 +1,6 @@
 # AVR: vulnerability repair and evaluation
 
-Latest work: [corrected study protocol](avr_pipeline/review_docs/VALIDATED_STUDY.md), [current measured results](avr_pipeline/public_results/review2/RESULTS.md), [measured cell inventory](avr_pipeline/public_results/review2/study-status.json) and [reproduction guide](avr_pipeline/review_docs/REPRODUCING_REVIEW2.md). The corrected study comprises 420 cells; the inventory distinguishes completed evidence, interrupted access and pending work. Public exports omit raw messages and machine paths; the full evidence remains local pending a separate publication choice. Historical model results and agent-authored validation remain separate.
+Latest work: [corrected study protocol](avr_pipeline/review_docs/VALIDATED_STUDY.md), [current measured results](avr_pipeline/public_results/review2/RESULTS.md), [measured cell inventory](avr_pipeline/public_results/review2/study-status.json) and [reproduction guide](avr_pipeline/review_docs/REPRODUCING_REVIEW2.md). The corrected study comprises 420 cells; the inventory distinguishes completed evidence, interrupted access and pending work. At the user's request, public exports contain summaries and figures, while new raw messages, logs and machine metadata remain local. Historical model results and agent-authored validation remain separate.
 
 This repository contains the original deliberately vulnerable Flask benchmark and an automated vulnerability remediation (AVR) pipeline, with recorded experiments, defensive repairs and reproducible validation scripts.
 

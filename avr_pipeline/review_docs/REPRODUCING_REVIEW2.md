@@ -65,7 +65,7 @@ The builder recomputes `review_results/validated-analysis/` and `review_docs/VAL
 
 Install `requirements-figures.lock` in a separate environment and run `python review/plot_validated_study.py` for PNG/SVG figures. The plots read the report's frozen status snapshot rather than a changing live counter; plotted data and file hashes are saved alongside them. Missing conditions remain blank.
 
-`python review/export_public_summary.py` writes allowlisted aggregate tables and figures under `public_results/review2`, omitting raw prompts/responses, test logs, worker metadata and local machine paths. It rejects credential patterns and prohibited raw-message fields. The raw corpus remains available locally; publishing that corpus requires the user's separate choice after the publication review.
+`python review/export_public_summary.py` writes allowlisted aggregate tables and figures under `public_results/review2`, omitting raw prompts/responses, test logs, worker metadata and local machine paths. It rejects credential patterns and prohibited raw-message fields. On 2026-11-09 the user chose summary-and-figure publication only. They separately authorized the existing GitHub runs to finish using temporary artifact transfer, followed by deletion after local verification. The collector's explicit `--delete-after-import` flag verifies the local ZIP against GitHub's SHA256 and requires a successful import record before removing that remote artifact. It retains the lossless local ZIP and records each removal in local `review_results/ci-artifact-retention.json`. Deletion failures remain visible and do not erase local evidence.
 
 ## Paired dynamic measurement and Linux container
 

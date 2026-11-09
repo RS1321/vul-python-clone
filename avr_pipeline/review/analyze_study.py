@@ -30,7 +30,7 @@ def identity(m, protocol=None):
     return json.dumps(values, sort_keys=True)
 
 
-def analyze(root, protocol_path=None, output_root=None, primary_only=False):
+def analyze(root, protocol_path=None, output_root=None, primary_only=False, selected_runs=None):
     groups = defaultdict(lambda: defaultdict(list))
     configurations, inventory, baseline_cells, strict_audits = [], [], defaultdict(lambda: defaultdict(list)), []
     protocol_path = protocol_path or ROOT/'review/study-protocol.json'
@@ -44,6 +44,8 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
     policy_bytes = policy_path.read_bytes()
     policy = json.loads(policy_bytes)
     for path in sorted(root.glob('*/manifest.json')):
+        if selected_runs is not None and path.parent.name not in selected_runs:
+            continue
         m = json.loads(path.read_text(encoding='utf-8'))
         if primary_only and cohort and dict(provider=m.get('provider'),model=m.get('model')) not in cohort:
             continue
@@ -195,6 +197,7 @@ def analyze(root, protocol_path=None, output_root=None, primary_only=False):
         writer.writerows({k:json.dumps(v,sort_keys=True) if isinstance(v,(dict,list)) else v for k,v in r.items()} for r in flat)
     (output_root / 'analysis-provenance.json').write_text(json.dumps({'policy_sha256': hashlib.sha256(policy_bytes).hexdigest(),
         'protocol_sha256':hashlib.sha256(protocol_path.read_bytes()).hexdigest(), 'primary_only':primary_only,
+        'selected_runs':sorted(selected_runs) if selected_runs is not None else None,
         'implementation_sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'review/outcomes.py',ROOT/'review/measurement_audit.py',ROOT/'review/evidence_io.py',ROOT/'review/configuration_audit.py',ROOT/'review/study_statistics.py']},
         'policy_application': 'Historical exports are retrospective; runner records frozen policy prospectively for new runs.',
         'junit_normalization':'Retained JUnit evidence overrides early summaries in derived tables only. A working baseline followed by missing-symbol ImportErrors in the patched source is a startup regression; other setup errors remain unmeasured. Original manifests are unchanged.',

@@ -7,6 +7,7 @@ from review.continue_study import identity, provider_retry_seconds, quota_reason
 from review.controlled_worker import require_budget_safe_resume, verify_snapshot
 from review.controlled_worker import require_resume_source
 from review.continue_study import choose_trial
+from review.continue_study import index_runs
 import json
 
 
@@ -99,3 +100,18 @@ def test_missing_source_cannot_silently_resume_against_the_baseline(tmp_path):
         require_resume_source(tmp_path)
     (tmp_path/'source/.git').mkdir(parents=True)
     require_resume_source(tmp_path)
+
+
+def test_single_cell_lookup_does_not_open_unrelated_large_response_files(tmp_path):
+    protocol=dict(primary_implementation_sha256={'runner':'same'},library_sha256='lib',
+        test_policy_sha256='policy',max_tokens=8192,context_profile='compact')
+    base=dict(implementation_sha256={'runner':'same'},library_sha256='lib',test_policy_sha256='policy',
+        max_tokens=8192,context_profile='compact',source_commit='pin',sarif_sha256='sarif',
+        selected_findings=3,eligible_findings=3,provider='local',condition='A',repetition=1)
+    for model in ['selected','unrelated']:
+        path=tmp_path/model;path.mkdir()
+        (path/'manifest.json').write_text(json.dumps(dict(base,model=model)))
+        (path/'results.json').write_text('[]' if model=='selected' else 'unrelated file must not be read')
+    key=('local','selected','vampi','A',1)
+    result=index_runs(tmp_path,protocol,{'vampi':dict(source_commit='pin',sarif_sha256='sarif')},only_key=key)
+    assert list(result)==[key]
