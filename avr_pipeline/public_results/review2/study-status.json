@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-11-09T10:28:12.382140+00:00",
+  "generated_utc": "2026-11-09T11:25:58.301929+00:00",
   "protocol_id": "review2-validated-2026-11-09-continuation1",
   "controlled_code_commit": "bb43ccdb4f012a46a83899b43cf4eddd481f96e9",
   "planned_cells": 420,
-  "completed_cells": 203,
-  "remaining_cells": 217,
+  "completed_cells": 229,
+  "remaining_cells": 191,
   "counts": {
-    "complete": 203,
+    "complete": 229,
     "running": 7,
-    "interrupted": 21,
-    "not_run": 189
+    "interrupted": 16,
+    "not_run": 168
   },
   "spending": "free/local only",
   "deferred_by_user": [
@@ -1173,11 +1173,28 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 1,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-r1",
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r1"
-      ]
+      ],
+      "resolved": 12,
+      "new_alerts": 1,
+      "accepted": 12,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1185,7 +1202,7 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r2"
       ]
@@ -1216,7 +1233,7 @@
       "dataset": "synthetic",
       "condition": "B",
       "repetition": 1,
-      "status": "interrupted",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-B-synthetic-review2-checkpoint1-r1",
         "gemma-4-26b-a4b-it-B-synthetic-review2-validated-r1"
@@ -1229,6 +1246,22 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 11,
+      "new_alerts": 0,
+      "accepted": 11,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -1310,7 +1343,7 @@
       "dataset": "synthetic",
       "condition": "no_guidance",
       "repetition": 1,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-no_guidance-synthetic-review2-checkpoint1-r1",
         "gemma-4-26b-a4b-it-no_guidance-synthetic-review2-validated-retry1-r1"
@@ -1506,7 +1539,7 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 2,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-A-pygoat-review2-recovery3-r2",
         "gemma-4-26b-a4b-it-A-pygoat-review2-validated-retry2-r2"
@@ -1518,7 +1551,7 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-A-pygoat-review2-recovery4-r3",
         "gemma-4-26b-a4b-it-A-pygoat-review2-recovery6-r3",
@@ -1543,7 +1576,7 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 2,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r2"
       ]
@@ -1554,8 +1587,9 @@
       "dataset": "pygoat",
       "condition": "B",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
+        "gemma-4-26b-a4b-it-B-pygoat-review2-paced1-r3",
         "gemma-4-26b-a4b-it-B-pygoat-review2-validated-retry2-r3"
       ],
       "measurement_outages": {
@@ -1574,7 +1608,7 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 1,
-      "status": "running",
+      "status": "interrupted",
       "runs": [
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-recovery3-r1",
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-validated-retry2-r1"
@@ -1586,10 +1620,21 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "interrupted",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-validated-retry2-r2"
-      ]
+      ],
+      "resolved": 40,
+      "new_alerts": 1,
+      "accepted": 47,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1597,7 +1642,7 @@
       "dataset": "pygoat",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-recovery3-r3",
         "gemma-4-26b-a4b-it-A_strict-pygoat-review2-validated-retry2-r3"
@@ -1684,10 +1729,21 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-no_examples-pygoat-review2-validated-retry2-r1"
-      ]
+      ],
+      "resolved": 40,
+      "new_alerts": 2,
+      "accepted": 49,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "gemini",
@@ -1718,7 +1774,7 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "interrupted",
+      "status": "running",
       "runs": [
         "gemma-4-26b-a4b-it-no_examples-pygoat-review2-recovery3-r3",
         "gemma-4-26b-a4b-it-no_examples-pygoat-review2-validated-retry2-r3"
@@ -1875,7 +1931,7 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 3,
-      "status": "running",
+      "status": "complete",
       "runs": [
         "gemma-4-26b-a4b-it-simple-pygoat-review2-paced1-r3",
         "gemma-4-26b-a4b-it-simple-pygoat-review2-validated-retry2-r3"
@@ -1893,6 +1949,17 @@
             "reason": "evidence file save failed; generation/gate evidence is incomplete; not a model quality failure"
           }
         ]
+      },
+      "resolved": 54,
+      "new_alerts": 0,
+      "accepted": 55,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
       }
     },
     {
@@ -4889,8 +4956,28 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 5,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4898,8 +4985,29 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-review2-validated-r2"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4907,8 +5015,28 @@
       "dataset": "synthetic",
       "condition": "A",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A-synthetic-review2-validated-r3"
+      ],
+      "resolved": 3,
+      "new_alerts": 0,
+      "accepted": 5,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4916,8 +5044,29 @@
       "dataset": "synthetic",
       "condition": "B",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4925,8 +5074,29 @@
       "dataset": "synthetic",
       "condition": "B",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4934,8 +5104,29 @@
       "dataset": "synthetic",
       "condition": "B",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-B-synthetic-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4943,8 +5134,29 @@
       "dataset": "synthetic",
       "condition": "A_strict",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-synthetic-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 3,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4952,8 +5164,29 @@
       "dataset": "synthetic",
       "condition": "A_strict",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-synthetic-review2-validated-r2"
+      ],
+      "resolved": 2,
+      "new_alerts": 0,
+      "accepted": 5,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -4961,8 +5194,29 @@
       "dataset": "synthetic",
       "condition": "A_strict",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-A_strict-synthetic-review2-validated-r3"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 4,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5024,8 +5278,29 @@
       "dataset": "synthetic",
       "condition": "C",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-synthetic-review2-validated-r1"
+      ],
+      "resolved": 1,
+      "new_alerts": 0,
+      "accepted": 2,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5033,8 +5308,29 @@
       "dataset": "synthetic",
       "condition": "C",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-synthetic-review2-validated-r2"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 1,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5042,8 +5338,29 @@
       "dataset": "synthetic",
       "condition": "C",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-C-synthetic-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5051,8 +5368,29 @@
       "dataset": "synthetic",
       "condition": "simple",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-synthetic-review2-validated-r1"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "failed",
+        "returncode": 1,
+        "tests": 8,
+        "failures": [
+          "avr_pipeline.review.behavioral.test_synthetic::test_sql_login_cannot_bypass",
+          "avr_pipeline.review.behavioral.test_synthetic::test_html_is_encoded",
+          "avr_pipeline.review.behavioral.test_synthetic::test_external_redirect_rejected",
+          "avr_pipeline.review.behavioral.test_synthetic::test_loopback_fetch_never_reaches_network",
+          "avr_pipeline.review.behavioral.test_synthetic::test_shell_input_rejected_before_execution",
+          "avr_pipeline.review.behavioral.test_synthetic::test_untrusted_pickle_never_deserialized",
+          "avr_pipeline.review.behavioral.test_synthetic::test_arbitrary_file_not_disclosed"
+        ],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5298,8 +5636,21 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r2"
+      ],
+      "resolved": 21,
+      "new_alerts": 0,
+      "accepted": 22,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5307,8 +5658,21 @@
       "dataset": "pygoat",
       "condition": "no_guidance",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_guidance-pygoat-review2-validated-r3"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 21,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5316,8 +5680,21 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 1,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-pygoat-review2-validated-r1"
+      ],
+      "resolved": 21,
+      "new_alerts": 0,
+      "accepted": 24,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5325,8 +5702,21 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-pygoat-review2-validated-r2"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 22,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5334,8 +5724,21 @@
       "dataset": "pygoat",
       "condition": "no_examples",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-no_examples-pygoat-review2-validated-r3"
+      ],
+      "resolved": 20,
+      "new_alerts": 0,
+      "accepted": 23,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5431,8 +5834,21 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 2,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-pygoat-review2-validated-r2"
+      ],
+      "resolved": 19,
+      "new_alerts": 0,
+      "accepted": 20,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -5440,8 +5856,21 @@
       "dataset": "pygoat",
       "condition": "simple",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-1.5b-instruct-q4km-simple-pygoat-review2-validated-r3"
+      ],
+      "resolved": 19,
+      "new_alerts": 0,
+      "accepted": 19,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",
@@ -7287,8 +7716,21 @@
       "dataset": "pygoat",
       "condition": "A",
       "repetition": 3,
-      "status": "not_run",
-      "runs": []
+      "status": "complete",
+      "runs": [
+        "qwen2.5-coder-7b-instruct-q4km-A-pygoat-review2-validated-r3"
+      ],
+      "resolved": 0,
+      "new_alerts": 0,
+      "accepted": 0,
+      "behavioral_tests": {
+        "status": "passed",
+        "returncode": 0,
+        "tests": 14,
+        "failures": [],
+        "errors": 0,
+        "infrastructure_error": false
+      }
     },
     {
       "provider": "local",

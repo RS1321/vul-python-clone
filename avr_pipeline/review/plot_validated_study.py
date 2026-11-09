@@ -27,7 +27,7 @@ def main():
     subjects = [('synthetic','Synthetic',29),('pygoat','PyGoat',62),
                 ('vampi','VAmPI',3),('flask-webgoat','flask-webgoat',7)]
     conditions = ['A','B','no_guidance','no_examples','C','simple','A_strict']
-    labels = ['A','B','No rules','No examples','C','Simple','A strict']
+    labels = ['A','B','No guidance','No examples','C','Simple','A strict']
     index = {(row['model'],row['dataset'],row['condition']):row for row in rows}
     complete = status['completed_cells'] == status['planned_cells']
     heading = 'Completed study' if complete else f"Interim: {status['completed_cells']}/{status['planned_cells']} cells"

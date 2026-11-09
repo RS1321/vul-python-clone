@@ -256,6 +256,34 @@
     "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
   },
   {
+    "comparison": "A-no_examples",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.016666666666666666,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
+    "comparison": "A-no_examples",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
     "comparison": "A-C",
     "metric": "resolved",
     "repetitions": [
@@ -310,6 +338,118 @@
     "provider": "gemini",
     "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
     "configuration_identity_sha256": "205fd7644437140bb2f526515031114077687c161111bf20929b50ad9c65e5af"
+  },
+  {
+    "comparison": "A-B",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.034482758620689655,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A-B",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A-C",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": -0.4482758620689655,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A-C",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A-simple",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": -0.41379310344827586,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A-simple",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A_strict-A",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": -0.034482758620689655,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
+  },
+  {
+    "comparison": "A_strict-A",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "0a712185b51dfd3b85cfc6bf01f6e3f12eedfea525fd6314e06b6620c96465e2"
   },
   {
     "comparison": "A-B",
@@ -1721,10 +1861,15 @@
     "comparison": "A-no_guidance",
     "metric": "resolved",
     "repetitions": [
-      1
+      1,
+      2,
+      3
     ],
-    "mean_risk_difference": 0.0,
-    "repetition_cluster_bootstrap_ci95": null,
+    "mean_risk_difference": -0.01075268817204301,
+    "repetition_cluster_bootstrap_ci95": [
+      -0.016129032258064516,
+      0.0
+    ],
     "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
@@ -1735,10 +1880,53 @@
     "comparison": "A-no_guidance",
     "metric": "joint_security",
     "repetitions": [
-      1
+      1,
+      2,
+      3
     ],
-    "mean_risk_difference": 0.0,
-    "repetition_cluster_bootstrap_ci95": null,
+    "mean_risk_difference": -0.01075268817204301,
+    "repetition_cluster_bootstrap_ci95": [
+      -0.016129032258064516,
+      0.0
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "comparison": "A-no_examples",
+    "metric": "resolved",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": -0.01075268817204301,
+    "repetition_cluster_bootstrap_ci95": [
+      -0.016129032258064516,
+      0.0
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "comparison": "A-no_examples",
+    "metric": "joint_security",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": -0.01075268817204301,
+    "repetition_cluster_bootstrap_ci95": [
+      -0.016129032258064516,
+      0.0
+    ],
     "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
@@ -1787,10 +1975,15 @@
     "comparison": "A-simple",
     "metric": "resolved",
     "repetitions": [
-      1
+      1,
+      2,
+      3
     ],
-    "mean_risk_difference": 0.0,
-    "repetition_cluster_bootstrap_ci95": null,
+    "mean_risk_difference": 0.005376344086021505,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.016129032258064516
+    ],
     "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
@@ -1801,10 +1994,15 @@
     "comparison": "A-simple",
     "metric": "joint_security",
     "repetitions": [
-      1
+      1,
+      2,
+      3
     ],
-    "mean_risk_difference": 0.0,
-    "repetition_cluster_bootstrap_ci95": null,
+    "mean_risk_difference": 0.005376344086021505,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.016129032258064516
+    ],
     "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
     "model": "qwen2.5-coder-1.5b-instruct-q4km",
     "provider": "local",
@@ -1848,6 +2046,148 @@
     "provider": "local",
     "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
     "configuration_identity_sha256": "93aedc143b71a37514e2a2b6458d4b084539ea059eddcfee4d4b285ed1bedfef"
+  },
+  {
+    "comparison": "A-B",
+    "metric": "resolved",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": 0.0574712643678161,
+    "repetition_cluster_bootstrap_ci95": [
+      0.034482758620689655,
+      0.10344827586206896
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A-B",
+    "metric": "joint_security",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.0
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A-C",
+    "metric": "resolved",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": 0.04597701149425287,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.10344827586206896
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A-C",
+    "metric": "joint_security",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.0
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A-simple",
+    "metric": "resolved",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.034482758620689655,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A-simple",
+    "metric": "joint_security",
+    "repetitions": [
+      1
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": null,
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A_strict-A",
+    "metric": "resolved",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": -0.011494252873563218,
+    "repetition_cluster_bootstrap_ci95": [
+      -0.06896551724137931,
+      0.034482758620689655
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
+  },
+  {
+    "comparison": "A_strict-A",
+    "metric": "joint_security",
+    "repetitions": [
+      1,
+      2,
+      3
+    ],
+    "mean_risk_difference": 0.0,
+    "repetition_cluster_bootstrap_ci95": [
+      0.0,
+      0.0
+    ],
+    "note": "Requires >=3 matched repetitions; inference limited to this fixed finding set.",
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "faac77236b3f90f22c1a72a8a5ec20ee2e91db2d657dab2b4779c9be0ad91857"
   },
   {
     "comparison": "A-B",

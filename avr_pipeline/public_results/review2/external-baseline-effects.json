@@ -95,6 +95,28 @@
     "holm_p_baseline_family": null,
     "model": "gemma-4-26b-a4b-it",
     "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "00f18cd1f8453f8bdf801f7e6c3b8f6a9f47ac826b83c23a32ede19b90895f3c"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "00f18cd1f8453f8bdf801f7e6c3b8f6a9f47ac826b83c23a32ede19b90895f3c"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "gemma-4-26b-a4b-it",
+    "provider": "gemini",
     "source_commit": "f16052dce83f05847133ec98f01c5193a41de7d8",
     "configuration_identity_sha256": "87d3aa462c409f8e167a311e8a8458eb51de626fba2390857a055dacf13219a6"
   },
@@ -552,6 +574,72 @@
   {
     "metric": "resolved",
     "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "69d53a4ed3efd24770950ed568bcabc3a4f434d417394ec23fefb552e3aa758a"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "69d53a4ed3efd24770950ed568bcabc3a4f434d417394ec23fefb552e3aa758a"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "12ace08702e88fd94f98f51cce166be52095f907c8f2dca1aded80f0028951e9"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "12ace08702e88fd94f98f51cce166be52095f907c8f2dca1aded80f0028951e9"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "dcd5ff9c02d891e11655c6ddafa7f2f9e0f33ca882748b23a14d76b52f8762d7"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-1.5b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "configuration_identity_sha256": "dcd5ff9c02d891e11655c6ddafa7f2f9e0f33ca882748b23a14d76b52f8762d7"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
     "status": "measured",
     "n": 7,
     "a_only": 3,
@@ -728,5 +816,27 @@
     "provider": "local",
     "source_commit": "c481018c39e76e5758fabc27efabadc34a0d4dd6",
     "configuration_identity_sha256": "d35431ef59e0720c912373bb7be6b97144b29c2b66418eb3ac685c11be238850"
+  },
+  {
+    "metric": "resolved",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "147a1997c1a0f40f6ac52b9981f76aad26d7b0a02d334f814f17f01a9a5fa045"
+  },
+  {
+    "metric": "joint_security",
+    "comparison": "tool_agent-A",
+    "status": "missing_or_duplicate_method",
+    "n": 0,
+    "holm_p_baseline_family": null,
+    "model": "qwen2.5-coder-7b-instruct-q4km",
+    "provider": "local",
+    "source_commit": "2aa4cc14f251e4a780e94e200aed6b36a5b15c21",
+    "configuration_identity_sha256": "147a1997c1a0f40f6ac52b9981f76aad26d7b0a02d334f814f17f01a9a5fa045"
   }
 ]

@@ -114,7 +114,7 @@ def main():
         destination=out/'figures'/source_file.name;destination.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source_file,destination);records.append(destination)
     report=(ROOT/'review_docs/VALIDATED_RESULTS.md').read_text(encoding='utf-8')
-    report=report.replace('Raw evidence is under `review_results/<run>/`;','Raw evidence is retained locally under `review_results/<run>/`, as the user chose summary-and-figure publication only. Public allowlisted exports are under `public_results/review2/`.')
+    report=report.replace('Raw evidence is under `review_results/<run>/`;','Raw evidence is retained locally under `review_results/<run>/`, as the user chose summary-and-figure publication only. Public allowlisted exports are under `public_results/review2/`. The')
     report=report.replace('(MANUSCRIPT_CORRELATION.md)','(../../review_docs/MANUSCRIPT_CORRELATION.md)')
     assert_safe(report)
     destination=out/'RESULTS.md';destination.write_text(report,encoding='utf-8');records.append(destination)

@@ -78,5 +78,83 @@
         "40018": 32
       }
     }
+  },
+  {
+    "dataset": "synthetic",
+    "model_run": "gemma-4-26b-a4b-it-A-synthetic-review2-validated-retry1-r1",
+    "source_commit": "1a23c1dbc0dd843c294036c077ea2a7538a45790",
+    "status": "complete",
+    "new_alert_types": [],
+    "scope": "Bounded authenticated active SQL/XSS profile, no full crawl, no command/file/network injection; outer session gate is not native authorization proof.",
+    "baseline": {
+      "status": "complete",
+      "alert_types": 6,
+      "alert_instances": 10,
+      "alerts_by_plugin": {
+        "40012": 1,
+        "40018": 1,
+        "10038": 2,
+        "10020": 2,
+        "10036": 2,
+        "10021": 2
+      },
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "policy": {
+        "defaultThreshold": "Off",
+        "defaultStrength": "Low",
+        "rules": [
+          {
+            "id": 40012,
+            "threshold": "Medium",
+            "strength": "Low"
+          },
+          {
+            "id": 40018,
+            "threshold": "Medium",
+            "strength": "Low"
+          }
+        ]
+      },
+      "authenticated_rule_requests": {
+        "40012": 17,
+        "40018": 23
+      }
+    },
+    "model": {
+      "status": "complete",
+      "alert_types": 6,
+      "alert_instances": 10,
+      "alerts_by_plugin": {
+        "40012": 1,
+        "40018": 1,
+        "10038": 2,
+        "10020": 2,
+        "10036": 2,
+        "10021": 2
+      },
+      "anonymous_status": 401,
+      "authenticated_status": 200,
+      "policy": {
+        "defaultThreshold": "Off",
+        "defaultStrength": "Low",
+        "rules": [
+          {
+            "id": 40012,
+            "threshold": "Medium",
+            "strength": "Low"
+          },
+          {
+            "id": 40018,
+            "threshold": "Medium",
+            "strength": "Low"
+          }
+        ]
+      },
+      "authenticated_rule_requests": {
+        "40012": 17,
+        "40018": 23
+      }
+    }
   }
 ]
